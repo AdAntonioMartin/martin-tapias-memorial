@@ -1,0 +1,38 @@
+{
+  "personasPath": "data/personas/",
+  "personas": [
+    "data/personas/antonio-de-antonio-rivera.json",
+    "data/personas/domingo-minguez-paez.json",
+    "data/personas/eladio-de-antonio-de-la-calle.json",
+    "data/personas/isabel-minguez-gonzalez.json",
+    "data/personas/josefa-gonzalez-otero.json",
+    "data/personas/josefa-rivera-velasco.json",
+    "data/personas/lazara-otero-velasco.json"
+  ],
+  "detailTemplate": "persona.html",
+  "columns": [
+    {
+      "id": "nombre",
+      "label": "Nombre",
+      "source": "name",
+      "type": "string"
+    },
+    {
+      "id": "fallecimiento",
+      "label": "Fallecimiento",
+      "source": "fact:Fallecimiento",
+      "type": "date",
+      "format": "dd/mm/yyyy"
+    },
+    {
+      "id": "edad",
+      "label": "Edad",
+      "source": "fact:Edad",
+      "type": "number"
+    }
+  ],
+  "sort": {
+    "source": "fact:Fallecimiento",
+    "direction": "asc"
+  }
+}

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Familia Mínguez - De Antonio</title>
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <main
+    class="page"
+    data-records-src="data/lista.json"
+    data-detail-template="persona.html"
+  >
+    <nav class="site-nav" aria-label="Navegacion principal">
+      <a class="site-nav__link site-nav__link--active" href="index.html" aria-current="page">Listado</a>
+      <a class="site-nav__link" href="arbol.html">Arbol genealogico</a>
+    </nav>
+
+    <section class="hero">
+      <p class="eyebrow">Memoria familiar</p>
+      <h1>Familia Mínguez - De Antonio</h1>
+      <p class="lead">
+        Fallecidos enterrados en la tumba familiar de El Guijar.
+      </p>
+      <p class="description">
+        Un espacio de recuerdo para conservar nombres, fechas y memoria familiar.
+      </p>
+    </section>
+
+    <section class="table-section" aria-labelledby="tabla-fallecidos">
+      <div class="table-header">
+        <h2 id="tabla-fallecidos">Listado memorial</h2>
+        <p>Relación de las personas recordadas en este espacio familiar.</p>
+      </div>
+
+      <div class="table-wrapper">
+        <table>
+          <thead id="records-head"></thead>
+          <tbody id="records-body">
+            <tr>
+              <td>Cargando datos...</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <noscript class="noscript-message">
+    No se ha podido mostrar el contenido completo de esta página.
+  </noscript>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,18 @@
+:root {
+  --color-background: #11100f;
+  --color-background-soft: #1a1816;
+  --color-surface: rgba(33, 30, 27, 0.88);
+  --color-surface-strong: rgba(19, 17, 15, 0.96);
+  --color-text: #efe6d8;
+  --color-text-soft: #cdbfa9;
+  --color-line: rgba(214, 197, 171, 0.22);
+  --color-accent: #c8b18a;
+  --color-accent-strong: #e4d3b4;
+  --shadow-soft: 0 24px 70px rgba(0, 0, 0, 0.35);
+  --shadow-table: 0 14px 32px rgba(0, 0, 0, 0.28);
+  --radius-large: 24px;
+  --radius-medium: 16px;
+  --page-width: min(900px, calc(100vw - 2rem));
+  --font-display: "Palatino Linotype", "Book Antiqua", Palatino, Georgia, serif;
+  --font-body: Georgia, "Times New Roman", serif;
+}

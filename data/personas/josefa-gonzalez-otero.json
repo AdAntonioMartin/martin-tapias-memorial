@@ -1,0 +1,67 @@
+{
+  "name": "Josefa González Otero",
+  "subtitle": "Datos biográficos de Josefa González Otero",
+  "summary": "Josefa González Otero nació en Valdevacas y Guijar y falleció el 31/03/1984 en Valdevacas y Guijar, a la edad de 89 años.",
+  "facts": [
+    {
+      "label": "Nombre completo",
+      "value": "Josefa González Otero"
+    },
+    {
+      "label": "Padres",
+      "value": "Domingo y Lázara"
+    },
+    {
+      "label": "Nacimiento",
+      "value": "10/10/1895"
+    },
+    {
+      "label": "Lugar de nacimiento",
+      "value": "Valdevacas y Guijar"
+    },
+    {
+      "label": "Fallecimiento",
+      "value": "31/03/1984"
+    },
+    {
+      "label": "Hora",
+      "value": "4:00"
+    },
+    {
+      "label": "Edad",
+      "value": "89 años"
+    },
+    {
+      "label": "Lugar de fallecimiento",
+      "value": "Valdevacas y Guijar"
+    },
+    {
+      "label": "Motivo",
+      "value": "Insuficiencia cardíaca"
+    }
+  ],
+  "heroImage": {
+    "src": "images/personas/josefa-gonzalez-otero/IMG_4013.JPG",
+    "alt": "Retrato de Josefa González Otero",
+    "caption": "Retrato principal de Josefa González Otero."
+  },
+  "biography": [
+    "Josefa González Otero figura en el archivo familiar con padres Domingo y Lázara, nacimiento en Valdevacas y Guijar y fallecimiento en Valdevacas y Guijar.",
+    "Por ahora la ficha recoge los datos disponibles: nacimiento 10/10/1895, fallecimiento el 31/03/1984 a las 4:00 y motivo registrado como Insuficiencia cardíaca.",
+    "Esta página queda preparada para añadir manualmente recuerdos, fotografías, documentos y una biografía más completa cuando se disponga de más información."
+  ],
+  "gallery": [
+    {
+      "src": "images/personas/josefa-gonzalez-otero/IMG_4013.JPG",
+      "alt": "Imagen de Josefa González Otero: IMG 4013",
+      "caption": "IMG 4013"
+    },
+    {
+      "src": "images/personas/josefa-gonzalez-otero/IMG_4029.JPG",
+      "alt": "Imagen de Josefa González Otero: IMG 4029",
+      "caption": "IMG 4029"
+    }
+  ],
+  "id": "josefa-gonzalez-otero",
+  "gender": "female"
+}
