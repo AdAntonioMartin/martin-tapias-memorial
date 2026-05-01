@@ -1,13 +1,5 @@
 import { normalizeDataPath } from "./utils.js";
-
-export function fetchJson(path) {
-  return fetch(path).then(function (response) {
-    if (!response.ok) {
-      throw new Error("No se pudo cargar " + path);
-    }
-    return response.json();
-  });
-}
+import { fetchJson } from "../core/net.js";
 
 export function getLaunchTarget() {
   var params = new URLSearchParams(window.location.search);

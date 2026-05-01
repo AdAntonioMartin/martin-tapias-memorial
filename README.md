@@ -8,8 +8,13 @@ Web estática para mostrar el listado memorial y fichas personales.
 - `persona.html`: plantilla de ficha personal.
 - `data/lista.json`: configuración de la tabla principal (columnas, orden, carpeta de personas).
 - `data/personas/<slug>.json`: fichas personales, una por cada entrada.
-- `js/app.js`: carga `data/lista.json`, descubre los JSON en `data/personas/` y genera el listado.
-- `js/detail.js`: carga el JSON externo y rellena la ficha personal.
+- `js/app.js`: entrada de la portada (listado memorial).
+- `js/detail.js`: entrada de ficha personal.
+- `js/arbol.js`: entrada del arbol genealogico.
+- `js/core/`: utilidades compartidas (HTML, texto, fechas, red, URL, colecciones, persona).
+- `js/listing/`: modulos del listado (configuracion, datos, columnas, ordenacion, render).
+- `js/detail/`: modulos de ficha (resolucion de datos y render).
+- `js/tree/`: modulos del arbol (datos, grafo, layout, render, panel, viewport).
 - `css/tokens.css`: variables de tema.
 - `css/styles.css`: estilos de la portada, tabla y ficha.
 - `images/personas/<slug>/`: imágenes asociadas a cada ficha personal.

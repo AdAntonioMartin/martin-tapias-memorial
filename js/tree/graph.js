@@ -1,18 +1,8 @@
 import { GENDER_EMOJI } from "./config.js";
-import { normalizeText, parseDateByFormat } from "./utils.js";
+import { parseDateByFormat } from "./utils.js";
+import { getFactValue } from "../core/person.js";
 
 export { GENDER_EMOJI };
-
-function getFactValue(facts, label) {
-  var expected = normalizeText(label);
-  var list = Array.isArray(facts) ? facts : [];
-  for (var i = 0; i < list.length; i += 1) {
-    if (normalizeText(list[i].label) === expected) {
-      return list[i].value || "";
-    }
-  }
-  return "";
-}
 
 function extractYear(value) {
   var text = String(value || "").trim();
@@ -28,8 +18,8 @@ function extractYear(value) {
 }
 
 function formatYears(record) {
-  var born = getFactValue(record.facts, "Nacimiento") || record.born || "";
-  var died = getFactValue(record.facts, "Fallecimiento") || record.died || "";
+  var born = getFactValue(record, "Nacimiento") || record.born || "";
+  var died = getFactValue(record, "Fallecimiento") || record.died || "";
   var bornYear = extractYear(born);
   var diedYear = extractYear(died);
   if (!bornYear && !diedYear) {
@@ -45,7 +35,7 @@ function birthSortValue(node) {
   if (!node || !node.record) {
     return Number.POSITIVE_INFINITY;
   }
-  var birth = getFactValue(node.record.facts, "Nacimiento") || node.record.born || "";
+  var birth = getFactValue(node.record, "Nacimiento") || node.record.born || "";
   var value = parseDateByFormat(birth, "dd/mm/yyyy");
   return Number.isNaN(value) ? Number.POSITIVE_INFINITY : value;
 }
