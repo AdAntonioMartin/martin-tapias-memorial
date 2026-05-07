@@ -10,6 +10,7 @@ Web estatica para listado memorial, fichas personales y arbol genealogico.
 - `data/lista.json`: configuracion de columnas y orden del listado.
 - `data/personas-index.json`: fuente unica de mapeo `id -> ruta JSON`.
 - `data/arbol.json`: relaciones familiares (`unions`).
+- `data/ui-text.es.json`: textos de interfaz (titulos, labels, mensajes, botones).
 - `data/personas/<slug>.json`: fichas personales.
 - `js/config/app-config.js`: configuracion central de rutas/plantillas/tema.
 
@@ -29,6 +30,7 @@ Las rutas y plantillas comunes se definen en un unico sitio:
 - `APP_CONFIG.data.listConfig`
 - `APP_CONFIG.data.peopleIndex`
 - `APP_CONFIG.data.treeConfig`
+- `APP_CONFIG.data.uiText`
 - `APP_CONFIG.templates.detail`
 
 El listado y el detalle leen estas rutas por defecto. `index.html` ya no replica rutas en atributos `data-*`.

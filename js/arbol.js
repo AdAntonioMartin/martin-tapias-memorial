@@ -4,6 +4,7 @@ import { closePanel, openPanel } from "./tree/panel.js";
 import { applyAppTheme } from "./core/theme.js";
 import { APP_CONFIG } from "./config/app-config.js";
 import { escapeHtml } from "./core/html.js";
+import { applyI18nToDom, loadUiText, t } from "./core/i18n.js";
 import { normalizeDataPath } from "./core/url.js";
 
 function familyChartApi() {
@@ -145,6 +146,7 @@ function init() {
     console.error("arbol.js: family-chart no disponible en window.f3");
     var libError = document.getElementById("tree-error");
     if (libError) {
+      libError.textContent = t("tree.messages.error", "No se pudo cargar el arbol genealogico.");
       libError.hidden = false;
     }
     return;
@@ -262,8 +264,8 @@ function init() {
       if (showAllBtn) {
         function syncModeButton() {
           showAllBtn.textContent = centerOnSelection
-            ? "Modo: Centrar seleccion"
-            : "Modo: Vista global";
+            ? t("tree.toolbar.modeCenter", "Modo: Centrar seleccion")
+            : t("tree.toolbar.modeGlobal", "Modo: Vista global");
           showAllBtn.setAttribute("aria-pressed", centerOnSelection ? "true" : "false");
         }
         syncModeButton();
@@ -315,5 +317,10 @@ function init() {
     });
 }
 
-document.addEventListener("DOMContentLoaded", init);
 applyAppTheme();
+document.addEventListener("DOMContentLoaded", function () {
+  loadUiText().then(function () {
+    applyI18nToDom(document);
+    init();
+  });
+});

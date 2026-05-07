@@ -1,4 +1,5 @@
 import { escapeHtml } from "../core/html.js";
+import { t } from "../core/i18n.js";
 import { getColumnValue } from "./columns.js";
 
 function buildDetailUrl(record, config) {
@@ -19,7 +20,7 @@ export function renderError() {
     thead.innerHTML = "";
   }
   if (tbody) {
-    tbody.innerHTML = '<tr><td>No se pudo mostrar el listado en este momento.</td></tr>';
+    tbody.innerHTML = "<tr><td>" + escapeHtml(t("listing.table.error", "No se pudo mostrar el listado en este momento.")) + "</td></tr>";
   }
 }
 
@@ -34,7 +35,7 @@ export function renderTable(records, columns, config) {
     if (thead) {
       thead.innerHTML = "";
     }
-    tbody.innerHTML = '<tr><td>No hay datos.</td></tr>';
+    tbody.innerHTML = "<tr><td>" + escapeHtml(t("listing.table.empty", "No hay datos.")) + "</td></tr>";
     return;
   }
 

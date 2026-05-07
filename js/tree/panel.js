@@ -1,5 +1,6 @@
 import { GENDER_COLOR, GENDER_EMOJI } from "./config.js";
 import { escapeHtml } from "../core/html.js";
+import { t } from "../core/i18n.js";
 
 function detailUrl(node, detailTemplate) {
   var template = detailTemplate || "persona.html";
@@ -14,20 +15,20 @@ function detailUrl(node, detailTemplate) {
 function roleByGender(gender, asParent) {
   if (asParent) {
     if (gender === "male") {
-      return "Padre";
+      return t("tree.panel.roles.father", "Padre");
     }
     if (gender === "female") {
-      return "Madre";
+      return t("tree.panel.roles.mother", "Madre");
     }
-    return "Progenitor";
+    return t("tree.panel.roles.parent", "Progenitor");
   }
   if (gender === "male") {
-    return "Hijo";
+    return t("tree.panel.roles.son", "Hijo");
   }
   if (gender === "female") {
-    return "Hija";
+    return t("tree.panel.roles.daughter", "Hija");
   }
-  return "Hijo/a";
+  return t("tree.panel.roles.child", "Hijo/a");
 }
 
 export function closePanel() {
@@ -74,14 +75,14 @@ export function openPanel(personId, graph, detailTemplate, onNavigate) {
   if (node.record && node.record.summary) {
     html +=
       '<div class="tree-panel__section">' +
-      '<p class="tree-panel__section-label">Resumen</p>' +
+      '<p class="tree-panel__section-label">' + escapeHtml(t("tree.panel.summary", "Resumen")) + "</p>" +
       '<p class="tree-panel__section-text">' + escapeHtml(node.record.summary) + "</p>" +
       "</div>";
   }
 
   if (node.parentUnion && graph.unionMap[node.parentUnion]) {
     var parentUnion = graph.unionMap[node.parentUnion];
-    html += '<div class="tree-panel__section"><p class="tree-panel__section-label">Padres</p>';
+    html += '<div class="tree-panel__section"><p class="tree-panel__section-label">' + escapeHtml(t("tree.panel.parents", "Padres")) + "</p>";
     (parentUnion.partners || []).forEach(function (parentId) {
       var parent = graph.nodes[parentId];
       if (!parent) {
@@ -105,10 +106,10 @@ export function openPanel(personId, graph, detailTemplate, onNavigate) {
     }
 
     var unionLabel = {
-      married: "Matrimonio",
-      divorced: "Divorciados",
-      unmarried: "Sin matrimonio"
-    }[union.type] || "Union";
+      married: t("tree.panel.union.married", "Matrimonio"),
+      divorced: t("tree.panel.union.divorced", "Divorciados"),
+      unmarried: t("tree.panel.union.unmarried", "Sin matrimonio")
+    }[union.type] || t("tree.panel.union.default", "Union");
 
     html +=
       '<div class="tree-panel__section">' +
@@ -127,12 +128,12 @@ export function openPanel(personId, graph, detailTemplate, onNavigate) {
         '<div class="tree-panel__ref" data-pid="' + escapeHtml(partnerId) + '">' +
         '<div class="tree-panel__ref-dot" style="background:' + color + '"></div>' +
         '<span class="tree-panel__ref-name">' + escapeHtml(partner.name) + "</span>" +
-        '<span class="tree-panel__ref-role">Pareja</span>' +
+        '<span class="tree-panel__ref-role">' + escapeHtml(t("tree.panel.partnerRole", "Pareja")) + "</span>" +
         "</div>";
     });
 
     if (union.children && union.children.length) {
-      html += '<p class="tree-panel__section-label" style="margin-top:.5rem">Hijos</p>';
+      html += '<p class="tree-panel__section-label" style="margin-top:.5rem">' + escapeHtml(t("tree.panel.children", "Hijos")) + "</p>";
       union.children.forEach(function (childId) {
         var child = graph.nodes[childId];
         if (!child) {
@@ -152,7 +153,7 @@ export function openPanel(personId, graph, detailTemplate, onNavigate) {
   });
 
   html +=
-    '<a class="tree-panel__profile-link" href="' + escapeHtml(detailUrl(node, detailTemplate)) + '">Ver ficha completa -></a>';
+    '<a class="tree-panel__profile-link" href="' + escapeHtml(detailUrl(node, detailTemplate)) + '">' + escapeHtml(t("tree.panel.profileLink", "Ver ficha completa ->")) + "</a>";
   body.innerHTML = html;
 
   body.querySelectorAll(".tree-panel__ref[data-pid]").forEach(function (el) {

@@ -1,6 +1,7 @@
 import { getRequestedPersonId, resolveDetailDataPath, loadPersonData } from "./detail/data.js";
 import { renderDetailError, renderDetailPage, setTreeLink } from "./detail/render.js";
 import { applyAppTheme } from "./core/theme.js";
+import { applyI18nToDom, loadUiText, t } from "./core/i18n.js";
 
 function loadDetailPage() {
   resolveDetailDataPath()
@@ -8,7 +9,7 @@ function loadDetailPage() {
       setTreeLink(dataPath, getRequestedPersonId());
 
       if (!dataPath) {
-        renderDetailError("Esta pagina no esta disponible en este momento.");
+        renderDetailError(t("detail.messages.errorNoPath", "Esta pagina no esta disponible en este momento."));
         return null;
       }
 
@@ -19,9 +20,14 @@ function loadDetailPage() {
       });
     })
     .catch(function () {
-      renderDetailError("No se pudo mostrar el contenido de esta memoria personal.");
+      renderDetailError(t("detail.messages.errorLoad", "No se pudo mostrar el contenido de esta memoria personal."));
     });
 }
 
-document.addEventListener("DOMContentLoaded", loadDetailPage);
 applyAppTheme();
+document.addEventListener("DOMContentLoaded", function () {
+  loadUiText().then(function () {
+    applyI18nToDom(document);
+    loadDetailPage();
+  });
+});

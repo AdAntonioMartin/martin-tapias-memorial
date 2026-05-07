@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Arbol genealogico - Familia Minguez · De Antonio</title>
+  <title data-i18n="tree.title"></title>
   <link rel="stylesheet" href="css/tokens.css">
   <link rel="stylesheet" href="css/styles.css">
   <link rel="stylesheet" href="https://unpkg.com/family-chart@0.9.0/dist/styles/family-chart.css">
@@ -11,43 +11,41 @@
 </head>
 <body>
   <main class="page page--arbol">
-    <nav class="site-nav" aria-label="Navegacion principal">
-      <a class="site-nav__link" href="index.html">Listado</a>
-      <a class="site-nav__link site-nav__link--active" href="arbol.html" aria-current="page">Arbol genealogico</a>
+    <nav class="site-nav" data-i18n-attr="aria-label:common.nav.mainAria">
+      <a class="site-nav__link" href="index.html" data-i18n="common.nav.list"></a>
+      <a class="site-nav__link site-nav__link--active" href="arbol.html" aria-current="page" data-i18n="common.nav.tree"></a>
     </nav>
 
     <section class="hero">
-      <p class="eyebrow">Arbol genealogico</p>
-      <h1>Familia Minguez · De Antonio</h1>
-      <p class="lead">Representacion visual de los lazos familiares.</p>
+      <p class="eyebrow" data-i18n="tree.hero.eyebrow"></p>
+      <h1 data-i18n="tree.hero.heading"></h1>
+      <p class="lead" data-i18n="tree.hero.lead"></p>
     </section>
 
-    <section class="tree-section" aria-label="Arbol genealogico interactivo">
-      <div class="tree-toolbar" role="toolbar" aria-label="Controles del arbol">
-        <button class="tree-btn" id="btn-zoom-in" aria-label="Acercar">+</button>
-        <button class="tree-btn" id="btn-zoom-out" aria-label="Alejar">-</button>
-        <button class="tree-btn" id="btn-fit" aria-label="Ajustar vista">Fit</button>
-        <button class="tree-btn" id="btn-show-all" aria-pressed="false" aria-label="Alternar modo de enfoque">Modo: Vista global</button>
-        <a class="tree-btn tree-btn--back" href="index.html">&larr; Volver</a>
+    <section class="tree-section" data-i18n-attr="aria-label:tree.sectionAria">
+      <div class="tree-toolbar" role="toolbar" data-i18n-attr="aria-label:tree.toolbar.aria">
+        <button class="tree-btn" id="btn-zoom-in" data-i18n-attr="aria-label:tree.toolbar.zoomInAria">+</button>
+        <button class="tree-btn" id="btn-zoom-out" data-i18n-attr="aria-label:tree.toolbar.zoomOutAria">-</button>
+        <button class="tree-btn" id="btn-fit" data-i18n-attr="aria-label:tree.toolbar.fitAria" data-i18n="tree.toolbar.fit"></button>
+        <button class="tree-btn" id="btn-show-all" aria-pressed="false" data-i18n-attr="aria-label:tree.toolbar.toggleAria" data-i18n="tree.toolbar.modeGlobal"></button>
+        <a class="tree-btn tree-btn--back" href="index.html" data-i18n="tree.toolbar.back"></a>
       </div>
 
       <div class="tree-viewport-wrapper" id="tree-wrapper">
         <div class="f3 f3-cont tree-canvas" id="tree-canvas"></div>
-        <p class="tree-loading" id="tree-loading">Cargando arbol...</p>
-        <p class="tree-error" id="tree-error" hidden>No se pudo cargar el arbol genealogico.</p>
+        <p class="tree-loading" id="tree-loading" data-i18n="tree.messages.loading"></p>
+        <p class="tree-error" id="tree-error" hidden data-i18n="tree.messages.error"></p>
       </div>
     </section>
   </main>
 
-  <aside class="tree-panel" id="tree-panel" aria-label="Ficha de la persona" hidden>
-    <button class="tree-panel__close" id="tree-panel-close" aria-label="Cerrar ficha">X</button>
+  <aside class="tree-panel" id="tree-panel" hidden data-i18n-attr="aria-label:tree.panel.aria">
+    <button class="tree-panel__close" id="tree-panel-close" data-i18n-attr="aria-label:tree.panel.closeAria" data-i18n="tree.panel.closeGlyph"></button>
     <div class="tree-panel__header" id="tree-panel-header"></div>
     <div class="tree-panel__body" id="tree-panel-body"></div>
   </aside>
 
-  <noscript class="noscript-message">
-    El arbol genealogico requiere JavaScript activado.
-  </noscript>
+  <noscript class="noscript-message" data-i18n="common.noscript.tree"></noscript>
 
   <script src="https://unpkg.com/d3@7"></script>
   <script src="https://unpkg.com/family-chart@0.9.0/dist/family-chart.min.js"></script>

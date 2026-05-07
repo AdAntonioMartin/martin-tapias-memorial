@@ -4,6 +4,7 @@ import { getColumns } from "./listing/columns.js";
 import { sortRecords } from "./listing/sort.js";
 import { renderTable, renderError } from "./listing/render.js";
 import { applyAppTheme } from "./core/theme.js";
+import { applyI18nToDom, loadUiText } from "./core/i18n.js";
 
 function resolvePersonPaths(listConfig) {
   var directory = listConfig.personasPath || "";
@@ -52,5 +53,10 @@ function loadRecords() {
     .catch(renderError);
 }
 
-document.addEventListener("DOMContentLoaded", loadRecords);
 applyAppTheme();
+document.addEventListener("DOMContentLoaded", function () {
+  loadUiText().then(function () {
+    applyI18nToDom(document);
+    loadRecords();
+  });
+});

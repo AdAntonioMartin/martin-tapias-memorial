@@ -3,32 +3,28 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Familia Mínguez - De Antonio</title>
+  <title data-i18n="listing.title"></title>
   <link rel="stylesheet" href="css/tokens.css">
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
   <main class="page">
-    <nav class="site-nav" aria-label="Navegacion principal">
-      <a class="site-nav__link site-nav__link--active" href="index.html" aria-current="page">Listado</a>
-      <a class="site-nav__link" href="arbol.html">Arbol genealogico</a>
+    <nav class="site-nav" data-i18n-attr="aria-label:common.nav.mainAria">
+      <a class="site-nav__link site-nav__link--active" href="index.html" aria-current="page" data-i18n="common.nav.list"></a>
+      <a class="site-nav__link" href="arbol.html" data-i18n="common.nav.tree"></a>
     </nav>
 
     <section class="hero">
-      <p class="eyebrow">Memoria familiar</p>
-      <h1>Familia Mínguez - De Antonio</h1>
-      <p class="lead">
-        Fallecidos enterrados en la tumba familiar de El Guijar.
-      </p>
-      <p class="description">
-        Un espacio de recuerdo para conservar nombres, fechas y memoria familiar.
-      </p>
+      <p class="eyebrow" data-i18n="listing.hero.eyebrow"></p>
+      <h1 data-i18n="listing.hero.heading"></h1>
+      <p class="lead" data-i18n="listing.hero.lead"></p>
+      <p class="description" data-i18n="listing.hero.description"></p>
     </section>
 
     <section class="table-section" aria-labelledby="tabla-fallecidos">
       <div class="table-header">
-        <h2 id="tabla-fallecidos">Listado memorial</h2>
-        <p>Relación de las personas recordadas en este espacio familiar.</p>
+        <h2 id="tabla-fallecidos" data-i18n="listing.table.heading"></h2>
+        <p data-i18n="listing.table.description"></p>
       </div>
 
       <div class="table-wrapper">
@@ -36,7 +32,7 @@
           <thead id="records-head"></thead>
           <tbody id="records-body">
             <tr>
-              <td>Cargando datos...</td>
+              <td data-i18n="listing.table.loading"></td>
             </tr>
           </tbody>
         </table>
@@ -44,9 +40,7 @@
     </section>
   </main>
 
-  <noscript class="noscript-message">
-    No se ha podido mostrar el contenido completo de esta página.
-  </noscript>
+  <noscript class="noscript-message" data-i18n="common.noscript.generic"></noscript>
 
   <script type="module" src="js/app.js"></script>
 </body>

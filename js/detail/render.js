@@ -1,4 +1,5 @@
 import { escapeHtml, setText } from "../core/html.js";
+import { t } from "../core/i18n.js";
 
 function renderFacts(facts) {
   var target = document.getElementById("person-facts");
@@ -7,7 +8,7 @@ function renderFacts(facts) {
   }
 
   if (!facts || !facts.length) {
-    target.innerHTML = "<div><dt>Informacion</dt><dd>No disponible.</dd></div>";
+    target.innerHTML = "<div><dt>" + escapeHtml(t("detail.messages.info", "Informacion")) + "</dt><dd>" + escapeHtml(t("detail.messages.notAvailable", "No disponible.")) + "</dd></div>";
     return;
   }
 
@@ -28,7 +29,7 @@ function renderBiography(paragraphs) {
   }
 
   if (!paragraphs || !paragraphs.length) {
-    target.innerHTML = "<p>No hay biografia disponible.</p>";
+    target.innerHTML = "<p>" + escapeHtml(t("detail.messages.bioNotAvailable", "No hay biografia disponible.")) + "</p>";
     return;
   }
 
@@ -47,7 +48,7 @@ function renderHeroImage(image) {
   if (!image) {
     imageElement.removeAttribute("src");
     imageElement.alt = "";
-    captionElement.textContent = "Sin imagen principal.";
+    captionElement.textContent = t("detail.messages.noMainImage", "Sin imagen principal.");
     return;
   }
 
@@ -63,7 +64,7 @@ function renderGallery(images) {
   }
 
   if (!images || !images.length) {
-    target.innerHTML = "<p>No hay imagenes adicionales.</p>";
+    target.innerHTML = "<p>" + escapeHtml(t("detail.messages.noGalleryImages", "No hay imagenes adicionales.")) + "</p>";
     return;
   }
 
@@ -101,8 +102,10 @@ export function setTreeLink(dataPath, personId) {
 }
 
 export function renderDetailPage(data) {
-  document.title = (data.name || "Ficha personal") + " | Familia Minguez - De Antonio";
-  setText("person-name", data.name || "Ficha personal");
+  var pageDefault = t("detail.title.pageDefault", "Ficha personal");
+  var pageSuffix = t("detail.title.suffix", "Familia Minguez - De Antonio");
+  document.title = (data.name || pageDefault) + " | " + pageSuffix;
+  setText("person-name", data.name || pageDefault);
   setText("person-subtitle", data.subtitle || "");
   setText("person-summary", data.summary || "");
   renderFacts(data.facts);
@@ -112,7 +115,7 @@ export function renderDetailPage(data) {
 }
 
 export function renderDetailError(message) {
-  setText("person-name", "No se pudo mostrar esta ficha");
+  setText("person-name", t("detail.messages.errorTitle", "No se pudo mostrar esta ficha"));
   setText("person-subtitle", "");
   setText("person-summary", message);
   renderFacts([]);

@@ -1,0 +1,107 @@
+{
+  "common": {
+    "nav": {
+      "mainAria": "Navegacion principal",
+      "list": "Listado",
+      "tree": "Arbol genealogico",
+      "detail": "Ficha personal"
+    },
+    "noscript": {
+      "generic": "No se ha podido mostrar el contenido completo de esta pagina.",
+      "tree": "El arbol genealogico requiere JavaScript activado."
+    }
+  },
+  "listing": {
+    "title": "Familia Minguez - De Antonio",
+    "hero": {
+      "eyebrow": "Memoria familiar",
+      "heading": "Familia Minguez - De Antonio",
+      "lead": "Fallecidos enterrados en la tumba familiar de El Guijar.",
+      "description": "Un espacio de recuerdo para conservar nombres, fechas y memoria familiar."
+    },
+    "table": {
+      "heading": "Listado memorial",
+      "description": "Relacion de las personas recordadas en este espacio familiar.",
+      "loading": "Cargando datos...",
+      "empty": "No hay datos.",
+      "error": "No se pudo mostrar el listado en este momento."
+    }
+  },
+  "detail": {
+    "title": {
+      "pageDefault": "Ficha personal",
+      "suffix": "Familia Minguez - De Antonio"
+    },
+    "hero": {
+      "eyebrow": "Ficha personal",
+      "loadingName": "Cargando..."
+    },
+    "sections": {
+      "general": "Informacion general",
+      "status": "Estado",
+      "mainImage": "Imagen principal",
+      "biography": "Biografia",
+      "gallery": "Galeria",
+      "galleryDescription": "Imagenes y documentos asociados a esta memoria personal."
+    },
+    "messages": {
+      "loading": "Cargando datos...",
+      "info": "Informacion",
+      "notAvailable": "No disponible.",
+      "bioNotAvailable": "No hay biografia disponible.",
+      "noMainImage": "Sin imagen principal.",
+      "noGalleryImages": "No hay imagenes adicionales.",
+      "errorTitle": "No se pudo mostrar esta ficha",
+      "errorNoPath": "Esta pagina no esta disponible en este momento.",
+      "errorLoad": "No se pudo mostrar el contenido de esta memoria personal."
+    }
+  },
+  "tree": {
+    "title": "Arbol genealogico - Familia Minguez · De Antonio",
+    "hero": {
+      "eyebrow": "Arbol genealogico",
+      "heading": "Familia Minguez · De Antonio",
+      "lead": "Representacion visual de los lazos familiares."
+    },
+    "sectionAria": "Arbol genealogico interactivo",
+    "toolbar": {
+      "aria": "Controles del arbol",
+      "zoomInAria": "Acercar",
+      "zoomOutAria": "Alejar",
+      "fitAria": "Ajustar vista",
+      "toggleAria": "Alternar modo de enfoque",
+      "back": "← Volver",
+      "fit": "Fit",
+      "modeGlobal": "Modo: Vista global",
+      "modeCenter": "Modo: Centrar seleccion"
+    },
+    "messages": {
+      "loading": "Cargando arbol...",
+      "error": "No se pudo cargar el arbol genealogico."
+    },
+    "panel": {
+      "aria": "Ficha de la persona",
+      "closeAria": "Cerrar ficha",
+      "closeGlyph": "X",
+      "summary": "Resumen",
+      "parents": "Padres",
+      "children": "Hijos",
+      "partnerRole": "Pareja",
+      "profileLink": "Ver ficha completa ->",
+      "union": {
+        "married": "Matrimonio",
+        "divorced": "Divorciados",
+        "unmarried": "Sin matrimonio",
+        "default": "Union"
+      },
+      "roles": {
+        "father": "Padre",
+        "mother": "Madre",
+        "parent": "Progenitor",
+        "son": "Hijo",
+        "daughter": "Hija",
+        "child": "Hijo/a"
+      }
+    }
+  }
+}

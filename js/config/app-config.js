@@ -7,7 +7,8 @@ export var APP_CONFIG = {
   data: {
     listConfig: "data/lista.json",
     peopleIndex: "data/personas-index.json",
-    treeConfig: "data/arbol.json"
+    treeConfig: "data/arbol.json",
+    uiText: "data/ui-text.es.json"
   },
   tree: {
     transitionMs: 420,
