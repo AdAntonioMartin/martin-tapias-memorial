@@ -1,5 +1,6 @@
 import { getRequestedPersonId, resolveDetailDataPath, loadPersonData } from "./detail/data.js";
 import { renderDetailError, renderDetailPage, setTreeLink } from "./detail/render.js";
+import { applyAppTheme } from "./core/theme.js";
 
 function loadDetailPage() {
   resolveDetailDataPath()
@@ -23,3 +24,4 @@ function loadDetailPage() {
 }
 
 document.addEventListener("DOMContentLoaded", loadDetailPage);
+applyAppTheme();

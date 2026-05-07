@@ -5,6 +5,7 @@ import { renderConnectors, renderNodes } from "./tree/render.js";
 import { closePanel, openPanel } from "./tree/panel.js";
 import { createViewportController } from "./tree/viewport.js";
 import { normalizeDataPath } from "./tree/utils.js";
+import { applyAppTheme } from "./core/theme.js";
 
 function openInitialTarget(target, graph, detailTemplate, viewport) {
   if (target.id && graph.nodes[target.id]) {
@@ -84,3 +85,4 @@ function init() {
 }
 
 document.addEventListener("DOMContentLoaded", init);
+applyAppTheme();

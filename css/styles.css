@@ -5,7 +5,7 @@
 }
 
 html {
-  color-scheme: dark;
+  color-scheme: var(--theme-color-scheme, dark);
 }
 
 body {
@@ -14,8 +14,8 @@ body {
   font-family: var(--font-body);
   color: var(--color-text);
   background:
-    radial-gradient(circle at top, rgba(200, 177, 138, 0.08), transparent 32%),
-    linear-gradient(180deg, rgba(9, 8, 8, 0.92), rgba(17, 16, 15, 0.98)),
+    var(--body-bg-layer-1),
+    var(--body-bg-layer-2),
     var(--color-background);
 }
 
@@ -25,15 +25,9 @@ body::before {
   inset: 0;
   pointer-events: none;
   background:
-    linear-gradient(rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.02)),
-    repeating-linear-gradient(
-      90deg,
-      transparent,
-      transparent 120px,
-      rgba(255, 255, 255, 0.015) 121px,
-      transparent 122px
-    );
-  opacity: 0.45;
+    var(--body-overlay-layer-1),
+    var(--body-overlay-layer-2);
+  opacity: var(--body-overlay-opacity);
 }
 
 .page {
@@ -60,7 +54,7 @@ body::before {
   border: 1px solid var(--color-line);
   border-radius: var(--radius-medium);
   color: var(--color-accent-strong);
-  background: rgba(20, 18, 17, 0.78);
+  background: var(--nav-bg);
   text-decoration: none;
   font-size: 0.82rem;
   letter-spacing: 0.08em;
@@ -70,12 +64,12 @@ body::before {
 
 .site-nav__link:hover {
   border-color: var(--color-accent);
-  background: rgba(200, 177, 138, 0.12);
+  background: var(--nav-hover-bg);
 }
 
 .site-nav__link--active {
   border-color: var(--color-accent);
-  background: rgba(200, 177, 138, 0.16);
+  background: var(--nav-active-bg);
 }
 
 .hero {
@@ -84,7 +78,7 @@ body::before {
   border: 1px solid var(--color-line);
   border-radius: var(--radius-large);
   background:
-    linear-gradient(180deg, rgba(35, 31, 28, 0.82), rgba(18, 16, 14, 0.92)),
+    var(--hero-layer-1),
     var(--color-surface);
   box-shadow: var(--shadow-soft);
 }
@@ -139,7 +133,7 @@ h2 {
   padding: 2rem;
   border: 1px solid var(--color-line);
   border-radius: var(--radius-large);
-  background: rgba(20, 18, 17, 0.82);
+  background: var(--section-bg);
   box-shadow: var(--shadow-soft);
 }
 
@@ -162,7 +156,7 @@ table {
 }
 
 thead {
-  background: rgba(200, 177, 138, 0.08);
+  background: var(--table-head-bg);
 }
 
 th,
@@ -185,7 +179,7 @@ tbody tr:last-child td {
 }
 
 tbody tr:hover {
-  background: rgba(200, 177, 138, 0.06);
+  background: var(--table-row-hover-bg);
 }
 
 .row-link {
@@ -199,7 +193,7 @@ tbody tr:hover {
 }
 
 .table-row-link:hover {
-  background: rgba(200, 177, 138, 0.09);
+  background: var(--table-row-link-hover-bg);
 }
 
 td[colspan] {
@@ -235,7 +229,7 @@ td[colspan] {
   padding: 1.8rem;
   border: 1px solid var(--color-line);
   border-radius: var(--radius-large);
-  background: rgba(20, 18, 17, 0.82);
+  background: var(--section-bg);
   box-shadow: var(--shadow-soft);
 }
 
@@ -278,7 +272,7 @@ td[colspan] {
   width: 100%;
   border: 1px solid var(--color-line);
   border-radius: var(--radius-medium);
-  background: rgba(255, 255, 255, 0.04);
+  background: var(--media-bg);
 }
 
 .detail-figure figcaption,

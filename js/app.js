@@ -3,6 +3,7 @@ import { loadListConfig, listPersonFiles, loadPersonRecords } from "./listing/da
 import { getColumns } from "./listing/columns.js";
 import { sortRecords } from "./listing/sort.js";
 import { renderTable, renderError } from "./listing/render.js";
+import { applyAppTheme } from "./core/theme.js";
 
 function resolvePersonPaths(listConfig) {
   var directory = listConfig.personasPath || "data/personas/";
@@ -45,3 +46,4 @@ function loadRecords() {
 }
 
 document.addEventListener("DOMContentLoaded", loadRecords);
+applyAppTheme();
