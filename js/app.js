@@ -1,20 +1,27 @@
 import { getPageConfig } from "./listing/config.js";
-import { loadListConfig, listPersonFiles, loadPersonRecords } from "./listing/data.js";
+import { loadListConfig, listPersonFiles, loadPersonRecords, loadPersonPathsFromIndex } from "./listing/data.js";
 import { getColumns } from "./listing/columns.js";
 import { sortRecords } from "./listing/sort.js";
 import { renderTable, renderError } from "./listing/render.js";
 import { applyAppTheme } from "./core/theme.js";
 
 function resolvePersonPaths(listConfig) {
-  var directory = listConfig.personasPath || "data/personas/";
+  var directory = listConfig.personasPath || "";
   var fallbackPaths = Array.isArray(listConfig.personas) ? listConfig.personas : [];
 
-  return listPersonFiles(directory)
-    .then(function (paths) {
-      return paths.length ? paths : fallbackPaths;
-    })
-    .catch(function () {
-      return fallbackPaths;
+  return loadPersonPathsFromIndex()
+    .then(function (indexPaths) {
+      var fallbacks = indexPaths.length ? indexPaths : fallbackPaths;
+      if (!directory) {
+        return fallbacks;
+      }
+      return listPersonFiles(directory)
+        .then(function (paths) {
+          return paths.length ? paths : fallbacks;
+        })
+        .catch(function () {
+          return fallbacks;
+        });
     });
 }
 

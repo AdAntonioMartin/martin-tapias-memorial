@@ -1,6 +1,6 @@
 import { GENDER_EMOJI } from "./config.js";
-import { parseDateByFormat } from "./utils.js";
 import { getFactValue } from "../core/person.js";
+import { parseDateByFormat } from "../core/dates.js";
 
 export { GENDER_EMOJI };
 

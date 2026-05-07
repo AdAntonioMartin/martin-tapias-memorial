@@ -1,5 +1,5 @@
 import { GENDER_COLOR, GENDER_EMOJI } from "./config.js";
-import { escapeHtml } from "./utils.js";
+import { escapeHtml } from "../core/html.js";
 
 function detailUrl(node, detailTemplate) {
   var template = detailTemplate || "persona.html";
@@ -49,13 +49,9 @@ export function openPanel(personId, graph, detailTemplate, onNavigate) {
   document.querySelectorAll(".tree-node-card--selected").forEach(function (el) {
     el.classList.remove("tree-node-card--selected");
   });
-  var selectedForeign = document.querySelector("#tree-nodes foreignObject[data-pid='" + personId + "']");
-  if (selectedForeign) {
-    var card = selectedForeign.querySelector(".tree-node-card");
-    if (card) {
-      card.classList.add("tree-node-card--selected");
-    }
-  }
+  document.querySelectorAll(".card_cont[data-pid='" + personId + "'] .tree-node-card").forEach(function (card) {
+    card.classList.add("tree-node-card--selected");
+  });
 
   var panel = document.getElementById("tree-panel");
   var header = document.getElementById("tree-panel-header");
@@ -116,7 +112,7 @@ export function openPanel(personId, graph, detailTemplate, onNavigate) {
 
     html +=
       '<div class="tree-panel__section">' +
-      '<p class="tree-panel__section-label">' + escapeHtml(unionLabel + (union.married ? " · " + union.married : "")) + "</p>";
+      '<p class="tree-panel__section-label">' + escapeHtml(unionLabel + (union.married ? " - " + union.married : "")) + "</p>";
 
     (union.partners || []).forEach(function (partnerId) {
       if (partnerId === personId) {

@@ -1,4 +1,5 @@
 import { fetchJson } from "../core/net.js";
+import { APP_CONFIG } from "../config/app-config.js";
 
 function getQueryParams() {
   return new URLSearchParams(window.location.search);
@@ -13,7 +14,9 @@ export function getRequestedDataPath() {
 }
 
 function fetchPersonIndex() {
-  return fetchJson("data/personas-index.json", "Indice no disponible")
+  var dataConfig = APP_CONFIG && APP_CONFIG.data ? APP_CONFIG.data : {};
+  var indexSrc = dataConfig.peopleIndex || "data/personas-index.json";
+  return fetchJson(indexSrc, "Indice no disponible")
     .then(function (payload) {
       return payload && payload.byId && typeof payload.byId === "object" ? payload.byId : {};
     });

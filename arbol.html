@@ -3,9 +3,10 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Árbol genealógico – Familia Mínguez · De Antonio</title>
+  <title>Arbol genealogico - Familia Minguez · De Antonio</title>
   <link rel="stylesheet" href="css/tokens.css">
   <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="https://unpkg.com/family-chart@0.9.0/dist/styles/family-chart.css">
   <link rel="stylesheet" href="css/arbol.css">
 </head>
 <body>
@@ -16,52 +17,40 @@
     </nav>
 
     <section class="hero">
-      <p class="eyebrow">Árbol genealógico</p>
-      <h1>Familia Mínguez · De Antonio</h1>
-      <p class="lead">Representación visual de los lazos familiares.</p>
+      <p class="eyebrow">Arbol genealogico</p>
+      <h1>Familia Minguez · De Antonio</h1>
+      <p class="lead">Representacion visual de los lazos familiares.</p>
     </section>
 
-    <section class="tree-section" aria-label="Árbol genealógico interactivo">
-
-      <div class="tree-toolbar" role="toolbar" aria-label="Controles del árbol">
-        <button class="tree-btn" id="btn-zoom-in"  aria-label="Acercar">+</button>
-        <button class="tree-btn" id="btn-zoom-out" aria-label="Alejar">−</button>
-        <button class="tree-btn" id="btn-fit"      aria-label="Ajustar vista">⊡</button>
-        <a class="tree-btn tree-btn--back" href="index.html">← Volver</a>
+    <section class="tree-section" aria-label="Arbol genealogico interactivo">
+      <div class="tree-toolbar" role="toolbar" aria-label="Controles del arbol">
+        <button class="tree-btn" id="btn-zoom-in" aria-label="Acercar">+</button>
+        <button class="tree-btn" id="btn-zoom-out" aria-label="Alejar">-</button>
+        <button class="tree-btn" id="btn-fit" aria-label="Ajustar vista">Fit</button>
+        <button class="tree-btn" id="btn-show-all" aria-pressed="false" aria-label="Alternar modo de enfoque">Modo: Vista global</button>
+        <a class="tree-btn tree-btn--back" href="index.html">&larr; Volver</a>
       </div>
 
       <div class="tree-viewport-wrapper" id="tree-wrapper">
-        <svg class="tree-svg" id="tree-svg" aria-hidden="true">
-          <defs>
-            <marker id="tree-arrow" markerWidth="6" markerHeight="6"
-                    refX="5" refY="3" orient="auto">
-              <path d="M0,0 L6,3 L0,6 Z" class="tree-arrow-head"/>
-            </marker>
-          </defs>
-          <g id="tree-viewport">
-            <g id="tree-connectors"></g>
-            <g id="tree-nodes"></g>
-          </g>
-        </svg>
-        <p class="tree-loading" id="tree-loading">Cargando árbol…</p>
-<!--        <p class="tree-error"   id="tree-error"   hidden>No se pudo cargar el árbol genealógico.</p>-->
+        <div class="f3 f3-cont tree-canvas" id="tree-canvas"></div>
+        <p class="tree-loading" id="tree-loading">Cargando arbol...</p>
+        <p class="tree-error" id="tree-error" hidden>No se pudo cargar el arbol genealogico.</p>
       </div>
-
     </section>
-
   </main>
 
-  <!-- Detail panel (slide-in) -->
   <aside class="tree-panel" id="tree-panel" aria-label="Ficha de la persona" hidden>
-    <button class="tree-panel__close" id="tree-panel-close" aria-label="Cerrar ficha">✕</button>
+    <button class="tree-panel__close" id="tree-panel-close" aria-label="Cerrar ficha">X</button>
     <div class="tree-panel__header" id="tree-panel-header"></div>
-    <div class="tree-panel__body"   id="tree-panel-body"></div>
+    <div class="tree-panel__body" id="tree-panel-body"></div>
   </aside>
 
   <noscript class="noscript-message">
-    El árbol genealógico requiere JavaScript activado.
+    El arbol genealogico requiere JavaScript activado.
   </noscript>
 
+  <script src="https://unpkg.com/d3@7"></script>
+  <script src="https://unpkg.com/family-chart@0.9.0/dist/family-chart.min.js"></script>
   <script type="module" src="js/arbol.js"></script>
 </body>
 </html>

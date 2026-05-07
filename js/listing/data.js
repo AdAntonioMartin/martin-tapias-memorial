@@ -1,6 +1,7 @@
 import { unique } from "../core/collections.js";
 import { fetchJson, fetchText } from "../core/net.js";
 import { resolveHref, toPathOrUrl } from "../core/url.js";
+import { APP_CONFIG } from "../config/app-config.js";
 
 export function listPersonFiles(directoryUrl) {
   return fetchText(directoryUrl, "Directorio no disponible")
@@ -44,4 +45,17 @@ export function loadPersonRecords(paths) {
 
 export function loadListConfig(path) {
   return fetchJson(path, "Configuracion no disponible");
+}
+
+export function loadPersonPathsFromIndex() {
+  var dataConfig = APP_CONFIG && APP_CONFIG.data ? APP_CONFIG.data : {};
+  var peopleIndex = dataConfig.peopleIndex || "data/personas-index.json";
+  return fetchJson(peopleIndex, "Indice no disponible")
+    .then(function (payload) {
+      var byId = payload && payload.byId && typeof payload.byId === "object" ? payload.byId : {};
+      return Object.keys(byId).map(function (id) { return byId[id]; }).filter(Boolean);
+    })
+    .catch(function () {
+      return [];
+    });
 }
