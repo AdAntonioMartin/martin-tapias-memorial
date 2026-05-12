@@ -153,18 +153,31 @@
       "id": "u-miguel-antonia",
       "partners": [
         "antonia-rivera-martin",
-        "miguel-padre"
+        "miguel-de-andres"
       ],
       "type": "married",
       "children": [
-        "miguel-????-rivera"
+        "miguel-de-andres-rivera"
+      ]
+    },
+    {
+      "id": "u-cipriano-alfonsa",
+      "partners": [
+        "cipriano-tapias",
+        "alfonsa-alvaro"
+      ],
+      "type": "married",
+      "children": [
+        "benedicta-tapias-alvaro",
+        "jenorimo-tapias-alvaro",
+        "diosinio-tapias-alvaro"
       ]
     },
     {
       "id": "u-sofio-benedicta",
       "partners": [
         "sofio-martin-tapias",
-        "benedicta-tapias"
+        "benedicta-tapias-alvaro"
       ],
       "type": "married",
       "children": [
@@ -189,7 +202,7 @@
       "id": "u-eloy-carmen",
       "partners": [
         "eloy-martin-tapias",
-        "maría-del-carmen-cardeñosa"
+        "maría-del-carmen-cardeñosa-moreno"
       ],
       "type": "married",
       "children": [
@@ -238,7 +251,7 @@
       "id": "u-sara-xxxx",
       "partners": [
         "sara-martin-cuesta",
-        "xxxx"
+        "teresa"
       ],
       "type": "married",
       "children": [
