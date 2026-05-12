@@ -12,11 +12,11 @@
     }
   },
   "listing": {
-    "title": "Familia Minguez - De Antonio",
+    "title": "Familia Martín - Tapias",
     "hero": {
       "eyebrow": "Memoria familiar",
-      "heading": "Familia Minguez - De Antonio",
-      "lead": "Fallecidos enterrados en la tumba familiar de El Guijar.",
+      "heading": "Familia Martín - Tapias",
+      "lead": "Genealogía familiar",
       "description": "Un espacio de recuerdo para conservar nombres, fechas y memoria familiar."
     },
     "table": {
@@ -30,7 +30,7 @@
   "detail": {
     "title": {
       "pageDefault": "Ficha personal",
-      "suffix": "Familia Minguez - De Antonio"
+      "suffix": "Familia Martín - Tapias"
     },
     "hero": {
       "eyebrow": "Ficha personal",
@@ -57,10 +57,10 @@
     }
   },
   "tree": {
-    "title": "Arbol genealogico - Familia Minguez · De Antonio",
+    "title": "Arbol genealogico - Familia Martín - Tapias",
     "hero": {
       "eyebrow": "Arbol genealogico",
-      "heading": "Familia Minguez · De Antonio",
+      "heading": "Familia Martín - Tapias",
       "lead": "Representacion visual de los lazos familiares."
     },
     "sectionAria": "Arbol genealogico interactivo",

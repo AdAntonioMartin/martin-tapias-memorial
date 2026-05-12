@@ -1,6 +1,6 @@
 export var APP_CONFIG = {
   // Valores soportados: "dark" | "light-celestial" | "dawn-amber"
-  theme: "dark",
+  theme: "light-celestial",
   templates: {
     detail: "persona.html"
   },
@@ -14,6 +14,13 @@ export var APP_CONFIG = {
     transitionMs: 420,
     zoomStep: 1.15,
     zoomTransitionMs: 220,
+    modes: {
+      // Valores permitidos en enabled: "global", "center"
+      // Si solo hay un modo habilitado, se oculta el boton de alternancia.
+      enabled: ["global", "center"],
+      // Valor permitido: "global" | "center"
+      initial: "global"
+    },
     cardSpacing: {
       x: 200,
       y: 140

@@ -140,6 +140,32 @@ function pickGlobalMainId(f3Api, familyData) {
   return bestId;
 }
 
+function normalizeTreeModeConfig(treeConfig) {
+  var modes = treeConfig && treeConfig.modes ? treeConfig.modes : {};
+  var enabledRaw = ["global", "center"];
+  if (Array.isArray(modes.enabled)) {
+    enabledRaw = modes.enabled;
+  } else if (typeof modes.enabled === "string") {
+    enabledRaw = modes.enabled.split(",").map(function (part) {
+      return part.trim();
+    }).filter(Boolean);
+  }
+  var enabled = enabledRaw.filter(function (mode) {
+    return mode === "global" || mode === "center";
+  });
+  if (!enabled.length) {
+    enabled = ["global"];
+  }
+  var initial = modes.initial === "center" ? "center" : "global";
+  if (enabled.indexOf(initial) === -1) {
+    initial = enabled[0];
+  }
+  return {
+    enabled: enabled,
+    initial: initial
+  };
+}
+
 function init() {
   var f3Api = familyChartApi();
   if (!f3Api) {
@@ -162,6 +188,7 @@ function init() {
     .then(function (payload) {
       var graph = buildGraph(payload.unions, payload.records, payload.byId);
       var treeConfig = APP_CONFIG && APP_CONFIG.tree ? APP_CONFIG.tree : {};
+      var modeConfig = normalizeTreeModeConfig(treeConfig);
       var container = document.getElementById("tree-canvas");
       if (!container) {
         throw new Error("No existe #tree-canvas");
@@ -174,6 +201,7 @@ function init() {
         .setShowSiblingsOfMain(true)
         .setSingleParentEmptyCard(false);
       var globalMainId = pickGlobalMainId(f3Api, payload.familyData);
+      centerOnSelection = modeConfig.initial === "center";
 
       var card = chart.setCardHtml()
         .setStyle("imageRect")
@@ -262,6 +290,13 @@ function init() {
       bindToolbar(chart, f3Api);
       var showAllBtn = document.getElementById("btn-show-all");
       if (showAllBtn) {
+        if (modeConfig.enabled.length < 2) {
+          showAllBtn.hidden = true;
+          showAllBtn.style.display = "none";
+        } else {
+          showAllBtn.hidden = false;
+          showAllBtn.style.display = "";
+        }
         function syncModeButton() {
           showAllBtn.textContent = centerOnSelection
             ? t("tree.toolbar.modeCenter", "Modo: Centrar seleccion")
@@ -269,19 +304,37 @@ function init() {
           showAllBtn.setAttribute("aria-pressed", centerOnSelection ? "true" : "false");
         }
         syncModeButton();
-        showAllBtn.addEventListener("click", function () {
-          centerOnSelection = !centerOnSelection;
-          syncModeButton();
-          if (!centerOnSelection) {
-            showGlobalView();
-          } else if (selectedId) {
-            focusPerson(selectedId, {
-              center: true,
-              treePosition: "main_to_middle",
-              skipPanel: true
+        if (modeConfig.enabled.length >= 2) {
+          showAllBtn.addEventListener("click", function () {
+            centerOnSelection = !centerOnSelection;
+            syncModeButton();
+            if (!centerOnSelection) {
+              showGlobalView();
+            } else if (selectedId) {
+              focusPerson(selectedId, {
+                center: true,
+                treePosition: "main_to_middle",
+                skipPanel: true
+              });
+            } else if (globalMainId) {
+              chart.updateMainId(globalMainId);
+              chart.updateTree({
+                initial: false,
+                tree_position: "fit"
+              });
+            }
+          });
+        } else if (modeConfig.enabled[0] === "global") {
+          showGlobalView();
+        } else {
+          if (globalMainId) {
+            chart.updateMainId(globalMainId);
+            chart.updateTree({
+              initial: false,
+              tree_position: "fit"
             });
           }
-        });
+        }
       }
       openInitialTarget(target, graph, focusPerson);
       applySelectedState();

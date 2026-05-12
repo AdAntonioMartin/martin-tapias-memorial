@@ -1,37 +1,176 @@
 {
   "unions": [
     {
-      "id": "u-eladio-josefa",
+      "id": "u-simon-ana",
       "partners": [
-        "eladio-de-antonio-de-la-calle",
-        "josefa-rivera-velasco"
+        "simon-barral",
+        "ana-arranz"
       ],
       "type": "married",
       "children": [
-        "antonio-de-antonio-rivera"
+        "teresa-barral-arranz"
       ]
     },
     {
-      "id": "u-domingo-josefa",
+      "id": "u-francisco-catalina",
       "partners": [
-        "domingo-minguez-paez",
-        "josefa-gonzalez-otero"
+        "francisco-garcia",
+        "catalina-sanz"
       ],
       "type": "married",
       "children": [
-        "isabel-minguez-gonzalez"
+        "frutos-garcia-sanz"
       ]
     },
     {
-      "id": "u-antonio-isabel",
+      "id": "u-frutos-teresa",
       "partners": [
-        "antonio-de-antonio-rivera",
-        "isabel-minguez-gonzalez"
+        "teresa-barral-arranz",
+        "frutos-garcia-sanz"
       ],
       "type": "married",
       "children": [
-        "fernando-de-antonio-minguez",
-        "luis-de-antonio-minguez"
+        "frutos-alonso-garcia"
+      ]
+    },
+    {
+      "id": "u-baltasar-maria",
+      "partners": [
+        "maria-????-????",
+        "baltasar-alonso-?????"
+      ],
+      "type": "married",
+      "children": [
+        "frutos-alonso-garcia"
+      ]
+    },
+    {
+      "id": "u-frutos-maria",
+      "partners": [
+        "maria-garcia-barral",
+        "frutos-alonso-?????"
+      ],
+      "type": "married",
+      "children": [
+        "francisco-alonso-garcia"
+      ]
+    },
+    {
+      "id": "u-juan-isabel",
+      "partners": [
+        "juan-garcia",
+        "isabel-iglesia"
+      ],
+      "type": "married",
+      "children": [
+        "barbara-garcia-iglesia"
+      ]
+    },
+    {
+      "id": "u-francisco-barbara",
+      "partners": [
+        "francisco-alonso-garcia",
+        "barbara-garcia-iglesia"
+      ],
+      "type": "married",
+      "children": [
+        "antonio-alonso-garcia"
+      ]
+    },
+    {
+      "id": "u-antonio-lorenza",
+      "partners": [
+        "antonio-alonso-garcia",
+        "lorenza-lopez-garcia"
+      ],
+      "type": "married",
+      "children": [
+        "isabel-alonso-lopez"
+      ]
+    },
+    {
+      "id": "u-dionisio-isabel",
+      "partners": [
+        "dionisio-matesanz-sanz",
+        "isabel-alonso-lopez"
+      ],
+      "type": "married",
+      "children": [
+        "evarista-matesanz-alonso"
+      ]
+    },
+    {
+      "id": "u-castor-evarista",
+      "partners": [
+        "evarista-matesanz-alonso",
+        "castor-martin-bravo"
+      ],
+      "type": "married",
+      "children": [
+        "doroteo-martin-matesanz",
+        "abdon-martin-matesanz",
+        "santiago-martin-matesanz"
+      ]
+    },
+    {
+      "id": "u-abdon-victoria",
+      "partners": [
+        "victoria-tapias",
+        "abdon-martin-matesanz"
+      ],
+      "type": "married",
+      "children": [
+        "sofia-martin-tapias",
+        "amancio-martin-tapias",
+        "castor-martin-tapias",
+        "sofio-martin-tapias",
+        "angela-martin-tapias"
+      ]
+    },
+    {
+      "id": "u-basilides-angela",
+      "partners": [
+        "angela-martin-tapias",
+        "basilides-rivera"
+      ],
+      "type": "married",
+      "children": [
+        "antonia-rivera-martin"
+      ]
+    },
+    {
+      "id": "u-basilides-angela",
+      "partners": [
+        "angela-martin-tapias",
+        "basilides-rivera"
+      ],
+      "type": "married",
+      "children": [
+        "antonia-rivera-martin"
+      ]
+    },
+    {
+      "id": "u-miguel-antonia",
+      "partners": [
+        "antonia-rivera-martin",
+        "miguel-padre"
+      ],
+      "type": "married",
+      "children": [
+        "miguel-????-rivera"
+      ]
+    },
+    {
+      "id": "u-sofio-benedicta",
+      "partners": [
+        "sofio-martin-tapias",
+        "benedicta-tapias"
+      ],
+      "type": "married",
+      "children": [
+        "eloy-martin-tapias",
+        "castor-martin-tapias-tapias",
+        "asuncion-martin-tapias"
       ]
     },
     {
@@ -47,6 +186,31 @@
       ]
     },
     {
+      "id": "u-eloy-carmen",
+      "partners": [
+        "eloy-martin-tapias",
+        "maría-del-carmen-cardeñosa"
+      ],
+      "type": "married",
+      "children": [
+        "eloy-martin-cardeñosa",
+        "elvira-martin-cardeñosa"
+      ]
+    },
+    {
+      "id": "u-castor-angeles",
+      "partners": [
+        "castor-martin-tapias-tapias",
+        "maria-de-los-angeles-cuesta"
+      ],
+      "type": "married",
+      "children": [
+        "maria-martin-cuesta",
+        "ana-paula-martin-cuesta",
+        "sara-martin-cuesta"
+      ]
+    },
+    {
       "id": "u-antonio-pilar",
       "partners": [
         "antonio-de-antonio-martin",
@@ -56,6 +220,106 @@
       "children": [
         "africa-de-antonio-guayara",
         "adara-de-antonio-guayara"
+      ]
+    },
+    {
+      "id": "u-eloy-laura",
+      "partners": [
+        "eloy-martin-cardeñosa",
+        "laura"
+      ],
+      "type": "married",
+      "children": [
+        "alex-martin-xx",
+        "elisa-martin-xx"
+      ]
+    },
+    {
+      "id": "u-sara-xxxx",
+      "partners": [
+        "sara-martin-cuesta",
+        "xxxx"
+      ],
+      "type": "married",
+      "children": [
+        "alba-martin-xx"
+      ]
+    },
+    {
+      "id": "u-elvira",
+      "partners": [
+        "elvira-martin-cardeñosa"
+      ],
+      "type": "married",
+      "children": [
+        "marina-martin-cardeñosa",
+        "adriana-martin-cardeñosa"
+      ]
+    },
+    {
+      "id": "u-maria",
+      "partners": [
+        "maria-martin-cuesta"
+      ],
+      "type": "unmarried",
+      "children": [
+        "sofia-martin-cuesta",
+        "olivia-martin-cuesta"
+      ]
+    },
+    {
+      "id": "u-paula-alex",
+      "partners": [
+        "ana-paula-martin-cuesta",
+        "alex"
+      ],
+      "type": "married",
+      "children": []
+    },
+    {
+      "id": "u-julian-sofia",
+      "partners": [
+        "sofia-martin-tapias",
+        "julian-bravo"
+      ],
+      "type": "married",
+      "children": [
+        "julian-bravo-martin"
+      ]
+    },
+    {
+      "id": "u-santiago-maria",
+      "partners": [
+        "santiago-martin-matesanz",
+        "maria-arahuetes"
+      ],
+      "type": "married",
+      "children": [
+        "modesto-martin-????",
+        "la-campos-martin-????"
+      ]
+    },
+    {
+      "id": "u-modesto-nicolasa",
+      "partners": [
+        "modesto-martin-????",
+        "nicolasa-?????-?????"
+      ],
+      "type": "married",
+      "children": [
+        "santiago",
+        "margarita"
+      ]
+    },
+    {
+      "id": "u-la-campos-enrique",
+      "partners": [
+        "la-campos-martin-????",
+        "enrique-?????-?????"
+      ],
+      "type": "married",
+      "children": [
+        "angel"
       ]
     }
   ]
