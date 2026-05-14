@@ -41,7 +41,7 @@
     }
   ],
   "heroImage": {
-    "src": "images/personas/antonio-de-antonio-rivera/Antonio_de_Antonio_Rivera_2-transformed_enhanced.png",
+    "src": "images/personas/antonio-de-antonio-rivera/Antonio carné.png",
     "alt": "Retrato de Antonio de Antonio Rivera",
     "caption": "Retrato principal de Antonio de Antonio Rivera."
   },
@@ -58,6 +58,16 @@
     },
     {
       "src": "images/personas/antonio-de-antonio-rivera/Imagen 2024-09-30 (1)_enhanced.png",
+      "alt": "Imagen de Antonio de Antonio Rivera: Imagen 2024 09 30 (1) enhanced",
+      "caption": "Imagen 2024 09 30 (1) enhanced"
+    },
+    {
+      "src": "images/personas/antonio-de-antonio-rivera/Antonio carné.png",
+      "alt": "Imagen de Antonio de Antonio Rivera: Imagen 2024 09 30 (1) enhanced",
+      "caption": "Imagen 2024 09 30 (1) enhanced"
+    },
+    {
+      "src": "images/personas/antonio-de-antonio-rivera/IMG_4009.jpg",
       "alt": "Imagen de Antonio de Antonio Rivera: Imagen 2024 09 30 (1) enhanced",
       "caption": "Imagen 2024 09 30 (1) enhanced"
     }
