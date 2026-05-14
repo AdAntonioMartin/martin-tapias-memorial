@@ -293,7 +293,7 @@
       "id": "u-julian-sofia",
       "partners": [
         "sofia-martin-tapias",
-        "julian-bravo"
+        "julian-bravo-gonzalez"
       ],
       "type": "married",
       "children": [
@@ -333,6 +333,375 @@
       "type": "married",
       "children": [
         "angel"
+      ]
+    },
+    {
+      "id": "u-????-liduvina",
+      "partners": [
+        "liduvina-velasco"
+      ],
+      "type": "married",
+      "children": [
+        "josefa-rivera-velasco"
+      ]
+    },
+    {
+      "id": "u-????-inocenta",
+      "partners": [
+        "inocenta-de-la-calle"
+      ],
+      "type": "married",
+      "children": [
+        "eladio-de-antonio-de-la-calle"
+      ]
+    },
+    {
+      "id": "u-bruno-brigida",
+      "partners": [
+        "brigida-paez",
+        "bruno-minguez"
+      ],
+      "type": "married",
+      "children": [
+        "domingo-minguez-paez"
+      ]
+    },
+    {
+      "id": "u-domingo-lazara",
+      "partners": [
+        "domingo-gonzalez",
+        "lazara-otero-velasco"
+      ],
+      "type": "married",
+      "children": [
+        "josefa-gonzalez-otero"
+      ]
+    },{
+      "id": "u-eladio-josefa",
+      "partners": [
+        "eladio-de-antonio-de-la-calle",
+        "josefa-rivera-velasco"
+      ],
+      "type": "married",
+      "children": [
+        "antonio-de-antonio-rivera"
+      ]
+    },
+    {
+      "id": "u-domingo-josefa",
+      "partners": [
+        "domingo-minguez-paez",
+        "josefa-gonzalez-otero"
+      ],
+      "type": "married",
+      "children": [
+        "isabel-minguez-gonzalez"
+      ]
+    },
+    {
+      "id": "u-antonio-isabel",
+      "partners": [
+        "antonio-de-antonio-rivera",
+        "isabel-minguez-gonzalez"
+      ],
+      "type": "married",
+      "children": [
+        "luis-de-antonio-minguez",
+        "fernando-de-antonio-minguez"
+      ]
+    },
+    {
+      "id": "u-jorge-teresa",
+      "partners": [
+        "jorge-guayara",
+        "teresa-castaño-pineda"
+      ],
+      "type": "married",
+      "children": [
+        "pilar-guayara-castaño"
+      ]
+    },
+    {
+      "id": "u-gonzalo-ana-rita",
+      "partners": [
+        "gonzalo-castaño",
+        "ana-rita-pineda-ospina"
+      ],
+      "type": "married",
+      "children": [
+        "nestor-castaño-pineda",
+        "oscar-castaño-pineda",
+        "luis-alberto-castaño-pineda",
+        "luis-gonzalo-castaño-pineda",
+        "teresa-castaño-pineda",
+        "gabriel-castaño-pineda",
+        "miriam-castaño-pineda",
+        "clemencia-castaño-pineda",
+        "alonso-castaño-pineda",
+        "alvaro-castaño-pineda",
+        "julian-castaño-pineda",
+        "elsa-castaño-pineda"
+      ]
+    },
+    {
+      "id": "u-oscar-varias",
+      "partners": [
+        "oscar-castaño-pineda"
+      ],
+      "type": "unmarried",
+      "children": [
+        "alejandro-castaño-?????",
+        "sebastian-castaño-?????",
+        "gloria-castaño-?????"
+      ]
+    },
+    {
+      "id": "u-luis-alberto-luci",
+      "partners": [
+        "luis-alberto-castaño-pineda",
+        "luci-?????"
+      ],
+      "type": "married",
+      "children": [
+        "carlos-castaño-?????",
+        "adriana-castaño-?????",
+        "alex-castaño-?????",
+        "carolina-castaño-?????",
+        "mauricio-castaño-?????",
+        "yuliana-castaño-?????"
+      ]
+    },
+    {
+      "id": "u-luis-gonzalo-clemencia",
+      "partners": [
+        "luis-gonzalo-castaño-pineda",
+        "clemencia-?????"
+      ],
+      "type": "married",
+      "children": [
+        "laura-castaño-?????",
+        "sofia-castaño-?????",
+        "juana-castaño-?????"
+      ]
+    },
+    {
+      "id": "u-gabriel-ligia",
+      "partners": [
+        "gabriel-castaño-pineda",
+        "ligia-?????"
+      ],
+      "type": "married",
+      "children": [
+        "marcela-castaño-?????",
+        "ana-maria-castaño-?????",
+        "santiago-castaño-?????"
+      ]
+    },
+    {
+      "id": "u-hector-mila",
+      "partners": [
+        "hector-ramirez-lopez",
+        "miriam-castaño-pineda"
+      ],
+      "type": "married",
+      "children": [
+        "marcelo-ramirez-castaño",
+        "camilo-ramirez-castaño"
+      ]
+    },
+    {
+      "id": "u-alberto-clemencia",
+      "partners": [
+        "alberto-????",
+        "clemencia-castaño-pineda"
+      ],
+      "type": "married",
+      "children": [
+        "maria-de-los-angeles-????-castaño",
+        "juan-felipe-????-castaño",
+        "daniel-????-castaño"
+      ]
+    },
+    {
+      "id": "u-alonso-varias",
+      "partners": [
+        "alonso-castaño-pineda"
+      ],
+      "type": "married",
+      "children": [
+        "juan-felipe-castaño"
+      ]
+    },
+    {
+      "id": "u-alvaro-cecilia",
+      "partners": [
+        "alvaro-castaño-pineda",
+        "cecilia-??????"
+      ],
+      "type": "married",
+      "children": [
+        "linda-lucia-castaño-pineda"
+      ]
+    },
+    {
+      "id": "u-alvaro-elisabeth",
+      "partners": [
+        "alvaro-castaño-pineda",
+        "elisabeth-??????"
+      ],
+      "type": "married",
+      "children": [
+        "sara-castaño-?????"
+      ]
+    },
+    {
+      "id": "u-julian-patricia",
+      "partners": [
+        "julian-castaño-pineda",
+        "patricia-??????"
+      ],
+      "type": "married",
+      "children": [
+        "camila-castaño-?????",
+        "manuel-alejandro-castaño-?????"
+      ]
+    },
+    {
+      "id": "u-balin-elsa",
+      "partners": [
+        "elsa-castaño-pineda",
+        "balin-??????"
+      ],
+      "type": "married",
+      "children": [
+        "maria-fernanda-????-castaño",
+        "simon-????-castaño",
+        "salome-????-castaño"
+      ]
+    },
+    {
+      "id": "u-????-adriana",
+      "partners": [
+        "adriana-castaño-?????",
+        "??????"
+      ],
+      "type": "married",
+      "children": [
+        "daniela-?????-castaño"
+      ]
+    },
+    {
+      "id": "u-????-daniela",
+      "partners": [
+        "daniela-?????-castaño",
+        "??????"
+      ],
+      "type": "married",
+      "children": [
+        "victoria-?????-?????"
+      ]
+    },
+    {
+      "id": "u-????-carolina",
+      "partners": [
+        "carolina-castaño-?????",
+        "??????"
+      ],
+      "type": "married",
+      "children": [
+        "celeste-?????-castaño"
+      ]
+    },
+    {
+      "id": "u-mauricio-jennifer",
+      "partners": [
+        "mauricio-castaño-?????",
+        "jennifer-?????"
+      ],
+      "type": "married",
+      "children": [
+        "manuela-castaño-?????",
+        "violeta-castaño-?????"
+      ]
+    },
+    {
+      "id": "u-??????-yuliana",
+      "partners": [
+        "yuliana-castaño-?????",
+        "?????-?????"
+      ],
+      "type": "married",
+      "children": [
+        "juan-miguel-?????-castaño"
+      ]
+    },
+    {
+      "id": "u-ricardo-ana-maria",
+      "partners": [
+        "ricardo-?????-????",
+        "ana-maria-castaño-?????"
+      ],
+      "type": "married",
+      "children": [
+        "juan-esteban-?????-castaño",
+        "silvana-?????-castaño"
+      ]
+    },
+    {
+      "id": "u-santiago-estefanía",
+      "partners": [
+        "estefania-?????-????",
+        "santiago-castaño-?????"
+      ],
+      "type": "married",
+      "children": [
+        "????-castaño",
+        "?????-castaño"
+      ]
+    },
+    {
+      "id": "u-marcelo-natalia",
+      "partners": [
+        "marcelo-ramirez-castaño",
+        "natalia-ostina"
+      ],
+      "type": "married",
+      "children": [
+        "emiliano-ramirez-ostina",
+        "antonio-ramirez-ostina"
+      ]
+    },
+    {
+      "id": "u-camilo-alejandra",
+      "partners": [
+        "camilo-ramirez-castaño",
+        "alejandra-??????"
+      ],
+      "type": "married",
+      "children": [
+        "geronimo-ramirez-????"
+      ]
+    },
+    {
+      "id": "u-daniel-camila",
+      "partners": [
+        "camila-castaño-?????",
+        "daniel-?????"
+      ],
+      "type": "married",
+      "children": [
+        "alma-????-castaño"
+      ]
+    },
+    {
+      "id": "u-camilo-maria-fernanda",
+      "partners": [
+        "maria-fernanda-????-castaño",
+        "camilo-?????"
+      ],
+      "type": "married",
+      "children": [
+        "joaquín-????-?????"
       ]
     }
   ]
