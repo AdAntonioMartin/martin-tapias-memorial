@@ -1,0 +1,49 @@
+{
+  "id": "luis-alberto-castaño-pineda",
+  "slug": "luis-alberto-castano-pineda",
+  "name": "Luis Alberto Castano Pineda",
+  "gender": "male",
+  "born": "",
+  "died": "",
+  "summary": "",
+  "heroImage": {
+    "src": "images/retrato.svg",
+    "alt": "Retrato de Luis Alberto Castano Pineda"
+  },
+  "gallery": [],
+  "family": {
+    "father": "gonzalo-castaño",
+    "mother": "ana-rita-pineda-ospina",
+    "spouses": [
+      "luci-?????"
+    ],
+    "children": [
+      "carlos-castaño-?????",
+      "adriana-castaño-?????",
+      "alex-castaño-?????",
+      "carolina-castaño-?????",
+      "mauricio-castaño-?????",
+      "yuliana-castaño-?????"
+    ]
+  },
+  "facts": [
+    {
+      "label": "Nacimiento",
+      "value": ""
+    },
+    {
+      "label": "Fallecimiento",
+      "value": ""
+    },
+    {
+      "label": "Lugar",
+      "value": ""
+    },
+    {
+      "label": "Ocupacion",
+      "value": ""
+    }
+  ],
+  "notes": "",
+  "sources": []
+}

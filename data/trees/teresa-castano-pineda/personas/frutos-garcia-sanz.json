@@ -1,0 +1,44 @@
+{
+  "id": "frutos-garcia-sanz",
+  "slug": "frutos-garcia-sanz",
+  "name": "Frutos Garcia Sanz",
+  "gender": "male",
+  "born": "",
+  "died": "",
+  "summary": "",
+  "heroImage": {
+    "src": "images/retrato.svg",
+    "alt": "Retrato de Frutos Garcia Sanz"
+  },
+  "gallery": [],
+  "family": {
+    "father": "francisco-garcia",
+    "mother": "catalina-sanz",
+    "spouses": [
+      "teresa-barral-arranz"
+    ],
+    "children": [
+      "frutos-alonso-garcia"
+    ]
+  },
+  "facts": [
+    {
+      "label": "Nacimiento",
+      "value": ""
+    },
+    {
+      "label": "Fallecimiento",
+      "value": ""
+    },
+    {
+      "label": "Lugar",
+      "value": ""
+    },
+    {
+      "label": "Ocupacion",
+      "value": ""
+    }
+  ],
+  "notes": "",
+  "sources": []
+}

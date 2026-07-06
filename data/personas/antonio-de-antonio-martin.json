@@ -1,0 +1,47 @@
+{
+  "id": "antonio-de-antonio-martin",
+  "slug": "antonio-de-antonio-martin",
+  "name": "Antonio De Antonio Martin",
+  "gender": "male",
+  "born": "",
+  "died": "",
+  "summary": "",
+  "heroImage": {
+    "src": "images/retrato.svg",
+    "alt": "Retrato de Antonio De Antonio Martin",
+    "caption": ""
+  },
+  "gallery": [],
+  "family": {
+    "father": "luis-de-antonio-minguez",
+    "mother": "asuncion-martin-tapias",
+    "spouses": [
+      "pilar-guayara-castaño"
+    ],
+    "children": [
+      "africa-de-antonio-guayara",
+      "adara-de-antonio-guayara"
+    ]
+  },
+  "facts": [
+    {
+      "label": "Nacimiento",
+      "value": ""
+    },
+    {
+      "label": "Fallecimiento",
+      "value": ""
+    },
+    {
+      "label": "Lugar",
+      "value": ""
+    },
+    {
+      "label": "Ocupacion",
+      "value": ""
+    }
+  ],
+  "notes": "",
+  "sources": [],
+  "biography": []
+}

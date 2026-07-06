@@ -1,0 +1,47 @@
+{
+  "id": "jennifer-?????",
+  "slug": "jennifer",
+  "name": "Jennifer ?????",
+  "gender": "female",
+  "born": "",
+  "died": "",
+  "summary": "",
+  "heroImage": {
+    "src": "images/retrato.svg",
+    "alt": "Retrato de Jennifer ?????",
+    "caption": ""
+  },
+  "gallery": [],
+  "family": {
+    "father": "",
+    "mother": "",
+    "spouses": [
+      "mauricio-castaño-?????"
+    ],
+    "children": [
+      "manuela-castaño-?????",
+      "violeta-castaño-?????"
+    ]
+  },
+  "facts": [
+    {
+      "label": "Nacimiento",
+      "value": ""
+    },
+    {
+      "label": "Fallecimiento",
+      "value": ""
+    },
+    {
+      "label": "Lugar",
+      "value": ""
+    },
+    {
+      "label": "Ocupacion",
+      "value": ""
+    }
+  ],
+  "notes": "",
+  "sources": [],
+  "biography": []
+}

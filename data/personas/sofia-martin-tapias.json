@@ -1,0 +1,46 @@
+{
+  "id": "sofia-martin-tapias",
+  "slug": "sofia-martin-tapias",
+  "name": "Sofia Martin Tapias",
+  "gender": "female",
+  "born": "",
+  "died": "",
+  "summary": "",
+  "heroImage": {
+    "src": "images/retrato.svg",
+    "alt": "Retrato de Sofia Martin Tapias",
+    "caption": ""
+  },
+  "gallery": [],
+  "family": {
+    "father": "victoria-tapias",
+    "mother": "abdon-martin-matesanz",
+    "spouses": [
+      "julian-bravo-gonzalez"
+    ],
+    "children": [
+      "julian-bravo-martin"
+    ]
+  },
+  "facts": [
+    {
+      "label": "Nacimiento",
+      "value": ""
+    },
+    {
+      "label": "Fallecimiento",
+      "value": ""
+    },
+    {
+      "label": "Lugar",
+      "value": ""
+    },
+    {
+      "label": "Ocupacion",
+      "value": ""
+    }
+  ],
+  "notes": "",
+  "sources": [],
+  "biography": []
+}

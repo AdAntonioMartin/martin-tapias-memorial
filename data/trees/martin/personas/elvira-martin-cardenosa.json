@@ -1,0 +1,43 @@
+{
+  "id": "elvira-martin-cardeñosa",
+  "slug": "elvira-martin-cardenosa",
+  "name": "Elvira Martin Cardenosa",
+  "gender": "female",
+  "born": "",
+  "died": "",
+  "summary": "",
+  "heroImage": {
+    "src": "images/retrato.svg",
+    "alt": "Retrato de Elvira Martin Cardenosa"
+  },
+  "gallery": [],
+  "family": {
+    "father": "eloy-martin-tapias",
+    "mother": "maría-del-carmen-cardeñosa-moreno",
+    "spouses": [],
+    "children": [
+      "marina-martin-cardeñosa",
+      "adriana-martin-cardeñosa"
+    ]
+  },
+  "facts": [
+    {
+      "label": "Nacimiento",
+      "value": ""
+    },
+    {
+      "label": "Fallecimiento",
+      "value": ""
+    },
+    {
+      "label": "Lugar",
+      "value": ""
+    },
+    {
+      "label": "Ocupacion",
+      "value": ""
+    }
+  ],
+  "notes": "",
+  "sources": []
+}

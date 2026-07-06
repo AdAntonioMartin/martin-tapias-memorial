@@ -1,0 +1,44 @@
+{
+  "id": "inocenta-de-la-calle",
+  "slug": "inocenta-de-la-calle",
+  "name": "Inocenta De La Calle",
+  "gender": "female",
+  "born": "",
+  "died": "",
+  "summary": "",
+  "heroImage": {
+    "src": "images/retrato.svg",
+    "alt": "Retrato de Inocenta De La Calle",
+    "caption": ""
+  },
+  "gallery": [],
+  "family": {
+    "father": "",
+    "mother": "",
+    "spouses": [],
+    "children": [
+      "eladio-de-antonio-de-la-calle"
+    ]
+  },
+  "facts": [
+    {
+      "label": "Nacimiento",
+      "value": ""
+    },
+    {
+      "label": "Fallecimiento",
+      "value": ""
+    },
+    {
+      "label": "Lugar",
+      "value": ""
+    },
+    {
+      "label": "Ocupacion",
+      "value": ""
+    }
+  ],
+  "notes": "",
+  "sources": [],
+  "biography": []
+}

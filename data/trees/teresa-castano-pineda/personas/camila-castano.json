@@ -1,0 +1,44 @@
+{
+  "id": "camila-castaño-?????",
+  "slug": "camila-castano",
+  "name": "Camila Castano ?????",
+  "gender": "female",
+  "born": "",
+  "died": "",
+  "summary": "",
+  "heroImage": {
+    "src": "images/retrato.svg",
+    "alt": "Retrato de Camila Castano ?????"
+  },
+  "gallery": [],
+  "family": {
+    "father": "julian-castaño-pineda",
+    "mother": "patricia-??????",
+    "spouses": [
+      "daniel-?????"
+    ],
+    "children": [
+      "alma-????-castaño"
+    ]
+  },
+  "facts": [
+    {
+      "label": "Nacimiento",
+      "value": ""
+    },
+    {
+      "label": "Fallecimiento",
+      "value": ""
+    },
+    {
+      "label": "Lugar",
+      "value": ""
+    },
+    {
+      "label": "Ocupacion",
+      "value": ""
+    }
+  ],
+  "notes": "",
+  "sources": []
+}

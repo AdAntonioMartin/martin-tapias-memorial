@@ -1,0 +1,46 @@
+{
+  "id": "teresa-castaño-pineda",
+  "slug": "teresa-castano-pineda",
+  "name": "Teresa Castano Pineda",
+  "gender": "female",
+  "born": "",
+  "died": "",
+  "summary": "",
+  "heroImage": {
+    "src": "images/retrato.svg",
+    "alt": "Retrato de Teresa Castano Pineda",
+    "caption": ""
+  },
+  "gallery": [],
+  "family": {
+    "father": "gonzalo-castaño",
+    "mother": "ana-rita-pineda-ospina",
+    "spouses": [
+      "jorge-guayara"
+    ],
+    "children": [
+      "pilar-guayara-castaño"
+    ]
+  },
+  "facts": [
+    {
+      "label": "Nacimiento",
+      "value": ""
+    },
+    {
+      "label": "Fallecimiento",
+      "value": ""
+    },
+    {
+      "label": "Lugar",
+      "value": ""
+    },
+    {
+      "label": "Ocupacion",
+      "value": ""
+    }
+  ],
+  "notes": "",
+  "sources": [],
+  "biography": []
+}

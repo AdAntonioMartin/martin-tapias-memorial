@@ -5,6 +5,11 @@ import { t } from "../core/i18n.js";
 function detailUrl(node, detailTemplate) {
   var template = detailTemplate || "persona.html";
   var params = new URLSearchParams();
+  var current = new URLSearchParams(window.location.search);
+  var treeKey = current.get("tree") || "";
+  if (treeKey) {
+    params.set("tree", treeKey);
+  }
   params.set("id", node.id);
   if (node.personPath) {
     params.set("data", node.personPath);

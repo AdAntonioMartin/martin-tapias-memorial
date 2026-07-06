@@ -1,0 +1,23 @@
+{
+  "id": "??????",
+  "slug": "persona-sin-id",
+  "name": "??????",
+  "gender": "unknown",
+  "born": "",
+  "died": "",
+  "summary": "",
+  "heroImage": {
+    "src": "images/trees/teresa-castano-pineda/personas/persona-sin-id/retrato-principal.jpg",
+    "alt": ""
+  },
+  "gallery": [],
+  "family": {
+    "father": "",
+    "mother": "",
+    "spouses": [],
+    "children": []
+  },
+  "facts": [],
+  "notes": "",
+  "sources": []
+}

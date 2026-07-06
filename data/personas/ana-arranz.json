@@ -1,0 +1,46 @@
+{
+  "id": "ana-arranz",
+  "slug": "ana-arranz",
+  "name": "Ana Arranz",
+  "gender": "female",
+  "born": "",
+  "died": "",
+  "summary": "",
+  "heroImage": {
+    "src": "images/retrato.svg",
+    "alt": "Retrato de Ana Arranz",
+    "caption": ""
+  },
+  "gallery": [],
+  "family": {
+    "father": "",
+    "mother": "",
+    "spouses": [
+      "simon-barral"
+    ],
+    "children": [
+      "teresa-barral-arranz"
+    ]
+  },
+  "facts": [
+    {
+      "label": "Nacimiento",
+      "value": ""
+    },
+    {
+      "label": "Fallecimiento",
+      "value": ""
+    },
+    {
+      "label": "Lugar",
+      "value": ""
+    },
+    {
+      "label": "Ocupacion",
+      "value": ""
+    }
+  ],
+  "notes": "",
+  "sources": [],
+  "biography": []
+}

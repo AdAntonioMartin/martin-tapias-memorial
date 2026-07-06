@@ -1,0 +1,46 @@
+{
+  "id": "antonia-rivera-martin",
+  "slug": "antonia-rivera-martin",
+  "name": "Antonia Rivera Martin",
+  "gender": "female",
+  "born": "",
+  "died": "",
+  "summary": "",
+  "heroImage": {
+    "src": "images/retrato.svg",
+    "alt": "Retrato de Antonia Rivera Martin",
+    "caption": ""
+  },
+  "gallery": [],
+  "family": {
+    "father": "angela-martin-tapias",
+    "mother": "basilides-rivera",
+    "spouses": [
+      "miguel-de-andres"
+    ],
+    "children": [
+      "miguel-de-andres-rivera"
+    ]
+  },
+  "facts": [
+    {
+      "label": "Nacimiento",
+      "value": ""
+    },
+    {
+      "label": "Fallecimiento",
+      "value": ""
+    },
+    {
+      "label": "Lugar",
+      "value": ""
+    },
+    {
+      "label": "Ocupacion",
+      "value": ""
+    }
+  ],
+  "notes": "",
+  "sources": [],
+  "biography": []
+}

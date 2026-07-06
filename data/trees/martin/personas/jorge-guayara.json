@@ -1,0 +1,44 @@
+{
+  "id": "jorge-guayara",
+  "slug": "jorge-guayara",
+  "name": "Jorge Guayara",
+  "gender": "male",
+  "born": "",
+  "died": "",
+  "summary": "",
+  "heroImage": {
+    "src": "images/retrato.svg",
+    "alt": "Retrato de Jorge Guayara"
+  },
+  "gallery": [],
+  "family": {
+    "father": "",
+    "mother": "",
+    "spouses": [
+      "teresa-castaño-pineda"
+    ],
+    "children": [
+      "pilar-guayara-castaño"
+    ]
+  },
+  "facts": [
+    {
+      "label": "Nacimiento",
+      "value": ""
+    },
+    {
+      "label": "Fallecimiento",
+      "value": ""
+    },
+    {
+      "label": "Lugar",
+      "value": ""
+    },
+    {
+      "label": "Ocupacion",
+      "value": ""
+    }
+  ],
+  "notes": "",
+  "sources": []
+}

@@ -1,0 +1,47 @@
+{
+  "id": "asuncion-martin-tapias",
+  "slug": "asuncion-martin-tapias",
+  "name": "Asuncion Martin Tapias",
+  "gender": "female",
+  "born": "",
+  "died": "",
+  "summary": "",
+  "heroImage": {
+    "src": "images/retrato.svg",
+    "alt": "Retrato de Asuncion Martin Tapias",
+    "caption": ""
+  },
+  "gallery": [],
+  "family": {
+    "father": "sofio-martin-tapias",
+    "mother": "benedicta-tapias-alvaro",
+    "spouses": [
+      "luis-de-antonio-minguez"
+    ],
+    "children": [
+      "gonzalo-de-antonio-martin",
+      "antonio-de-antonio-martin"
+    ]
+  },
+  "facts": [
+    {
+      "label": "Nacimiento",
+      "value": ""
+    },
+    {
+      "label": "Fallecimiento",
+      "value": ""
+    },
+    {
+      "label": "Lugar",
+      "value": ""
+    },
+    {
+      "label": "Ocupacion",
+      "value": ""
+    }
+  ],
+  "notes": "",
+  "sources": [],
+  "biography": []
+}

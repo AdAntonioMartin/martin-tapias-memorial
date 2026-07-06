@@ -1,6 +1,11 @@
 import { escapeHtml, setText } from "../core/html.js";
 import { t } from "../core/i18n.js";
 
+function inferTreeKey(dataPath) {
+  var match = String(dataPath || "").match(/^data\/trees\/([^/]+)\//);
+  return match && match[1] ? match[1] : "";
+}
+
 function renderFacts(facts) {
   var target = document.getElementById("person-facts");
   if (!target) {
@@ -78,14 +83,18 @@ function renderGallery(images) {
   }).join("");
 }
 
-export function setTreeLink(dataPath, personId) {
+export function setTreeLink(dataPath, personId, treeKey) {
   var element = document.getElementById("person-tree-link");
   if (!element) {
     return;
   }
+  var resolvedTreeKey = treeKey || inferTreeKey(dataPath);
 
   if (personId) {
     var idParams = new URLSearchParams();
+    if (resolvedTreeKey) {
+      idParams.set("tree", resolvedTreeKey);
+    }
     idParams.set("id", personId);
     element.href = "arbol.html?" + idParams.toString();
     return;
@@ -97,6 +106,9 @@ export function setTreeLink(dataPath, personId) {
   }
 
   var params = new URLSearchParams();
+  if (resolvedTreeKey) {
+    params.set("tree", resolvedTreeKey);
+  }
   params.set("data", dataPath);
   element.href = "arbol.html?" + params.toString();
 }

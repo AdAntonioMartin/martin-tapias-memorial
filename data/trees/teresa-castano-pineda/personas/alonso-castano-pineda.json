@@ -1,0 +1,42 @@
+{
+  "id": "alonso-castaño-pineda",
+  "slug": "alonso-castano-pineda",
+  "name": "Alonso Castano Pineda",
+  "gender": "male",
+  "born": "",
+  "died": "",
+  "summary": "",
+  "heroImage": {
+    "src": "images/retrato.svg",
+    "alt": "Retrato de Alonso Castano Pineda"
+  },
+  "gallery": [],
+  "family": {
+    "father": "gonzalo-castaño",
+    "mother": "ana-rita-pineda-ospina",
+    "spouses": [],
+    "children": [
+      "juan-felipe-castaño"
+    ]
+  },
+  "facts": [
+    {
+      "label": "Nacimiento",
+      "value": ""
+    },
+    {
+      "label": "Fallecimiento",
+      "value": ""
+    },
+    {
+      "label": "Lugar",
+      "value": ""
+    },
+    {
+      "label": "Ocupacion",
+      "value": ""
+    }
+  ],
+  "notes": "",
+  "sources": []
+}

@@ -1,0 +1,46 @@
+{
+  "id": "oscar-castaño-pineda",
+  "slug": "oscar-castano-pineda",
+  "name": "Oscar Castano Pineda",
+  "gender": "male",
+  "born": "",
+  "died": "",
+  "summary": "",
+  "heroImage": {
+    "src": "images/retrato.svg",
+    "alt": "Retrato de Oscar Castano Pineda",
+    "caption": ""
+  },
+  "gallery": [],
+  "family": {
+    "father": "gonzalo-castaño",
+    "mother": "ana-rita-pineda-ospina",
+    "spouses": [],
+    "children": [
+      "alejandro-castaño-?????",
+      "sebastian-castaño-?????",
+      "gloria-castaño-?????"
+    ]
+  },
+  "facts": [
+    {
+      "label": "Nacimiento",
+      "value": ""
+    },
+    {
+      "label": "Fallecimiento",
+      "value": ""
+    },
+    {
+      "label": "Lugar",
+      "value": ""
+    },
+    {
+      "label": "Ocupacion",
+      "value": ""
+    }
+  ],
+  "notes": "",
+  "sources": [],
+  "biography": []
+}

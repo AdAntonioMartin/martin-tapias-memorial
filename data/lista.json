@@ -1,4 +1,12 @@
 {
+  "personas": [
+    "data/personas/antonio-de-antonio-rivera.json",
+    "data/personas/isabel-minguez-gonzalez.json",
+    "data/personas/eladio-de-antonio-de-la-calle.json",
+    "data/personas/josefa-rivera-velasco.json",
+    "data/personas/domingo-minguez-paez.json",
+    "data/personas/josefa-gonzalez-otero.json"
+  ],
   "columns": [
     {
       "id": "nombre",

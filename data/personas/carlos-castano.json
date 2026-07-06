@@ -1,0 +1,42 @@
+{
+  "id": "carlos-castaño-?????",
+  "slug": "carlos-castano",
+  "name": "Carlos Castano ?????",
+  "gender": "male",
+  "born": "",
+  "died": "",
+  "summary": "",
+  "heroImage": {
+    "src": "images/retrato.svg",
+    "alt": "Retrato de Carlos Castano ?????",
+    "caption": ""
+  },
+  "gallery": [],
+  "family": {
+    "father": "luis-alberto-castaño-pineda",
+    "mother": "luci-?????",
+    "spouses": [],
+    "children": []
+  },
+  "facts": [
+    {
+      "label": "Nacimiento",
+      "value": ""
+    },
+    {
+      "label": "Fallecimiento",
+      "value": ""
+    },
+    {
+      "label": "Lugar",
+      "value": ""
+    },
+    {
+      "label": "Ocupacion",
+      "value": ""
+    }
+  ],
+  "notes": "",
+  "sources": [],
+  "biography": []
+}

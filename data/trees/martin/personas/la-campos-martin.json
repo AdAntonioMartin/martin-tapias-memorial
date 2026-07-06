@@ -1,0 +1,44 @@
+{
+  "id": "la-campos-martin-????",
+  "slug": "la-campos-martin",
+  "name": "La Campos Martin ????",
+  "gender": "female",
+  "born": "",
+  "died": "",
+  "summary": "",
+  "heroImage": {
+    "src": "images/retrato.svg",
+    "alt": "Retrato de La Campos Martin ????"
+  },
+  "gallery": [],
+  "family": {
+    "father": "santiago-martin-matesanz",
+    "mother": "maria-arahuetes",
+    "spouses": [
+      "enrique-?????-?????"
+    ],
+    "children": [
+      "angel"
+    ]
+  },
+  "facts": [
+    {
+      "label": "Nacimiento",
+      "value": ""
+    },
+    {
+      "label": "Fallecimiento",
+      "value": ""
+    },
+    {
+      "label": "Lugar",
+      "value": ""
+    },
+    {
+      "label": "Ocupacion",
+      "value": ""
+    }
+  ],
+  "notes": "",
+  "sources": []
+}

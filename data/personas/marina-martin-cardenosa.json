@@ -1,0 +1,42 @@
+{
+  "id": "marina-martin-cardeñosa",
+  "slug": "marina-martin-cardenosa",
+  "name": "Marina Martin Cardenosa",
+  "gender": "female",
+  "born": "",
+  "died": "",
+  "summary": "",
+  "heroImage": {
+    "src": "images/retrato.svg",
+    "alt": "Retrato de Marina Martin Cardenosa",
+    "caption": ""
+  },
+  "gallery": [],
+  "family": {
+    "father": "elvira-martin-cardeñosa",
+    "mother": "",
+    "spouses": [],
+    "children": []
+  },
+  "facts": [
+    {
+      "label": "Nacimiento",
+      "value": ""
+    },
+    {
+      "label": "Fallecimiento",
+      "value": ""
+    },
+    {
+      "label": "Lugar",
+      "value": ""
+    },
+    {
+      "label": "Ocupacion",
+      "value": ""
+    }
+  ],
+  "notes": "",
+  "sources": [],
+  "biography": []
+}

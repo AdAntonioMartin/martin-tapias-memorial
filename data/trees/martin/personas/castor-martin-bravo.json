@@ -1,0 +1,46 @@
+{
+  "id": "castor-martin-bravo",
+  "slug": "castor-martin-bravo",
+  "name": "Castor Martin Bravo",
+  "gender": "male",
+  "born": "",
+  "died": "",
+  "summary": "",
+  "heroImage": {
+    "src": "images/retrato.svg",
+    "alt": "Retrato de Castor Martin Bravo"
+  },
+  "gallery": [],
+  "family": {
+    "father": "",
+    "mother": "",
+    "spouses": [
+      "evarista-matesanz-alonso"
+    ],
+    "children": [
+      "doroteo-martin-matesanz",
+      "abdon-martin-matesanz",
+      "santiago-martin-matesanz"
+    ]
+  },
+  "facts": [
+    {
+      "label": "Nacimiento",
+      "value": ""
+    },
+    {
+      "label": "Fallecimiento",
+      "value": ""
+    },
+    {
+      "label": "Lugar",
+      "value": ""
+    },
+    {
+      "label": "Ocupacion",
+      "value": ""
+    }
+  ],
+  "notes": "",
+  "sources": []
+}

@@ -8,11 +8,15 @@ import { applyI18nToDom, loadUiText } from "./core/i18n.js";
 
 function resolvePersonPaths(listConfig) {
   var directory = listConfig.personasPath || "";
-  var fallbackPaths = Array.isArray(listConfig.personas) ? listConfig.personas : [];
+  var configuredPaths = Array.isArray(listConfig.personas) ? listConfig.personas.filter(Boolean) : [];
+
+  if (configuredPaths.length) {
+    return Promise.resolve(configuredPaths);
+  }
 
   return loadPersonPathsFromIndex()
     .then(function (indexPaths) {
-      var fallbacks = indexPaths.length ? indexPaths : fallbackPaths;
+      var fallbacks = indexPaths;
       if (!directory) {
         return fallbacks;
       }

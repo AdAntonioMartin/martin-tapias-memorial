@@ -1,4 +1,4 @@
-import { getRequestedPersonId, resolveDetailDataPath, loadPersonData } from "./detail/data.js";
+import { getRequestedPersonId, getRequestedTreeKey, resolveDetailDataPath, loadPersonData } from "./detail/data.js";
 import { renderDetailError, renderDetailPage, setTreeLink } from "./detail/render.js";
 import { applyAppTheme } from "./core/theme.js";
 import { applyI18nToDom, loadUiText, t } from "./core/i18n.js";
@@ -6,7 +6,7 @@ import { applyI18nToDom, loadUiText, t } from "./core/i18n.js";
 function loadDetailPage() {
   resolveDetailDataPath()
     .then(function (dataPath) {
-      setTreeLink(dataPath, getRequestedPersonId());
+      setTreeLink(dataPath, getRequestedPersonId(), getRequestedTreeKey());
 
       if (!dataPath) {
         renderDetailError(t("detail.messages.errorNoPath", "Esta pagina no esta disponible en este momento."));
@@ -14,7 +14,7 @@ function loadDetailPage() {
       }
 
       return loadPersonData(dataPath).then(function (data) {
-        setTreeLink(dataPath, data.id || getRequestedPersonId());
+        setTreeLink(dataPath, data.id || getRequestedPersonId(), getRequestedTreeKey());
         renderDetailPage(data);
         return data;
       });

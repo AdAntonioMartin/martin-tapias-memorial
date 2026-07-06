@@ -1,0 +1,46 @@
+{
+  "id": "francisco-alonso-garcia",
+  "slug": "francisco-alonso-garcia",
+  "name": "Francisco Alonso Garcia",
+  "gender": "male",
+  "born": "",
+  "died": "",
+  "summary": "",
+  "heroImage": {
+    "src": "images/retrato.svg",
+    "alt": "Retrato de Francisco Alonso Garcia",
+    "caption": ""
+  },
+  "gallery": [],
+  "family": {
+    "father": "maria-garcia-barral",
+    "mother": "frutos-alonso-?????",
+    "spouses": [
+      "barbara-garcia-iglesia"
+    ],
+    "children": [
+      "antonio-alonso-garcia"
+    ]
+  },
+  "facts": [
+    {
+      "label": "Nacimiento",
+      "value": ""
+    },
+    {
+      "label": "Fallecimiento",
+      "value": ""
+    },
+    {
+      "label": "Lugar",
+      "value": ""
+    },
+    {
+      "label": "Ocupacion",
+      "value": ""
+    }
+  ],
+  "notes": "",
+  "sources": [],
+  "biography": []
+}

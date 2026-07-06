@@ -1,0 +1,45 @@
+{
+  "id": "natalia-ostina",
+  "slug": "natalia-ostina",
+  "name": "Natalia Ostina",
+  "gender": "female",
+  "born": "",
+  "died": "",
+  "summary": "",
+  "heroImage": {
+    "src": "images/retrato.svg",
+    "alt": "Retrato de Natalia Ostina"
+  },
+  "gallery": [],
+  "family": {
+    "father": "",
+    "mother": "",
+    "spouses": [
+      "marcelo-ramirez-castaño"
+    ],
+    "children": [
+      "emiliano-ramirez-ostina",
+      "antonio-ramirez-ostina"
+    ]
+  },
+  "facts": [
+    {
+      "label": "Nacimiento",
+      "value": ""
+    },
+    {
+      "label": "Fallecimiento",
+      "value": ""
+    },
+    {
+      "label": "Lugar",
+      "value": ""
+    },
+    {
+      "label": "Ocupacion",
+      "value": ""
+    }
+  ],
+  "notes": "",
+  "sources": []
+}

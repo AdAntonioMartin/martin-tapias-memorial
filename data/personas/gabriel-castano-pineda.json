@@ -1,0 +1,48 @@
+{
+  "id": "gabriel-castaño-pineda",
+  "slug": "gabriel-castano-pineda",
+  "name": "Gabriel Castano Pineda",
+  "gender": "male",
+  "born": "",
+  "died": "",
+  "summary": "",
+  "heroImage": {
+    "src": "images/retrato.svg",
+    "alt": "Retrato de Gabriel Castano Pineda",
+    "caption": ""
+  },
+  "gallery": [],
+  "family": {
+    "father": "gonzalo-castaño",
+    "mother": "ana-rita-pineda-ospina",
+    "spouses": [
+      "ligia-?????"
+    ],
+    "children": [
+      "marcela-castaño-?????",
+      "ana-maria-castaño-?????",
+      "santiago-castaño-?????"
+    ]
+  },
+  "facts": [
+    {
+      "label": "Nacimiento",
+      "value": ""
+    },
+    {
+      "label": "Fallecimiento",
+      "value": ""
+    },
+    {
+      "label": "Lugar",
+      "value": ""
+    },
+    {
+      "label": "Ocupacion",
+      "value": ""
+    }
+  ],
+  "notes": "",
+  "sources": [],
+  "biography": []
+}

@@ -1,0 +1,44 @@
+{
+  "id": "julian-bravo-gonzalez",
+  "slug": "julian-bravo-gonzalez",
+  "name": "Julian Bravo Gonzalez",
+  "gender": "male",
+  "born": "",
+  "died": "",
+  "summary": "",
+  "heroImage": {
+    "src": "images/retrato.svg",
+    "alt": "Retrato de Julian Bravo Gonzalez"
+  },
+  "gallery": [],
+  "family": {
+    "father": "",
+    "mother": "",
+    "spouses": [
+      "sofia-martin-tapias"
+    ],
+    "children": [
+      "julian-bravo-martin"
+    ]
+  },
+  "facts": [
+    {
+      "label": "Nacimiento",
+      "value": ""
+    },
+    {
+      "label": "Fallecimiento",
+      "value": ""
+    },
+    {
+      "label": "Lugar",
+      "value": ""
+    },
+    {
+      "label": "Ocupacion",
+      "value": ""
+    }
+  ],
+  "notes": "",
+  "sources": []
+}

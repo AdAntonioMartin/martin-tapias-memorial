@@ -1,0 +1,46 @@
+{
+  "id": "alvaro-castaño-pineda",
+  "slug": "alvaro-castano-pineda",
+  "name": "Alvaro Castano Pineda",
+  "gender": "male",
+  "born": "",
+  "died": "",
+  "summary": "",
+  "heroImage": {
+    "src": "images/retrato.svg",
+    "alt": "Retrato de Alvaro Castano Pineda"
+  },
+  "gallery": [],
+  "family": {
+    "father": "gonzalo-castaño",
+    "mother": "ana-rita-pineda-ospina",
+    "spouses": [
+      "cecilia-??????",
+      "elisabeth-??????"
+    ],
+    "children": [
+      "linda-lucia-castaño-pineda",
+      "sara-castaño-?????"
+    ]
+  },
+  "facts": [
+    {
+      "label": "Nacimiento",
+      "value": ""
+    },
+    {
+      "label": "Fallecimiento",
+      "value": ""
+    },
+    {
+      "label": "Lugar",
+      "value": ""
+    },
+    {
+      "label": "Ocupacion",
+      "value": ""
+    }
+  ],
+  "notes": "",
+  "sources": []
+}

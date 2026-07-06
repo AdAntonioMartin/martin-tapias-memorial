@@ -1,7 +1,48 @@
 {
+  "id": "lazara-otero-velasco",
+  "slug": "lazara-otero-velasco",
   "name": "Lázara Otero Velasco",
-  "subtitle": "Datos biográficos de Lázara Otero Velasco",
+  "gender": "female",
+  "born": "",
+  "died": "",
   "summary": "Lázara Otero Velasco nació en Valdevacas y Guijar y falleció el 13/05/1960 en Valdevacas y Guijar, a la edad de 94 años.",
+  "heroImage": {
+    "src": "images/personas/lazara-otero-velasco/retrato.svg",
+    "alt": "Retrato de Lázara Otero Velasco",
+    "caption": ""
+  },
+  "gallery": [
+    {
+      "src": "images/personas/lazara-otero-velasco/retrato.svg",
+      "alt": "Imagen de Lázara Otero Velasco: retrato",
+      "caption": "retrato"
+    },
+    {
+      "src": "images/personas/lazara-otero-velasco/documento.svg",
+      "alt": "Imagen de Lázara Otero Velasco: documento",
+      "caption": "documento"
+    },
+    {
+      "src": "images/personas/lazara-otero-velasco/documento-2.svg",
+      "alt": "Imagen de Lázara Otero Velasco",
+      "caption": ""
+    },
+    {
+      "src": "images/personas/lazara-otero-velasco/retrato-2.svg",
+      "alt": "Imagen de Lázara Otero Velasco",
+      "caption": ""
+    }
+  ],
+  "family": {
+    "father": "",
+    "mother": "",
+    "spouses": [
+      "domingo-gonzalez"
+    ],
+    "children": [
+      "josefa-gonzalez-otero"
+    ]
+  },
   "facts": [
     {
       "label": "Nombre completo",
@@ -40,28 +81,7 @@
       "value": "Colapso"
     }
   ],
-  "heroImage": {
-    "src": "images/personas/lazara-otero-velasco/retrato.svg",
-    "alt": "Retrato de Lázara Otero Velasco",
-    "caption": "Retrato principal de Lázara Otero Velasco."
-  },
-  "biography": [
-    "Lázara Otero Velasco figura en el archivo familiar con padres Antonio y Josefa, nacimiento en Valdevacas y Guijar y fallecimiento en Valdevacas y Guijar.",
-    "Por ahora la ficha recoge los datos disponibles: nacimiento Siglo XIX, fallecimiento el 13/05/1960 a las 2:00 y motivo registrado como Colapso.",
-    "Esta página queda preparada para añadir manualmente recuerdos, fotografías, documentos y una biografía más completa cuando se disponga de más información."
-  ],
-  "gallery": [
-    {
-      "src": "images/personas/lazara-otero-velasco/retrato.svg",
-      "alt": "Imagen de Lázara Otero Velasco: retrato",
-      "caption": "retrato"
-    },
-    {
-      "src": "images/personas/lazara-otero-velasco/documento.svg",
-      "alt": "Imagen de Lázara Otero Velasco: documento",
-      "caption": "documento"
-    }
-  ],
-  "id": "lazara-otero-velasco",
-  "gender": "female"
+  "notes": "",
+  "sources": [],
+  "biography": []
 }

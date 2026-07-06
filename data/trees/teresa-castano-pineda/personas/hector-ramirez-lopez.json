@@ -1,0 +1,45 @@
+{
+  "id": "hector-ramirez-lopez",
+  "slug": "hector-ramirez-lopez",
+  "name": "Hector Ramirez Lopez",
+  "gender": "male",
+  "born": "",
+  "died": "",
+  "summary": "",
+  "heroImage": {
+    "src": "images/retrato.svg",
+    "alt": "Retrato de Hector Ramirez Lopez"
+  },
+  "gallery": [],
+  "family": {
+    "father": "",
+    "mother": "",
+    "spouses": [
+      "miriam-castaño-pineda"
+    ],
+    "children": [
+      "marcelo-ramirez-castaño",
+      "camilo-ramirez-castaño"
+    ]
+  },
+  "facts": [
+    {
+      "label": "Nacimiento",
+      "value": ""
+    },
+    {
+      "label": "Fallecimiento",
+      "value": ""
+    },
+    {
+      "label": "Lugar",
+      "value": ""
+    },
+    {
+      "label": "Ocupacion",
+      "value": ""
+    }
+  ],
+  "notes": "",
+  "sources": []
+}

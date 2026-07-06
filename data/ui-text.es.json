@@ -69,11 +69,8 @@
       "zoomInAria": "Acercar",
       "zoomOutAria": "Alejar",
       "fitAria": "Ajustar vista",
-      "toggleAria": "Alternar modo de enfoque",
       "back": "← Volver",
-      "fit": "Fit",
-      "modeGlobal": "Modo: Vista global",
-      "modeCenter": "Modo: Centrar seleccion"
+      "fit": "Fit"
     },
     "messages": {
       "loading": "Cargando arbol...",

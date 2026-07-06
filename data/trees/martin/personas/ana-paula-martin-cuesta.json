@@ -1,0 +1,42 @@
+{
+  "id": "ana-paula-martin-cuesta",
+  "slug": "ana-paula-martin-cuesta",
+  "name": "Ana Paula Martin Cuesta",
+  "gender": "female",
+  "born": "",
+  "died": "",
+  "summary": "",
+  "heroImage": {
+    "src": "images/retrato.svg",
+    "alt": "Retrato de Ana Paula Martin Cuesta"
+  },
+  "gallery": [],
+  "family": {
+    "father": "castor-martin-tapias-tapias",
+    "mother": "maria-de-los-angeles-cuesta",
+    "spouses": [
+      "alex"
+    ],
+    "children": []
+  },
+  "facts": [
+    {
+      "label": "Nacimiento",
+      "value": ""
+    },
+    {
+      "label": "Fallecimiento",
+      "value": ""
+    },
+    {
+      "label": "Lugar",
+      "value": ""
+    },
+    {
+      "label": "Ocupacion",
+      "value": ""
+    }
+  ],
+  "notes": "",
+  "sources": []
+}

@@ -1,0 +1,40 @@
+{
+  "id": "frutos-alonso-garcia",
+  "slug": "frutos-alonso-garcia",
+  "name": "Frutos Alonso Garcia",
+  "gender": "male",
+  "born": "",
+  "died": "",
+  "summary": "",
+  "heroImage": {
+    "src": "images/retrato.svg",
+    "alt": "Retrato de Frutos Alonso Garcia"
+  },
+  "gallery": [],
+  "family": {
+    "father": "teresa-barral-arranz",
+    "mother": "frutos-garcia-sanz",
+    "spouses": [],
+    "children": []
+  },
+  "facts": [
+    {
+      "label": "Nacimiento",
+      "value": ""
+    },
+    {
+      "label": "Fallecimiento",
+      "value": ""
+    },
+    {
+      "label": "Lugar",
+      "value": ""
+    },
+    {
+      "label": "Ocupacion",
+      "value": ""
+    }
+  ],
+  "notes": "",
+  "sources": []
+}

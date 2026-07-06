@@ -1,0 +1,46 @@
+{
+  "id": "maria-de-los-angeles-cuesta",
+  "slug": "maria-de-los-angeles-cuesta",
+  "name": "Maria De Los Angeles Cuesta",
+  "gender": "female",
+  "born": "",
+  "died": "",
+  "summary": "",
+  "heroImage": {
+    "src": "images/retrato.svg",
+    "alt": "Retrato de Maria De Los Angeles Cuesta"
+  },
+  "gallery": [],
+  "family": {
+    "father": "",
+    "mother": "",
+    "spouses": [
+      "castor-martin-tapias-tapias"
+    ],
+    "children": [
+      "maria-martin-cuesta",
+      "ana-paula-martin-cuesta",
+      "sara-martin-cuesta"
+    ]
+  },
+  "facts": [
+    {
+      "label": "Nacimiento",
+      "value": ""
+    },
+    {
+      "label": "Fallecimiento",
+      "value": ""
+    },
+    {
+      "label": "Lugar",
+      "value": ""
+    },
+    {
+      "label": "Ocupacion",
+      "value": ""
+    }
+  ],
+  "notes": "",
+  "sources": []
+}

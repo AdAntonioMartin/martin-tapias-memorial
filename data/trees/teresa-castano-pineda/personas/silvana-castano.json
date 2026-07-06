@@ -1,0 +1,40 @@
+{
+  "id": "silvana-?????-castaño",
+  "slug": "silvana-castano",
+  "name": "Silvana ????? Castano",
+  "gender": "female",
+  "born": "",
+  "died": "",
+  "summary": "",
+  "heroImage": {
+    "src": "images/retrato.svg",
+    "alt": "Retrato de Silvana ????? Castano"
+  },
+  "gallery": [],
+  "family": {
+    "father": "ricardo-?????-????",
+    "mother": "ana-maria-castaño-?????",
+    "spouses": [],
+    "children": []
+  },
+  "facts": [
+    {
+      "label": "Nacimiento",
+      "value": ""
+    },
+    {
+      "label": "Fallecimiento",
+      "value": ""
+    },
+    {
+      "label": "Lugar",
+      "value": ""
+    },
+    {
+      "label": "Ocupacion",
+      "value": ""
+    }
+  ],
+  "notes": "",
+  "sources": []
+}

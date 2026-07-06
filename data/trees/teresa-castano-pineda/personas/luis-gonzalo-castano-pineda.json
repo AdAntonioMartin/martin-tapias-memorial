@@ -1,0 +1,46 @@
+{
+  "id": "luis-gonzalo-castaño-pineda",
+  "slug": "luis-gonzalo-castano-pineda",
+  "name": "Luis Gonzalo Castano Pineda",
+  "gender": "male",
+  "born": "",
+  "died": "",
+  "summary": "",
+  "heroImage": {
+    "src": "images/retrato.svg",
+    "alt": "Retrato de Luis Gonzalo Castano Pineda"
+  },
+  "gallery": [],
+  "family": {
+    "father": "gonzalo-castaño",
+    "mother": "ana-rita-pineda-ospina",
+    "spouses": [
+      "clemencia-?????"
+    ],
+    "children": [
+      "laura-castaño-?????",
+      "sofia-castaño-?????",
+      "juana-castaño-?????"
+    ]
+  },
+  "facts": [
+    {
+      "label": "Nacimiento",
+      "value": ""
+    },
+    {
+      "label": "Fallecimiento",
+      "value": ""
+    },
+    {
+      "label": "Lugar",
+      "value": ""
+    },
+    {
+      "label": "Ocupacion",
+      "value": ""
+    }
+  ],
+  "notes": "",
+  "sources": []
+}

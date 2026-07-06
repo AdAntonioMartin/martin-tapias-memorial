@@ -1,0 +1,48 @@
+{
+  "id": "alfonsa-alvaro",
+  "slug": "alfonsa-alvaro",
+  "name": "Alfonsa Alvaro",
+  "gender": "female",
+  "born": "",
+  "died": "",
+  "summary": "",
+  "heroImage": {
+    "src": "images/retrato.svg",
+    "alt": "Retrato de Alfonsa Alvaro",
+    "caption": ""
+  },
+  "gallery": [],
+  "family": {
+    "father": "",
+    "mother": "",
+    "spouses": [
+      "cipriano-tapias"
+    ],
+    "children": [
+      "benedicta-tapias-alvaro",
+      "jenorimo-tapias-alvaro",
+      "diosinio-tapias-alvaro"
+    ]
+  },
+  "facts": [
+    {
+      "label": "Nacimiento",
+      "value": ""
+    },
+    {
+      "label": "Fallecimiento",
+      "value": ""
+    },
+    {
+      "label": "Lugar",
+      "value": ""
+    },
+    {
+      "label": "Ocupacion",
+      "value": ""
+    }
+  ],
+  "notes": "",
+  "sources": [],
+  "biography": []
+}

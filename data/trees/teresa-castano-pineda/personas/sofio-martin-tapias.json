@@ -1,0 +1,46 @@
+{
+  "id": "sofio-martin-tapias",
+  "slug": "sofio-martin-tapias",
+  "name": "Sofio Martin Tapias",
+  "gender": "male",
+  "born": "",
+  "died": "",
+  "summary": "",
+  "heroImage": {
+    "src": "images/retrato.svg",
+    "alt": "Retrato de Sofio Martin Tapias"
+  },
+  "gallery": [],
+  "family": {
+    "father": "victoria-tapias",
+    "mother": "abdon-martin-matesanz",
+    "spouses": [
+      "benedicta-tapias-alvaro"
+    ],
+    "children": [
+      "eloy-martin-tapias",
+      "castor-martin-tapias-tapias",
+      "asuncion-martin-tapias"
+    ]
+  },
+  "facts": [
+    {
+      "label": "Nacimiento",
+      "value": ""
+    },
+    {
+      "label": "Fallecimiento",
+      "value": ""
+    },
+    {
+      "label": "Lugar",
+      "value": ""
+    },
+    {
+      "label": "Ocupacion",
+      "value": ""
+    }
+  ],
+  "notes": "",
+  "sources": []
+}

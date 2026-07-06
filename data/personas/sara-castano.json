@@ -1,0 +1,42 @@
+{
+  "id": "sara-castaño-?????",
+  "slug": "sara-castano",
+  "name": "Sara Castano ?????",
+  "gender": "female",
+  "born": "",
+  "died": "",
+  "summary": "",
+  "heroImage": {
+    "src": "images/retrato.svg",
+    "alt": "Retrato de Sara Castano ?????",
+    "caption": ""
+  },
+  "gallery": [],
+  "family": {
+    "father": "alvaro-castaño-pineda",
+    "mother": "elisabeth-??????",
+    "spouses": [],
+    "children": []
+  },
+  "facts": [
+    {
+      "label": "Nacimiento",
+      "value": ""
+    },
+    {
+      "label": "Fallecimiento",
+      "value": ""
+    },
+    {
+      "label": "Lugar",
+      "value": ""
+    },
+    {
+      "label": "Ocupacion",
+      "value": ""
+    }
+  ],
+  "notes": "",
+  "sources": [],
+  "biography": []
+}

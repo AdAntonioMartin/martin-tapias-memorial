@@ -1,0 +1,46 @@
+{
+  "id": "barbara-garcia-iglesia",
+  "slug": "barbara-garcia-iglesia",
+  "name": "Barbara Garcia Iglesia",
+  "gender": "female",
+  "born": "",
+  "died": "",
+  "summary": "",
+  "heroImage": {
+    "src": "images/retrato.svg",
+    "alt": "Retrato de Barbara Garcia Iglesia",
+    "caption": ""
+  },
+  "gallery": [],
+  "family": {
+    "father": "juan-garcia",
+    "mother": "isabel-iglesia",
+    "spouses": [
+      "francisco-alonso-garcia"
+    ],
+    "children": [
+      "antonio-alonso-garcia"
+    ]
+  },
+  "facts": [
+    {
+      "label": "Nacimiento",
+      "value": ""
+    },
+    {
+      "label": "Fallecimiento",
+      "value": ""
+    },
+    {
+      "label": "Lugar",
+      "value": ""
+    },
+    {
+      "label": "Ocupacion",
+      "value": ""
+    }
+  ],
+  "notes": "",
+  "sources": [],
+  "biography": []
+}

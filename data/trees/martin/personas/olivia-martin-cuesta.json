@@ -1,0 +1,40 @@
+{
+  "id": "olivia-martin-cuesta",
+  "slug": "olivia-martin-cuesta",
+  "name": "Olivia Martin Cuesta",
+  "gender": "female",
+  "born": "",
+  "died": "",
+  "summary": "",
+  "heroImage": {
+    "src": "images/retrato.svg",
+    "alt": "Retrato de Olivia Martin Cuesta"
+  },
+  "gallery": [],
+  "family": {
+    "father": "maria-martin-cuesta",
+    "mother": "",
+    "spouses": [],
+    "children": []
+  },
+  "facts": [
+    {
+      "label": "Nacimiento",
+      "value": ""
+    },
+    {
+      "label": "Fallecimiento",
+      "value": ""
+    },
+    {
+      "label": "Lugar",
+      "value": ""
+    },
+    {
+      "label": "Ocupacion",
+      "value": ""
+    }
+  ],
+  "notes": "",
+  "sources": []
+}

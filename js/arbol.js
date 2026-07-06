@@ -11,6 +11,10 @@ function familyChartApi() {
   return window.f3 || null;
 }
 
+function cloneData(value) {
+  return JSON.parse(JSON.stringify(value));
+}
+
 function cardGenderClass(person) {
   if (person.genderLabel === "male") {
     return "card-male";
@@ -86,84 +90,197 @@ function bindToolbar(chart, f3Api) {
   }
 }
 
-function openInitialTarget(target, graph, focusPerson) {
-  if (target.id && graph.nodes[target.id]) {
-    focusPerson(target.id, { center: true });
-    return;
-  }
-
-  if (!target.dataPath) {
-    return;
-  }
-
-  var id = Object.keys(graph.nodes).find(function (nodeId) {
-    return normalizeDataPath(graph.nodes[nodeId].personPath) === target.dataPath;
-  });
-
-  if (id) {
-    focusPerson(id, { center: true });
-  }
-}
-
-function pickGlobalMainId(f3Api, familyData) {
-  if (!Array.isArray(familyData) || !familyData.length) {
-    return "";
-  }
-  if (typeof f3Api.calculateTree !== "function") {
-    return familyData[0].id;
-  }
-
-  var bestId = familyData[0].id;
-  var bestCount = -1;
-
-  familyData.forEach(function (person) {
+function buildFamilyIndex(familyData) {
+  var byId = {};
+  var parentsById = {};
+  var childrenById = {};
+  (Array.isArray(familyData) ? familyData : []).forEach(function (person) {
     if (!person || !person.id) {
       return;
     }
-    try {
-      var scratchData = JSON.parse(JSON.stringify(familyData));
-      var tree = f3Api.calculateTree(scratchData, {
-        main_id: person.id,
-        show_siblings_of_main: true,
-        single_parent_empty_card: false
-      });
-      var count = tree && Array.isArray(tree.data) ? tree.data.length : 0;
-      if (count > bestCount) {
-        bestCount = count;
-        bestId = person.id;
-      }
-    } catch (error) {
-      // Ignore invalid candidate and continue.
-    }
+    byId[person.id] = person;
+    parentsById[person.id] = [];
+    childrenById[person.id] = [];
   });
 
-  return bestId;
+  Object.keys(byId).forEach(function (id) {
+    var rels = byId[id] && byId[id].rels ? byId[id].rels : {};
+    var parents = Array.isArray(rels.parents) ? rels.parents : [];
+    var children = Array.isArray(rels.children) ? rels.children : [];
+
+    parents.forEach(function (parentId) {
+      if (!byId[parentId]) {
+        return;
+      }
+      parentsById[id].push(parentId);
+    });
+    children.forEach(function (childId) {
+      if (!byId[childId]) {
+        return;
+      }
+      childrenById[id].push(childId);
+    });
+  });
+
+  return {
+    byId: byId,
+    parentsById: parentsById,
+    childrenById: childrenById
+  };
 }
 
-function normalizeTreeModeConfig(treeConfig) {
-  var modes = treeConfig && treeConfig.modes ? treeConfig.modes : {};
-  var enabledRaw = ["global", "center"];
-  if (Array.isArray(modes.enabled)) {
-    enabledRaw = modes.enabled;
-  } else if (typeof modes.enabled === "string") {
-    enabledRaw = modes.enabled.split(",").map(function (part) {
-      return part.trim();
-    }).filter(Boolean);
+function collectAncestorIds(mainId, familyIndex) {
+  var byId = familyIndex && familyIndex.byId ? familyIndex.byId : {};
+  var parentsById = familyIndex && familyIndex.parentsById ? familyIndex.parentsById : {};
+  if (!mainId || !byId[mainId]) {
+    return {};
   }
-  var enabled = enabledRaw.filter(function (mode) {
-    return mode === "global" || mode === "center";
+
+  var ancestors = {};
+  var queue = [mainId];
+
+  while (queue.length) {
+    var currentId = queue.shift();
+    var parents = Array.isArray(parentsById[currentId]) ? parentsById[currentId] : [];
+    parents.forEach(function (parentId) {
+      if (!ancestors[parentId] && byId[parentId]) {
+        ancestors[parentId] = true;
+        queue.push(parentId);
+      }
+    });
+  }
+
+  return ancestors;
+}
+
+function collectDescendantIds(seedIds, familyIndex) {
+  var byId = familyIndex && familyIndex.byId ? familyIndex.byId : {};
+  var childrenById = familyIndex && familyIndex.childrenById ? familyIndex.childrenById : {};
+  var descendants = {};
+  var queue = (Array.isArray(seedIds) ? seedIds : []).filter(function (id) {
+    return !!byId[id];
   });
-  if (!enabled.length) {
-    enabled = ["global"];
+
+  queue.forEach(function (id) {
+    descendants[id] = true;
+  });
+
+  while (queue.length) {
+    var currentId = queue.shift();
+    var children = Array.isArray(childrenById[currentId]) ? childrenById[currentId] : [];
+    children.forEach(function (childId) {
+      if (!descendants[childId] && byId[childId]) {
+        descendants[childId] = true;
+        queue.push(childId);
+      }
+    });
   }
-  var initial = modes.initial === "center" ? "center" : "global";
-  if (enabled.indexOf(initial) === -1) {
-    initial = enabled[0];
+
+  return descendants;
+}
+
+function collectBloodFamilyIds(mainId, familyIndex) {
+  var byId = familyIndex && familyIndex.byId ? familyIndex.byId : {};
+  if (!mainId || !byId[mainId]) {
+    return {};
   }
+  var ancestorIds = collectAncestorIds(mainId, familyIndex);
+  var seedIds = [mainId].concat(Object.keys(ancestorIds));
+  var bloodIds = collectDescendantIds(seedIds, familyIndex);
+
+  Object.keys(ancestorIds).forEach(function (id) {
+    bloodIds[id] = true;
+  });
+
+  return bloodIds;
+}
+
+function buildScopedFamilyData(familyData, familyIndex, mainId) {
+  var byId = familyIndex && familyIndex.byId ? familyIndex.byId : {};
+  var bloodIds = collectBloodFamilyIds(mainId, familyIndex);
+  if (!Object.keys(bloodIds).length) {
+    return {
+      data: Array.isArray(familyData) ? cloneData(familyData) : [],
+      renderMainId: mainId
+    };
+  }
+
+  var included = {};
+  Object.keys(bloodIds).forEach(function (id) {
+    included[id] = true;
+  });
+
+  Object.keys(bloodIds).forEach(function (id) {
+    var rels = byId[id] && byId[id].rels ? byId[id].rels : {};
+    var spouses = Array.isArray(rels.spouses) ? rels.spouses : [];
+    spouses.forEach(function (spouseId) {
+      if (byId[spouseId]) {
+        included[spouseId] = true;
+      }
+    });
+  });
+
+  var scopedData = (Array.isArray(familyData) ? familyData : [])
+    .filter(function (person) {
+      return person && person.id && included[person.id];
+    })
+    .map(function (person) {
+      var rels = person && person.rels ? person.rels : {};
+      var filterIds = function (ids) {
+        return (Array.isArray(ids) ? ids : []).filter(function (id) {
+          return !!included[id];
+        });
+      };
+
+      return {
+        id: person.id,
+        data: person.data,
+        rels: {
+          parents: filterIds(rels.parents),
+          spouses: filterIds(rels.spouses),
+          children: filterIds(rels.children)
+        }
+      };
+    });
+
   return {
-    enabled: enabled,
-    initial: initial
+    data: cloneData(scopedData),
+    renderMainId: mainId
   };
+}
+
+function pickDefaultMainId(target, graph, familyData) {
+  if (target.id && graph.nodes[target.id]) {
+    return target.id;
+  }
+
+  if (target.dataPath) {
+    var byPathId = Object.keys(graph.nodes).find(function (nodeId) {
+      return normalizeDataPath(graph.nodes[nodeId].personPath) === target.dataPath;
+    });
+    if (byPathId) {
+      return byPathId;
+    }
+  }
+
+  if (!Array.isArray(familyData) || !familyData.length) {
+    return "";
+  }
+  return familyData[0].id || "";
+}
+
+function hasValidLaunchTarget(target, graph) {
+  if (target.id && graph.nodes[target.id]) {
+    return true;
+  }
+
+  if (!target.dataPath) {
+    return false;
+  }
+
+  return Object.keys(graph.nodes).some(function (nodeId) {
+    return normalizeDataPath(graph.nodes[nodeId].personPath) === target.dataPath;
+  });
 }
 
 function init() {
@@ -182,26 +299,26 @@ function init() {
   var error = document.getElementById("tree-error");
   var target = getLaunchTarget();
   var selectedId = "";
-  var centerOnSelection = false;
 
   loadTreePayload()
     .then(function (payload) {
       var graph = buildGraph(payload.unions, payload.records, payload.byId);
       var treeConfig = APP_CONFIG && APP_CONFIG.tree ? APP_CONFIG.tree : {};
-      var modeConfig = normalizeTreeModeConfig(treeConfig);
       var container = document.getElementById("tree-canvas");
       if (!container) {
         throw new Error("No existe #tree-canvas");
       }
+      var baseFamilyData = Array.isArray(payload.familyData) ? cloneData(payload.familyData) : [];
+      var familyIndex = buildFamilyIndex(baseFamilyData);
+      var defaultMainId = pickDefaultMainId(target, graph, baseFamilyData);
+      var opensFromTarget = hasValidLaunchTarget(target, graph);
 
-      var chart = f3Api.createChart(container, payload.familyData)
+      var chart = f3Api.createChart(container, cloneData(baseFamilyData))
         .setTransitionTime(treeConfig.transitionMs || 420)
         .setCardXSpacing(treeConfig.cardSpacing && treeConfig.cardSpacing.x ? treeConfig.cardSpacing.x : 200)
         .setCardYSpacing(treeConfig.cardSpacing && treeConfig.cardSpacing.y ? treeConfig.cardSpacing.y : 140)
         .setShowSiblingsOfMain(true)
         .setSingleParentEmptyCard(false);
-      var globalMainId = pickGlobalMainId(f3Api, payload.familyData);
-      centerOnSelection = modeConfig.initial === "center";
 
       var card = chart.setCardHtml()
         .setStyle("imageRect")
@@ -234,35 +351,22 @@ function init() {
         }
         var opts = options || {};
         selectedId = personId;
-        var shouldCenter = Object.prototype.hasOwnProperty.call(opts, "center")
-          ? !!opts.center
-          : centerOnSelection;
-        if (shouldCenter) {
-          chart.updateMainId(personId);
-          chart.updateTree({
-            initial: false,
-            tree_position: opts.treePosition || "main_to_middle"
-          });
-        }
+        var scoped = buildScopedFamilyData(baseFamilyData, familyIndex, personId);
+        chart.setShowSiblingsOfMain(true);
+        chart.updateData(scoped.data);
+        chart.updateMainId(scoped.renderMainId || personId);
+        chart.updateTree({
+          initial: !!opts.initial,
+          tree_position: opts.treePosition || "fit"
+        });
         applySelectedState();
         if (!opts.skipPanel) {
           openPanel(personId, graph, payload.detailTemplate, function (nodeId) {
-            focusPerson(nodeId, { treePosition: "main_to_middle", center: true });
+            focusPerson(nodeId, {
+              treePosition: "fit"
+            });
           });
         }
-      }
-
-      function showGlobalView() {
-        if (globalMainId) {
-          chart.updateMainId(globalMainId);
-        }
-        chart.updateTree({
-          initial: false,
-          tree_position: "fit"
-        });
-        selectedId = "";
-        applySelectedState();
-        closePanel();
       }
 
       card.setOnCardClick(function (event, treeDatum) {
@@ -279,64 +383,20 @@ function init() {
         loading.remove();
       }
 
-      if (globalMainId) {
-        chart.updateMainId(globalMainId);
+      if (defaultMainId) {
+        focusPerson(defaultMainId, {
+          initial: true,
+          treePosition: "fit",
+          skipPanel: !opensFromTarget
+        });
+      } else {
+        chart.updateTree({
+          initial: true,
+          tree_position: "fit"
+        });
       }
-      chart.updateTree({
-        initial: true,
-        tree_position: "fit"
-      });
 
       bindToolbar(chart, f3Api);
-      var showAllBtn = document.getElementById("btn-show-all");
-      if (showAllBtn) {
-        if (modeConfig.enabled.length < 2) {
-          showAllBtn.hidden = true;
-          showAllBtn.style.display = "none";
-        } else {
-          showAllBtn.hidden = false;
-          showAllBtn.style.display = "";
-        }
-        function syncModeButton() {
-          showAllBtn.textContent = centerOnSelection
-            ? t("tree.toolbar.modeCenter", "Modo: Centrar seleccion")
-            : t("tree.toolbar.modeGlobal", "Modo: Vista global");
-          showAllBtn.setAttribute("aria-pressed", centerOnSelection ? "true" : "false");
-        }
-        syncModeButton();
-        if (modeConfig.enabled.length >= 2) {
-          showAllBtn.addEventListener("click", function () {
-            centerOnSelection = !centerOnSelection;
-            syncModeButton();
-            if (!centerOnSelection) {
-              showGlobalView();
-            } else if (selectedId) {
-              focusPerson(selectedId, {
-                center: true,
-                treePosition: "main_to_middle",
-                skipPanel: true
-              });
-            } else if (globalMainId) {
-              chart.updateMainId(globalMainId);
-              chart.updateTree({
-                initial: false,
-                tree_position: "fit"
-              });
-            }
-          });
-        } else if (modeConfig.enabled[0] === "global") {
-          showGlobalView();
-        } else {
-          if (globalMainId) {
-            chart.updateMainId(globalMainId);
-            chart.updateTree({
-              initial: false,
-              tree_position: "fit"
-            });
-          }
-        }
-      }
-      openInitialTarget(target, graph, focusPerson);
       applySelectedState();
 
       var closeBtn = document.getElementById("tree-panel-close");

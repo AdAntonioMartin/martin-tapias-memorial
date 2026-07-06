@@ -1,0 +1,45 @@
+{
+  "id": "maria-martin-cuesta",
+  "slug": "maria-martin-cuesta",
+  "name": "Maria Martin Cuesta",
+  "gender": "female",
+  "born": "",
+  "died": "",
+  "summary": "",
+  "heroImage": {
+    "src": "images/retrato.svg",
+    "alt": "Retrato de Maria Martin Cuesta",
+    "caption": ""
+  },
+  "gallery": [],
+  "family": {
+    "father": "castor-martin-tapias-tapias",
+    "mother": "maria-de-los-angeles-cuesta",
+    "spouses": [],
+    "children": [
+      "sofia-martin-cuesta",
+      "olivia-martin-cuesta"
+    ]
+  },
+  "facts": [
+    {
+      "label": "Nacimiento",
+      "value": ""
+    },
+    {
+      "label": "Fallecimiento",
+      "value": ""
+    },
+    {
+      "label": "Lugar",
+      "value": ""
+    },
+    {
+      "label": "Ocupacion",
+      "value": ""
+    }
+  ],
+  "notes": "",
+  "sources": [],
+  "biography": []
+}

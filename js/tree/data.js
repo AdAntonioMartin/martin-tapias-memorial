@@ -7,8 +7,72 @@ export function getLaunchTarget() {
   var params = new URLSearchParams(window.location.search);
   return {
     id: params.get("id") || "",
-    dataPath: normalizeDataPath(params.get("data") || "")
+    dataPath: normalizeDataPath(params.get("data") || ""),
+    tree: params.get("tree") || ""
   };
+}
+
+function getRequestedTreeKey() {
+  var params = new URLSearchParams(window.location.search);
+  return params.get("tree") || "";
+}
+
+function normalizeTreeRegistry(payload) {
+  var defaultTree = payload && payload.defaultTree ? payload.defaultTree : "global";
+  var trees = payload && Array.isArray(payload.trees) ? payload.trees : [];
+  return {
+    defaultTree: defaultTree,
+    trees: trees
+  };
+}
+
+function resolveTreeSources(appDataConfig) {
+  var treeConfigPath = appDataConfig.treeConfig || "data/arbol.json";
+  var peopleIndexPath = appDataConfig.peopleIndex || "data/personas-index.json";
+  var treeRegistryPath = appDataConfig.treeRegistry || "data/trees/index.json";
+  var requestedTree = getRequestedTreeKey();
+
+  return fetchJson(treeRegistryPath)
+    .then(normalizeTreeRegistry)
+    .catch(function () {
+      return { defaultTree: "global", trees: [] };
+    })
+    .then(function (registry) {
+      var selected = null;
+      if (requestedTree) {
+        selected = registry.trees.find(function (entry) {
+          return entry && entry.key === requestedTree;
+        }) || null;
+      }
+      if (!selected && registry.defaultTree) {
+        selected = registry.trees.find(function (entry) {
+          return entry && entry.key === registry.defaultTree;
+        }) || null;
+      }
+      return {
+        treeKey: selected && selected.key ? selected.key : (requestedTree || registry.defaultTree || "global"),
+        treeConfigPath: selected && selected.treeConfig ? selected.treeConfig : treeConfigPath,
+        peopleIndexPath: selected && selected.peopleIndex ? selected.peopleIndex : peopleIndexPath,
+        imagesBase: selected && selected.imagesBase ? selected.imagesBase : "images/personas"
+      };
+    });
+}
+
+function remapImagePath(src, imagesBase) {
+  if (!src) {
+    return src;
+  }
+  var value = String(src);
+  if (value.indexOf("images/personas/") === 0) {
+    return value;
+  }
+  if (!imagesBase) {
+    return value;
+  }
+  if (value.indexOf("images/trees/shared/personas/") === 0) {
+    return value.replace("images/trees/shared/personas/", imagesBase.replace(/\/+$/, "") + "/");
+  }
+  return value;
 }
 
 function getReferencedIds(unions) {
@@ -102,6 +166,21 @@ function loadPersonRecordsById(ids, byId) {
   return Promise.all(requests).then(function (results) {
     return results.filter(Boolean);
   });
+}
+
+function normalizeById(payload) {
+  return payload && payload.byId && typeof payload.byId === "object" ? payload.byId : {};
+}
+
+function loadByIdIndex(path) {
+  if (!path) {
+    return Promise.resolve({});
+  }
+  return fetchJson(path)
+    .then(normalizeById)
+    .catch(function () {
+      return {};
+    });
 }
 
 function getOrCreatePerson(nodesById, id, byId, recordById) {
@@ -209,28 +288,47 @@ function mapFamilyChartData(unions, byId, records) {
 
 export function loadTreePayload() {
   var appDataConfig = APP_CONFIG && APP_CONFIG.data ? APP_CONFIG.data : {};
-  var treeConfigPath = appDataConfig.treeConfig || "data/arbol.json";
-  var peopleIndexPath = appDataConfig.peopleIndex || "data/personas-index.json";
   var templates = APP_CONFIG && APP_CONFIG.templates ? APP_CONFIG.templates : {};
+  var fallbackPeopleIndexPath = appDataConfig.peopleIndex || "data/personas-index.json";
 
-  return Promise.all([
-    fetchJson(treeConfigPath),
-    fetchJson(peopleIndexPath).catch(function () { return { byId: {} }; })
-  ]).then(function (payload) {
-    var config = payload[0] || {};
-    var indexPayload = payload[1] || {};
-    var byId = indexPayload.byId && typeof indexPayload.byId === "object" ? indexPayload.byId : {};
-    var unions = Array.isArray(config.unions) ? config.unions : [];
-    var ids = getReferencedIds(unions);
+  return resolveTreeSources(appDataConfig).then(function (sources) {
+    return Promise.all([
+      fetchJson(sources.treeConfigPath),
+      loadByIdIndex(sources.peopleIndexPath),
+      loadByIdIndex(fallbackPeopleIndexPath)
+    ]).then(function (payload) {
+      var config = payload[0] || {};
+      var treeById = payload[1] || {};
+      var fallbackById = payload[2] || {};
+      var byId = Object.assign({}, fallbackById, treeById);
+      var unions = Array.isArray(config.unions) ? config.unions : [];
+      var ids = getReferencedIds(unions);
 
-    return loadPersonRecordsById(ids, byId).then(function (records) {
-      return {
-        unions: unions,
-        records: records,
-        byId: byId,
-        detailTemplate: templates.detail || "persona.html",
-        familyData: mapFamilyChartData(unions, byId, records)
-      };
+      return loadPersonRecordsById(ids, byId).then(function (records) {
+        records.forEach(function (record) {
+          if (!record) {
+            return;
+          }
+          if (record.heroImage && record.heroImage.src) {
+            record.heroImage.src = remapImagePath(record.heroImage.src, sources.imagesBase);
+          }
+          if (Array.isArray(record.gallery)) {
+            record.gallery.forEach(function (image) {
+              if (image && image.src) {
+                image.src = remapImagePath(image.src, sources.imagesBase);
+              }
+            });
+          }
+        });
+        return {
+          unions: unions,
+          records: records,
+          byId: byId,
+          detailTemplate: templates.detail || "persona.html",
+          familyData: mapFamilyChartData(unions, byId, records),
+          treeKey: sources.treeKey
+        };
+      });
     });
   });
 }

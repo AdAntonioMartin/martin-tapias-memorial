@@ -1,0 +1,45 @@
+{
+  "id": "luis-de-antonio-minguez",
+  "slug": "luis-de-antonio-minguez",
+  "name": "Luis de Antonio Minguez",
+  "gender": "male",
+  "born": "",
+  "died": "",
+  "summary": "Ficha en preparacion. Se conservan por ahora los datos familiares basicos.",
+  "heroImage": {
+    "src": "images/retrato.svg",
+    "alt": "Retrato de Luis de Antonio Minguez"
+  },
+  "gallery": [],
+  "family": {
+    "father": "antonio-de-antonio-rivera",
+    "mother": "isabel-minguez-gonzalez",
+    "spouses": [
+      "asuncion-martin-tapias"
+    ],
+    "children": [
+      "gonzalo-de-antonio-martin",
+      "antonio-de-antonio-martin"
+    ]
+  },
+  "facts": [
+    {
+      "label": "Nombre completo",
+      "value": "Luis de Antonio Minguez"
+    },
+    {
+      "label": "Padres",
+      "value": "Antonio de Antonio Rivera e Isabel Minguez Gonzalez"
+    },
+    {
+      "label": "Nacimiento",
+      "value": "Pendiente de documentar"
+    },
+    {
+      "label": "Fallecimiento",
+      "value": "Pendiente de documentar"
+    }
+  ],
+  "notes": "",
+  "sources": []
+}

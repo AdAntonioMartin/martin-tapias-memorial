@@ -1,0 +1,40 @@
+{
+  "id": "manuel-alejandro-castaño-?????",
+  "slug": "manuel-alejandro-castano",
+  "name": "Manuel Alejandro Castano ?????",
+  "gender": "male",
+  "born": "",
+  "died": "",
+  "summary": "",
+  "heroImage": {
+    "src": "images/retrato.svg",
+    "alt": "Retrato de Manuel Alejandro Castano ?????"
+  },
+  "gallery": [],
+  "family": {
+    "father": "julian-castaño-pineda",
+    "mother": "patricia-??????",
+    "spouses": [],
+    "children": []
+  },
+  "facts": [
+    {
+      "label": "Nacimiento",
+      "value": ""
+    },
+    {
+      "label": "Fallecimiento",
+      "value": ""
+    },
+    {
+      "label": "Lugar",
+      "value": ""
+    },
+    {
+      "label": "Ocupacion",
+      "value": ""
+    }
+  ],
+  "notes": "",
+  "sources": []
+}

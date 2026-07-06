@@ -1,0 +1,42 @@
+{
+  "id": "antonio-ramirez-ostina",
+  "slug": "antonio-ramirez-ostina",
+  "name": "Antonio Ramirez Ostina",
+  "gender": "male",
+  "born": "",
+  "died": "",
+  "summary": "",
+  "heroImage": {
+    "src": "images/retrato.svg",
+    "alt": "Retrato de Antonio Ramirez Ostina",
+    "caption": ""
+  },
+  "gallery": [],
+  "family": {
+    "father": "marcelo-ramirez-castaño",
+    "mother": "natalia-ostina",
+    "spouses": [],
+    "children": []
+  },
+  "facts": [
+    {
+      "label": "Nacimiento",
+      "value": ""
+    },
+    {
+      "label": "Fallecimiento",
+      "value": ""
+    },
+    {
+      "label": "Lugar",
+      "value": ""
+    },
+    {
+      "label": "Ocupacion",
+      "value": ""
+    }
+  ],
+  "notes": "",
+  "sources": [],
+  "biography": []
+}

@@ -1,0 +1,45 @@
+{
+  "id": "modesto-martin-????",
+  "slug": "modesto-martin",
+  "name": "Modesto Martin ????",
+  "gender": "male",
+  "born": "",
+  "died": "",
+  "summary": "",
+  "heroImage": {
+    "src": "images/retrato.svg",
+    "alt": "Retrato de Modesto Martin ????"
+  },
+  "gallery": [],
+  "family": {
+    "father": "santiago-martin-matesanz",
+    "mother": "maria-arahuetes",
+    "spouses": [
+      "nicolasa-?????-?????"
+    ],
+    "children": [
+      "santiago",
+      "margarita"
+    ]
+  },
+  "facts": [
+    {
+      "label": "Nacimiento",
+      "value": ""
+    },
+    {
+      "label": "Fallecimiento",
+      "value": ""
+    },
+    {
+      "label": "Lugar",
+      "value": ""
+    },
+    {
+      "label": "Ocupacion",
+      "value": ""
+    }
+  ],
+  "notes": "",
+  "sources": []
+}

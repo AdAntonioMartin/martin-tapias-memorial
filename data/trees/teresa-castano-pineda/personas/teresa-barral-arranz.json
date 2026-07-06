@@ -1,0 +1,44 @@
+{
+  "id": "teresa-barral-arranz",
+  "slug": "teresa-barral-arranz",
+  "name": "Teresa Barral Arranz",
+  "gender": "female",
+  "born": "",
+  "died": "",
+  "summary": "",
+  "heroImage": {
+    "src": "images/retrato.svg",
+    "alt": "Retrato de Teresa Barral Arranz"
+  },
+  "gallery": [],
+  "family": {
+    "father": "simon-barral",
+    "mother": "ana-arranz",
+    "spouses": [
+      "frutos-garcia-sanz"
+    ],
+    "children": [
+      "frutos-alonso-garcia"
+    ]
+  },
+  "facts": [
+    {
+      "label": "Nacimiento",
+      "value": ""
+    },
+    {
+      "label": "Fallecimiento",
+      "value": ""
+    },
+    {
+      "label": "Lugar",
+      "value": ""
+    },
+    {
+      "label": "Ocupacion",
+      "value": ""
+    }
+  ],
+  "notes": "",
+  "sources": []
+}

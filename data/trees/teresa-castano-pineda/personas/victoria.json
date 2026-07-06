@@ -1,0 +1,40 @@
+{
+  "id": "victoria-?????-?????",
+  "slug": "victoria",
+  "name": "Victoria ????? ?????",
+  "gender": "female",
+  "born": "",
+  "died": "",
+  "summary": "",
+  "heroImage": {
+    "src": "images/retrato.svg",
+    "alt": "Retrato de Victoria ????? ?????"
+  },
+  "gallery": [],
+  "family": {
+    "father": "daniela-?????-castaño",
+    "mother": "??????",
+    "spouses": [],
+    "children": []
+  },
+  "facts": [
+    {
+      "label": "Nacimiento",
+      "value": ""
+    },
+    {
+      "label": "Fallecimiento",
+      "value": ""
+    },
+    {
+      "label": "Lugar",
+      "value": ""
+    },
+    {
+      "label": "Ocupacion",
+      "value": ""
+    }
+  ],
+  "notes": "",
+  "sources": []
+}

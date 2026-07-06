@@ -4,11 +4,16 @@ import { getColumnValue } from "./columns.js";
 
 function buildDetailUrl(record, config) {
   var params = new URLSearchParams();
+  var personPath = record.__personPath || "";
+  var treeMatch = String(personPath).match(/^data\/trees\/([^/]+)\//);
+  if (treeMatch && treeMatch[1]) {
+    params.set("tree", treeMatch[1]);
+  }
   if (record.id) {
     params.set("id", record.id);
   }
-  if (record.__personPath) {
-    params.set("data", record.__personPath);
+  if (personPath) {
+    params.set("data", personPath);
   }
   return (config.detailTemplate || "persona.html") + "?" + params.toString();
 }

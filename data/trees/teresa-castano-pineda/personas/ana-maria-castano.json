@@ -1,0 +1,45 @@
+{
+  "id": "ana-maria-castaño-?????",
+  "slug": "ana-maria-castano",
+  "name": "Ana Maria Castano ?????",
+  "gender": "female",
+  "born": "",
+  "died": "",
+  "summary": "",
+  "heroImage": {
+    "src": "images/retrato.svg",
+    "alt": "Retrato de Ana Maria Castano ?????"
+  },
+  "gallery": [],
+  "family": {
+    "father": "gabriel-castaño-pineda",
+    "mother": "ligia-?????",
+    "spouses": [
+      "ricardo-?????-????"
+    ],
+    "children": [
+      "juan-esteban-?????-castaño",
+      "silvana-?????-castaño"
+    ]
+  },
+  "facts": [
+    {
+      "label": "Nacimiento",
+      "value": ""
+    },
+    {
+      "label": "Fallecimiento",
+      "value": ""
+    },
+    {
+      "label": "Lugar",
+      "value": ""
+    },
+    {
+      "label": "Ocupacion",
+      "value": ""
+    }
+  ],
+  "notes": "",
+  "sources": []
+}

@@ -1,0 +1,40 @@
+{
+  "id": "miguel-de-andres-rivera",
+  "slug": "miguel-de-andres-rivera",
+  "name": "Miguel De Andres Rivera",
+  "gender": "male",
+  "born": "",
+  "died": "",
+  "summary": "",
+  "heroImage": {
+    "src": "images/retrato.svg",
+    "alt": "Retrato de Miguel De Andres Rivera"
+  },
+  "gallery": [],
+  "family": {
+    "father": "antonia-rivera-martin",
+    "mother": "miguel-de-andres",
+    "spouses": [],
+    "children": []
+  },
+  "facts": [
+    {
+      "label": "Nacimiento",
+      "value": ""
+    },
+    {
+      "label": "Fallecimiento",
+      "value": ""
+    },
+    {
+      "label": "Lugar",
+      "value": ""
+    },
+    {
+      "label": "Ocupacion",
+      "value": ""
+    }
+  ],
+  "notes": "",
+  "sources": []
+}

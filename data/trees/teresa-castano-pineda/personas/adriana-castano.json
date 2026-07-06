@@ -1,0 +1,44 @@
+{
+  "id": "adriana-castaño-?????",
+  "slug": "adriana-castano",
+  "name": "Adriana Castano ?????",
+  "gender": "female",
+  "born": "",
+  "died": "",
+  "summary": "",
+  "heroImage": {
+    "src": "images/retrato.svg",
+    "alt": "Retrato de Adriana Castano ?????"
+  },
+  "gallery": [],
+  "family": {
+    "father": "luis-alberto-castaño-pineda",
+    "mother": "luci-?????",
+    "spouses": [
+      "??????"
+    ],
+    "children": [
+      "daniela-?????-castaño"
+    ]
+  },
+  "facts": [
+    {
+      "label": "Nacimiento",
+      "value": ""
+    },
+    {
+      "label": "Fallecimiento",
+      "value": ""
+    },
+    {
+      "label": "Lugar",
+      "value": ""
+    },
+    {
+      "label": "Ocupacion",
+      "value": ""
+    }
+  ],
+  "notes": "",
+  "sources": []
+}

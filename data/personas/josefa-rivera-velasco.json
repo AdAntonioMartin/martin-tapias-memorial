@@ -1,7 +1,148 @@
 {
+  "id": "josefa-rivera-velasco",
+  "slug": "josefa-rivera-velasco",
   "name": "Josefa Rivera Velasco",
-  "subtitle": "Datos biográficos de Josefa Rivera Velasco",
+  "gender": "female",
+  "born": "",
+  "died": "",
   "summary": "Josefa Rivera Velasco nació en Muñoveros y falleció el 02/01/1996 en Segovia (Hosp. Policlinico), a la edad de 92 años.",
+  "heroImage": {
+    "src": "images/personas/josefa-rivera-velasco/IMG_4012.JPG",
+    "alt": "Retrato de Josefa Rivera Velasco",
+    "caption": ""
+  },
+  "gallery": [
+    {
+      "src": "images/personas/josefa-rivera-velasco/IMG_4012.JPG",
+      "alt": "Imagen de Josefa Rivera Velasco: IMG 4012",
+      "caption": "IMG 4012"
+    },
+    {
+      "src": "images/personas/josefa-rivera-velasco/IMG_4017.JPG",
+      "alt": "Imagen de Josefa Rivera Velasco: IMG 4017",
+      "caption": "IMG 4017"
+    },
+    {
+      "src": "images/personas/josefa-rivera-velasco/IMG_4018.JPG",
+      "alt": "Imagen de Josefa Rivera Velasco: IMG 4018",
+      "caption": "IMG 4018"
+    },
+    {
+      "src": "images/personas/josefa-rivera-velasco/IMG_4024.JPG",
+      "alt": "Imagen de Josefa Rivera Velasco: IMG 4024",
+      "caption": "IMG 4024"
+    },
+    {
+      "src": "images/personas/josefa-rivera-velasco/IMG_4025.JPG",
+      "alt": "Imagen de Josefa Rivera Velasco: IMG 4025",
+      "caption": "IMG 4025"
+    },
+    {
+      "src": "images/personas/josefa-rivera-velasco/IMG_4028.JPG",
+      "alt": "Imagen de Josefa Rivera Velasco: IMG 4028",
+      "caption": "IMG 4028"
+    },
+    {
+      "src": "images/personas/josefa-rivera-velasco/IMG_4012-2-2.JPG",
+      "alt": "Imagen de Josefa Rivera Velasco",
+      "caption": ""
+    },
+    {
+      "src": "images/personas/josefa-rivera-velasco/IMG_4012-2.JPG",
+      "alt": "Imagen de Josefa Rivera Velasco",
+      "caption": ""
+    },
+    {
+      "src": "images/personas/josefa-rivera-velasco/IMG_4012-3.JPG",
+      "alt": "Imagen de Josefa Rivera Velasco",
+      "caption": ""
+    },
+    {
+      "src": "images/personas/josefa-rivera-velasco/IMG_4017-2-2.JPG",
+      "alt": "Imagen de Josefa Rivera Velasco",
+      "caption": ""
+    },
+    {
+      "src": "images/personas/josefa-rivera-velasco/IMG_4017-2.JPG",
+      "alt": "Imagen de Josefa Rivera Velasco",
+      "caption": ""
+    },
+    {
+      "src": "images/personas/josefa-rivera-velasco/IMG_4017-3.JPG",
+      "alt": "Imagen de Josefa Rivera Velasco",
+      "caption": ""
+    },
+    {
+      "src": "images/personas/josefa-rivera-velasco/IMG_4018-2-2.JPG",
+      "alt": "Imagen de Josefa Rivera Velasco",
+      "caption": ""
+    },
+    {
+      "src": "images/personas/josefa-rivera-velasco/IMG_4018-2.JPG",
+      "alt": "Imagen de Josefa Rivera Velasco",
+      "caption": ""
+    },
+    {
+      "src": "images/personas/josefa-rivera-velasco/IMG_4018-3.JPG",
+      "alt": "Imagen de Josefa Rivera Velasco",
+      "caption": ""
+    },
+    {
+      "src": "images/personas/josefa-rivera-velasco/IMG_4024-2-2.JPG",
+      "alt": "Imagen de Josefa Rivera Velasco",
+      "caption": ""
+    },
+    {
+      "src": "images/personas/josefa-rivera-velasco/IMG_4024-2.JPG",
+      "alt": "Imagen de Josefa Rivera Velasco",
+      "caption": ""
+    },
+    {
+      "src": "images/personas/josefa-rivera-velasco/IMG_4024-3.JPG",
+      "alt": "Imagen de Josefa Rivera Velasco",
+      "caption": ""
+    },
+    {
+      "src": "images/personas/josefa-rivera-velasco/IMG_4025-2-2.JPG",
+      "alt": "Imagen de Josefa Rivera Velasco",
+      "caption": ""
+    },
+    {
+      "src": "images/personas/josefa-rivera-velasco/IMG_4025-2.JPG",
+      "alt": "Imagen de Josefa Rivera Velasco",
+      "caption": ""
+    },
+    {
+      "src": "images/personas/josefa-rivera-velasco/IMG_4025-3.JPG",
+      "alt": "Imagen de Josefa Rivera Velasco",
+      "caption": ""
+    },
+    {
+      "src": "images/personas/josefa-rivera-velasco/IMG_4028-2-2.JPG",
+      "alt": "Imagen de Josefa Rivera Velasco",
+      "caption": ""
+    },
+    {
+      "src": "images/personas/josefa-rivera-velasco/IMG_4028-2.JPG",
+      "alt": "Imagen de Josefa Rivera Velasco",
+      "caption": ""
+    },
+    {
+      "src": "images/personas/josefa-rivera-velasco/IMG_4028-3.JPG",
+      "alt": "Imagen de Josefa Rivera Velasco",
+      "caption": ""
+    }
+  ],
+  "family": {
+    "father": "liduvina-velasco",
+    "mother": "",
+    "spouses": [
+      "eladio-de-antonio-de-la-calle"
+    ],
+    "children": [
+      "antonio-de-antonio-rivera"
+    ]
+  },
   "facts": [
     {
       "label": "Nombre completo",
@@ -40,48 +181,7 @@
       "value": "Edad"
     }
   ],
-  "heroImage": {
-    "src": "images/personas/josefa-rivera-velasco/IMG_4012.JPG",
-    "alt": "Retrato de Josefa Rivera Velasco",
-    "caption": "Retrato principal de Josefa Rivera Velasco."
-  },
-  "biography": [
-    "Josefa Rivera Velasco figura en el archivo familiar con padres Liduvina y dato pendiente, nacimiento en Muñoveros y fallecimiento en Segovia (Hosp. Policlinico).",
-    "Por ahora la ficha recoge los datos disponibles: nacimiento 08/01/1904, fallecimiento el 02/01/1996 a las 22:00 y motivo registrado como Edad.",
-    "Esta página queda preparada para añadir manualmente recuerdos, fotografías, documentos y una biografía más completa cuando se disponga de más información."
-  ],
-  "gallery": [
-    {
-      "src": "images/personas/josefa-rivera-velasco/IMG_4012.JPG",
-      "alt": "Imagen de Josefa Rivera Velasco: IMG 4012",
-      "caption": "IMG 4012"
-    },
-    {
-      "src": "images/personas/josefa-rivera-velasco/IMG_4017.JPG",
-      "alt": "Imagen de Josefa Rivera Velasco: IMG 4017",
-      "caption": "IMG 4017"
-    },
-    {
-      "src": "images/personas/josefa-rivera-velasco/IMG_4018.JPG",
-      "alt": "Imagen de Josefa Rivera Velasco: IMG 4018",
-      "caption": "IMG 4018"
-    },
-    {
-      "src": "images/personas/josefa-rivera-velasco/IMG_4024.JPG",
-      "alt": "Imagen de Josefa Rivera Velasco: IMG 4024",
-      "caption": "IMG 4024"
-    },
-    {
-      "src": "images/personas/josefa-rivera-velasco/IMG_4025.JPG",
-      "alt": "Imagen de Josefa Rivera Velasco: IMG 4025",
-      "caption": "IMG 4025"
-    },
-    {
-      "src": "images/personas/josefa-rivera-velasco/IMG_4028.JPG",
-      "alt": "Imagen de Josefa Rivera Velasco: IMG 4028",
-      "caption": "IMG 4028"
-    }
-  ],
-  "id": "josefa-rivera-velasco",
-  "gender": "female"
+  "notes": "",
+  "sources": [],
+  "biography": []
 }

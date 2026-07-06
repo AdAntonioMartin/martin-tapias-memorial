@@ -1,0 +1,40 @@
+{
+  "id": "amancio-martin-tapias",
+  "slug": "amancio-martin-tapias",
+  "name": "Amancio Martin Tapias",
+  "gender": "male",
+  "born": "",
+  "died": "",
+  "summary": "",
+  "heroImage": {
+    "src": "images/retrato.svg",
+    "alt": "Retrato de Amancio Martin Tapias"
+  },
+  "gallery": [],
+  "family": {
+    "father": "victoria-tapias",
+    "mother": "abdon-martin-matesanz",
+    "spouses": [],
+    "children": []
+  },
+  "facts": [
+    {
+      "label": "Nacimiento",
+      "value": ""
+    },
+    {
+      "label": "Fallecimiento",
+      "value": ""
+    },
+    {
+      "label": "Lugar",
+      "value": ""
+    },
+    {
+      "label": "Ocupacion",
+      "value": ""
+    }
+  ],
+  "notes": "",
+  "sources": []
+}

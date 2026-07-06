@@ -1,0 +1,95 @@
+{
+  "id": "josefa-rivera-velasco",
+  "slug": "josefa-rivera-velasco",
+  "name": "Josefa Rivera Velasco",
+  "gender": "female",
+  "born": "",
+  "died": "",
+  "summary": "Josefa Rivera Velasco nació en Muñoveros y falleció el 02/01/1996 en Segovia (Hosp. Policlinico), a la edad de 92 años.",
+  "heroImage": {
+    "src": "images/trees/deantonio/personas/josefa-rivera-velasco/IMG_4012.JPG",
+    "alt": "Retrato de Josefa Rivera Velasco"
+  },
+  "gallery": [
+    {
+      "src": "images/trees/deantonio/personas/josefa-rivera-velasco/IMG_4012.JPG",
+      "alt": "Imagen de Josefa Rivera Velasco: IMG 4012",
+      "caption": "IMG 4012"
+    },
+    {
+      "src": "images/trees/deantonio/personas/josefa-rivera-velasco/IMG_4017.JPG",
+      "alt": "Imagen de Josefa Rivera Velasco: IMG 4017",
+      "caption": "IMG 4017"
+    },
+    {
+      "src": "images/trees/deantonio/personas/josefa-rivera-velasco/IMG_4018.JPG",
+      "alt": "Imagen de Josefa Rivera Velasco: IMG 4018",
+      "caption": "IMG 4018"
+    },
+    {
+      "src": "images/trees/deantonio/personas/josefa-rivera-velasco/IMG_4024.JPG",
+      "alt": "Imagen de Josefa Rivera Velasco: IMG 4024",
+      "caption": "IMG 4024"
+    },
+    {
+      "src": "images/trees/deantonio/personas/josefa-rivera-velasco/IMG_4025.JPG",
+      "alt": "Imagen de Josefa Rivera Velasco: IMG 4025",
+      "caption": "IMG 4025"
+    },
+    {
+      "src": "images/trees/deantonio/personas/josefa-rivera-velasco/IMG_4028.JPG",
+      "alt": "Imagen de Josefa Rivera Velasco: IMG 4028",
+      "caption": "IMG 4028"
+    }
+  ],
+  "family": {
+    "father": "liduvina-velasco",
+    "mother": "",
+    "spouses": [
+      "eladio-de-antonio-de-la-calle"
+    ],
+    "children": [
+      "antonio-de-antonio-rivera"
+    ]
+  },
+  "facts": [
+    {
+      "label": "Nombre completo",
+      "value": "Josefa Rivera Velasco"
+    },
+    {
+      "label": "Padres",
+      "value": "Liduvina y dato pendiente"
+    },
+    {
+      "label": "Nacimiento",
+      "value": "08/01/1904"
+    },
+    {
+      "label": "Lugar de nacimiento",
+      "value": "Muñoveros"
+    },
+    {
+      "label": "Fallecimiento",
+      "value": "02/01/1996"
+    },
+    {
+      "label": "Hora",
+      "value": "22:00"
+    },
+    {
+      "label": "Edad",
+      "value": "92 años"
+    },
+    {
+      "label": "Lugar de fallecimiento",
+      "value": "Segovia (Hosp. Policlinico)"
+    },
+    {
+      "label": "Motivo",
+      "value": "Edad"
+    }
+  ],
+  "notes": "",
+  "sources": []
+}

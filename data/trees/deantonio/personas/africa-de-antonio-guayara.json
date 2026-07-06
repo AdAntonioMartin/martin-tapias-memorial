@@ -1,0 +1,40 @@
+{
+  "id": "africa-de-antonio-guayara",
+  "slug": "africa-de-antonio-guayara",
+  "name": "Africa De Antonio Guayara",
+  "gender": "female",
+  "born": "",
+  "died": "",
+  "summary": "",
+  "heroImage": {
+    "src": "images/retrato.svg",
+    "alt": "Retrato de Africa De Antonio Guayara"
+  },
+  "gallery": [],
+  "family": {
+    "father": "antonio-de-antonio-martin",
+    "mother": "pilar-guayara-castaño",
+    "spouses": [],
+    "children": []
+  },
+  "facts": [
+    {
+      "label": "Nacimiento",
+      "value": ""
+    },
+    {
+      "label": "Fallecimiento",
+      "value": ""
+    },
+    {
+      "label": "Lugar",
+      "value": ""
+    },
+    {
+      "label": "Ocupacion",
+      "value": ""
+    }
+  ],
+  "notes": "",
+  "sources": []
+}

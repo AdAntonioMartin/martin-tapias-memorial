@@ -1,0 +1,42 @@
+{
+  "id": "sofia-martin-cuesta",
+  "slug": "sofia-martin-cuesta",
+  "name": "Sofia Martin Cuesta",
+  "gender": "female",
+  "born": "",
+  "died": "",
+  "summary": "",
+  "heroImage": {
+    "src": "images/retrato.svg",
+    "alt": "Retrato de Sofia Martin Cuesta",
+    "caption": ""
+  },
+  "gallery": [],
+  "family": {
+    "father": "maria-martin-cuesta",
+    "mother": "",
+    "spouses": [],
+    "children": []
+  },
+  "facts": [
+    {
+      "label": "Nacimiento",
+      "value": ""
+    },
+    {
+      "label": "Fallecimiento",
+      "value": ""
+    },
+    {
+      "label": "Lugar",
+      "value": ""
+    },
+    {
+      "label": "Ocupacion",
+      "value": ""
+    }
+  ],
+  "notes": "",
+  "sources": [],
+  "biography": []
+}

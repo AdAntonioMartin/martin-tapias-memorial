@@ -1,7 +1,169 @@
 {
+  "id": "isabel-minguez-gonzalez",
+  "slug": "isabel-minguez-gonzalez",
   "name": "Isabel Mínguez González",
-  "subtitle": "Datos biográficos de Isabel Mínguez González",
+  "gender": "female",
+  "born": "",
+  "died": "",
   "summary": "Isabel Mínguez González nació en Valdevacas y Guijar y falleció el 30/09/2009 en Villanueva de la Cañada, a la edad de 88 años.",
+  "heroImage": {
+    "src": "images/personas/isabel-minguez-gonzalez/Isabel.png",
+    "alt": "Retrato de Isabel Mínguez González",
+    "caption": ""
+  },
+  "gallery": [
+    {
+      "src": "images/personas/isabel-minguez-gonzalez/Isabel.png",
+      "alt": "Imagen de Isabel Mínguez González: Isabel",
+      "caption": "Isabel"
+    },
+    {
+      "src": "images/personas/isabel-minguez-gonzalez/Isabel y Luis.png",
+      "alt": "Imagen de Isabel Mínguez González: Isabel y Luis",
+      "caption": "Isabel y Luis"
+    },
+    {
+      "src": "images/personas/isabel-minguez-gonzalez/IMG_4010.JPG",
+      "alt": "Imagen de Isabel Mínguez González: IMG 4010",
+      "caption": "IMG 4010"
+    },
+    {
+      "src": "images/personas/isabel-minguez-gonzalez/IMG_4011.JPG",
+      "alt": "Imagen de Isabel Mínguez González: IMG 4011",
+      "caption": "IMG 4011"
+    },
+    {
+      "src": "images/personas/isabel-minguez-gonzalez/IMG_4014.JPG",
+      "alt": "Imagen de Isabel Mínguez González: IMG 4014",
+      "caption": "IMG 4014"
+    },
+    {
+      "src": "images/personas/isabel-minguez-gonzalez/IMG_4015.JPG",
+      "alt": "Imagen de Isabel Mínguez González: IMG 4015",
+      "caption": "IMG 4015"
+    },
+    {
+      "src": "images/personas/isabel-minguez-gonzalez/IMG_4027.JPG",
+      "alt": "Imagen de Isabel Mínguez González: IMG 4027",
+      "caption": "IMG 4027"
+    },
+    {
+      "src": "images/personas/isabel-minguez-gonzalez/IMG_4010-2-2.JPG",
+      "alt": "Imagen de Isabel Mínguez González",
+      "caption": ""
+    },
+    {
+      "src": "images/personas/isabel-minguez-gonzalez/IMG_4010-2.JPG",
+      "alt": "Imagen de Isabel Mínguez González",
+      "caption": ""
+    },
+    {
+      "src": "images/personas/isabel-minguez-gonzalez/IMG_4010-3.JPG",
+      "alt": "Imagen de Isabel Mínguez González",
+      "caption": ""
+    },
+    {
+      "src": "images/personas/isabel-minguez-gonzalez/IMG_4011-2-2.JPG",
+      "alt": "Imagen de Isabel Mínguez González",
+      "caption": ""
+    },
+    {
+      "src": "images/personas/isabel-minguez-gonzalez/IMG_4011-2.JPG",
+      "alt": "Imagen de Isabel Mínguez González",
+      "caption": ""
+    },
+    {
+      "src": "images/personas/isabel-minguez-gonzalez/IMG_4011-3.JPG",
+      "alt": "Imagen de Isabel Mínguez González",
+      "caption": ""
+    },
+    {
+      "src": "images/personas/isabel-minguez-gonzalez/IMG_4014-2-2.JPG",
+      "alt": "Imagen de Isabel Mínguez González",
+      "caption": ""
+    },
+    {
+      "src": "images/personas/isabel-minguez-gonzalez/IMG_4014-2.JPG",
+      "alt": "Imagen de Isabel Mínguez González",
+      "caption": ""
+    },
+    {
+      "src": "images/personas/isabel-minguez-gonzalez/IMG_4014-3.JPG",
+      "alt": "Imagen de Isabel Mínguez González",
+      "caption": ""
+    },
+    {
+      "src": "images/personas/isabel-minguez-gonzalez/IMG_4015-2-2.JPG",
+      "alt": "Imagen de Isabel Mínguez González",
+      "caption": ""
+    },
+    {
+      "src": "images/personas/isabel-minguez-gonzalez/IMG_4015-2.JPG",
+      "alt": "Imagen de Isabel Mínguez González",
+      "caption": ""
+    },
+    {
+      "src": "images/personas/isabel-minguez-gonzalez/IMG_4015-3.JPG",
+      "alt": "Imagen de Isabel Mínguez González",
+      "caption": ""
+    },
+    {
+      "src": "images/personas/isabel-minguez-gonzalez/IMG_4027-2-2.JPG",
+      "alt": "Imagen de Isabel Mínguez González",
+      "caption": ""
+    },
+    {
+      "src": "images/personas/isabel-minguez-gonzalez/IMG_4027-2.JPG",
+      "alt": "Imagen de Isabel Mínguez González",
+      "caption": ""
+    },
+    {
+      "src": "images/personas/isabel-minguez-gonzalez/IMG_4027-3.JPG",
+      "alt": "Imagen de Isabel Mínguez González",
+      "caption": ""
+    },
+    {
+      "src": "images/personas/isabel-minguez-gonzalez/Isabel y Luis-2-2.png",
+      "alt": "Imagen de Isabel Mínguez González",
+      "caption": ""
+    },
+    {
+      "src": "images/personas/isabel-minguez-gonzalez/Isabel y Luis-2.png",
+      "alt": "Imagen de Isabel Mínguez González",
+      "caption": ""
+    },
+    {
+      "src": "images/personas/isabel-minguez-gonzalez/Isabel y Luis-3.png",
+      "alt": "Imagen de Isabel Mínguez González",
+      "caption": ""
+    },
+    {
+      "src": "images/personas/isabel-minguez-gonzalez/Isabel-2-2.png",
+      "alt": "Imagen de Isabel Mínguez González",
+      "caption": ""
+    },
+    {
+      "src": "images/personas/isabel-minguez-gonzalez/Isabel-2.png",
+      "alt": "Imagen de Isabel Mínguez González",
+      "caption": ""
+    },
+    {
+      "src": "images/personas/isabel-minguez-gonzalez/Isabel-3.png",
+      "alt": "Imagen de Isabel Mínguez González",
+      "caption": ""
+    }
+  ],
+  "family": {
+    "father": "domingo-minguez-paez",
+    "mother": "josefa-gonzalez-otero",
+    "spouses": [
+      "antonio-de-antonio-rivera"
+    ],
+    "children": [
+      "luis-de-antonio-minguez",
+      "fernando-de-antonio-minguez"
+    ]
+  },
   "facts": [
     {
       "label": "Nombre completo",
@@ -40,53 +202,7 @@
       "value": "Edad"
     }
   ],
-  "heroImage": {
-    "src": "images/personas/isabel-minguez-gonzalez/Isabel.png",
-    "alt": "Retrato de Isabel Mínguez González",
-    "caption": "Retrato principal de Isabel Mínguez González."
-  },
-  "biography": [
-    "Isabel Mínguez González figura en el archivo familiar con padres Domingo y Josefa, nacimiento en Valdevacas y Guijar y fallecimiento en Villanueva de la Cañada.",
-    "Por ahora la ficha recoge los datos disponibles: nacimiento 07/08/1921, fallecimiento el 30/09/2009 a las 1:00 y motivo registrado como Edad.",
-    "Esta página queda preparada para añadir manualmente recuerdos, fotografías, documentos y una biografía más completa cuando se disponga de más información."
-  ],
-  "gallery": [
-    {
-      "src": "images/personas/isabel-minguez-gonzalez/Isabel.png",
-      "alt": "Imagen de Isabel Mínguez González: Isabel",
-      "caption": "Isabel"
-    },
-    {
-      "src": "images/personas/isabel-minguez-gonzalez/Isabel y Luis.png",
-      "alt": "Imagen de Isabel Mínguez González: Isabel y Luis",
-      "caption": "Isabel y Luis"
-    },
-    {
-      "src": "images/personas/isabel-minguez-gonzalez/IMG_4010.JPG",
-      "alt": "Imagen de Isabel Mínguez González: IMG 4010",
-      "caption": "IMG 4010"
-    },
-    {
-      "src": "images/personas/isabel-minguez-gonzalez/IMG_4011.JPG",
-      "alt": "Imagen de Isabel Mínguez González: IMG 4011",
-      "caption": "IMG 4011"
-    },
-    {
-      "src": "images/personas/isabel-minguez-gonzalez/IMG_4014.JPG",
-      "alt": "Imagen de Isabel Mínguez González: IMG 4014",
-      "caption": "IMG 4014"
-    },
-    {
-      "src": "images/personas/isabel-minguez-gonzalez/IMG_4015.JPG",
-      "alt": "Imagen de Isabel Mínguez González: IMG 4015",
-      "caption": "IMG 4015"
-    },
-    {
-      "src": "images/personas/isabel-minguez-gonzalez/IMG_4027.JPG",
-      "alt": "Imagen de Isabel Mínguez González: IMG 4027",
-      "caption": "IMG 4027"
-    }
-  ],
-  "id": "isabel-minguez-gonzalez",
-  "gender": "female"
+  "notes": "",
+  "sources": [],
+  "biography": []
 }
