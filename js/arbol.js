@@ -248,24 +248,10 @@ function includeSiblingBranches(included, mainId, familyIndex) {
   });
 }
 
-function pickScopedRenderMainId(mainId, included, familyIndex) {
-  var byId = familyIndex && familyIndex.byId ? familyIndex.byId : {};
-  var parentsById = familyIndex && familyIndex.parentsById ? familyIndex.parentsById : {};
-  var parents = Array.isArray(parentsById[mainId]) ? parentsById[mainId] : [];
-  var visibleParent = parents.find(function (parentId) {
-    return !!byId[parentId] && !!included[parentId];
-  });
-
-  return visibleParent || mainId;
-}
-
 function buildScopedFamilyData(familyData, familyIndex, mainId) {
   var bloodIds = collectBloodFamilyIds(mainId, familyIndex);
   if (!Object.keys(bloodIds).length) {
-    return {
-      data: Array.isArray(familyData) ? cloneData(familyData) : [],
-      renderMainId: mainId
-    };
+    return Array.isArray(familyData) ? cloneData(familyData) : [];
   }
 
   var included = {};
@@ -301,10 +287,7 @@ function buildScopedFamilyData(familyData, familyIndex, mainId) {
       };
     });
 
-  return {
-    data: cloneData(scopedData),
-    renderMainId: pickScopedRenderMainId(mainId, included, familyIndex)
-  };
+  return cloneData(scopedData);
 }
 
 function pickDefaultMainId(target, graph, familyData) {
@@ -409,10 +392,10 @@ function init() {
         }
         var opts = options || {};
         selectedId = personId;
-        var scoped = buildScopedFamilyData(baseFamilyData, familyIndex, personId);
+        var scopedData = buildScopedFamilyData(baseFamilyData, familyIndex, personId);
         chart.setShowSiblingsOfMain(true);
-        chart.updateData(scoped.data);
-        chart.updateMainId(scoped.renderMainId || personId);
+        chart.updateData(scopedData);
+        chart.updateMainId(personId);
         chart.updateTree({
           initial: !!opts.initial,
           tree_position: opts.treePosition || "fit"
