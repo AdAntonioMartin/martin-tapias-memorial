@@ -195,8 +195,71 @@ function collectBloodFamilyIds(mainId, familyIndex) {
   return bloodIds;
 }
 
-function buildScopedFamilyData(familyData, familyIndex, mainId) {
+function addPersonAndSpouses(included, personId, familyIndex) {
   var byId = familyIndex && familyIndex.byId ? familyIndex.byId : {};
+  if (!personId || !byId[personId]) {
+    return;
+  }
+
+  included[personId] = true;
+
+  var rels = byId[personId].rels || {};
+  var spouses = Array.isArray(rels.spouses) ? rels.spouses : [];
+  spouses.forEach(function (spouseId) {
+    if (byId[spouseId]) {
+      included[spouseId] = true;
+    }
+  });
+}
+
+function addPerson(included, personId, familyIndex) {
+  var byId = familyIndex && familyIndex.byId ? familyIndex.byId : {};
+  if (personId && byId[personId]) {
+    included[personId] = true;
+  }
+}
+
+function includeSiblingBranches(included, mainId, familyIndex) {
+  var byId = familyIndex && familyIndex.byId ? familyIndex.byId : {};
+  var parentsById = familyIndex && familyIndex.parentsById ? familyIndex.parentsById : {};
+  var childrenById = familyIndex && familyIndex.childrenById ? familyIndex.childrenById : {};
+  if (!mainId || !byId[mainId]) {
+    return;
+  }
+
+  var siblingIds = {};
+  var parents = Array.isArray(parentsById[mainId]) ? parentsById[mainId] : [];
+  parents.forEach(function (parentId) {
+    var children = Array.isArray(childrenById[parentId]) ? childrenById[parentId] : [];
+    children.forEach(function (childId) {
+      if (childId !== mainId && byId[childId]) {
+        siblingIds[childId] = true;
+      }
+    });
+  });
+
+  Object.keys(siblingIds).forEach(function (siblingId) {
+    addPersonAndSpouses(included, siblingId, familyIndex);
+
+    var siblingChildren = Array.isArray(childrenById[siblingId]) ? childrenById[siblingId] : [];
+    siblingChildren.forEach(function (childId) {
+      addPerson(included, childId, familyIndex);
+    });
+  });
+}
+
+function pickScopedRenderMainId(mainId, included, familyIndex) {
+  var byId = familyIndex && familyIndex.byId ? familyIndex.byId : {};
+  var parentsById = familyIndex && familyIndex.parentsById ? familyIndex.parentsById : {};
+  var parents = Array.isArray(parentsById[mainId]) ? parentsById[mainId] : [];
+  var visibleParent = parents.find(function (parentId) {
+    return !!byId[parentId] && !!included[parentId];
+  });
+
+  return visibleParent || mainId;
+}
+
+function buildScopedFamilyData(familyData, familyIndex, mainId) {
   var bloodIds = collectBloodFamilyIds(mainId, familyIndex);
   if (!Object.keys(bloodIds).length) {
     return {
@@ -211,14 +274,9 @@ function buildScopedFamilyData(familyData, familyIndex, mainId) {
   });
 
   Object.keys(bloodIds).forEach(function (id) {
-    var rels = byId[id] && byId[id].rels ? byId[id].rels : {};
-    var spouses = Array.isArray(rels.spouses) ? rels.spouses : [];
-    spouses.forEach(function (spouseId) {
-      if (byId[spouseId]) {
-        included[spouseId] = true;
-      }
-    });
+    addPersonAndSpouses(included, id, familyIndex);
   });
+  includeSiblingBranches(included, mainId, familyIndex);
 
   var scopedData = (Array.isArray(familyData) ? familyData : [])
     .filter(function (person) {
@@ -245,7 +303,7 @@ function buildScopedFamilyData(familyData, familyIndex, mainId) {
 
   return {
     data: cloneData(scopedData),
-    renderMainId: mainId
+    renderMainId: pickScopedRenderMainId(mainId, included, familyIndex)
   };
 }
 
