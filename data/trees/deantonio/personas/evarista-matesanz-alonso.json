@@ -8,7 +8,8 @@
   "summary": "",
   "heroImage": {
     "src": "images/retrato.svg",
-    "alt": "Retrato de Evarista Matesanz Alonso"
+    "alt": "Retrato de Evarista Matesanz Alonso",
+    "caption": ""
   },
   "gallery": [],
   "family": {
@@ -42,5 +43,6 @@
     }
   ],
   "notes": "",
-  "sources": []
+  "sources": [],
+  "biography": []
 }

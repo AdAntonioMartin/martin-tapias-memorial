@@ -8,7 +8,8 @@
   "summary": "",
   "heroImage": {
     "src": "images/retrato.svg",
-    "alt": "Retrato de Clemencia Castano Pineda"
+    "alt": "Retrato de Clemencia Castano Pineda",
+    "caption": ""
   },
   "gallery": [],
   "family": {
@@ -42,5 +43,6 @@
     }
   ],
   "notes": "",
-  "sources": []
+  "sources": [],
+  "biography": []
 }

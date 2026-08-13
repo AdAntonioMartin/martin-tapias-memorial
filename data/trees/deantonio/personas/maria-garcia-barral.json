@@ -8,7 +8,8 @@
   "summary": "",
   "heroImage": {
     "src": "images/retrato.svg",
-    "alt": "Retrato de Maria Garcia Barral"
+    "alt": "Retrato de Maria Garcia Barral",
+    "caption": ""
   },
   "gallery": [],
   "family": {
@@ -40,5 +41,6 @@
     }
   ],
   "notes": "",
-  "sources": []
+  "sources": [],
+  "biography": []
 }

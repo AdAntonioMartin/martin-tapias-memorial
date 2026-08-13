@@ -8,7 +8,8 @@
   "summary": "",
   "heroImage": {
     "src": "images/retrato.svg",
-    "alt": "Retrato de Inocenta De La Calle"
+    "alt": "Retrato de Inocenta De La Calle",
+    "caption": ""
   },
   "gallery": [],
   "family": {
@@ -38,5 +39,6 @@
     }
   ],
   "notes": "",
-  "sources": []
+  "sources": [],
+  "biography": []
 }

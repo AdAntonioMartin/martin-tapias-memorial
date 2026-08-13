@@ -8,7 +8,8 @@
   "summary": "",
   "heroImage": {
     "src": "images/retrato.svg",
-    "alt": "Retrato de Maria Arahuetes"
+    "alt": "Retrato de Maria Arahuetes",
+    "caption": ""
   },
   "gallery": [],
   "family": {
@@ -41,5 +42,6 @@
     }
   ],
   "notes": "",
-  "sources": []
+  "sources": [],
+  "biography": []
 }

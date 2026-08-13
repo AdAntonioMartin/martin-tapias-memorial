@@ -8,7 +8,8 @@
   "summary": "",
   "heroImage": {
     "src": "images/retrato.svg",
-    "alt": "Retrato de Marcelo Ramirez Castano"
+    "alt": "Retrato de Marcelo Ramirez Castano",
+    "caption": ""
   },
   "gallery": [],
   "family": {
@@ -41,5 +42,6 @@
     }
   ],
   "notes": "",
-  "sources": []
+  "sources": [],
+  "biography": []
 }

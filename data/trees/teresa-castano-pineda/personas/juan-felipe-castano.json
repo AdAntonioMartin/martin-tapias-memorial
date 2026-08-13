@@ -7,8 +7,9 @@
   "died": "",
   "summary": "",
   "heroImage": {
-    "src": "images/trees/teresa-castano-pineda/personas/juan-felipe-castano/retrato-principal.jpg",
-    "alt": ""
+    "src": "images/retrato.svg",
+    "alt": "Retrato de Juan Felipe Castaño",
+    "caption": ""
   },
   "gallery": [],
   "family": {
@@ -19,5 +20,6 @@
   },
   "facts": [],
   "notes": "",
-  "sources": []
+  "sources": [],
+  "biography": []
 }

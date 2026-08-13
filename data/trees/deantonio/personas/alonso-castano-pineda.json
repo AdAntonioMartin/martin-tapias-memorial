@@ -8,7 +8,8 @@
   "summary": "",
   "heroImage": {
     "src": "images/retrato.svg",
-    "alt": "Retrato de Alonso Castano Pineda"
+    "alt": "Retrato de Alonso Castano Pineda",
+    "caption": ""
   },
   "gallery": [],
   "family": {
@@ -38,5 +39,6 @@
     }
   ],
   "notes": "",
-  "sources": []
+  "sources": [],
+  "biography": []
 }

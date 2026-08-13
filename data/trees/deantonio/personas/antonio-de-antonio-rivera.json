@@ -7,29 +7,50 @@
   "died": "",
   "summary": "Antonio de Antonio Rivera nació en La Matilla y falleció el 29/04/1980 en Colmenar Viejo, a la edad de 56 años.",
   "heroImage": {
-    "src": "images/trees/deantonio/personas/antonio-de-antonio-rivera/Antonio carné.png",
-    "alt": "Retrato de Antonio de Antonio Rivera"
+    "src": "images/personas/antonio-de-antonio-rivera/Antonio_de_Antonio_Rivera_2-transformed_enhanced-2-2.png",
+    "alt": "Retrato de Antonio de Antonio Rivera",
+    "caption": ""
   },
   "gallery": [
     {
-      "src": "images/trees/deantonio/personas/antonio-de-antonio-rivera/Antonio_de_Antonio_Rivera_2-transformed_enhanced.png",
+      "src": "images/personas/antonio-de-antonio-rivera/Antonio_de_Antonio_Rivera_2-transformed_enhanced.png",
       "alt": "Imagen de Antonio de Antonio Rivera: Antonio de Antonio Rivera 2 transformed enhanced",
       "caption": "Antonio de Antonio Rivera 2 transformed enhanced"
     },
     {
-      "src": "images/trees/deantonio/personas/antonio-de-antonio-rivera/Imagen 2024-09-30 (1)_enhanced.png",
+      "src": "images/personas/antonio-de-antonio-rivera/Imagen 2024-09-30 (1)_enhanced.png",
       "alt": "Imagen de Antonio de Antonio Rivera: Imagen 2024 09 30 (1) enhanced",
       "caption": "Imagen 2024 09 30 (1) enhanced"
     },
     {
-      "src": "images/trees/deantonio/personas/antonio-de-antonio-rivera/Antonio carné.png",
-      "alt": "Imagen de Antonio de Antonio Rivera: Imagen 2024 09 30 (1) enhanced",
-      "caption": "Imagen 2024 09 30 (1) enhanced"
+      "src": "images/personas/antonio-de-antonio-rivera/Antonio_de_Antonio_Rivera_2-transformed_enhanced-2-2.png",
+      "alt": "Imagen de Antonio de Antonio Rivera",
+      "caption": ""
     },
     {
-      "src": "images/trees/deantonio/personas/antonio-de-antonio-rivera/IMG_4009.jpg",
-      "alt": "Imagen de Antonio de Antonio Rivera: Imagen 2024 09 30 (1) enhanced",
-      "caption": "Imagen 2024 09 30 (1) enhanced"
+      "src": "images/personas/antonio-de-antonio-rivera/Antonio_de_Antonio_Rivera_2-transformed_enhanced-2.png",
+      "alt": "Imagen de Antonio de Antonio Rivera",
+      "caption": ""
+    },
+    {
+      "src": "images/personas/antonio-de-antonio-rivera/Antonio_de_Antonio_Rivera_2-transformed_enhanced-3.png",
+      "alt": "Imagen de Antonio de Antonio Rivera",
+      "caption": ""
+    },
+    {
+      "src": "images/personas/antonio-de-antonio-rivera/Imagen 2024-09-30 (1)_enhanced-2-2.png",
+      "alt": "Imagen de Antonio de Antonio Rivera",
+      "caption": ""
+    },
+    {
+      "src": "images/personas/antonio-de-antonio-rivera/Imagen 2024-09-30 (1)_enhanced-2.png",
+      "alt": "Imagen de Antonio de Antonio Rivera",
+      "caption": ""
+    },
+    {
+      "src": "images/personas/antonio-de-antonio-rivera/Imagen 2024-09-30 (1)_enhanced-3.png",
+      "alt": "Imagen de Antonio de Antonio Rivera",
+      "caption": ""
     }
   ],
   "family": {
@@ -82,5 +103,6 @@
     }
   ],
   "notes": "",
-  "sources": []
+  "sources": [],
+  "biography": []
 }

@@ -8,7 +8,8 @@
   "summary": "",
   "heroImage": {
     "src": "images/retrato.svg",
-    "alt": "Retrato de Pilar Guayara Castano"
+    "alt": "Retrato de Pilar Guayara Castano",
+    "caption": ""
   },
   "gallery": [],
   "family": {
@@ -41,5 +42,6 @@
     }
   ],
   "notes": "",
-  "sources": []
+  "sources": [],
+  "biography": []
 }

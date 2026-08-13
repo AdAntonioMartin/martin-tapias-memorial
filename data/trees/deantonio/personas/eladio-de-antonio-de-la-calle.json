@@ -7,34 +7,110 @@
   "died": "",
   "summary": "Eladio de Antonio de la Calle nació en La Matilla y falleció el 08/02/1959 en Valdevacas y Guijar, a la edad de 65 años.",
   "heroImage": {
-    "src": "images/trees/deantonio/personas/eladio-de-antonio-de-la-calle/Eladio Carnet.png",
-    "alt": "Retrato de Eladio de Antonio de la Calle"
+    "src": "images/personas/eladio-de-antonio-de-la-calle/Eladio Carnet.png",
+    "alt": "Retrato de Eladio de Antonio de la Calle",
+    "caption": ""
   },
   "gallery": [
     {
-      "src": "images/trees/deantonio/personas/eladio-de-antonio-de-la-calle/Eladio Carnet.png",
+      "src": "images/personas/eladio-de-antonio-de-la-calle/Eladio Carnet.png",
       "alt": "Imagen de Eladio de Antonio de la Calle: Eladio Carnet",
       "caption": "Eladio Carnet"
     },
     {
-      "src": "images/trees/deantonio/personas/eladio-de-antonio-de-la-calle/Eladio Josefa y Antonio.png",
+      "src": "images/personas/eladio-de-antonio-de-la-calle/Eladio Josefa y Antonio.png",
       "alt": "Imagen de Eladio de Antonio de la Calle: Eladio Josefa y Antonio",
       "caption": "Eladio Josefa y Antonio"
     },
     {
-      "src": "images/trees/deantonio/personas/eladio-de-antonio-de-la-calle/Eladio Josefay nietos.png",
+      "src": "images/personas/eladio-de-antonio-de-la-calle/Eladio Josefay nietos.png",
       "alt": "Imagen de Eladio de Antonio de la Calle: Eladio Josefay nietos",
       "caption": "Eladio Josefay nietos"
     },
     {
-      "src": "images/trees/deantonio/personas/eladio-de-antonio-de-la-calle/IMG_4019.JPG",
+      "src": "images/personas/eladio-de-antonio-de-la-calle/IMG_4019.JPG",
       "alt": "Imagen de Eladio de Antonio de la Calle: IMG 4019",
       "caption": "IMG 4019"
     },
     {
-      "src": "images/trees/deantonio/personas/eladio-de-antonio-de-la-calle/IMG_4023.JPG",
+      "src": "images/personas/eladio-de-antonio-de-la-calle/IMG_4023.JPG",
       "alt": "Imagen de Eladio de Antonio de la Calle: IMG 4023",
       "caption": "IMG 4023"
+    },
+    {
+      "src": "images/personas/eladio-de-antonio-de-la-calle/Eladio Carnet-2-2.png",
+      "alt": "Imagen de Eladio de Antonio de la Calle",
+      "caption": ""
+    },
+    {
+      "src": "images/personas/eladio-de-antonio-de-la-calle/Eladio Carnet-2.png",
+      "alt": "Imagen de Eladio de Antonio de la Calle",
+      "caption": ""
+    },
+    {
+      "src": "images/personas/eladio-de-antonio-de-la-calle/Eladio Carnet-3.png",
+      "alt": "Imagen de Eladio de Antonio de la Calle",
+      "caption": ""
+    },
+    {
+      "src": "images/personas/eladio-de-antonio-de-la-calle/Eladio Josefa y Antonio-2-2.png",
+      "alt": "Imagen de Eladio de Antonio de la Calle",
+      "caption": ""
+    },
+    {
+      "src": "images/personas/eladio-de-antonio-de-la-calle/Eladio Josefa y Antonio-2.png",
+      "alt": "Imagen de Eladio de Antonio de la Calle",
+      "caption": ""
+    },
+    {
+      "src": "images/personas/eladio-de-antonio-de-la-calle/Eladio Josefa y Antonio-3.png",
+      "alt": "Imagen de Eladio de Antonio de la Calle",
+      "caption": ""
+    },
+    {
+      "src": "images/personas/eladio-de-antonio-de-la-calle/Eladio Josefay nietos-2-2.png",
+      "alt": "Imagen de Eladio de Antonio de la Calle",
+      "caption": ""
+    },
+    {
+      "src": "images/personas/eladio-de-antonio-de-la-calle/Eladio Josefay nietos-2.png",
+      "alt": "Imagen de Eladio de Antonio de la Calle",
+      "caption": ""
+    },
+    {
+      "src": "images/personas/eladio-de-antonio-de-la-calle/Eladio Josefay nietos-3.png",
+      "alt": "Imagen de Eladio de Antonio de la Calle",
+      "caption": ""
+    },
+    {
+      "src": "images/personas/eladio-de-antonio-de-la-calle/IMG_4019-2-2.JPG",
+      "alt": "Imagen de Eladio de Antonio de la Calle",
+      "caption": ""
+    },
+    {
+      "src": "images/personas/eladio-de-antonio-de-la-calle/IMG_4019-2.JPG",
+      "alt": "Imagen de Eladio de Antonio de la Calle",
+      "caption": ""
+    },
+    {
+      "src": "images/personas/eladio-de-antonio-de-la-calle/IMG_4019-3.JPG",
+      "alt": "Imagen de Eladio de Antonio de la Calle",
+      "caption": ""
+    },
+    {
+      "src": "images/personas/eladio-de-antonio-de-la-calle/IMG_4023-2-2.JPG",
+      "alt": "Imagen de Eladio de Antonio de la Calle",
+      "caption": ""
+    },
+    {
+      "src": "images/personas/eladio-de-antonio-de-la-calle/IMG_4023-2.JPG",
+      "alt": "Imagen de Eladio de Antonio de la Calle",
+      "caption": ""
+    },
+    {
+      "src": "images/personas/eladio-de-antonio-de-la-calle/IMG_4023-3.JPG",
+      "alt": "Imagen de Eladio de Antonio de la Calle",
+      "caption": ""
     }
   ],
   "family": {
@@ -86,5 +162,6 @@
     }
   ],
   "notes": "",
-  "sources": []
+  "sources": [],
+  "biography": []
 }

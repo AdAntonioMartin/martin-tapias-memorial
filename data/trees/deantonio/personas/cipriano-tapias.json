@@ -8,7 +8,8 @@
   "summary": "",
   "heroImage": {
     "src": "images/retrato.svg",
-    "alt": "Retrato de Cipriano Tapias"
+    "alt": "Retrato de Cipriano Tapias",
+    "caption": ""
   },
   "gallery": [],
   "family": {
@@ -42,5 +43,6 @@
     }
   ],
   "notes": "",
-  "sources": []
+  "sources": [],
+  "biography": []
 }

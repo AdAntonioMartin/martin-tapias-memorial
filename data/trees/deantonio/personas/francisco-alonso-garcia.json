@@ -8,7 +8,8 @@
   "summary": "",
   "heroImage": {
     "src": "images/retrato.svg",
-    "alt": "Retrato de Francisco Alonso Garcia"
+    "alt": "Retrato de Francisco Alonso Garcia",
+    "caption": ""
   },
   "gallery": [],
   "family": {
@@ -40,5 +41,6 @@
     }
   ],
   "notes": "",
-  "sources": []
+  "sources": [],
+  "biography": []
 }

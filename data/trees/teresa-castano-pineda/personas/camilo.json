@@ -8,7 +8,8 @@
   "summary": "",
   "heroImage": {
     "src": "images/retrato.svg",
-    "alt": "Retrato de Camilo ?????"
+    "alt": "Retrato de Camilo ?????",
+    "caption": ""
   },
   "gallery": [],
   "family": {
@@ -40,5 +41,6 @@
     }
   ],
   "notes": "",
-  "sources": []
+  "sources": [],
+  "biography": []
 }

@@ -2,13 +2,14 @@
   "id": "luis-gonzalo-castaño-pineda",
   "slug": "luis-gonzalo-castano-pineda",
   "name": "Luis Gonzalo Castano Pineda",
-  "gender": "unknown",
+  "gender": "male",
   "born": "",
   "died": "",
   "summary": "",
   "heroImage": {
     "src": "images/retrato.svg",
-    "alt": "Retrato de Luis Gonzalo Castano Pineda"
+    "alt": "Retrato de Luis Gonzalo Castano Pineda",
+    "caption": ""
   },
   "gallery": [],
   "family": {
@@ -42,5 +43,6 @@
     }
   ],
   "notes": "",
-  "sources": []
+  "sources": [],
+  "biography": []
 }

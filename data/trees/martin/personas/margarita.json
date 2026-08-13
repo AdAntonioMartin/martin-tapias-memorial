@@ -8,7 +8,8 @@
   "summary": "",
   "heroImage": {
     "src": "images/retrato.svg",
-    "alt": "Retrato de Margarita"
+    "alt": "Retrato de Margarita",
+    "caption": ""
   },
   "gallery": [],
   "family": {
@@ -36,5 +37,6 @@
     }
   ],
   "notes": "",
-  "sources": []
+  "sources": [],
+  "biography": []
 }

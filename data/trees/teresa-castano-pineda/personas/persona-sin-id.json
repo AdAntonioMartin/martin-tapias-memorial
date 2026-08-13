@@ -7,8 +7,9 @@
   "died": "",
   "summary": "",
   "heroImage": {
-    "src": "images/trees/teresa-castano-pineda/personas/persona-sin-id/retrato-principal.jpg",
-    "alt": ""
+    "src": "images/retrato.svg",
+    "alt": "Retrato de ??????",
+    "caption": ""
   },
   "gallery": [],
   "family": {
@@ -19,5 +20,6 @@
   },
   "facts": [],
   "notes": "",
-  "sources": []
+  "sources": [],
+  "biography": []
 }

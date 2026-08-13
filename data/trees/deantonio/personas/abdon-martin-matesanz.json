@@ -8,7 +8,8 @@
   "summary": "",
   "heroImage": {
     "src": "images/retrato.svg",
-    "alt": "Retrato de Abdon Martin Matesanz"
+    "alt": "Retrato de Abdon Martin Matesanz",
+    "caption": ""
   },
   "gallery": [],
   "family": {
@@ -44,5 +45,6 @@
     }
   ],
   "notes": "",
-  "sources": []
+  "sources": [],
+  "biography": []
 }

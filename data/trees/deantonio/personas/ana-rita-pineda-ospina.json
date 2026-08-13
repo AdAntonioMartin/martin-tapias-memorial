@@ -8,7 +8,8 @@
   "summary": "",
   "heroImage": {
     "src": "images/retrato.svg",
-    "alt": "Retrato de Ana Rita Pineda Ospina"
+    "alt": "Retrato de Ana Rita Pineda Ospina",
+    "caption": ""
   },
   "gallery": [],
   "family": {
@@ -51,5 +52,6 @@
     }
   ],
   "notes": "",
-  "sources": []
+  "sources": [],
+  "biography": []
 }

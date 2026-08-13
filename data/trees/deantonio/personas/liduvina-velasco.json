@@ -8,7 +8,8 @@
   "summary": "",
   "heroImage": {
     "src": "images/retrato.svg",
-    "alt": "Retrato de Liduvina Velasco"
+    "alt": "Retrato de Liduvina Velasco",
+    "caption": ""
   },
   "gallery": [],
   "family": {
@@ -38,5 +39,6 @@
     }
   ],
   "notes": "",
-  "sources": []
+  "sources": [],
+  "biography": []
 }

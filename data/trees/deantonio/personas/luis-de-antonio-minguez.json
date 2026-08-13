@@ -8,7 +8,8 @@
   "summary": "Ficha en preparacion. Se conservan por ahora los datos familiares basicos.",
   "heroImage": {
     "src": "images/retrato.svg",
-    "alt": "Retrato de Luis de Antonio Minguez"
+    "alt": "Retrato de Luis de Antonio Minguez",
+    "caption": ""
   },
   "gallery": [],
   "family": {
@@ -41,5 +42,6 @@
     }
   ],
   "notes": "",
-  "sources": []
+  "sources": [],
+  "biography": []
 }

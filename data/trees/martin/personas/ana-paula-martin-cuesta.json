@@ -8,7 +8,8 @@
   "summary": "",
   "heroImage": {
     "src": "images/retrato.svg",
-    "alt": "Retrato de Ana Paula Martin Cuesta"
+    "alt": "Retrato de Ana Paula Martin Cuesta",
+    "caption": ""
   },
   "gallery": [],
   "family": {
@@ -38,5 +39,6 @@
     }
   ],
   "notes": "",
-  "sources": []
+  "sources": [],
+  "biography": []
 }
