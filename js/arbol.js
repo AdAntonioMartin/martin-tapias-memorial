@@ -1,11 +1,11 @@
 import { getLaunchTarget, loadTreePayload } from "./tree/data.js";
 import { buildGraph } from "./tree/graph.js";
 import { closePanel, openPanel } from "./tree/panel.js";
-import { applyAppTheme } from "./core/theme.js";
 import { APP_CONFIG } from "./config/app-config.js";
 import { escapeHtml } from "./core/html.js";
-import { applyI18nToDom, loadUiText, t } from "./core/i18n.js";
+import { t } from "./core/i18n.js";
 import { normalizeDataPath } from "./core/url.js";
+import { bootstrapPage } from "./core/bootstrap.js";
 
 function familyChartApi() {
   return window.f3 || null;
@@ -36,34 +36,34 @@ function avatarFallback(person) {
 }
 
 function cardHtml(person, isMain) {
-  var classes = ["card", "tree-node-card", cardGenderClass(person)];
+  const classes = ["card", "tree-node-card", cardGenderClass(person)];
   if (isMain) {
     classes.push("card-main");
   }
-  var avatar = person.avatar
-    ? '<img src="' + escapeHtml(person.avatar) + '" alt="' + escapeHtml(person.name || "") + '">'
-    : '<span class="tree-node-avatar-fallback">' + escapeHtml(avatarFallback(person)) + "</span>";
+  const avatar = person.avatar
+    ? `<img src="${escapeHtml(person.avatar)}" alt="${escapeHtml(person.name || "")}">`
+    : `<span class="tree-node-avatar-fallback">${escapeHtml(avatarFallback(person))}</span>`;
   return (
-    '<div class="' + classes.join(" ") + '">' +
-      '<div class="card-inner tree-node-card__inner">' +
-        '<div class="tree-node-avatar">' + avatar + "</div>" +
-        '<div class="tree-node-name">' + escapeHtml(person.name || "") + "</div>" +
-        '<div class="tree-node-years">' + escapeHtml(person.years || "") + "</div>" +
-      "</div>" +
+    `<div class="${classes.join(" ")}">` +
+    '<div class="card-inner tree-node-card__inner">' +
+    `<div class="tree-node-avatar">${avatar}</div>` +
+    `<div class="tree-node-name">${escapeHtml(person.name || "")}</div>` +
+    `<div class="tree-node-years">${escapeHtml(person.years || "")}</div>` +
+    "</div>" +
     "</div>"
   );
 }
 
 function bindToolbar(chart, f3Api) {
-  var treeConfig = APP_CONFIG && APP_CONFIG.tree ? APP_CONFIG.tree : {};
-  var zoomStep = treeConfig.zoomStep || 1.15;
-  var zoomTransitionMs = treeConfig.zoomTransitionMs || 220;
-  var zoomIn = document.getElementById("btn-zoom-in");
-  var zoomOut = document.getElementById("btn-zoom-out");
-  var fitBtn = document.getElementById("btn-fit");
+  const treeConfig = APP_CONFIG && APP_CONFIG.tree ? APP_CONFIG.tree : {};
+  const zoomStep = treeConfig.zoomStep || 1.15;
+  const zoomTransitionMs = treeConfig.zoomTransitionMs || 220;
+  const zoomIn = document.getElementById("btn-zoom-in");
+  const zoomOut = document.getElementById("btn-zoom-out");
+  const fitBtn = document.getElementById("btn-fit");
 
   if (zoomIn) {
-    zoomIn.addEventListener("click", function () {
+    zoomIn.addEventListener("click", () => {
       f3Api.handlers.manualZoom({
         amount: zoomStep,
         svg: chart.svg,
@@ -72,7 +72,7 @@ function bindToolbar(chart, f3Api) {
     });
   }
   if (zoomOut) {
-    zoomOut.addEventListener("click", function () {
+    zoomOut.addEventListener("click", () => {
       f3Api.handlers.manualZoom({
         amount: 1 / zoomStep,
         svg: chart.svg,
@@ -81,7 +81,7 @@ function bindToolbar(chart, f3Api) {
     });
   }
   if (fitBtn) {
-    fitBtn.addEventListener("click", function () {
+    fitBtn.addEventListener("click", () => {
       chart.updateTree({
         initial: false,
         tree_position: "fit"
@@ -91,10 +91,10 @@ function bindToolbar(chart, f3Api) {
 }
 
 function buildFamilyIndex(familyData) {
-  var byId = {};
-  var parentsById = {};
-  var childrenById = {};
-  (Array.isArray(familyData) ? familyData : []).forEach(function (person) {
+  const byId = {};
+  const parentsById = {};
+  const childrenById = {};
+  (Array.isArray(familyData) ? familyData : []).forEach((person) => {
     if (!person || !person.id) {
       return;
     }
@@ -103,18 +103,18 @@ function buildFamilyIndex(familyData) {
     childrenById[person.id] = [];
   });
 
-  Object.keys(byId).forEach(function (id) {
-    var rels = byId[id] && byId[id].rels ? byId[id].rels : {};
-    var parents = Array.isArray(rels.parents) ? rels.parents : [];
-    var children = Array.isArray(rels.children) ? rels.children : [];
+  Object.keys(byId).forEach((id) => {
+    const rels = byId[id] && byId[id].rels ? byId[id].rels : {};
+    const parents = Array.isArray(rels.parents) ? rels.parents : [];
+    const children = Array.isArray(rels.children) ? rels.children : [];
 
-    parents.forEach(function (parentId) {
+    parents.forEach((parentId) => {
       if (!byId[parentId]) {
         return;
       }
       parentsById[id].push(parentId);
     });
-    children.forEach(function (childId) {
+    children.forEach((childId) => {
       if (!byId[childId]) {
         return;
       }
@@ -123,26 +123,26 @@ function buildFamilyIndex(familyData) {
   });
 
   return {
-    byId: byId,
-    parentsById: parentsById,
-    childrenById: childrenById
+    byId,
+    parentsById,
+    childrenById
   };
 }
 
 function collectAncestorIds(mainId, familyIndex) {
-  var byId = familyIndex && familyIndex.byId ? familyIndex.byId : {};
-  var parentsById = familyIndex && familyIndex.parentsById ? familyIndex.parentsById : {};
+  const byId = familyIndex && familyIndex.byId ? familyIndex.byId : {};
+  const parentsById = familyIndex && familyIndex.parentsById ? familyIndex.parentsById : {};
   if (!mainId || !byId[mainId]) {
     return {};
   }
 
-  var ancestors = {};
-  var queue = [mainId];
+  const ancestors = {};
+  const queue = [mainId];
 
   while (queue.length) {
-    var currentId = queue.shift();
-    var parents = Array.isArray(parentsById[currentId]) ? parentsById[currentId] : [];
-    parents.forEach(function (parentId) {
+    const currentId = queue.shift();
+    const parents = Array.isArray(parentsById[currentId]) ? parentsById[currentId] : [];
+    parents.forEach((parentId) => {
       if (!ancestors[parentId] && byId[parentId]) {
         ancestors[parentId] = true;
         queue.push(parentId);
@@ -154,21 +154,19 @@ function collectAncestorIds(mainId, familyIndex) {
 }
 
 function collectDescendantIds(seedIds, familyIndex) {
-  var byId = familyIndex && familyIndex.byId ? familyIndex.byId : {};
-  var childrenById = familyIndex && familyIndex.childrenById ? familyIndex.childrenById : {};
-  var descendants = {};
-  var queue = (Array.isArray(seedIds) ? seedIds : []).filter(function (id) {
-    return !!byId[id];
-  });
+  const byId = familyIndex && familyIndex.byId ? familyIndex.byId : {};
+  const childrenById = familyIndex && familyIndex.childrenById ? familyIndex.childrenById : {};
+  const descendants = {};
+  const queue = (Array.isArray(seedIds) ? seedIds : []).filter((id) => !!byId[id]);
 
-  queue.forEach(function (id) {
+  queue.forEach((id) => {
     descendants[id] = true;
   });
 
   while (queue.length) {
-    var currentId = queue.shift();
-    var children = Array.isArray(childrenById[currentId]) ? childrenById[currentId] : [];
-    children.forEach(function (childId) {
+    const currentId = queue.shift();
+    const children = Array.isArray(childrenById[currentId]) ? childrenById[currentId] : [];
+    children.forEach((childId) => {
       if (!descendants[childId] && byId[childId]) {
         descendants[childId] = true;
         queue.push(childId);
@@ -180,15 +178,15 @@ function collectDescendantIds(seedIds, familyIndex) {
 }
 
 function collectBloodFamilyIds(mainId, familyIndex) {
-  var byId = familyIndex && familyIndex.byId ? familyIndex.byId : {};
+  const byId = familyIndex && familyIndex.byId ? familyIndex.byId : {};
   if (!mainId || !byId[mainId]) {
     return {};
   }
-  var ancestorIds = collectAncestorIds(mainId, familyIndex);
-  var seedIds = [mainId].concat(Object.keys(ancestorIds));
-  var bloodIds = collectDescendantIds(seedIds, familyIndex);
+  const ancestorIds = collectAncestorIds(mainId, familyIndex);
+  const seedIds = [mainId].concat(Object.keys(ancestorIds));
+  const bloodIds = collectDescendantIds(seedIds, familyIndex);
 
-  Object.keys(ancestorIds).forEach(function (id) {
+  Object.keys(ancestorIds).forEach((id) => {
     bloodIds[id] = true;
   });
 
@@ -196,16 +194,16 @@ function collectBloodFamilyIds(mainId, familyIndex) {
 }
 
 function addPersonAndSpouses(included, personId, familyIndex) {
-  var byId = familyIndex && familyIndex.byId ? familyIndex.byId : {};
+  const byId = familyIndex && familyIndex.byId ? familyIndex.byId : {};
   if (!personId || !byId[personId]) {
     return;
   }
 
   included[personId] = true;
 
-  var rels = byId[personId].rels || {};
-  var spouses = Array.isArray(rels.spouses) ? rels.spouses : [];
-  spouses.forEach(function (spouseId) {
+  const rels = byId[personId].rels || {};
+  const spouses = Array.isArray(rels.spouses) ? rels.spouses : [];
+  spouses.forEach((spouseId) => {
     if (byId[spouseId]) {
       included[spouseId] = true;
     }
@@ -213,69 +211,63 @@ function addPersonAndSpouses(included, personId, familyIndex) {
 }
 
 function addPerson(included, personId, familyIndex) {
-  var byId = familyIndex && familyIndex.byId ? familyIndex.byId : {};
+  const byId = familyIndex && familyIndex.byId ? familyIndex.byId : {};
   if (personId && byId[personId]) {
     included[personId] = true;
   }
 }
 
 function includeSiblingBranches(included, mainId, familyIndex) {
-  var byId = familyIndex && familyIndex.byId ? familyIndex.byId : {};
-  var parentsById = familyIndex && familyIndex.parentsById ? familyIndex.parentsById : {};
-  var childrenById = familyIndex && familyIndex.childrenById ? familyIndex.childrenById : {};
+  const byId = familyIndex && familyIndex.byId ? familyIndex.byId : {};
+  const parentsById = familyIndex && familyIndex.parentsById ? familyIndex.parentsById : {};
+  const childrenById = familyIndex && familyIndex.childrenById ? familyIndex.childrenById : {};
   if (!mainId || !byId[mainId]) {
     return;
   }
 
-  var siblingIds = {};
-  var parents = Array.isArray(parentsById[mainId]) ? parentsById[mainId] : [];
-  parents.forEach(function (parentId) {
-    var children = Array.isArray(childrenById[parentId]) ? childrenById[parentId] : [];
-    children.forEach(function (childId) {
+  const siblingIds = {};
+  const parents = Array.isArray(parentsById[mainId]) ? parentsById[mainId] : [];
+  parents.forEach((parentId) => {
+    const children = Array.isArray(childrenById[parentId]) ? childrenById[parentId] : [];
+    children.forEach((childId) => {
       if (childId !== mainId && byId[childId]) {
         siblingIds[childId] = true;
       }
     });
   });
 
-  Object.keys(siblingIds).forEach(function (siblingId) {
+  Object.keys(siblingIds).forEach((siblingId) => {
     addPersonAndSpouses(included, siblingId, familyIndex);
 
-    var siblingChildren = Array.isArray(childrenById[siblingId]) ? childrenById[siblingId] : [];
-    siblingChildren.forEach(function (childId) {
+    const siblingChildren = Array.isArray(childrenById[siblingId]) ? childrenById[siblingId] : [];
+    siblingChildren.forEach((childId) => {
       addPerson(included, childId, familyIndex);
     });
   });
 }
 
 function buildScopedFamilyData(familyData, familyIndex, mainId) {
-  var bloodIds = collectBloodFamilyIds(mainId, familyIndex);
+  const bloodIds = collectBloodFamilyIds(mainId, familyIndex);
   if (!Object.keys(bloodIds).length) {
     return Array.isArray(familyData) ? cloneData(familyData) : [];
   }
 
-  var included = {};
-  Object.keys(bloodIds).forEach(function (id) {
+  const included = {};
+  Object.keys(bloodIds).forEach((id) => {
     included[id] = true;
   });
 
-  Object.keys(bloodIds).forEach(function (id) {
+  Object.keys(bloodIds).forEach((id) => {
     addPersonAndSpouses(included, id, familyIndex);
   });
   includeSiblingBranches(included, mainId, familyIndex);
 
-  var scopedData = (Array.isArray(familyData) ? familyData : [])
-    .filter(function (person) {
-      return person && person.id && included[person.id];
-    })
-    .map(function (person) {
-      var rels = person && person.rels ? person.rels : {};
-      var filterIds = function (ids) {
-        return (Array.isArray(ids) ? ids : []).filter(function (id) {
-          return !!included[id];
-        });
-      };
+  const filterIds = (ids) => (Array.isArray(ids) ? ids : []).filter((id) => !!included[id]);
 
+  const scopedData = (Array.isArray(familyData) ? familyData : [])
+    .filter((person) => person && person.id && included[person.id])
+    .map((person) => {
+      const rels = person && person.rels ? person.rels : {};
       return {
         id: person.id,
         data: person.data,
@@ -296,9 +288,9 @@ function pickDefaultMainId(target, graph, familyData) {
   }
 
   if (target.dataPath) {
-    var byPathId = Object.keys(graph.nodes).find(function (nodeId) {
-      return normalizeDataPath(graph.nodes[nodeId].personPath) === target.dataPath;
-    });
+    const byPathId = Object.keys(graph.nodes).find(
+      (nodeId) => normalizeDataPath(graph.nodes[nodeId].personPath) === target.dataPath
+    );
     if (byPathId) {
       return byPathId;
     }
@@ -319,16 +311,16 @@ function hasValidLaunchTarget(target, graph) {
     return false;
   }
 
-  return Object.keys(graph.nodes).some(function (nodeId) {
-    return normalizeDataPath(graph.nodes[nodeId].personPath) === target.dataPath;
-  });
+  return Object.keys(graph.nodes).some(
+    (nodeId) => normalizeDataPath(graph.nodes[nodeId].personPath) === target.dataPath
+  );
 }
 
 function init() {
-  var f3Api = familyChartApi();
+  const f3Api = familyChartApi();
   if (!f3Api) {
     console.error("arbol.js: family-chart no disponible en window.f3");
-    var libError = document.getElementById("tree-error");
+    const libError = document.getElementById("tree-error");
     if (libError) {
       libError.textContent = t("tree.messages.error", "No se pudo cargar el arbol genealogico.");
       libError.hidden = false;
@@ -336,52 +328,49 @@ function init() {
     return;
   }
 
-  var loading = document.getElementById("tree-loading");
-  var error = document.getElementById("tree-error");
-  var target = getLaunchTarget();
-  var selectedId = "";
+  const loading = document.getElementById("tree-loading");
+  const error = document.getElementById("tree-error");
+  const target = getLaunchTarget();
+  let selectedId = "";
 
   loadTreePayload()
-    .then(function (payload) {
-      var graph = buildGraph(payload.unions, payload.records, payload.byId);
-      var treeConfig = APP_CONFIG && APP_CONFIG.tree ? APP_CONFIG.tree : {};
-      var container = document.getElementById("tree-canvas");
+    .then((payload) => {
+      const graph = buildGraph(payload.unions, payload.records, payload.byId);
+      const treeConfig = APP_CONFIG && APP_CONFIG.tree ? APP_CONFIG.tree : {};
+      const container = document.getElementById("tree-canvas");
       if (!container) {
         throw new Error("No existe #tree-canvas");
       }
-      var baseFamilyData = Array.isArray(payload.familyData) ? cloneData(payload.familyData) : [];
-      var familyIndex = buildFamilyIndex(baseFamilyData);
-      var defaultMainId = pickDefaultMainId(target, graph, baseFamilyData);
-      var opensFromTarget = hasValidLaunchTarget(target, graph);
+      const baseFamilyData = Array.isArray(payload.familyData) ? cloneData(payload.familyData) : [];
+      const familyIndex = buildFamilyIndex(baseFamilyData);
+      const defaultMainId = pickDefaultMainId(target, graph, baseFamilyData);
+      const opensFromTarget = hasValidLaunchTarget(target, graph);
 
-      var chart = f3Api.createChart(container, cloneData(baseFamilyData))
+      const chart = f3Api
+        .createChart(container, cloneData(baseFamilyData))
         .setTransitionTime(treeConfig.transitionMs || 420)
         .setCardXSpacing(treeConfig.cardSpacing && treeConfig.cardSpacing.x ? treeConfig.cardSpacing.x : 200)
         .setCardYSpacing(treeConfig.cardSpacing && treeConfig.cardSpacing.y ? treeConfig.cardSpacing.y : 140)
         .setShowSiblingsOfMain(true)
         .setSingleParentEmptyCard(false);
 
-      var card = chart.setCardHtml()
+      const card = chart
+        .setCardHtml()
         .setStyle("imageRect")
         .setCardImageField("avatar")
-        .setCardDisplay([
-          function (datum) { return datum.name || ""; },
-          function (datum) { return datum.years || ""; }
-        ])
+        .setCardDisplay([(datum) => datum.name || "", (datum) => datum.years || ""])
         .setCardDim(treeConfig.cardDim || {});
 
-      card.setCardInnerHtmlCreator(function (treeDatum) {
-        return cardHtml(treeDatum.data.data, treeDatum.data.main);
-      });
+      card.setCardInnerHtmlCreator((treeDatum) => cardHtml(treeDatum.data.data, treeDatum.data.main));
 
       function applySelectedState() {
-        document.querySelectorAll(".tree-node-card--selected").forEach(function (el) {
+        document.querySelectorAll(".tree-node-card--selected").forEach((el) => {
           el.classList.remove("tree-node-card--selected");
         });
         if (!selectedId) {
           return;
         }
-        document.querySelectorAll(".card_cont[data-pid='" + selectedId + "'] .tree-node-card").forEach(function (el) {
+        document.querySelectorAll(`.card_cont[data-pid='${selectedId}'] .tree-node-card`).forEach((el) => {
           el.classList.add("tree-node-card--selected");
         });
       }
@@ -390,9 +379,9 @@ function init() {
         if (!personId || !graph.nodes[personId]) {
           return;
         }
-        var opts = options || {};
+        const opts = options || {};
         selectedId = personId;
-        var scopedData = buildScopedFamilyData(baseFamilyData, familyIndex, personId);
+        const scopedData = buildScopedFamilyData(baseFamilyData, familyIndex, personId);
         chart.setShowSiblingsOfMain(true);
         chart.updateData(scopedData);
         chart.updateMainId(personId);
@@ -402,7 +391,7 @@ function init() {
         });
         applySelectedState();
         if (!opts.skipPanel) {
-          openPanel(personId, graph, payload.detailTemplate, function (nodeId) {
+          openPanel(personId, graph, payload.detailTemplate, (nodeId) => {
             focusPerson(nodeId, {
               treePosition: "fit"
             });
@@ -410,12 +399,13 @@ function init() {
         }
       }
 
-      card.setOnCardClick(function (event, treeDatum) {
+      card.setOnCardClick((event, treeDatum) => {
         event.stopPropagation();
         focusPerson(treeDatum.data.id);
       });
 
       card.setOnCardUpdate(function (treeDatum) {
+        // `this` is bound by family-chart to the card DOM element — keep as a regular function.
         this.dataset.pid = treeDatum.data.id;
         applySelectedState();
       });
@@ -440,18 +430,18 @@ function init() {
       bindToolbar(chart, f3Api);
       applySelectedState();
 
-      var closeBtn = document.getElementById("tree-panel-close");
+      const closeBtn = document.getElementById("tree-panel-close");
       if (closeBtn) {
-        closeBtn.addEventListener("click", function () {
+        closeBtn.addEventListener("click", () => {
           selectedId = "";
           applySelectedState();
           closePanel();
         });
       }
 
-      var wrapper = document.getElementById("tree-wrapper");
+      const wrapper = document.getElementById("tree-wrapper");
       if (wrapper) {
-        wrapper.addEventListener("click", function (event) {
+        wrapper.addEventListener("click", (event) => {
           if (!event.target.closest(".tree-node-card") && !event.target.closest(".tree-panel")) {
             selectedId = "";
             applySelectedState();
@@ -460,7 +450,7 @@ function init() {
         });
       }
     })
-    .catch(function (err) {
+    .catch((err) => {
       console.error("arbol.js:", err);
       if (loading) {
         loading.remove();
@@ -471,10 +461,4 @@ function init() {
     });
 }
 
-applyAppTheme();
-document.addEventListener("DOMContentLoaded", function () {
-  loadUiText().then(function () {
-    applyI18nToDom(document);
-    init();
-  });
-});
+bootstrapPage(init);

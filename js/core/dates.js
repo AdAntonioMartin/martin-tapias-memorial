@@ -5,25 +5,25 @@ export function normalizeDateFormat(value) {
 }
 
 export function parseDateByFormat(value, format) {
-  var text = String(value || "").trim();
-  var pattern = normalizeDateFormat(format);
+  const text = String(value || "").trim();
+  const pattern = normalizeDateFormat(format);
   if (!text || !pattern) {
     return NaN;
   }
 
-  var formatParts = pattern.split(/[^a-z]/).filter(Boolean);
-  var valueParts = text.split(/[^0-9]/).filter(Boolean);
+  const formatParts = pattern.split(/[^a-z]/).filter(Boolean);
+  const valueParts = text.split(/[^0-9]/).filter(Boolean);
   if (formatParts.length !== valueParts.length) {
     return NaN;
   }
 
-  var day = NaN;
-  var month = NaN;
-  var year = NaN;
+  let day = NaN;
+  let month = NaN;
+  let year = NaN;
 
-  for (var i = 0; i < formatParts.length; i += 1) {
-    var token = formatParts[i];
-    var parsed = parseInt(valueParts[i], 10);
+  for (let i = 0; i < formatParts.length; i += 1) {
+    const token = formatParts[i];
+    const parsed = parseInt(valueParts[i], 10);
     if (Number.isNaN(parsed)) {
       return NaN;
     }
@@ -41,7 +41,7 @@ export function parseDateByFormat(value, format) {
     }
   }
 
-  var date = new Date(year, month - 1, day);
+  const date = new Date(year, month - 1, day);
   if (date.getFullYear() !== year || date.getMonth() !== month - 1 || date.getDate() !== day) {
     return NaN;
   }
@@ -54,7 +54,7 @@ export function parseNumberLoose(value) {
     return value;
   }
 
-  var text = String(value || "")
+  let text = String(value || "")
     .replace(/\u00A0/g, " ")
     .trim()
     .replace(/[^0-9,.\-]/g, "");

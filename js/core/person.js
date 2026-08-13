@@ -1,19 +1,11 @@
 import { normalizeText } from "./text.js";
 import { readPathValue } from "./object.js";
 
-export function getFactValue(recordOrFacts, label) {
-  var facts = Array.isArray(recordOrFacts)
-    ? recordOrFacts
-    : (recordOrFacts && Array.isArray(recordOrFacts.facts) ? recordOrFacts.facts : []);
-  var targetLabel = normalizeText(label);
-
-  for (var i = 0; i < facts.length; i += 1) {
-    if (normalizeText(facts[i].label) === targetLabel) {
-      return facts[i].value || "";
-    }
-  }
-
-  return "";
+export function getFactValue(record, label) {
+  const facts = record && Array.isArray(record.facts) ? record.facts : [];
+  const targetLabel = normalizeText(label);
+  const match = facts.find((fact) => normalizeText(fact.label) === targetLabel);
+  return match ? match.value || "" : "";
 }
 
 export function getRecordField(record, source) {

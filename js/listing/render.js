@@ -1,37 +1,31 @@
 import { escapeHtml } from "../core/html.js";
 import { t } from "../core/i18n.js";
+import { inferTreeKeyFromPath, buildQueryUrl } from "../core/url.js";
 import { getColumnValue } from "./columns.js";
 
 function buildDetailUrl(record, config) {
-  var params = new URLSearchParams();
-  var personPath = record.__personPath || "";
-  var treeMatch = String(personPath).match(/^data\/trees\/([^/]+)\//);
-  if (treeMatch && treeMatch[1]) {
-    params.set("tree", treeMatch[1]);
-  }
-  if (record.id) {
-    params.set("id", record.id);
-  }
-  if (personPath) {
-    params.set("data", personPath);
-  }
-  return (config.detailTemplate || "persona.html") + "?" + params.toString();
+  const personPath = record.__personPath || "";
+  return buildQueryUrl(config.detailTemplate || "persona.html", {
+    tree: inferTreeKeyFromPath(personPath),
+    id: record.id,
+    data: personPath
+  });
 }
 
 export function renderError() {
-  var thead = document.getElementById("records-head");
-  var tbody = document.getElementById("records-body");
+  const thead = document.getElementById("records-head");
+  const tbody = document.getElementById("records-body");
   if (thead) {
     thead.innerHTML = "";
   }
   if (tbody) {
-    tbody.innerHTML = "<tr><td>" + escapeHtml(t("listing.table.error", "No se pudo mostrar el listado en este momento.")) + "</td></tr>";
+    tbody.innerHTML = `<tr><td>${escapeHtml(t("listing.table.error", "No se pudo mostrar el listado en este momento."))}</td></tr>`;
   }
 }
 
 export function renderTable(records, columns, config) {
-  var thead = document.getElementById("records-head");
-  var tbody = document.getElementById("records-body");
+  const thead = document.getElementById("records-head");
+  const tbody = document.getElementById("records-body");
   if (!tbody) {
     return;
   }
@@ -40,28 +34,27 @@ export function renderTable(records, columns, config) {
     if (thead) {
       thead.innerHTML = "";
     }
-    tbody.innerHTML = "<tr><td>" + escapeHtml(t("listing.table.empty", "No hay datos.")) + "</td></tr>";
+    tbody.innerHTML = `<tr><td>${escapeHtml(t("listing.table.empty", "No hay datos."))}</td></tr>`;
     return;
   }
 
   if (thead) {
-    thead.innerHTML = "<tr>" + columns.map(function (column) {
-      return "<th>" + escapeHtml(column.label) + "</th>";
-    }).join("") + "</tr>";
+    thead.innerHTML = `<tr>${columns.map((column) => `<th>${escapeHtml(column.label)}</th>`).join("")}</tr>`;
   }
 
-  tbody.innerHTML = records.map(function (record) {
-    var detailUrl = buildDetailUrl(record, config);
-    return (
-      '<tr class="table-row-link">' +
-      columns.map(function (column) {
-        return (
-          '<td><a class="row-link" href="' + escapeHtml(detailUrl) + '">' +
-          escapeHtml(getColumnValue(record, column)) +
-          "</a></td>"
-        );
-      }).join("") +
-      "</tr>"
-    );
-  }).join("");
+  tbody.innerHTML = records
+    .map((record) => {
+      const detailUrl = buildDetailUrl(record, config);
+      return (
+        '<tr class="table-row-link">' +
+        columns
+          .map(
+            (column) =>
+              `<td><a class="row-link" href="${escapeHtml(detailUrl)}">${escapeHtml(getColumnValue(record, column))}</a></td>`
+          )
+          .join("") +
+        "</tr>"
+      );
+    })
+    .join("");
 }

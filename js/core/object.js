@@ -3,7 +3,7 @@ export function readPathValue(object, path) {
     return undefined;
   }
 
-  return String(path).split(".").reduce(function (current, part) {
+  return String(path).split(".").reduce((current, part) => {
     if (current && Object.prototype.hasOwnProperty.call(current, part)) {
       return current[part];
     }

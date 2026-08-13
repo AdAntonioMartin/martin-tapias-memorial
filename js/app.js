@@ -3,64 +3,51 @@ import { loadListConfig, listPersonFiles, loadPersonRecords, loadPersonPathsFrom
 import { getColumns } from "./listing/columns.js";
 import { sortRecords } from "./listing/sort.js";
 import { renderTable, renderError } from "./listing/render.js";
-import { applyAppTheme } from "./core/theme.js";
-import { applyI18nToDom, loadUiText } from "./core/i18n.js";
+import { bootstrapPage } from "./core/bootstrap.js";
 
 function resolvePersonPaths(listConfig) {
-  var directory = listConfig.personasPath || "";
-  var configuredPaths = Array.isArray(listConfig.personas) ? listConfig.personas.filter(Boolean) : [];
+  const directory = listConfig.personasPath || "";
+  const configuredPaths = Array.isArray(listConfig.personas) ? listConfig.personas.filter(Boolean) : [];
 
   if (configuredPaths.length) {
     return Promise.resolve(configuredPaths);
   }
 
-  return loadPersonPathsFromIndex()
-    .then(function (indexPaths) {
-      var fallbacks = indexPaths;
-      if (!directory) {
-        return fallbacks;
-      }
-      return listPersonFiles(directory)
-        .then(function (paths) {
-          return paths.length ? paths : fallbacks;
-        })
-        .catch(function () {
-          return fallbacks;
-        });
-    });
+  return loadPersonPathsFromIndex().then((fallbacks) => {
+    if (!directory) {
+      return fallbacks;
+    }
+    return listPersonFiles(directory)
+      .then((paths) => (paths.length ? paths : fallbacks))
+      .catch(() => fallbacks);
+  });
 }
 
 function loadRecords() {
-  var pageConfig = getPageConfig();
+  const pageConfig = getPageConfig();
 
   loadListConfig(pageConfig.listSrc)
-    .then(function (listConfig) {
-      return resolvePersonPaths(listConfig)
+    .then((listConfig) =>
+      resolvePersonPaths(listConfig)
         .then(loadPersonRecords)
-        .then(function (records) {
-          var mergedConfig = {
+        .then((records) => {
+          const mergedConfig = {
             columns: listConfig.columns,
             sort: listConfig.sort,
             detailTemplate: listConfig.detailTemplate || pageConfig.detailTemplate
           };
-          var columns = getColumns(records, mergedConfig.columns);
+          const columns = getColumns(records, mergedConfig.columns);
           return {
             records: sortRecords(records, mergedConfig.sort, columns),
-            columns: columns,
+            columns,
             config: mergedConfig
           };
-        });
-    })
-    .then(function (payload) {
+        })
+    )
+    .then((payload) => {
       renderTable(payload.records, payload.columns, payload.config);
     })
     .catch(renderError);
 }
 
-applyAppTheme();
-document.addEventListener("DOMContentLoaded", function () {
-  loadUiText().then(function () {
-    applyI18nToDom(document);
-    loadRecords();
-  });
-});
+bootstrapPage(loadRecords);

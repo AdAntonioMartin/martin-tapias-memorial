@@ -1,10 +1,11 @@
-import { APP_CONFIG } from "../config/app-config.js";
+import { APP_CONFIG, getDataConfig } from "../config/app-config.js";
 import { fetchJson } from "../core/net.js";
+import { loadByIdIndex } from "../core/dataIndex.js";
 import { normalizeDataPath } from "../core/url.js";
-import { getFactValue } from "../core/person.js";
+import { formatYears } from "./format.js";
 
 export function getLaunchTarget() {
-  var params = new URLSearchParams(window.location.search);
+  const params = new URLSearchParams(window.location.search);
   return {
     id: params.get("id") || "",
     dataPath: normalizeDataPath(params.get("data") || ""),
@@ -13,44 +14,38 @@ export function getLaunchTarget() {
 }
 
 function getRequestedTreeKey() {
-  var params = new URLSearchParams(window.location.search);
+  const params = new URLSearchParams(window.location.search);
   return params.get("tree") || "";
 }
 
 function normalizeTreeRegistry(payload) {
-  var defaultTree = payload && payload.defaultTree ? payload.defaultTree : "global";
-  var trees = payload && Array.isArray(payload.trees) ? payload.trees : [];
+  const defaultTree = payload && payload.defaultTree ? payload.defaultTree : "global";
+  const trees = payload && Array.isArray(payload.trees) ? payload.trees : [];
   return {
-    defaultTree: defaultTree,
-    trees: trees
+    defaultTree,
+    trees
   };
 }
 
 function resolveTreeSources(appDataConfig) {
-  var treeConfigPath = appDataConfig.treeConfig || "data/arbol.json";
-  var peopleIndexPath = appDataConfig.peopleIndex || "data/personas-index.json";
-  var treeRegistryPath = appDataConfig.treeRegistry || "data/trees/index.json";
-  var requestedTree = getRequestedTreeKey();
+  const treeConfigPath = appDataConfig.treeConfig || "data/arbol.json";
+  const peopleIndexPath = appDataConfig.peopleIndex || "data/personas-index.json";
+  const treeRegistryPath = appDataConfig.treeRegistry || "data/trees/index.json";
+  const requestedTree = getRequestedTreeKey();
 
   return fetchJson(treeRegistryPath)
     .then(normalizeTreeRegistry)
-    .catch(function () {
-      return { defaultTree: "global", trees: [] };
-    })
-    .then(function (registry) {
-      var selected = null;
+    .catch(() => ({ defaultTree: "global", trees: [] }))
+    .then((registry) => {
+      let selected = null;
       if (requestedTree) {
-        selected = registry.trees.find(function (entry) {
-          return entry && entry.key === requestedTree;
-        }) || null;
+        selected = registry.trees.find((entry) => entry && entry.key === requestedTree) || null;
       }
       if (!selected && registry.defaultTree) {
-        selected = registry.trees.find(function (entry) {
-          return entry && entry.key === registry.defaultTree;
-        }) || null;
+        selected = registry.trees.find((entry) => entry && entry.key === registry.defaultTree) || null;
       }
       return {
-        treeKey: selected && selected.key ? selected.key : (requestedTree || registry.defaultTree || "global"),
+        treeKey: selected && selected.key ? selected.key : requestedTree || registry.defaultTree || "global",
         treeConfigPath: selected && selected.treeConfig ? selected.treeConfig : treeConfigPath,
         peopleIndexPath: selected && selected.peopleIndex ? selected.peopleIndex : peopleIndexPath,
         imagesBase: selected && selected.imagesBase ? selected.imagesBase : "images/personas"
@@ -62,7 +57,7 @@ function remapImagePath(src, imagesBase) {
   if (!src) {
     return src;
   }
-  var value = String(src);
+  const value = String(src);
   if (value.indexOf("images/personas/") === 0) {
     return value;
   }
@@ -70,20 +65,20 @@ function remapImagePath(src, imagesBase) {
     return value;
   }
   if (value.indexOf("images/trees/shared/personas/") === 0) {
-    return value.replace("images/trees/shared/personas/", imagesBase.replace(/\/+$/, "") + "/");
+    return value.replace("images/trees/shared/personas/", `${imagesBase.replace(/\/+$/, "")}/`);
   }
   return value;
 }
 
 function getReferencedIds(unions) {
-  var set = {};
-  (Array.isArray(unions) ? unions : []).forEach(function (union) {
-    (union.partners || []).forEach(function (id) {
+  const set = {};
+  (Array.isArray(unions) ? unions : []).forEach((union) => {
+    (union.partners || []).forEach((id) => {
       if (id) {
         set[id] = true;
       }
     });
-    (union.children || []).forEach(function (id) {
+    (union.children || []).forEach((id) => {
       if (id) {
         set[id] = true;
       }
@@ -106,100 +101,49 @@ function toFamilyChartGender(gender) {
   return gender === "male" ? "M" : "F";
 }
 
-function extractYear(value) {
-  var text = String(value || "").trim();
-  if (!text) {
-    return "";
-  }
-  var slash = text.match(/\/(\d{4})$/);
-  if (slash) {
-    return slash[1];
-  }
-  var plain = text.match(/\b(\d{4})\b/);
-  return plain ? plain[1] : "";
-}
-
-function formatYears(record) {
-  if (!record) {
-    return "";
-  }
-  var born = getFactValue(record, "Nacimiento") || record.born || "";
-  var died = getFactValue(record, "Fallecimiento") || record.died || "";
-  var bornYear = extractYear(born);
-  var diedYear = extractYear(died);
-  if (!bornYear && !diedYear) {
-    return "";
-  }
-  if (bornYear && diedYear) {
-    return bornYear + " - " + diedYear;
-  }
-  return bornYear ? "n. " + bornYear : "+ " + diedYear;
-}
-
 function titleFromId(id) {
   return String(id || "")
     .split("-")
     .filter(Boolean)
-    .map(function (word) {
-      return word.charAt(0).toUpperCase() + word.slice(1);
-    })
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
     .join(" ");
 }
 
 function loadPersonRecordsById(ids, byId) {
-  var requests = ids.map(function (id) {
-    var personPath = byId[id];
+  const requests = ids.map((id) => {
+    const personPath = byId[id];
     if (!personPath) {
       return Promise.resolve(null);
     }
     return fetchJson(personPath)
-      .then(function (record) {
+      .then((record) => {
         record.__id = record.id || id;
         record.__path = personPath;
         return record;
       })
-      .catch(function () {
-        return null;
-      });
+      .catch(() => null);
   });
 
-  return Promise.all(requests).then(function (results) {
-    return results.filter(Boolean);
-  });
-}
-
-function normalizeById(payload) {
-  return payload && payload.byId && typeof payload.byId === "object" ? payload.byId : {};
-}
-
-function loadByIdIndex(path) {
-  if (!path) {
-    return Promise.resolve({});
-  }
-  return fetchJson(path)
-    .then(normalizeById)
-    .catch(function () {
-      return {};
-    });
+  return Promise.all(requests).then((results) => results.filter(Boolean));
 }
 
 function getOrCreatePerson(nodesById, id, byId, recordById) {
   if (!nodesById[id]) {
-    var record = recordById[id] || null;
-    var gender = normalizeGender(record && record.gender);
-    var name = record && record.name ? record.name : titleFromId(id);
-    var years = formatYears(record);
-    var photo = record && record.heroImage ? record.heroImage.src : "";
-    var personPath = record && record.__path ? record.__path : (byId[id] || "");
+    const record = recordById[id] || null;
+    const gender = normalizeGender(record && record.gender);
+    const name = record && record.name ? record.name : titleFromId(id);
+    const years = formatYears(record);
+    const photo = record && record.heroImage ? record.heroImage.src : "";
+    const personPath = record && record.__path ? record.__path : byId[id] || "";
     nodesById[id] = {
-      id: id,
-      name: name,
-      years: years,
-      gender: gender,
-      personPath: personPath,
-      photo: photo,
+      id,
+      name,
+      years,
+      gender,
+      personPath,
+      photo,
       summary: record && record.summary ? record.summary : "",
-      record: record
+      record
     };
   }
   return nodesById[id];
@@ -215,11 +159,11 @@ function addRel(target, field, value) {
 }
 
 function mapFamilyChartData(unions, byId, records) {
-  var recordById = {};
-  var nodesById = {};
-  var relsById = {};
+  const recordById = {};
+  const nodesById = {};
+  const relsById = {};
 
-  records.forEach(function (record) {
+  records.forEach((record) => {
     if (record && record.__id) {
       recordById[record.__id] = record;
     }
@@ -228,46 +172,46 @@ function mapFamilyChartData(unions, byId, records) {
     }
   });
 
-  (Array.isArray(unions) ? unions : []).forEach(function (union) {
-    var partners = Array.isArray(union.partners) ? union.partners.filter(Boolean) : [];
-    var children = Array.isArray(union.children) ? union.children.filter(Boolean) : [];
+  (Array.isArray(unions) ? unions : []).forEach((union) => {
+    const partners = Array.isArray(union.partners) ? union.partners.filter(Boolean) : [];
+    const children = Array.isArray(union.children) ? union.children.filter(Boolean) : [];
 
-    partners.forEach(function (id) {
+    partners.forEach((id) => {
       getOrCreatePerson(nodesById, id, byId, recordById);
       if (!relsById[id]) {
         relsById[id] = { parents: [], spouses: [], children: [] };
       }
     });
-    children.forEach(function (id) {
+    children.forEach((id) => {
       getOrCreatePerson(nodesById, id, byId, recordById);
       if (!relsById[id]) {
         relsById[id] = { parents: [], spouses: [], children: [] };
       }
     });
 
-    partners.forEach(function (partnerId) {
-      partners.forEach(function (spouseId) {
+    partners.forEach((partnerId) => {
+      partners.forEach((spouseId) => {
         if (spouseId !== partnerId) {
           addRel(relsById[partnerId], "spouses", spouseId);
         }
       });
-      children.forEach(function (childId) {
+      children.forEach((childId) => {
         addRel(relsById[partnerId], "children", childId);
       });
     });
 
-    children.forEach(function (childId) {
-      partners.forEach(function (parentId) {
+    children.forEach((childId) => {
+      partners.forEach((parentId) => {
         addRel(relsById[childId], "parents", parentId);
       });
     });
   });
 
-  return Object.keys(nodesById).map(function (id) {
-    var person = nodesById[id];
-    var rels = relsById[id] || { parents: [], spouses: [], children: [] };
+  return Object.keys(nodesById).map((id) => {
+    const person = nodesById[id];
+    const rels = relsById[id] || { parents: [], spouses: [], children: [] };
     return {
-      id: id,
+      id,
       data: {
         gender: toFamilyChartGender(person.gender),
         name: person.name,
@@ -287,25 +231,25 @@ function mapFamilyChartData(unions, byId, records) {
 }
 
 export function loadTreePayload() {
-  var appDataConfig = APP_CONFIG && APP_CONFIG.data ? APP_CONFIG.data : {};
-  var templates = APP_CONFIG && APP_CONFIG.templates ? APP_CONFIG.templates : {};
-  var fallbackPeopleIndexPath = appDataConfig.peopleIndex || "data/personas-index.json";
+  const appDataConfig = getDataConfig();
+  const templates = APP_CONFIG && APP_CONFIG.templates ? APP_CONFIG.templates : {};
+  const fallbackPeopleIndexPath = appDataConfig.peopleIndex || "data/personas-index.json";
 
-  return resolveTreeSources(appDataConfig).then(function (sources) {
-    return Promise.all([
+  return resolveTreeSources(appDataConfig).then((sources) =>
+    Promise.all([
       fetchJson(sources.treeConfigPath),
       loadByIdIndex(sources.peopleIndexPath),
       loadByIdIndex(fallbackPeopleIndexPath)
-    ]).then(function (payload) {
-      var config = payload[0] || {};
-      var treeById = payload[1] || {};
-      var fallbackById = payload[2] || {};
-      var byId = Object.assign({}, fallbackById, treeById);
-      var unions = Array.isArray(config.unions) ? config.unions : [];
-      var ids = getReferencedIds(unions);
+    ]).then((payload) => {
+      const config = payload[0] || {};
+      const treeById = payload[1] || {};
+      const fallbackById = payload[2] || {};
+      const byId = Object.assign({}, fallbackById, treeById);
+      const unions = Array.isArray(config.unions) ? config.unions : [];
+      const ids = getReferencedIds(unions);
 
-      return loadPersonRecordsById(ids, byId).then(function (records) {
-        records.forEach(function (record) {
+      return loadPersonRecordsById(ids, byId).then((records) => {
+        records.forEach((record) => {
           if (!record) {
             return;
           }
@@ -313,7 +257,7 @@ export function loadTreePayload() {
             record.heroImage.src = remapImagePath(record.heroImage.src, sources.imagesBase);
           }
           if (Array.isArray(record.gallery)) {
-            record.gallery.forEach(function (image) {
+            record.gallery.forEach((image) => {
               if (image && image.src) {
                 image.src = remapImagePath(image.src, sources.imagesBase);
               }
@@ -321,14 +265,14 @@ export function loadTreePayload() {
           }
         });
         return {
-          unions: unions,
-          records: records,
-          byId: byId,
+          unions,
+          records,
+          byId,
           detailTemplate: templates.detail || "persona.html",
           familyData: mapFamilyChartData(unions, byId, records),
           treeKey: sources.treeKey
         };
       });
-    });
-  });
+    })
+  );
 }

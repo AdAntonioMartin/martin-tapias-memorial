@@ -1,4 +1,4 @@
-export var APP_CONFIG = {
+export const APP_CONFIG = {
   // Valores soportados: "dark" | "light-celestial" | "dawn-amber"
   theme: "light-celestial",
   templates: {
@@ -30,3 +30,7 @@ export var APP_CONFIG = {
     }
   }
 };
+
+export function getDataConfig() {
+  return APP_CONFIG && APP_CONFIG.data ? APP_CONFIG.data : {};
+}

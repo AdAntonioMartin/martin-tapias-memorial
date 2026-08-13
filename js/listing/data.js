@@ -1,46 +1,40 @@
 import { unique } from "../core/collections.js";
 import { fetchJson, fetchText } from "../core/net.js";
 import { resolveHref, toPathOrUrl } from "../core/url.js";
-import { APP_CONFIG } from "../config/app-config.js";
+import { loadByIdIndex } from "../core/dataIndex.js";
+import { getDataConfig } from "../config/app-config.js";
 
 export function listPersonFiles(directoryUrl) {
   return fetchText(directoryUrl, "Directorio no disponible")
-    .then(function (html) {
-      return {
-        html: html,
-        baseUrl: new URL(directoryUrl, window.location.href).href
-      };
-    })
-    .then(function (payload) {
-      var parser = new DOMParser();
-      var doc = parser.parseFromString(payload.html, "text/html");
-      var links = Array.prototype.slice.call(doc.querySelectorAll("a[href]"));
+    .then((html) => ({
+      html,
+      baseUrl: new URL(directoryUrl, window.location.href).href
+    }))
+    .then((payload) => {
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(payload.html, "text/html");
+      const links = Array.from(doc.querySelectorAll("a[href]"));
 
-      return unique(links
-        .map(function (anchor) {
-          return resolveHref(payload.baseUrl, anchor.getAttribute("href") || "");
-        })
-        .filter(function (href) {
-          return /\.json(?:\?.*)?$/i.test(href);
-        })
-        .map(toPathOrUrl));
+      return unique(
+        links
+          .map((anchor) => resolveHref(payload.baseUrl, anchor.getAttribute("href") || ""))
+          .filter((href) => /\.json(?:\?.*)?$/i.test(href))
+          .map(toPathOrUrl)
+      );
     });
 }
 
 export function loadPersonRecords(paths) {
-  var requests = paths.map(function (path) {
-    return fetchJson(path, "Ficha no disponible")
-      .then(function (record) {
-        record.__personPath = path;
-        return record;
-      });
-  });
+  const requests = paths.map((path) =>
+    fetchJson(path, "Ficha no disponible").then((record) => {
+      record.__personPath = path;
+      return record;
+    })
+  );
 
-  return Promise.allSettled(requests).then(function (results) {
-    return results
-      .filter(function (result) { return result.status === "fulfilled"; })
-      .map(function (result) { return result.value; });
-  });
+  return Promise.allSettled(requests).then((results) =>
+    results.filter((result) => result.status === "fulfilled").map((result) => result.value)
+  );
 }
 
 export function loadListConfig(path) {
@@ -48,14 +42,8 @@ export function loadListConfig(path) {
 }
 
 export function loadPersonPathsFromIndex() {
-  var dataConfig = APP_CONFIG && APP_CONFIG.data ? APP_CONFIG.data : {};
-  var peopleIndex = dataConfig.peopleIndex || "data/personas-index.json";
-  return fetchJson(peopleIndex, "Indice no disponible")
-    .then(function (payload) {
-      var byId = payload && payload.byId && typeof payload.byId === "object" ? payload.byId : {};
-      return Object.keys(byId).map(function (id) { return byId[id]; }).filter(Boolean);
-    })
-    .catch(function () {
-      return [];
-    });
+  const peopleIndex = getDataConfig().peopleIndex || "data/personas-index.json";
+  return loadByIdIndex(peopleIndex).then((byId) =>
+    Object.keys(byId).map((id) => byId[id]).filter(Boolean)
+  );
 }

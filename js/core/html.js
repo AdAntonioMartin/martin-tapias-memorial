@@ -8,7 +8,7 @@ export function escapeHtml(value) {
 }
 
 export function setText(id, value) {
-  var element = document.getElementById(id);
+  const element = document.getElementById(id);
   if (element) {
     element.textContent = value || "";
   }

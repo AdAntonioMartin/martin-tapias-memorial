@@ -1,44 +1,4 @@
-import { GENDER_EMOJI } from "./config.js";
-import { getFactValue } from "../core/person.js";
-import { parseDateByFormat } from "../core/dates.js";
-
-export { GENDER_EMOJI };
-
-function extractYear(value) {
-  var text = String(value || "").trim();
-  if (!text) {
-    return "";
-  }
-  var slash = text.match(/\/(\d{4})$/);
-  if (slash) {
-    return slash[1];
-  }
-  var plain = text.match(/\b(\d{4})\b/);
-  return plain ? plain[1] : "";
-}
-
-function formatYears(record) {
-  var born = getFactValue(record, "Nacimiento") || record.born || "";
-  var died = getFactValue(record, "Fallecimiento") || record.died || "";
-  var bornYear = extractYear(born);
-  var diedYear = extractYear(died);
-  if (!bornYear && !diedYear) {
-    return "";
-  }
-  if (bornYear && diedYear) {
-    return bornYear + " - " + diedYear;
-  }
-  return bornYear ? "n. " + bornYear : "+ " + diedYear;
-}
-
-function birthSortValue(node) {
-  if (!node || !node.record) {
-    return Number.POSITIVE_INFINITY;
-  }
-  var birth = getFactValue(node.record, "Nacimiento") || node.record.born || "";
-  var value = parseDateByFormat(birth, "dd/mm/yyyy");
-  return Number.isNaN(value) ? Number.POSITIVE_INFINITY : value;
-}
+import { formatYears } from "./format.js";
 
 function sanitizeUnion(union) {
   return {
@@ -51,11 +11,11 @@ function sanitizeUnion(union) {
 }
 
 export function buildGraph(unions, records, byId) {
-  var nodes = {};
-  var unionMap = {};
-  var recordById = {};
+  const nodes = {};
+  const unionMap = {};
+  const recordById = {};
 
-  records.forEach(function (record) {
+  records.forEach((record) => {
     if (record && record.id) {
       recordById[record.id] = record;
     }
@@ -64,24 +24,24 @@ export function buildGraph(unions, records, byId) {
     }
   });
 
-  (Array.isArray(unions) ? unions : []).forEach(function (rawUnion) {
+  (Array.isArray(unions) ? unions : []).forEach((rawUnion) => {
     if (!rawUnion || !rawUnion.id) {
       return;
     }
-    var union = sanitizeUnion(rawUnion);
+    const union = sanitizeUnion(rawUnion);
     unionMap[union.id] = union;
 
-    union.partners.forEach(function (id) {
+    union.partners.forEach((id) => {
       if (!nodes[id]) {
-        var rec = recordById[id] || null;
+        const rec = recordById[id] || null;
         nodes[id] = {
-          id: id,
+          id,
           record: rec,
-          name: rec ? (rec.name || id) : id,
+          name: rec ? rec.name || id : id,
           years: rec ? formatYears(rec) : "",
           photo: rec && rec.heroImage ? rec.heroImage.src : null,
           gender: rec && rec.gender ? rec.gender : "unknown",
-          personPath: rec ? rec.__path : (byId[id] || null),
+          personPath: rec ? rec.__path : byId[id] || null,
           parentUnion: null,
           unionIds: []
         };
@@ -89,17 +49,17 @@ export function buildGraph(unions, records, byId) {
       nodes[id].unionIds.push(union.id);
     });
 
-    union.children.forEach(function (id) {
+    union.children.forEach((id) => {
       if (!nodes[id]) {
-        var childRec = recordById[id] || null;
+        const childRec = recordById[id] || null;
         nodes[id] = {
-          id: id,
+          id,
           record: childRec,
-          name: childRec ? (childRec.name || id) : id,
+          name: childRec ? childRec.name || id : id,
           years: childRec ? formatYears(childRec) : "",
           photo: childRec && childRec.heroImage ? childRec.heroImage.src : null,
           gender: childRec && childRec.gender ? childRec.gender : "unknown",
-          personPath: childRec ? childRec.__path : (byId[id] || null),
+          personPath: childRec ? childRec.__path : byId[id] || null,
           parentUnion: null,
           unionIds: []
         };
@@ -109,29 +69,7 @@ export function buildGraph(unions, records, byId) {
   });
 
   return {
-    nodes: nodes,
-    unionMap: unionMap
+    nodes,
+    unionMap
   };
-}
-
-export function sortIdsByBirth(ids, nodes, fallbackOrder) {
-  return ids.slice().sort(function (a, b) {
-    var av = birthSortValue(nodes[a]);
-    var bv = birthSortValue(nodes[b]);
-    if (av !== bv) {
-      return av - bv;
-    }
-
-    if (fallbackOrder) {
-      var ai = Object.prototype.hasOwnProperty.call(fallbackOrder, a) ? fallbackOrder[a] : Number.MAX_SAFE_INTEGER;
-      var bi = Object.prototype.hasOwnProperty.call(fallbackOrder, b) ? fallbackOrder[b] : Number.MAX_SAFE_INTEGER;
-      if (ai !== bi) {
-        return ai - bi;
-      }
-    }
-
-    var aName = nodes[a] ? nodes[a].name : a;
-    var bName = nodes[b] ? nodes[b].name : b;
-    return String(aName).localeCompare(String(bName), "es", { sensitivity: "base" });
-  });
 }

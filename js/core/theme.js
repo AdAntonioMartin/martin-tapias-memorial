@@ -1,17 +1,12 @@
 import { APP_CONFIG } from "../config/app-config.js";
 
-var THEMES = {
-  dark: true,
-  "light-celestial": true,
-  "dawn-amber": true
-};
+const THEMES = ["dark", "light-celestial", "dawn-amber"];
 
 export function applyAppTheme() {
-  var theme = APP_CONFIG && APP_CONFIG.theme ? APP_CONFIG.theme : "dark";
-  if (!THEMES[theme]) {
+  let theme = APP_CONFIG && APP_CONFIG.theme ? APP_CONFIG.theme : "dark";
+  if (!THEMES.includes(theme)) {
     theme = "dark";
   }
 
-  var root = document.documentElement;
-  root.setAttribute("data-theme", theme);
+  document.documentElement.setAttribute("data-theme", theme);
 }

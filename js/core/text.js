@@ -7,9 +7,6 @@ export function normalizeText(value) {
 }
 
 export function capitalize(value) {
-  var text = String(value || "");
-  if (!text) {
-    return "";
-  }
+  const text = String(value || "");
   return text.charAt(0).toUpperCase() + text.slice(1);
 }

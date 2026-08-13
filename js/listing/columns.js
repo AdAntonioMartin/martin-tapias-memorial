@@ -6,8 +6,8 @@ function formatColumnLabel(key) {
 }
 
 export function getColumnValue(record, column) {
-  var source = column && column.source ? column.source : column.id;
-  var value = getRecordField(record, source);
+  const source = column && column.source ? column.source : column.id;
+  const value = getRecordField(record, source);
 
   if (value === null || value === undefined || value === "") {
     return column && column.defaultValue ? column.defaultValue : "";
@@ -18,7 +18,7 @@ export function getColumnValue(record, column) {
 
 export function getColumns(records, configuredColumns) {
   if (Array.isArray(configuredColumns) && configuredColumns.length) {
-    return configuredColumns.map(function (column, index) {
+    return configuredColumns.map((column, index) => {
       if (typeof column === "string") {
         return {
           id: column,
@@ -31,7 +31,7 @@ export function getColumns(records, configuredColumns) {
       }
 
       return {
-        id: column.id || column.source || ("column-" + index),
+        id: column.id || column.source || `column-${index}`,
         label: column.label || formatColumnLabel(column.id || column.source || ""),
         source: column.source || column.id,
         defaultValue: column.defaultValue || "",
@@ -41,25 +41,23 @@ export function getColumns(records, configuredColumns) {
     });
   }
 
-  var inferred = [];
-  records.forEach(function (record) {
-    Object.keys(record).forEach(function (key) {
-      var value = record[key];
-      var isPrimitive = value === null || ["string", "number", "boolean"].indexOf(typeof value) !== -1;
+  const inferred = [];
+  records.forEach((record) => {
+    Object.keys(record).forEach((key) => {
+      const value = record[key];
+      const isPrimitive = value === null || ["string", "number", "boolean"].indexOf(typeof value) !== -1;
       if (isPrimitive && inferred.indexOf(key) === -1) {
         inferred.push(key);
       }
     });
   });
 
-  return inferred.map(function (key) {
-    return {
-      id: key,
-      label: formatColumnLabel(key),
-      source: key,
-      defaultValue: "",
-      type: "string",
-      format: ""
-    };
-  });
+  return inferred.map((key) => ({
+    id: key,
+    label: formatColumnLabel(key),
+    source: key,
+    defaultValue: "",
+    type: "string",
+    format: ""
+  }));
 }

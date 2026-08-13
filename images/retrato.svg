@@ -1,10 +1,10 @@
 ﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" role="img" aria-labelledby="title desc">
-  <title id="title">Retrato de L?zara Otero Velasco</title>
-  <desc id="desc">Marcador de posici?n para una fotograf?a o retrato de L?zara Otero Velasco.</desc>
+  <title id="title">Retrato Genérico</title>
+  <desc id="desc">Retrato genérico</desc>
   <rect width="800" height="1000" fill="#1b1816"/>
   <rect x="50" y="50" width="700" height="900" rx="24" fill="#2a2521" stroke="#c8b18a" stroke-width="4"/>
   <circle cx="400" cy="330" r="120" fill="#c8b18a" opacity="0.9"/>
   <path d="M250 760c22-145 110-220 150-220s128 75 150 220" fill="none" stroke="#e7d8bf" stroke-width="28" stroke-linecap="round"/>
-  <text x="400" y="860" fill="#e7d8bf" font-family="Georgia, serif" font-size="34" text-anchor="middle">L?zara Otero Velasco</text>
-  <text x="400" y="905" fill="#c8b18a" font-family="Georgia, serif" font-size="26" text-anchor="middle">Retrato de referencia</text>
+  <text x="400" y="860" fill="#e7d8bf" font-family="Georgia, serif" font-size="34" text-anchor="middle"></text>
+  <text x="400" y="905" fill="#c8b18a" font-family="Georgia, serif" font-size="26" text-anchor="middle"></text>
 </svg>

@@ -1,51 +1,42 @@
 import { escapeHtml, setText } from "../core/html.js";
 import { t } from "../core/i18n.js";
+import { inferTreeKeyFromPath, buildQueryUrl } from "../core/url.js";
 
-function inferTreeKey(dataPath) {
-  var match = String(dataPath || "").match(/^data\/trees\/([^/]+)\//);
-  return match && match[1] ? match[1] : "";
+function renderItemsOrFallback(elementId, items, fallbackHtml, itemTemplateFn) {
+  const target = document.getElementById(elementId);
+  if (!target) {
+    return;
+  }
+
+  if (!items || !items.length) {
+    target.innerHTML = fallbackHtml;
+    return;
+  }
+
+  target.innerHTML = items.map(itemTemplateFn).join("");
 }
 
 function renderFacts(facts) {
-  var target = document.getElementById("person-facts");
-  if (!target) {
-    return;
-  }
-
-  if (!facts || !facts.length) {
-    target.innerHTML = "<div><dt>" + escapeHtml(t("detail.messages.info", "Informacion")) + "</dt><dd>" + escapeHtml(t("detail.messages.notAvailable", "No disponible.")) + "</dd></div>";
-    return;
-  }
-
-  target.innerHTML = facts.map(function (fact) {
-    return (
-      "<div>" +
-      "<dt>" + escapeHtml(fact.label) + "</dt>" +
-      "<dd>" + escapeHtml(fact.value) + "</dd>" +
-      "</div>"
-    );
-  }).join("");
+  renderItemsOrFallback(
+    "person-facts",
+    facts,
+    `<div><dt>${escapeHtml(t("detail.messages.info", "Informacion"))}</dt><dd>${escapeHtml(t("detail.messages.notAvailable", "No disponible."))}</dd></div>`,
+    (fact) => `<div><dt>${escapeHtml(fact.label)}</dt><dd>${escapeHtml(fact.value)}</dd></div>`
+  );
 }
 
 function renderBiography(paragraphs) {
-  var target = document.getElementById("person-biography");
-  if (!target) {
-    return;
-  }
-
-  if (!paragraphs || !paragraphs.length) {
-    target.innerHTML = "<p>" + escapeHtml(t("detail.messages.bioNotAvailable", "No hay biografia disponible.")) + "</p>";
-    return;
-  }
-
-  target.innerHTML = paragraphs.map(function (paragraph) {
-    return "<p>" + escapeHtml(paragraph) + "</p>";
-  }).join("");
+  renderItemsOrFallback(
+    "person-biography",
+    paragraphs,
+    `<p>${escapeHtml(t("detail.messages.bioNotAvailable", "No hay biografia disponible."))}</p>`,
+    (paragraph) => `<p>${escapeHtml(paragraph)}</p>`
+  );
 }
 
 function renderHeroImage(image) {
-  var imageElement = document.getElementById("person-image");
-  var captionElement = document.getElementById("person-image-caption");
+  const imageElement = document.getElementById("person-image");
+  const captionElement = document.getElementById("person-image-caption");
   if (!imageElement || !captionElement) {
     return;
   }
@@ -63,40 +54,27 @@ function renderHeroImage(image) {
 }
 
 function renderGallery(images) {
-  var target = document.getElementById("person-gallery");
-  if (!target) {
-    return;
-  }
-
-  if (!images || !images.length) {
-    target.innerHTML = "<p>" + escapeHtml(t("detail.messages.noGalleryImages", "No hay imagenes adicionales.")) + "</p>";
-    return;
-  }
-
-  target.innerHTML = images.map(function (image) {
-    return (
-      '<figure class="gallery-card">' +
-      '<img src="' + escapeHtml(image.src) + '" alt="' + escapeHtml(image.alt || "") + '">' +
-      "<figcaption>" + escapeHtml(image.caption || "") + "</figcaption>" +
-      "</figure>"
-    );
-  }).join("");
+  renderItemsOrFallback(
+    "person-gallery",
+    images,
+    `<p>${escapeHtml(t("detail.messages.noGalleryImages", "No hay imagenes adicionales."))}</p>`,
+    (image) =>
+      `<figure class="gallery-card">` +
+      `<img src="${escapeHtml(image.src)}" alt="${escapeHtml(image.alt || "")}">` +
+      `<figcaption>${escapeHtml(image.caption || "")}</figcaption>` +
+      `</figure>`
+  );
 }
 
 export function setTreeLink(dataPath, personId, treeKey) {
-  var element = document.getElementById("person-tree-link");
+  const element = document.getElementById("person-tree-link");
   if (!element) {
     return;
   }
-  var resolvedTreeKey = treeKey || inferTreeKey(dataPath);
+  const resolvedTreeKey = treeKey || inferTreeKeyFromPath(dataPath);
 
   if (personId) {
-    var idParams = new URLSearchParams();
-    if (resolvedTreeKey) {
-      idParams.set("tree", resolvedTreeKey);
-    }
-    idParams.set("id", personId);
-    element.href = "arbol.html?" + idParams.toString();
+    element.href = buildQueryUrl("arbol.html", { tree: resolvedTreeKey, id: personId });
     return;
   }
 
@@ -105,18 +83,13 @@ export function setTreeLink(dataPath, personId, treeKey) {
     return;
   }
 
-  var params = new URLSearchParams();
-  if (resolvedTreeKey) {
-    params.set("tree", resolvedTreeKey);
-  }
-  params.set("data", dataPath);
-  element.href = "arbol.html?" + params.toString();
+  element.href = buildQueryUrl("arbol.html", { tree: resolvedTreeKey, data: dataPath });
 }
 
 export function renderDetailPage(data) {
-  var pageDefault = t("detail.title.pageDefault", "Ficha personal");
-  var pageSuffix = t("detail.title.suffix", "Familia Minguez - De Antonio");
-  document.title = (data.name || pageDefault) + " | " + pageSuffix;
+  const pageDefault = t("detail.title.pageDefault", "Ficha personal");
+  const pageSuffix = t("detail.title.suffix", "Familia Minguez - De Antonio");
+  document.title = `${data.name || pageDefault} | ${pageSuffix}`;
   setText("person-name", data.name || pageDefault);
   setText("person-subtitle", data.subtitle || "");
   setText("person-summary", data.summary || "");

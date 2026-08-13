@@ -3,9 +3,9 @@ export function normalizeDataPath(value) {
     return "";
   }
 
-  var normalized = String(value).replace(/\\/g, "/").trim();
+  let normalized = String(value).replace(/\\/g, "/").trim();
   try {
-    var parsed = new URL(normalized, window.location.href);
+    const parsed = new URL(normalized, window.location.href);
     normalized = parsed.origin === window.location.origin ? parsed.pathname : parsed.href;
   } catch (error) {
     // Keep raw value.
@@ -24,9 +24,24 @@ export function resolveHref(baseUrl, href) {
 
 export function toPathOrUrl(value) {
   try {
-    var url = new URL(value, window.location.href);
-    return url.origin === window.location.origin ? (url.pathname + url.search) : url.href;
+    const url = new URL(value, window.location.href);
+    return url.origin === window.location.origin ? url.pathname + url.search : url.href;
   } catch (error) {
     return value;
   }
+}
+
+export function inferTreeKeyFromPath(path) {
+  const match = String(path || "").match(/^data\/trees\/([^/]+)\//);
+  return match && match[1] ? match[1] : "";
+}
+
+export function buildQueryUrl(base, params) {
+  const qs = new URLSearchParams();
+  Object.keys(params || {}).forEach((key) => {
+    if (params[key]) {
+      qs.set(key, params[key]);
+    }
+  });
+  return `${base}?${qs.toString()}`;
 }

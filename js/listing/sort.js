@@ -3,29 +3,29 @@ import { parseDateByFormat, parseNumberLoose } from "../core/dates.js";
 import { getColumnValue } from "./columns.js";
 
 function parseDateForSort(value, format) {
-  var byFormat = parseDateByFormat(value, format);
+  const byFormat = parseDateByFormat(value, format);
   if (!Number.isNaN(byFormat)) {
     return byFormat;
   }
-  var fallback = Date.parse(String(value || "").trim());
+  const fallback = Date.parse(String(value || "").trim());
   return Number.isNaN(fallback) ? NaN : fallback;
 }
 
 function toComparableSortValue(value, type, format) {
-  var text = String(value || "").trim();
+  const text = String(value || "").trim();
   if (!text) {
     return { empty: true, value: "" };
   }
 
   if (type === "number") {
-    var numeric = parseNumberLoose(text);
+    const numeric = parseNumberLoose(text);
     if (!Number.isNaN(numeric)) {
       return { empty: false, value: numeric };
     }
   }
 
   if (type === "date") {
-    var date = parseDateForSort(text, format);
+    const date = parseDateForSort(text, format);
     if (!Number.isNaN(date)) {
       return { empty: false, value: date };
     }
@@ -39,12 +39,12 @@ function resolveSort(sortConfig, columns) {
     return null;
   }
 
-  var column = null;
+  let column = null;
   if (sortConfig.source) {
-    column = columns.find(function (item) { return item.source === sortConfig.source; }) || null;
+    column = columns.find((item) => item.source === sortConfig.source) || null;
   }
   if (!column && sortConfig.id) {
-    column = columns.find(function (item) { return item.id === sortConfig.id; }) || null;
+    column = columns.find((item) => item.id === sortConfig.id) || null;
   }
   if (!column && sortConfig.source) {
     column = {
@@ -70,14 +70,14 @@ function resolveSort(sortConfig, columns) {
 }
 
 export function sortRecords(records, sortConfig, columns) {
-  var resolved = resolveSort(sortConfig, columns || []);
+  const resolved = resolveSort(sortConfig, columns || []);
   if (!resolved) {
     return records;
   }
 
-  return records.slice().sort(function (a, b) {
-    var aValue = toComparableSortValue(getColumnValue(a, resolved.column), resolved.column.type, resolved.column.format);
-    var bValue = toComparableSortValue(getColumnValue(b, resolved.column), resolved.column.type, resolved.column.format);
+  return records.slice().sort((a, b) => {
+    const aValue = toComparableSortValue(getColumnValue(a, resolved.column), resolved.column.type, resolved.column.format);
+    const bValue = toComparableSortValue(getColumnValue(b, resolved.column), resolved.column.type, resolved.column.format);
 
     if (aValue.empty && bValue.empty) {
       return 0;
