@@ -57,7 +57,7 @@ export function parseNumberLoose(value) {
   let text = String(value || "")
     .replace(/\u00A0/g, " ")
     .trim()
-    .replace(/[^0-9,.\-]/g, "");
+    .replace(/[^0-9,.-]/g, "");
 
   if (!text) {
     return NaN;

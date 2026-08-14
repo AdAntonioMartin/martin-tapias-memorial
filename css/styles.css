@@ -13,10 +13,7 @@ body {
   min-height: 100vh;
   font-family: var(--font-body);
   color: var(--color-text);
-  background:
-    var(--body-bg-layer-1),
-    var(--body-bg-layer-2),
-    var(--color-background);
+  background: var(--body-bg-layer-1), var(--body-bg-layer-2), var(--color-background);
 }
 
 body::before {
@@ -24,9 +21,7 @@ body::before {
   position: fixed;
   inset: 0;
   pointer-events: none;
-  background:
-    var(--body-overlay-layer-1),
-    var(--body-overlay-layer-2);
+  background: var(--body-overlay-layer-1), var(--body-overlay-layer-2);
   opacity: var(--body-overlay-opacity);
 }
 
@@ -59,7 +54,9 @@ body::before {
   font-size: 0.82rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  transition: border-color 140ms ease, background-color 140ms ease;
+  transition:
+    border-color 140ms ease,
+    background-color 140ms ease;
 }
 
 .site-nav__link:hover {
@@ -77,9 +74,7 @@ body::before {
   padding: 3.5rem 2rem 2.5rem;
   border: 1px solid var(--color-line);
   border-radius: var(--radius-large);
-  background:
-    var(--hero-layer-1),
-    var(--color-surface);
+  background: var(--hero-layer-1), var(--color-surface);
   box-shadow: var(--shadow-soft);
 }
 

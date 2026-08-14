@@ -44,6 +44,8 @@ export function loadListConfig(path) {
 export function loadPersonPathsFromIndex() {
   const peopleIndex = getDataConfig().peopleIndex || "data/personas-index.json";
   return loadByIdIndex(peopleIndex).then((byId) =>
-    Object.keys(byId).map((id) => byId[id]).filter(Boolean)
+    Object.keys(byId)
+      .map((id) => byId[id])
+      .filter(Boolean)
   );
 }

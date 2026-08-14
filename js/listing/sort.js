@@ -76,8 +76,16 @@ export function sortRecords(records, sortConfig, columns) {
   }
 
   return records.slice().sort((a, b) => {
-    const aValue = toComparableSortValue(getColumnValue(a, resolved.column), resolved.column.type, resolved.column.format);
-    const bValue = toComparableSortValue(getColumnValue(b, resolved.column), resolved.column.type, resolved.column.format);
+    const aValue = toComparableSortValue(
+      getColumnValue(a, resolved.column),
+      resolved.column.type,
+      resolved.column.format
+    );
+    const bValue = toComparableSortValue(
+      getColumnValue(b, resolved.column),
+      resolved.column.type,
+      resolved.column.format
+    );
 
     if (aValue.empty && bValue.empty) {
       return 0;

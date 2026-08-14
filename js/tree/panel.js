@@ -126,7 +126,12 @@ export function openPanel(personId, graph, detailTemplate, onNavigate) {
       if (!partner) {
         return;
       }
-      html += renderRefItem(partnerId, partner.name, partner.gender, escapeHtml(t("tree.panel.partnerRole", "Pareja")));
+      html += renderRefItem(
+        partnerId,
+        partner.name,
+        partner.gender,
+        escapeHtml(t("tree.panel.partnerRole", "Pareja"))
+      );
     });
 
     if (union.children && union.children.length) {

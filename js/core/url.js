@@ -7,7 +7,7 @@ export function normalizeDataPath(value) {
   try {
     const parsed = new URL(normalized, window.location.href);
     normalized = parsed.origin === window.location.origin ? parsed.pathname : parsed.href;
-  } catch (error) {
+  } catch {
     // Keep raw value.
   }
 
@@ -17,7 +17,7 @@ export function normalizeDataPath(value) {
 export function resolveHref(baseUrl, href) {
   try {
     return new URL(href, baseUrl).href;
-  } catch (error) {
+  } catch {
     return "";
   }
 }
@@ -26,7 +26,7 @@ export function toPathOrUrl(value) {
   try {
     const url = new URL(value, window.location.href);
     return url.origin === window.location.origin ? url.pathname + url.search : url.href;
-  } catch (error) {
+  } catch {
     return value;
   }
 }

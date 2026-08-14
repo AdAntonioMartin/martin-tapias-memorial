@@ -90,12 +90,17 @@ function fetchImagesIndex() {
 }
 
 function imageCaptionFromFilename(filename) {
-  const text = String(filename || "").replace(/\.[^.]+$/, "").replace(/[_-]+/g, " ").trim();
+  const text = String(filename || "")
+    .replace(/\.[^.]+$/, "")
+    .replace(/[_-]+/g, " ")
+    .trim();
   return text || "Imagen";
 }
 
 function normalizeSrc(src) {
-  return String(src || "").replace(/\\/g, "/").trim();
+  return String(src || "")
+    .replace(/\\/g, "/")
+    .trim();
 }
 
 function folderFromHeroSrc(record) {
@@ -116,7 +121,8 @@ function fallbackFolderFromSlug(record) {
 }
 
 function buildAutoImages(record, imagesIndex) {
-  const index = imagesIndex && imagesIndex.bySlug && typeof imagesIndex.bySlug === "object" ? imagesIndex.bySlug : {};
+  const index =
+    imagesIndex && imagesIndex.bySlug && typeof imagesIndex.bySlug === "object" ? imagesIndex.bySlug : {};
   const slug = record && record.slug ? String(record.slug).trim() : "";
   const files = slug && Array.isArray(index[slug]) ? index[slug] : [];
   if (!files.length) {
@@ -137,7 +143,9 @@ function buildAutoImages(record, imagesIndex) {
 function enrichRecordWithAutoImages(record) {
   return fetchImagesIndex().then((imagesIndex) => {
     const data = record && typeof record === "object" ? record : {};
-    const explicitGallery = Array.isArray(data.gallery) ? data.gallery.filter((item) => item && item.src) : [];
+    const explicitGallery = Array.isArray(data.gallery)
+      ? data.gallery.filter((item) => item && item.src)
+      : [];
     const autoGallery = buildAutoImages(data, imagesIndex);
 
     const seen = {};

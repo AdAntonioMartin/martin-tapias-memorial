@@ -1,5 +1,10 @@
 import { getPageConfig } from "./listing/config.js";
-import { loadListConfig, listPersonFiles, loadPersonRecords, loadPersonPathsFromIndex } from "./listing/data.js";
+import {
+  loadListConfig,
+  listPersonFiles,
+  loadPersonRecords,
+  loadPersonPathsFromIndex
+} from "./listing/data.js";
 import { getColumns } from "./listing/columns.js";
 import { sortRecords } from "./listing/sort.js";
 import { renderTable, renderError } from "./listing/render.js";

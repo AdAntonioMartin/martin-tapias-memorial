@@ -1,63 +1,67 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title data-i18n="detail.title.pageDefault"></title>
-  <link rel="stylesheet" href="css/tokens.css">
-  <link rel="stylesheet" href="css/styles.css">
-</head>
-<body>
-  <main class="page page--detail">
-    <nav class="site-nav" data-i18n-attr="aria-label:common.nav.mainAria">
-      <a class="site-nav__link" href="index.html" data-i18n="common.nav.list"></a>
-      <a class="site-nav__link" id="person-tree-link" href="arbol.html" data-i18n="common.nav.tree"></a>
-      <span class="site-nav__link site-nav__link--active" aria-current="page" data-i18n="common.nav.detail"></span>
-    </nav>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title data-i18n="detail.title.pageDefault"></title>
+    <link rel="stylesheet" href="css/tokens.css" />
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <main class="page page--detail">
+      <nav class="site-nav" data-i18n-attr="aria-label:common.nav.mainAria">
+        <a class="site-nav__link" href="index.html" data-i18n="common.nav.list"></a>
+        <a class="site-nav__link" id="person-tree-link" href="arbol.html" data-i18n="common.nav.tree"></a>
+        <span
+          class="site-nav__link site-nav__link--active"
+          aria-current="page"
+          data-i18n="common.nav.detail"
+        ></span>
+      </nav>
 
-    <section class="hero hero--detail">
-      <p class="eyebrow" data-i18n="detail.hero.eyebrow"></p>
-      <h1 id="person-name" data-i18n="detail.hero.loadingName"></h1>
-      <p class="lead" id="person-subtitle"></p>
-      <p class="description" id="person-summary"></p>
-    </section>
+      <section class="hero hero--detail">
+        <p class="eyebrow" data-i18n="detail.hero.eyebrow"></p>
+        <h1 id="person-name" data-i18n="detail.hero.loadingName"></h1>
+        <p class="lead" id="person-subtitle"></p>
+        <p class="description" id="person-summary"></p>
+      </section>
 
-    <section class="detail-grid">
-      <article class="detail-card">
-        <h2 data-i18n="detail.sections.general"></h2>
-        <dl class="detail-list" id="person-facts">
-          <div>
-            <dt data-i18n="detail.sections.status"></dt>
-            <dd data-i18n="detail.messages.loading"></dd>
-          </div>
-        </dl>
-      </article>
+      <section class="detail-grid">
+        <article class="detail-card">
+          <h2 data-i18n="detail.sections.general"></h2>
+          <dl class="detail-list" id="person-facts">
+            <div>
+              <dt data-i18n="detail.sections.status"></dt>
+              <dd data-i18n="detail.messages.loading"></dd>
+            </div>
+          </dl>
+        </article>
 
-      <article class="detail-card">
-        <h2 data-i18n="detail.sections.mainImage"></h2>
-        <figure class="detail-figure">
-          <img id="person-image" alt="">
-          <figcaption id="person-image-caption"></figcaption>
-        </figure>
-      </article>
-    </section>
+        <article class="detail-card">
+          <h2 data-i18n="detail.sections.mainImage"></h2>
+          <figure class="detail-figure">
+            <img id="person-image" alt="" />
+            <figcaption id="person-image-caption"></figcaption>
+          </figure>
+        </article>
+      </section>
 
-    <section class="detail-card">
-      <h2 data-i18n="detail.sections.biography"></h2>
-      <div id="person-biography"></div>
-    </section>
+      <section class="detail-card">
+        <h2 data-i18n="detail.sections.biography"></h2>
+        <div id="person-biography"></div>
+      </section>
 
-    <section class="detail-card">
-      <div class="table-header">
-        <h2 data-i18n="detail.sections.gallery"></h2>
-        <p data-i18n="detail.sections.galleryDescription"></p>
-      </div>
-      <div class="gallery-grid" id="person-gallery"></div>
-    </section>
-  </main>
+      <section class="detail-card">
+        <div class="table-header">
+          <h2 data-i18n="detail.sections.gallery"></h2>
+          <p data-i18n="detail.sections.galleryDescription"></p>
+        </div>
+        <div class="gallery-grid" id="person-gallery"></div>
+      </section>
+    </main>
 
-  <noscript class="noscript-message" data-i18n="common.noscript.generic"></noscript>
+    <noscript class="noscript-message" data-i18n="common.noscript.generic"></noscript>
 
-  <script type="module" src="js/detail.js"></script>
-</body>
+    <script type="module" src="js/detail.js"></script>
+  </body>
 </html>
