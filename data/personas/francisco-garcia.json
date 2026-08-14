@@ -1,0 +1,15 @@
+{
+  "id": "francisco-garcia",
+  "name": "Francisco Garcia",
+  "gender": "male",
+  "born": "",
+  "died": "",
+  "summary": "",
+  "heroImage": {
+    "src": "images/retrato.svg",
+    "alt": "Retrato de Francisco Garcia",
+    "caption": ""
+  },
+  "gallery": [],
+  "facts": []
+}

@@ -1,7 +1,7 @@
 import { fetchJson } from "../core/net.js";
 import { loadByIdIndex } from "../core/dataIndex.js";
 import { getDataConfig } from "../config/app-config.js";
-import { getTreeKeyFromUrl, normalizeDataPath } from "../core/url.js";
+import { normalizeDataPath } from "../core/url.js";
 
 function getQueryParams() {
   return new URLSearchParams(window.location.search);
@@ -20,33 +20,6 @@ export function getRequestedDataPath() {
   return normalizeDataPath(getQueryParams().get("data") || "");
 }
 
-function findTreeEntry(registryPayload, key) {
-  const trees = registryPayload && Array.isArray(registryPayload.trees) ? registryPayload.trees : [];
-  return trees.find((entry) => entry && entry.key === key) || null;
-}
-
-function fetchPersonIndex() {
-  const dataConfig = getDataConfig();
-  const requestedTree = getTreeKeyFromUrl();
-
-  if (!requestedTree) {
-    return loadByIdIndex(dataConfig.peopleIndex);
-  }
-
-  return fetchJson(dataConfig.treeRegistry)
-    .then((payload) => {
-      const selected = findTreeEntry(payload, requestedTree);
-      const selectedIndex = selected && selected.peopleIndex ? selected.peopleIndex : dataConfig.peopleIndex;
-      return Promise.all([loadByIdIndex(dataConfig.peopleIndex), loadByIdIndex(selectedIndex)]).then(
-        ([fallbackById, treeById]) => Object.assign({}, fallbackById, treeById)
-      );
-    })
-    .catch((error) => {
-      console.error("detail: no se pudo leer el registro de arboles", error);
-      return loadByIdIndex(dataConfig.peopleIndex);
-    });
-}
-
 export function resolveDetailDataPath() {
   const explicitPath = getRequestedDataPath();
   if (explicitPath) {
@@ -58,7 +31,8 @@ export function resolveDetailDataPath() {
     return Promise.resolve(null);
   }
 
-  return fetchPersonIndex()
+  // Un unico indice: ya no hay uno por familia que fusionar sobre el raiz.
+  return loadByIdIndex(getDataConfig().peopleIndex)
     .then((byId) => byId[personId] || null)
     .catch((error) => {
       console.error("detail: no se pudo resolver la ficha", error);

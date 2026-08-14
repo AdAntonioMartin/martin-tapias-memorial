@@ -1,0 +1,16 @@
+{
+  "id": "maria-de-los-angeles-castano",
+  "name": "Maria De Los Angeles Castano",
+  "gender": "female",
+  "born": "",
+  "died": "",
+  "summary": "",
+  "heroImage": {
+    "src": "images/retrato.svg",
+    "alt": "Retrato de Maria De Los Angeles ???? Castano",
+    "caption": ""
+  },
+  "gallery": [],
+  "facts": [],
+  "unknownNameParts": true
+}

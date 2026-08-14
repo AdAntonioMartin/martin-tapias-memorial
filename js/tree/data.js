@@ -12,50 +12,32 @@ export function getLaunchTarget() {
   };
 }
 
-function normalizeTreeRegistry(payload) {
-  return {
-    defaultTree: (payload && payload.defaultTree) || "",
-    trees: payload && Array.isArray(payload.trees) ? payload.trees : []
-  };
-}
+/**
+ * Un arbol es una vista sobre el grafo unico, no una copia de los datos.
+ * Antes habia un arbol.json por familia: los de "martin" y "deantonio" eran
+ * identicos byte a byte, y sus 55 uniones un subconjunto estricto de las 59
+ * del tercero. Ahora la familia se define por la persona raiz desde la que se
+ * recorta el subgrafo.
+ */
+function resolveTreeView(registry) {
+  const requestedKey = getTreeKeyFromUrl();
+  const trees = registry && Array.isArray(registry.trees) ? registry.trees : [];
 
-function resolveTreeSources(dataConfig) {
-  const requestedTree = getTreeKeyFromUrl();
+  const selected =
+    (requestedKey && trees.find((tree) => tree && tree.key === requestedKey)) ||
+    trees.find((tree) => tree && tree.key === registry.defaultTree) ||
+    trees[0] ||
+    null;
 
-  return fetchJson(dataConfig.treeRegistry)
-    .catch((error) => {
-      console.error("tree: no se pudo leer el registro de arboles", error);
-      return null;
-    })
-    .then(normalizeTreeRegistry)
-    .then((registry) => {
-      const selected =
-        (requestedTree && registry.trees.find((entry) => entry && entry.key === requestedTree)) ||
-        registry.trees.find((entry) => entry && entry.key === registry.defaultTree) ||
-        registry.trees[0] ||
-        null;
-
-      if (requestedTree && (!selected || selected.key !== requestedTree)) {
-        console.warn(`tree: no existe el arbol "${requestedTree}", se usa el predeterminado`);
-      }
-
-      return {
-        treeKey: selected ? selected.key : "",
-        title: selected ? selected.title : "",
-        treeConfigPath: selected ? selected.treeConfig : "",
-        peopleIndexPath: selected ? selected.peopleIndex : dataConfig.peopleIndex
-      };
-    });
-}
-
-/** Une el indice del arbol sobre el indice raiz sin pedir el mismo fichero dos veces. */
-function loadMergedIndex(treeIndexPath, rootIndexPath) {
-  if (!treeIndexPath || treeIndexPath === rootIndexPath) {
-    return loadByIdIndex(rootIndexPath);
+  if (requestedKey && (!selected || selected.key !== requestedKey)) {
+    console.warn(`tree: no existe la vista "${requestedKey}", se usa la predeterminada`);
   }
-  return Promise.all([loadByIdIndex(rootIndexPath), loadByIdIndex(treeIndexPath)]).then(
-    ([rootById, treeById]) => Object.assign({}, rootById, treeById)
-  );
+
+  return {
+    treeKey: selected ? selected.key : "",
+    title: selected ? selected.title : "",
+    rootPersonId: selected ? selected.rootPersonId || "" : ""
+  };
 }
 
 function loadPersonRecords(ids, byId) {
@@ -66,7 +48,6 @@ function loadPersonRecords(ids, byId) {
     }
     return fetchJson(personPath)
       .then((record) => {
-        record.__id = record.id || id;
         record.__path = personPath;
         return record;
       })
@@ -91,27 +72,27 @@ function getReferencedIds(unions) {
 export function loadTreePayload() {
   const dataConfig = getDataConfig();
 
-  return resolveTreeSources(dataConfig).then((sources) => {
-    if (!sources.treeConfigPath) {
-      return Promise.reject(new Error("No hay ningun arbol configurado en el registro"));
-    }
+  return Promise.all([
+    fetchJson(dataConfig.treeRegistry).catch((error) => {
+      console.error("tree: no se pudo leer el registro de vistas", error);
+      return { trees: [] };
+    }),
+    fetchJson(dataConfig.unions),
+    loadByIdIndex(dataConfig.peopleIndex)
+  ]).then(([registry, unionsPayload, byId]) => {
+    const view = resolveTreeView(registry);
+    const unions = Array.isArray(unionsPayload.unions) ? unionsPayload.unions : [];
 
-    return Promise.all([
-      fetchJson(sources.treeConfigPath),
-      loadMergedIndex(sources.peopleIndexPath, dataConfig.peopleIndex)
-    ]).then(([config, byId]) => {
-      const unions = Array.isArray(config.unions) ? config.unions : [];
-
-      return loadPersonRecords(getReferencedIds(unions), byId).then((records) => {
-        const model = buildTreeModel(unions, records, byId);
-        return {
-          model,
-          familyData: toFamilyChartData(model),
-          detailTemplate: getTemplates().detail,
-          treeKey: sources.treeKey,
-          title: sources.title
-        };
-      });
+    return loadPersonRecords(getReferencedIds(unions), byId).then((records) => {
+      const model = buildTreeModel(unions, records, byId);
+      return {
+        model,
+        familyData: toFamilyChartData(model),
+        detailTemplate: getTemplates().detail,
+        treeKey: view.treeKey,
+        title: view.title,
+        rootPersonId: view.rootPersonId
+      };
     });
   });
 }

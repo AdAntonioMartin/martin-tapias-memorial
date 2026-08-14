@@ -20,8 +20,13 @@ function showError(message) {
   }
 }
 
+/**
+ * Tarjeta del arbol. Deliberadamente no usa las clases `card` ni `card-inner`
+ * de family-chart: sus reglas pintan el fondo con un color de genero fijo, y
+ * aqui el aspecto lo llevan los tokens del sitio.
+ */
 function cardHtml(person, isMain) {
-  const classes = ["card", "tree-node-card", `tree-node-card--${person.genderLabel}`];
+  const classes = ["tree-node-card", `tree-node-card--${person.genderLabel}`];
   if (isMain) {
     classes.push("tree-node-card--main");
   }
@@ -31,7 +36,7 @@ function cardHtml(person, isMain) {
 
   return (
     `<div class="${classes.join(" ")}">` +
-    '<div class="card-inner tree-node-card__inner">' +
+    '<div class="tree-node-card__inner">' +
     `<div class="tree-node-avatar">${avatar}</div>` +
     `<div class="tree-node-name">${escapeHtml(person.name || "")}</div>` +
     `<div class="tree-node-years">${escapeHtml(person.years || "")}</div>` +
@@ -162,7 +167,9 @@ function init() {
       }
 
       const targetId = resolveTargetId(target, model);
-      const mainId = targetId || (familyData.length ? familyData[0].id : "");
+      const rootId =
+        payload.rootPersonId && model.people.has(payload.rootPersonId) ? payload.rootPersonId : "";
+      const mainId = targetId || rootId || (familyData.length ? familyData[0].id : "");
       if (mainId) {
         // El panel solo se abre solo si la URL pedia una persona concreta.
         focusPerson(mainId, { initial: true, skipPanel: !targetId });

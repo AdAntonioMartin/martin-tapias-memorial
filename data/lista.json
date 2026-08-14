@@ -1,11 +1,11 @@
 {
   "personas": [
-    "data/trees/deantonio/personas/antonio-de-antonio-rivera.json",
-    "data/trees/deantonio/personas/isabel-minguez-gonzalez.json",
-    "data/trees/deantonio/personas/eladio-de-antonio-de-la-calle.json",
-    "data/trees/deantonio/personas/josefa-rivera-velasco.json",
-    "data/trees/deantonio/personas/domingo-minguez-paez.json",
-    "data/trees/deantonio/personas/josefa-gonzalez-otero.json"
+    "data/personas/antonio-de-antonio-rivera.json",
+    "data/personas/isabel-minguez-gonzalez.json",
+    "data/personas/eladio-de-antonio-de-la-calle.json",
+    "data/personas/josefa-rivera-velasco.json",
+    "data/personas/domingo-minguez-paez.json",
+    "data/personas/josefa-gonzalez-otero.json"
   ],
   "columns": [
     {
@@ -17,9 +17,9 @@
     {
       "id": "fallecimiento",
       "label": "Fallecimiento",
-      "source": "fact:Fallecimiento",
+      "source": "died",
       "type": "date",
-      "format": "dd/mm/yyyy"
+      "format": "yyyy-mm-dd"
     },
     {
       "id": "edad",
@@ -29,7 +29,7 @@
     }
   ],
   "sort": {
-    "source": "fact:Fallecimiento",
+    "source": "died",
     "direction": "asc"
   }
 }

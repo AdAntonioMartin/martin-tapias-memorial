@@ -1,0 +1,15 @@
+{
+  "id": "frutos-alonso-garcia",
+  "name": "Frutos Alonso Garcia",
+  "gender": "male",
+  "born": "",
+  "died": "",
+  "summary": "",
+  "heroImage": {
+    "src": "images/retrato.svg",
+    "alt": "Retrato de Frutos Alonso Garcia",
+    "caption": ""
+  },
+  "gallery": [],
+  "facts": []
+}

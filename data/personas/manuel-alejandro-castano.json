@@ -1,0 +1,16 @@
+{
+  "id": "manuel-alejandro-castano",
+  "name": "Manuel Alejandro Castano",
+  "gender": "male",
+  "born": "",
+  "died": "",
+  "summary": "",
+  "heroImage": {
+    "src": "images/retrato.svg",
+    "alt": "Retrato de Manuel Alejandro Castano ?????",
+    "caption": ""
+  },
+  "gallery": [],
+  "facts": [],
+  "unknownNameParts": true
+}

@@ -1,0 +1,15 @@
+{
+  "id": "victoria-tapias",
+  "name": "Victoria Tapias",
+  "gender": "female",
+  "born": "",
+  "died": "",
+  "summary": "",
+  "heroImage": {
+    "src": "images/retrato.svg",
+    "alt": "Retrato de Victoria Tapias",
+    "caption": ""
+  },
+  "gallery": [],
+  "facts": []
+}

@@ -62,9 +62,34 @@ function renderHeroImage(image) {
   if (figure) {
     figure.hidden = false;
   }
+  const source = document.getElementById("person-image-webp");
+  if (source) {
+    if (image.srcWebp) {
+      source.srcset = image.srcWebp;
+    } else {
+      source.removeAttribute("srcset");
+    }
+  }
   imageElement.src = image.src;
   imageElement.alt = image.alt || "";
+  if (image.width && image.height) {
+    imageElement.width = image.width;
+    imageElement.height = image.height;
+  }
   captionElement.textContent = image.caption || "";
+}
+
+/** WebP con respaldo JPEG, y las dimensiones explicitas para que no salte el layout. */
+function pictureHtml(image, extraAttrs) {
+  const dimensions = image.width && image.height ? ` width="${image.width}" height="${image.height}"` : "";
+  const img =
+    `<img src="${escapeHtml(image.src)}" alt="${escapeHtml(image.alt || "")}"` +
+    `${dimensions} loading="lazy" decoding="async"${extraAttrs || ""}>`;
+
+  if (!image.srcWebp) {
+    return img;
+  }
+  return `<picture><source srcset="${escapeHtml(image.srcWebp)}" type="image/webp">${img}</picture>`;
 }
 
 function renderGallery(images) {
@@ -72,11 +97,15 @@ function renderGallery(images) {
     "person-gallery",
     images,
     `<p>${escapeHtml(t("detail.messages.noGalleryImages", "No hay imagenes adicionales."))}</p>`,
-    (image) =>
-      `<figure class="gallery-card">` +
-      `<img src="${escapeHtml(image.src)}" alt="${escapeHtml(image.alt || "")}" loading="lazy" decoding="async" width="640" height="480">` +
-      `<figcaption>${escapeHtml(image.caption || "")}</figcaption>` +
-      `</figure>`
+    (image) => {
+      const media = image.full
+        ? `<a class="gallery-card__link" href="${escapeHtml(image.full)}">${pictureHtml(image)}</a>`
+        : pictureHtml(image);
+      return (
+        `<figure class="gallery-card">${media}` +
+        `<figcaption>${escapeHtml(image.caption || "")}</figcaption></figure>`
+      );
+    }
   );
 }
 

@@ -1,0 +1,15 @@
+{
+  "id": "luis-gonzalo-castano-pineda",
+  "name": "Luis Gonzalo Castano Pineda",
+  "gender": "male",
+  "born": "",
+  "died": "",
+  "summary": "",
+  "heroImage": {
+    "src": "images/retrato.svg",
+    "alt": "Retrato de Luis Gonzalo Castano Pineda",
+    "caption": ""
+  },
+  "gallery": [],
+  "facts": []
+}

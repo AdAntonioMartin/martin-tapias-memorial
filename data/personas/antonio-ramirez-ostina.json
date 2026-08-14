@@ -1,0 +1,15 @@
+{
+  "id": "antonio-ramirez-ostina",
+  "name": "Antonio Ramirez Ostina",
+  "gender": "male",
+  "born": "",
+  "died": "",
+  "summary": "",
+  "heroImage": {
+    "src": "images/retrato.svg",
+    "alt": "Retrato de Antonio Ramirez Ostina",
+    "caption": ""
+  },
+  "gallery": [],
+  "facts": []
+}

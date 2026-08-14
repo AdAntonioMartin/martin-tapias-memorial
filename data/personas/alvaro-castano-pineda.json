@@ -1,0 +1,15 @@
+{
+  "id": "alvaro-castano-pineda",
+  "name": "Alvaro Castano Pineda",
+  "gender": "male",
+  "born": "",
+  "died": "",
+  "summary": "",
+  "heroImage": {
+    "src": "images/retrato.svg",
+    "alt": "Retrato de Alvaro Castano Pineda",
+    "caption": ""
+  },
+  "gallery": [],
+  "facts": []
+}

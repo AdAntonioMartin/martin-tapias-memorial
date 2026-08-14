@@ -1,0 +1,15 @@
+{
+  "id": "alex",
+  "name": "Alex",
+  "gender": "male",
+  "born": "",
+  "died": "",
+  "summary": "",
+  "heroImage": {
+    "src": "images/retrato.svg",
+    "alt": "Retrato de Alex",
+    "caption": ""
+  },
+  "gallery": [],
+  "facts": []
+}

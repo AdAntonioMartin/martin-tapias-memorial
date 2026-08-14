@@ -4,20 +4,17 @@
     {
       "key": "martin",
       "title": "Familia Martín",
-      "treeConfig": "data/trees/martin/arbol.json",
-      "peopleIndex": "data/trees/martin/personas-index.json"
+      "rootPersonId": "castor-martin-bravo"
     },
     {
       "key": "deantonio",
       "title": "Familia De Antonio",
-      "treeConfig": "data/trees/deantonio/arbol.json",
-      "peopleIndex": "data/trees/deantonio/personas-index.json"
+      "rootPersonId": "inocenta-de-la-calle"
     },
     {
       "key": "teresa-castano-pineda",
       "title": "Familia Castaño Pineda",
-      "treeConfig": "data/trees/teresa-castano-pineda/arbol.json",
-      "peopleIndex": "data/trees/teresa-castano-pineda/personas-index.json"
+      "rootPersonId": "teresa-castano-pineda"
     }
   ]
 }

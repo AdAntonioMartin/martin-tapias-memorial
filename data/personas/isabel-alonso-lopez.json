@@ -1,0 +1,15 @@
+{
+  "id": "isabel-alonso-lopez",
+  "name": "Isabel Alonso Lopez",
+  "gender": "female",
+  "born": "",
+  "died": "",
+  "summary": "",
+  "heroImage": {
+    "src": "images/retrato.svg",
+    "alt": "Retrato de Isabel Alonso Lopez",
+    "caption": ""
+  },
+  "gallery": [],
+  "facts": []
+}

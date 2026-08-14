@@ -1,0 +1,15 @@
+{
+  "id": "elsa-castano-pineda",
+  "name": "Elsa Castano Pineda",
+  "gender": "female",
+  "born": "",
+  "died": "",
+  "summary": "",
+  "heroImage": {
+    "src": "images/retrato.svg",
+    "alt": "Retrato de Elsa Castano Pineda",
+    "caption": ""
+  },
+  "gallery": [],
+  "facts": []
+}

@@ -1,0 +1,16 @@
+{
+  "id": "castano",
+  "name": "Castano",
+  "gender": "unknown",
+  "born": "",
+  "died": "",
+  "summary": "",
+  "heroImage": {
+    "src": "images/retrato.svg",
+    "alt": "Retrato de ????? Castano",
+    "caption": ""
+  },
+  "gallery": [],
+  "facts": [],
+  "unknownNameParts": true
+}

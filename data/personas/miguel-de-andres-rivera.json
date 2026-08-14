@@ -1,0 +1,15 @@
+{
+  "id": "miguel-de-andres-rivera",
+  "name": "Miguel De Andres Rivera",
+  "gender": "male",
+  "born": "",
+  "died": "",
+  "summary": "",
+  "heroImage": {
+    "src": "images/retrato.svg",
+    "alt": "Retrato de Miguel De Andres Rivera",
+    "caption": ""
+  },
+  "gallery": [],
+  "facts": []
+}

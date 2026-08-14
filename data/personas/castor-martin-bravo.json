@@ -1,0 +1,15 @@
+{
+  "id": "castor-martin-bravo",
+  "name": "Castor Martin Bravo",
+  "gender": "male",
+  "born": "",
+  "died": "",
+  "summary": "",
+  "heroImage": {
+    "src": "images/retrato.svg",
+    "alt": "Retrato de Castor Martin Bravo",
+    "caption": ""
+  },
+  "gallery": [],
+  "facts": []
+}

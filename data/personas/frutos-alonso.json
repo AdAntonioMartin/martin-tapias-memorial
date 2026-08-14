@@ -1,0 +1,16 @@
+{
+  "id": "frutos-alonso",
+  "name": "Frutos Alonso",
+  "gender": "male",
+  "born": "",
+  "died": "",
+  "summary": "",
+  "heroImage": {
+    "src": "images/retrato.svg",
+    "alt": "Retrato de Frutos Alonso ?????",
+    "caption": ""
+  },
+  "gallery": [],
+  "facts": [],
+  "unknownNameParts": true
+}

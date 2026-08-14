@@ -1,0 +1,15 @@
+{
+  "id": "barbara-garcia-iglesia",
+  "name": "Barbara Garcia Iglesia",
+  "gender": "female",
+  "born": "",
+  "died": "",
+  "summary": "",
+  "heroImage": {
+    "src": "images/retrato.svg",
+    "alt": "Retrato de Barbara Garcia Iglesia",
+    "caption": ""
+  },
+  "gallery": [],
+  "facts": []
+}

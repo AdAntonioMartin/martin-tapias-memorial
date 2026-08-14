@@ -41,18 +41,21 @@ export function getColumns(records, configuredColumns) {
     });
   }
 
-  const inferred = [];
+  // Los campos internos (__personPath) no son columnas del listado.
+  const inferred = new Set();
   records.forEach((record) => {
     Object.keys(record).forEach((key) => {
+      if (key.startsWith("__")) {
+        return;
+      }
       const value = record[key];
-      const isPrimitive = value === null || ["string", "number", "boolean"].indexOf(typeof value) !== -1;
-      if (isPrimitive && inferred.indexOf(key) === -1) {
-        inferred.push(key);
+      if (value === null || ["string", "number", "boolean"].includes(typeof value)) {
+        inferred.add(key);
       }
     });
   });
 
-  return inferred.map((key) => ({
+  return [...inferred].map((key) => ({
     id: key,
     label: formatColumnLabel(key),
     source: key,

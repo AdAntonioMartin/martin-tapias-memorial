@@ -1,0 +1,15 @@
+{
+  "id": "ana-arranz",
+  "name": "Ana Arranz",
+  "gender": "female",
+  "born": "",
+  "died": "",
+  "summary": "",
+  "heroImage": {
+    "src": "images/retrato.svg",
+    "alt": "Retrato de Ana Arranz",
+    "caption": ""
+  },
+  "gallery": [],
+  "facts": []
+}

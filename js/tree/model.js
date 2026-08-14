@@ -48,6 +48,15 @@ function indexRecords(records) {
   return byId;
 }
 
+/** El avatar del arbol mide 44 px: pide la miniatura, no la imagen de galeria. */
+function avatarSrc(record) {
+  const hero = record && record.heroImage;
+  if (!hero) {
+    return "";
+  }
+  return hero.thumb || hero.src || "";
+}
+
 function createPerson(id, record, indexPath) {
   return {
     id,
@@ -55,7 +64,7 @@ function createPerson(id, record, indexPath) {
     name: (record && record.name) || titleFromId(id),
     years: formatYears(record),
     gender: normalizeGender(record && record.gender),
-    photo: (record && record.heroImage && record.heroImage.src) || "",
+    photo: avatarSrc(record),
     summary: (record && record.summary) || "",
     personPath: (record && record.__path) || indexPath || "",
     /** Union de la que esta persona es hija, si se conoce. */

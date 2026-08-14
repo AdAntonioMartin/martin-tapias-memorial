@@ -1,0 +1,15 @@
+{
+  "id": "isabel-iglesia",
+  "name": "Isabel Iglesia",
+  "gender": "female",
+  "born": "",
+  "died": "",
+  "summary": "",
+  "heroImage": {
+    "src": "images/retrato.svg",
+    "alt": "Retrato de Isabel Iglesia",
+    "caption": ""
+  },
+  "gallery": [],
+  "facts": []
+}

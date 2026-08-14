@@ -9,6 +9,7 @@ export const APP_CONFIG = {
   data: {
     listConfig: "data/lista.json",
     peopleIndex: "data/personas-index.json",
+    unions: "data/unions.json",
     treeRegistry: "data/trees/index.json",
     uiText: "data/ui-text.es.json"
   },

@@ -1,0 +1,15 @@
+{
+  "id": "julian-bravo-martin",
+  "name": "Julian Bravo Martin",
+  "gender": "male",
+  "born": "",
+  "died": "",
+  "summary": "",
+  "heroImage": {
+    "src": "images/retrato.svg",
+    "alt": "Retrato de Julian Bravo Martin",
+    "caption": ""
+  },
+  "gallery": [],
+  "facts": []
+}

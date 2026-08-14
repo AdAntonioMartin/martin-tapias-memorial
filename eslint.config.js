@@ -42,7 +42,11 @@ export default [
       globals: {
         console: "readonly",
         process: "readonly",
-        URL: "readonly"
+        URL: "readonly",
+        setTimeout: "readonly",
+        // Las funciones que se pasan a page.evaluate() corren en el navegador.
+        document: "readonly",
+        window: "readonly"
       }
     },
     rules: {

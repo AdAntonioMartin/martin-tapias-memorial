@@ -1,0 +1,15 @@
+{
+  "id": "amancio-martin-tapias",
+  "name": "Amancio Martin Tapias",
+  "gender": "male",
+  "born": "",
+  "died": "",
+  "summary": "",
+  "heroImage": {
+    "src": "images/retrato.svg",
+    "alt": "Retrato de Amancio Martin Tapias",
+    "caption": ""
+  },
+  "gallery": [],
+  "facts": []
+}

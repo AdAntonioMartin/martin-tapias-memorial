@@ -1,0 +1,15 @@
+{
+  "id": "luis-alberto-castano-pineda",
+  "name": "Luis Alberto Castano Pineda",
+  "gender": "unknown",
+  "born": "",
+  "died": "",
+  "summary": "",
+  "heroImage": {
+    "src": "images/retrato.svg",
+    "alt": "Retrato de Luis Alberto Castano Pineda",
+    "caption": ""
+  },
+  "gallery": [],
+  "facts": []
+}

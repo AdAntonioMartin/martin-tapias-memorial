@@ -1,0 +1,16 @@
+{
+  "id": "geronimo-ramirez",
+  "name": "Geronimo Ramirez",
+  "gender": "male",
+  "born": "",
+  "died": "",
+  "summary": "",
+  "heroImage": {
+    "src": "images/retrato.svg",
+    "alt": "Retrato de Geronimo Ramirez ????",
+    "caption": ""
+  },
+  "gallery": [],
+  "facts": [],
+  "unknownNameParts": true
+}

@@ -1,0 +1,15 @@
+{
+  "id": "francisco-alonso-garcia",
+  "name": "Francisco Alonso Garcia",
+  "gender": "male",
+  "born": "",
+  "died": "",
+  "summary": "",
+  "heroImage": {
+    "src": "images/retrato.svg",
+    "alt": "Retrato de Francisco Alonso Garcia",
+    "caption": ""
+  },
+  "gallery": [],
+  "facts": []
+}

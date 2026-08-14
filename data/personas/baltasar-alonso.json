@@ -1,0 +1,16 @@
+{
+  "id": "baltasar-alonso",
+  "name": "Baltasar Alonso",
+  "gender": "male",
+  "born": "",
+  "died": "",
+  "summary": "",
+  "heroImage": {
+    "src": "images/retrato.svg",
+    "alt": "Retrato de Baltasar Alonso ?????",
+    "caption": ""
+  },
+  "gallery": [],
+  "facts": [],
+  "unknownNameParts": true
+}

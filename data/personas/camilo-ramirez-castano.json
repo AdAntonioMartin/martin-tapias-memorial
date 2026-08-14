@@ -1,0 +1,15 @@
+{
+  "id": "camilo-ramirez-castano",
+  "name": "Camilo Ramirez Castano",
+  "gender": "male",
+  "born": "",
+  "died": "",
+  "summary": "",
+  "heroImage": {
+    "src": "images/retrato.svg",
+    "alt": "Retrato de Camilo Ramirez Castano",
+    "caption": ""
+  },
+  "gallery": [],
+  "facts": []
+}

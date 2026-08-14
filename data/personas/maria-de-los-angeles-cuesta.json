@@ -1,0 +1,15 @@
+{
+  "id": "maria-de-los-angeles-cuesta",
+  "name": "Maria De Los Angeles Cuesta",
+  "gender": "female",
+  "born": "",
+  "died": "",
+  "summary": "",
+  "heroImage": {
+    "src": "images/retrato.svg",
+    "alt": "Retrato de Maria De Los Angeles Cuesta",
+    "caption": ""
+  },
+  "gallery": [],
+  "facts": []
+}

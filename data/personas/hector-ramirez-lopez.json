@@ -1,0 +1,15 @@
+{
+  "id": "hector-ramirez-lopez",
+  "name": "Hector Ramirez Lopez",
+  "gender": "male",
+  "born": "",
+  "died": "",
+  "summary": "",
+  "heroImage": {
+    "src": "images/retrato.svg",
+    "alt": "Retrato de Hector Ramirez Lopez",
+    "caption": ""
+  },
+  "gallery": [],
+  "facts": []
+}

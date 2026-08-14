@@ -1,0 +1,15 @@
+{
+  "id": "sofia-martin-tapias",
+  "name": "Sofia Martin Tapias",
+  "gender": "female",
+  "born": "",
+  "died": "",
+  "summary": "",
+  "heroImage": {
+    "src": "images/retrato.svg",
+    "alt": "Retrato de Sofia Martin Tapias",
+    "caption": ""
+  },
+  "gallery": [],
+  "facts": []
+}

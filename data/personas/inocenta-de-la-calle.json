@@ -1,0 +1,15 @@
+{
+  "id": "inocenta-de-la-calle",
+  "name": "Inocenta De La Calle",
+  "gender": "female",
+  "born": "",
+  "died": "",
+  "summary": "",
+  "heroImage": {
+    "src": "images/retrato.svg",
+    "alt": "Retrato de Inocenta De La Calle",
+    "caption": ""
+  },
+  "gallery": [],
+  "facts": []
+}

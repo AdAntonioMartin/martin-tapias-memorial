@@ -1,0 +1,15 @@
+{
+  "id": "simon-barral",
+  "name": "Simon Barral",
+  "gender": "male",
+  "born": "",
+  "died": "",
+  "summary": "",
+  "heroImage": {
+    "src": "images/retrato.svg",
+    "alt": "Retrato de Simon Barral",
+    "caption": ""
+  },
+  "gallery": [],
+  "facts": []
+}

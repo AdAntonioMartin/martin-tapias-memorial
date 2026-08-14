@@ -1,0 +1,15 @@
+{
+  "id": "jorge-guayara",
+  "name": "Jorge Guayara",
+  "gender": "male",
+  "born": "",
+  "died": "",
+  "summary": "",
+  "heroImage": {
+    "src": "images/retrato.svg",
+    "alt": "Retrato de Jorge Guayara",
+    "caption": ""
+  },
+  "gallery": [],
+  "facts": []
+}

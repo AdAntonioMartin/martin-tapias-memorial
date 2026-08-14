@@ -1,0 +1,15 @@
+{
+  "id": "fernando-de-antonio-minguez",
+  "name": "Fernando De Antonio Minguez",
+  "gender": "male",
+  "born": "",
+  "died": "",
+  "summary": "",
+  "heroImage": {
+    "src": "images/retrato.svg",
+    "alt": "Retrato de Fernando De Antonio Minguez",
+    "caption": ""
+  },
+  "gallery": [],
+  "facts": []
+}

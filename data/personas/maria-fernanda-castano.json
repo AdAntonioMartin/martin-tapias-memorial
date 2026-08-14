@@ -1,0 +1,16 @@
+{
+  "id": "maria-fernanda-castano",
+  "name": "Maria Fernanda Castano",
+  "gender": "female",
+  "born": "",
+  "died": "",
+  "summary": "",
+  "heroImage": {
+    "src": "images/retrato.svg",
+    "alt": "Retrato de Maria Fernanda ???? Castano",
+    "caption": ""
+  },
+  "gallery": [],
+  "facts": [],
+  "unknownNameParts": true
+}

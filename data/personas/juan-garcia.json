@@ -1,0 +1,15 @@
+{
+  "id": "juan-garcia",
+  "name": "Juan Garcia",
+  "gender": "male",
+  "born": "",
+  "died": "",
+  "summary": "",
+  "heroImage": {
+    "src": "images/retrato.svg",
+    "alt": "Retrato de Juan Garcia",
+    "caption": ""
+  },
+  "gallery": [],
+  "facts": []
+}

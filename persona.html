@@ -50,7 +50,10 @@
         <article class="detail-card">
           <h2 data-i18n="detail.sections.mainImage">Imagen principal</h2>
           <figure class="detail-figure" id="person-figure" hidden>
-            <img id="person-image" alt="" width="640" height="480" decoding="async" />
+            <picture>
+              <source id="person-image-webp" type="image/webp" />
+              <img id="person-image" alt="" width="640" height="480" decoding="async" />
+            </picture>
             <figcaption id="person-image-caption"></figcaption>
           </figure>
         </article>

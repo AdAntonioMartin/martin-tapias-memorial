@@ -1,0 +1,15 @@
+{
+  "id": "jenorimo-tapias-alvaro",
+  "name": "Jenorimo Tapias Alvaro",
+  "gender": "male",
+  "born": "",
+  "died": "",
+  "summary": "",
+  "heroImage": {
+    "src": "images/retrato.svg",
+    "alt": "Retrato de Jenorimo Tapias Alvaro",
+    "caption": ""
+  },
+  "gallery": [],
+  "facts": []
+}

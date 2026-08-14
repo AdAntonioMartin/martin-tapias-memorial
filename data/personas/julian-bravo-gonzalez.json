@@ -1,0 +1,15 @@
+{
+  "id": "julian-bravo-gonzalez",
+  "name": "Julian Bravo Gonzalez",
+  "gender": "male",
+  "born": "",
+  "died": "",
+  "summary": "",
+  "heroImage": {
+    "src": "images/retrato.svg",
+    "alt": "Retrato de Julian Bravo Gonzalez",
+    "caption": ""
+  },
+  "gallery": [],
+  "facts": []
+}

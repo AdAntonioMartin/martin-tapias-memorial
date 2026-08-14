@@ -1,0 +1,15 @@
+{
+  "id": "ana-rita-pineda-ospina",
+  "name": "Ana Rita Pineda Ospina",
+  "gender": "female",
+  "born": "",
+  "died": "",
+  "summary": "",
+  "heroImage": {
+    "src": "images/retrato.svg",
+    "alt": "Retrato de Ana Rita Pineda Ospina",
+    "caption": ""
+  },
+  "gallery": [],
+  "facts": []
+}

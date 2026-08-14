@@ -1,0 +1,15 @@
+{
+  "id": "angel",
+  "name": "Angel",
+  "gender": "male",
+  "born": "",
+  "died": "",
+  "summary": "",
+  "heroImage": {
+    "src": "images/retrato.svg",
+    "alt": "Retrato de Angel",
+    "caption": ""
+  },
+  "gallery": [],
+  "facts": []
+}

@@ -1,0 +1,15 @@
+{
+  "id": "sofio-martin-tapias",
+  "name": "Sofio Martin Tapias",
+  "gender": "male",
+  "born": "",
+  "died": "",
+  "summary": "",
+  "heroImage": {
+    "src": "images/retrato.svg",
+    "alt": "Retrato de Sofio Martin Tapias",
+    "caption": ""
+  },
+  "gallery": [],
+  "facts": []
+}

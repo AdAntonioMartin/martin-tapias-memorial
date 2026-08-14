@@ -1,0 +1,15 @@
+{
+  "id": "nestor-castano-pineda",
+  "name": "Nestor Castano Pineda",
+  "gender": "male",
+  "born": "",
+  "died": "",
+  "summary": "",
+  "heroImage": {
+    "src": "images/retrato.svg",
+    "alt": "Retrato de Nestor Castano Pineda",
+    "caption": ""
+  },
+  "gallery": [],
+  "facts": []
+}

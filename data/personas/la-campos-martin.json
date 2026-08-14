@@ -1,0 +1,16 @@
+{
+  "id": "la-campos-martin",
+  "name": "La Campos Martin",
+  "gender": "female",
+  "born": "",
+  "died": "",
+  "summary": "",
+  "heroImage": {
+    "src": "images/retrato.svg",
+    "alt": "Retrato de La Campos Martin ????",
+    "caption": ""
+  },
+  "gallery": [],
+  "facts": [],
+  "unknownNameParts": true
+}
