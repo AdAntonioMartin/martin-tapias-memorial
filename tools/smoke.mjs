@@ -142,6 +142,30 @@ function measureContrast() {
     .filter(Boolean);
 }
 
+/**
+ * Corre dentro del navegador. Compara la proporcion natural de cada imagen con
+ * la que se pinta. Se ignoran las que usan object-fit, que recortan a proposito
+ * (los avatares circulares del arbol).
+ */
+function measureAspectRatios() {
+  return [...document.images]
+    .filter((img) => img.naturalWidth && img.naturalHeight)
+    .filter((img) => ["fill", "none"].includes(getComputedStyle(img).objectFit))
+    .map((img) => {
+      const box = img.getBoundingClientRect();
+      if (!box.width || !box.height) {
+        return null;
+      }
+      const natural = img.naturalWidth / img.naturalHeight;
+      const painted = box.width / box.height;
+      return {
+        src: img.currentSrc.split("/").pop(),
+        deviation: Number(((Math.abs(natural - painted) / natural) * 100).toFixed(1))
+      };
+    })
+    .filter(Boolean);
+}
+
 function reportErrors(errors) {
   if (!errors.length) {
     console.log("  ok   sin errores de consola ni peticiones fallidas");
@@ -239,6 +263,25 @@ async function main() {
       const { page } = await withPage(browser, "/persona.html?data=https://example.com/x.json");
       check("no se renderiza contenido externo", await page.locator("#person-name").innerText(), (value) =>
         value.startsWith("No se pudo")
+      );
+      await page.close();
+    }
+
+    console.log("\n== Las fotos conservan su proporcion ==");
+    for (const [name, url] of [
+      ["ficha con fotos", "/persona.html?id=isabel-minguez-gonzalez"],
+      ["ficha sin fotos", "/persona.html?id=alex"]
+    ]) {
+      const { page } = await withPage(browser, url, { width: 1280, height: 1600 });
+      await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
+      await page.waitForTimeout(900);
+      const ratios = await page.evaluate(measureAspectRatios);
+      const worst = ratios.reduce((acc, row) => (row.deviation > acc.deviation ? row : acc), {
+        src: "-",
+        deviation: 0
+      });
+      check(`${name} (${ratios.length} imágenes, peor: ${worst.src})`, `${worst.deviation}% de desvío`, () =>
+        ratios.every((row) => row.deviation <= 2)
       );
       await page.close();
     }

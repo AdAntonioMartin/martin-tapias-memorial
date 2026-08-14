@@ -312,7 +312,11 @@ tbody tr:hover {
 
 .detail-figure img,
 .gallery-card img {
+  display: block;
   width: 100%;
+  /* Imprescindible junto a los atributos width/height del <img>: sin esto el
+     navegador usa la altura del atributo como altura real y deforma la foto. */
+  height: auto;
   border: 1px solid var(--color-line);
   border-radius: var(--radius-medium);
   background: var(--media-bg);

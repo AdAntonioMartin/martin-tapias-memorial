@@ -72,9 +72,14 @@ function renderHeroImage(image) {
   }
   imageElement.src = image.src;
   imageElement.alt = image.alt || "";
+  // Reservan el hueco con la proporcion correcta antes de que cargue la foto.
+  // Si no se conocen, se quitan: mas vale ninguna pista que una equivocada.
   if (image.width && image.height) {
-    imageElement.width = image.width;
-    imageElement.height = image.height;
+    imageElement.setAttribute("width", image.width);
+    imageElement.setAttribute("height", image.height);
+  } else {
+    imageElement.removeAttribute("width");
+    imageElement.removeAttribute("height");
   }
   captionElement.textContent = image.caption || "";
 }

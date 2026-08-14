@@ -53,7 +53,9 @@
           <figure class="detail-figure" id="person-figure" hidden>
             <picture>
               <source id="person-image-webp" type="image/webp" />
-              <img id="person-image" alt="" width="640" height="480" decoding="async" />
+              <!-- Las dimensiones reales las pone js/detail/render.js al cargar la ficha:
+                   un valor fijo aqui seria una proporcion equivocada para casi todas. -->
+              <img id="person-image" alt="" decoding="async" />
             </picture>
             <figcaption id="person-image-caption"></figcaption>
           </figure>
