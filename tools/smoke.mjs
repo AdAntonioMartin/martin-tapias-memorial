@@ -69,6 +69,79 @@ async function withPage(browser, url, viewport = { width: 1280, height: 900 }) {
   return { page, errors, requests: () => requests };
 }
 
+/**
+ * Corre dentro del navegador. Compone los fondos translucidos de toda la
+ * cadena de ancestros antes de calcular el ratio, que es lo que hace la
+ * diferencia entre medir el color declarado y el que se ve de verdad.
+ */
+function measureContrast() {
+  const parse = (color) => {
+    const parts = color.match(/[\d.]+/g).map(Number);
+    return { r: parts[0], g: parts[1], b: parts[2], a: parts[3] === undefined ? 1 : parts[3] };
+  };
+  const over = (fg, bg) => ({
+    r: fg.r * fg.a + bg.r * (1 - fg.a),
+    g: fg.g * fg.a + bg.g * (1 - fg.a),
+    b: fg.b * fg.a + bg.b * (1 - fg.a),
+    a: 1
+  });
+  const luminance = (color) => {
+    const channel = (value) => {
+      const v = value / 255;
+      return v <= 0.03928 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4;
+    };
+    return 0.2126 * channel(color.r) + 0.7152 * channel(color.g) + 0.0722 * channel(color.b);
+  };
+  const ratio = (a, b) => {
+    const l1 = luminance(a);
+    const l2 = luminance(b);
+    return (Math.max(l1, l2) + 0.05) / (Math.min(l1, l2) + 0.05);
+  };
+  const effectiveBackground = (element) => {
+    const stack = [];
+    let node = element;
+    while (node) {
+      const background = parse(getComputedStyle(node).backgroundColor);
+      if (background.a > 0) {
+        stack.push(background);
+      }
+      node = node.parentElement;
+    }
+    stack.push({ r: 255, g: 255, b: 255, a: 1 });
+    let composed = stack[stack.length - 1];
+    for (let i = stack.length - 2; i >= 0; i -= 1) {
+      composed = over(stack[i], composed);
+    }
+    return composed;
+  };
+
+  const targets = [
+    [".eyebrow", "eyebrow"],
+    ["th", "cabecera de tabla"],
+    [".lead", "lead"],
+    [".description", "descripcion"],
+    ["td", "celda"],
+    [".site-nav__link", "enlace de navegacion"]
+  ];
+
+  return targets
+    .map(([selector, label]) => {
+      const element = document.querySelector(selector);
+      if (!element) {
+        return null;
+      }
+      const styles = getComputedStyle(element);
+      const size = parseFloat(styles.fontSize);
+      const isLarge = size >= 24 || (size >= 18.66 && parseInt(styles.fontWeight, 10) >= 700);
+      return {
+        label,
+        ratio: Number(ratio(parse(styles.color), effectiveBackground(element)).toFixed(2)),
+        min: isLarge ? 3 : 4.5
+      };
+    })
+    .filter(Boolean);
+}
+
 function reportErrors(errors) {
   if (!errors.length) {
     console.log("  ok   sin errores de consola ni peticiones fallidas");
@@ -167,6 +240,21 @@ async function main() {
       check("no se renderiza contenido externo", await page.locator("#person-name").innerText(), (value) =>
         value.startsWith("No se pudo")
       );
+      await page.close();
+    }
+
+    console.log("\n== Contraste WCAG AA en los tres temas ==");
+    {
+      const { page } = await withPage(browser, "/index.html");
+      for (const theme of ["light-celestial", "dawn-amber", "dark"]) {
+        await page.evaluate((value) => document.documentElement.setAttribute("data-theme", value), theme);
+        await page.waitForTimeout(200);
+        const rows = await page.evaluate(measureContrast);
+        const worst = rows.reduce((acc, row) => (row.ratio / row.min < acc.ratio / acc.min ? row : acc));
+        check(`${theme} (peor: ${worst.label})`, `${worst.ratio}:1 sobre ${worst.min}`, () =>
+          rows.every((row) => row.ratio >= row.min)
+        );
+      }
       await page.close();
     }
 

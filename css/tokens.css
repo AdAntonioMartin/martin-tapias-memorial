@@ -83,7 +83,9 @@
   --overlay-veil: rgb(10 9 8 / 55%);
 
   /* Derivados del acento: una sola fuente por tema. */
-  --nav-bg: color-mix(in srgb, var(--color-background) 88%, transparent);
+  /* Sobre la superficie, no sobre el fondo: el degradado del body dejaba el
+     texto del enlace en 4,07:1, por debajo del minimo de 4,5. */
+  --nav-bg: color-mix(in srgb, var(--color-surface-strong) 94%, transparent);
   --nav-hover-bg: color-mix(in srgb, var(--color-accent) 12%, transparent);
   --nav-active-bg: color-mix(in srgb, var(--color-accent) 16%, transparent);
   --table-head-bg: color-mix(in srgb, var(--color-accent) 8%, transparent);
@@ -108,8 +110,8 @@
   --color-text-soft: #4d5c7d;
   --color-line: rgb(140 162 209 / 35%);
   --color-accent: #7aa7e8;
-  --color-accent-strong: #2f5da8;
-  --color-label: #2f5da8;
+  --color-accent-strong: #24518f;
+  --color-label: #24518f;
   --color-focus: #1d4b91;
 
   --color-male: #3f6f92;
@@ -144,8 +146,8 @@
   --color-text-soft: #6b5843;
   --color-line: rgb(168 129 91 / 34%);
   --color-accent: #c48e56;
-  --color-accent-strong: #855023;
-  --color-label: #855023;
+  --color-accent-strong: #71431b;
+  --color-label: #71431b;
   --color-focus: #6d3f18;
 
   --color-male: #3d6376;
