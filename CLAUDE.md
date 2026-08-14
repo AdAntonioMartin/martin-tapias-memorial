@@ -35,9 +35,15 @@ All three go through `bootstrapPage()` (`js/core/bootstrap.js`): apply theme →
 
 ### Central configuration
 
-`js/config/app-config.js` holds every data path (`APP_CONFIG.data.*`), template name
+`js/config/app-config.js` holds the theme, every data path (`APP_CONFIG.data.*`), template name
 (`APP_CONFIG.templates.*`) and tree parameter (`APP_CONFIG.tree.*`). Add new paths there rather than
 hardcoding literals at call sites.
+
+It is deliberately **a classic script, not an ES module**: it assigns `window.APP_CONFIG` and is
+loaded synchronously in `<head>` before `js/theme-boot.js`, which needs the theme before first
+paint. Modules read it through `js/config/index.js`, which only re-exposes it — import from there,
+never from `app-config.js`. If you convert it back to a module the theme silently stops working and
+a flash returns.
 
 ### Data model
 
@@ -101,5 +107,7 @@ avatars), `card` (640 px, gallery), `full` (1600 px), each as WebP plus a JPEG f
   `<button>` or `<a>`, never a `<div>` with a listener
 - Colors, spacing, type and durations come from `css/tokens.css`; `--color-accent` is decorative and
   fails contrast on small text, so use `--color-label` for labels
-- The theme must be applied by the synchronous `js/theme-boot.js`, never from a module
+- The theme must be applied by the synchronous `js/theme-boot.js`, never from a module.
+  `APP_CONFIG.theme` outranks `prefers-color-scheme`; only an explicit visitor choice in
+  `localStorage` outranks the config. Use `theme: "auto"` to follow the system instead
 - Errors get logged with context, never swallowed by a bare `.catch(() => …)`

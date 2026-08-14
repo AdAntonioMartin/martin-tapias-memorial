@@ -1,6 +1,6 @@
 import { fetchJson } from "../core/net.js";
 import { loadByIdIndex } from "../core/dataIndex.js";
-import { getDataConfig } from "../config/app-config.js";
+import { getDataConfig } from "../config/index.js";
 import { normalizeDataPath } from "../core/url.js";
 
 function getQueryParams() {

@@ -1,6 +1,6 @@
 import { fetchJson } from "../core/net.js";
 import { loadByIdIndex } from "../core/dataIndex.js";
-import { getDataConfig } from "../config/app-config.js";
+import { getDataConfig } from "../config/index.js";
 
 export function loadPersonRecords(paths) {
   const requests = paths.map((path) =>

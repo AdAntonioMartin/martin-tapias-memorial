@@ -1,4 +1,4 @@
-import { getDataConfig, getTemplates } from "../config/app-config.js";
+import { getDataConfig, getTemplates } from "../config/index.js";
 
 export function getPageConfig() {
   return {

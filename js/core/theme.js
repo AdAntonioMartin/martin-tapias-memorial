@@ -1,4 +1,4 @@
-import { APP_CONFIG } from "../config/app-config.js";
+import { APP_CONFIG } from "../config/index.js";
 
 /** Mantener sincronizado con js/theme-boot.js y css/tokens.css. */
 export const THEMES = ["dark", "light-celestial", "dawn-amber"];
@@ -13,28 +13,30 @@ function readStoredTheme() {
   }
 }
 
-function prefersDark() {
-  return !!window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+function systemTheme() {
+  const prefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+  return prefersDark ? "dark" : "light-celestial";
+}
+
+/** Misma prioridad que js/theme-boot.js: eleccion del visitante, luego configuracion, luego sistema. */
+function resolveTheme() {
+  const chosen = readStoredTheme();
+  if (chosen) {
+    return chosen;
+  }
+  if (APP_CONFIG.theme === "auto") {
+    return systemTheme();
+  }
+  return THEMES.includes(APP_CONFIG.theme) ? APP_CONFIG.theme : systemTheme();
 }
 
 export function getActiveTheme() {
   return document.documentElement.getAttribute("data-theme") || resolveTheme();
 }
 
-function resolveTheme() {
-  const stored = readStoredTheme();
-  if (stored) {
-    return stored;
-  }
-  if (prefersDark()) {
-    return "dark";
-  }
-  return THEMES.includes(APP_CONFIG.theme) ? APP_CONFIG.theme : "dark";
-}
-
 /**
- * theme-boot.js ya ha fijado el atributo antes del primer pintado; esto solo
- * lo reafirma para el caso de que ese script no se haya podido cargar.
+ * theme-boot.js ya ha fijado el atributo antes del primer pintado. Esto solo
+ * cubre el caso de que ese script no se haya podido cargar.
  */
 export function applyAppTheme() {
   if (!document.documentElement.getAttribute("data-theme")) {
@@ -42,6 +44,7 @@ export function applyAppTheme() {
   }
 }
 
+/** Guarda la eleccion del visitante, que a partir de ahi gana sobre la configuracion. */
 export function setTheme(theme) {
   if (!THEMES.includes(theme)) {
     return;
@@ -52,4 +55,14 @@ export function setTheme(theme) {
   } catch {
     // Sin almacenamiento el tema simplemente no persiste entre visitas.
   }
+}
+
+/** Vuelve a lo que diga APP_CONFIG, descartando la eleccion guardada. */
+export function clearThemeChoice() {
+  try {
+    window.localStorage.removeItem(STORAGE_KEY);
+  } catch {
+    // Nada que limpiar.
+  }
+  document.documentElement.setAttribute("data-theme", resolveTheme());
 }

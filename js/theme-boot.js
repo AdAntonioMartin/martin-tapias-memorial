@@ -1,32 +1,68 @@
 /*
- * Se carga sincronamente desde el <head>, antes de que el navegador pinte.
+ * Resuelve y aplica el tema antes de que el navegador pinte.
  *
- * El tema no puede aplicarse desde js/core/theme.js porque type="module" es
- * diferido por definicion: para cuando se ejecuta, la pagina ya se ha pintado
- * con el :root por defecto (oscuro) y salta al tema configurado (claro),
- * produciendo un parpadeo de negro a azul en cada carga.
+ * Se carga sincronamente en el <head>, justo despues de js/config/app-config.js.
+ * No puede hacerse desde js/core/theme.js porque type="module" es diferido por
+ * definicion: para cuando se ejecuta, la pagina ya se ha pintado con el tema
+ * anterior y se ve un parpadeo.
  *
- * Mantener la lista de temas sincronizada con css/tokens.css y js/core/theme.js.
+ * Orden de prioridad:
+ *   1. Lo que el visitante haya elegido en la pagina (localStorage).
+ *   2. APP_CONFIG.theme, que es la decision de diseno del sitio.
+ *   3. La preferencia del sistema, solo si APP_CONFIG.theme vale "auto".
+ *
+ * Mantener THEMES sincronizado con css/tokens.css y js/core/theme.js.
  */
 (function () {
   const THEMES = ["dark", "light-celestial", "dawn-amber"];
-  const DEFAULT_THEME = "light-celestial";
   const STORAGE_KEY = "memorial:theme";
+  const config = window.APP_CONFIG || {};
 
-  let theme = null;
-  try {
-    theme = window.localStorage.getItem(STORAGE_KEY);
-  } catch {
-    // Almacenamiento no disponible (modo privado, cookies bloqueadas).
+  function fromStorage() {
+    try {
+      const stored = window.localStorage.getItem(STORAGE_KEY);
+      return THEMES.indexOf(stored) !== -1 ? stored : "";
+    } catch {
+      // Almacenamiento no disponible (modo privado, cookies bloqueadas).
+      return "";
+    }
   }
 
-  if (THEMES.indexOf(theme) === -1) {
-    theme = null;
+  function fromSystem() {
+    const prefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+    return prefersDark ? "dark" : "light-celestial";
   }
 
-  if (!theme && window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) {
-    theme = "dark";
+  function resolve() {
+    const chosen = fromStorage();
+    if (chosen) {
+      return chosen;
+    }
+    const configured = config.theme;
+    if (configured === "auto") {
+      return fromSystem();
+    }
+    if (THEMES.indexOf(configured) !== -1) {
+      return configured;
+    }
+    if (configured) {
+      console.error(`theme: "${configured}" no es un tema valido. Usa uno de: ${THEMES.join(", ")}, auto.`);
+    }
+    return fromSystem();
   }
 
-  document.documentElement.setAttribute("data-theme", theme || DEFAULT_THEME);
+  /** Color de la barra de direcciones en movil, por tema. */
+  const THEME_COLORS = {
+    dark: "#11100f",
+    "light-celestial": "#eef5ff",
+    "dawn-amber": "#f6efe6"
+  };
+
+  const theme = resolve();
+  document.documentElement.setAttribute("data-theme", theme);
+
+  const meta = document.querySelector('meta[name="theme-color"]');
+  if (meta && THEME_COLORS[theme]) {
+    meta.setAttribute("content", THEME_COLORS[theme]);
+  }
 })();

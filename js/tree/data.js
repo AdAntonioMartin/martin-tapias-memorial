@@ -1,4 +1,4 @@
-import { getDataConfig, getTemplates } from "../config/app-config.js";
+import { getDataConfig, getTemplates } from "../config/index.js";
 import { fetchJson } from "../core/net.js";
 import { getTreeKeyFromUrl, normalizeDataPath } from "../core/url.js";
 import { buildTreeModel, toFamilyChartData } from "./model.js";

@@ -2,7 +2,7 @@ import { getLaunchTarget, loadTreePayload } from "./tree/data.js";
 import { collectScopeIds, scopeFamilyChartData } from "./tree/scope.js";
 import { bindPanelNavigation, closePanel, isPanelOpen, openPanel } from "./tree/panel.js";
 import { GENDER_FALLBACK } from "./tree/config.js";
-import { getTreeConfig } from "./config/app-config.js";
+import { getTreeConfig } from "./config/index.js";
 import { escapeHtml } from "./core/html.js";
 import { t } from "./core/i18n.js";
 import { normalizeDataPath } from "./core/url.js";

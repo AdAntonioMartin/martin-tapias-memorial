@@ -1,7 +1,7 @@
 import { escapeHtml, setText } from "../core/html.js";
 import { t } from "../core/i18n.js";
 import { inferTreeKeyFromPath, buildQueryUrl } from "../core/url.js";
-import { getTemplates } from "../config/app-config.js";
+import { getTemplates } from "../config/index.js";
 
 function renderItemsOrFallback(elementId, items, fallbackHtml, itemTemplateFn) {
   const target = document.getElementById(elementId);

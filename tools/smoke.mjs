@@ -13,7 +13,7 @@
 
 import { spawn } from "node:child_process";
 import { existsSync } from "node:fs";
-import { mkdir } from "node:fs/promises";
+import { mkdir, readFile } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { chromium } from "playwright-core";
@@ -240,6 +240,21 @@ async function main() {
       check("no se renderiza contenido externo", await page.locator("#person-name").innerText(), (value) =>
         value.startsWith("No se pudo")
       );
+      await page.close();
+    }
+
+    console.log("\n== El tema de APP_CONFIG manda ==");
+    {
+      // Con el sistema en oscuro, el tema configurado debe seguir ganando:
+      // prefers-color-scheme solo decide si la configuracion dice "auto".
+      const source = await readFile(path.join(ROOT, "js/config/app-config.js"), "utf8");
+      const configured = (source.match(/theme:\s*"([^"]+)"/) || [])[1] || "";
+      const expected = configured === "auto" ? "dark" : configured;
+
+      const page = await browser.newPage({ colorScheme: "dark" });
+      await page.goto(`${BASE}/index.html`, { waitUntil: "domcontentloaded" });
+      const applied = await page.evaluate(() => document.documentElement.getAttribute("data-theme"));
+      check(`APP_CONFIG.theme = "${configured}" con el sistema en oscuro`, applied, expected);
       await page.close();
     }
 

@@ -127,11 +127,32 @@ ampliada) y dos formatos (WebP con respaldo JPEG).
 
 ## Temas
 
-Tres temas: `dark`, `light-celestial` y `dawn-amber`. El tema se resuelve en
-`js/theme-boot.js`, un script síncrono en el `<head>`, en este orden: lo que el
-visitante haya elegido (`localStorage`), luego `prefers-color-scheme`, y si no
-el valor de `APP_CONFIG.theme`. Tiene que ser síncrono: desde un módulo ES el
-navegador ya habría pintado con el tema anterior y se vería un parpadeo.
+Para cambiar el tema del sitio se edita una sola línea, en
+`js/config/app-config.js`:
 
-Al añadir un tema hay que tocar tres sitios: `css/tokens.css`,
+```js
+theme: "dawn-amber"   // "dark" | "light-celestial" | "dawn-amber" | "auto"
+```
+
+`auto` sigue la preferencia del sistema. Cualquier otro valor manda sobre esa
+preferencia: si el sitio está configurado en claro, se ve claro aunque el
+visitante tenga el sistema operativo en oscuro. Lo único que gana al valor
+configurado es una elección explícita del propio visitante en la página, que se
+guarda en `localStorage` (`setTheme()` en `js/core/theme.js`, y
+`clearThemeChoice()` para volver a lo que diga la configuración).
+
+El orden completo es: elección del visitante → `APP_CONFIG.theme` →
+`prefers-color-scheme` (solo si vale `auto` o si el valor configurado no es
+válido).
+
+### Por qué la configuración es un script clásico
+
+`js/config/app-config.js` no es un módulo ES: asigna `window.APP_CONFIG` y se
+carga de forma síncrona en el `<head>`, antes que `js/theme-boot.js`. Tiene que
+ser así porque `type="module"` es diferido por definición: si el tema se
+aplicara desde un módulo, el navegador ya habría pintado con el tema anterior y
+se vería un parpadeo en cada carga. Los módulos leen la configuración a través
+de `js/config/index.js`, que solo la reexpone.
+
+Si se añade un tema hay que tocar tres sitios: `css/tokens.css`,
 `js/theme-boot.js` y `js/core/theme.js`.
