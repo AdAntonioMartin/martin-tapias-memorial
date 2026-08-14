@@ -44,6 +44,7 @@ export default [
         process: "readonly",
         URL: "readonly",
         setTimeout: "readonly",
+        Buffer: "readonly",
         // Las funciones que se pasan a page.evaluate() corren en el navegador.
         document: "readonly",
         window: "readonly"

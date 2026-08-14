@@ -8,9 +8,10 @@ import { formatYears } from "./format.js";
  * para construir estructuras casi identicas con valores por defecto distintos.
  * Aqui se construye una sola vez y `toFamilyChartData` la adapta al formato
  * que espera family-chart.
+ *
+ * La entrada es el mapa `people` de data/tree-bundle.json: un objeto plano por
+ * persona con lo justo para pintar una tarjeta.
  */
-
-const EMPTY_RELS = Object.freeze({ parents: [], spouses: [], children: [] });
 
 function normalizeGender(gender) {
   return gender === "male" || gender === "female" ? gender : "unknown";
@@ -34,39 +35,15 @@ function sanitizeUnion(union) {
   };
 }
 
-function indexRecords(records) {
-  const byId = new Map();
-  (Array.isArray(records) ? records : []).forEach((record) => {
-    if (!record) {
-      return;
-    }
-    const key = record.id || record.__id;
-    if (key && !byId.has(key)) {
-      byId.set(key, record);
-    }
-  });
-  return byId;
-}
-
-/** El avatar del arbol mide 44 px: pide la miniatura, no la imagen de galeria. */
-function avatarSrc(record) {
-  const hero = record && record.heroImage;
-  if (!hero) {
-    return "";
-  }
-  return hero.thumb || hero.src || "";
-}
-
-function createPerson(id, record, indexPath) {
+function createPerson(id, source) {
   return {
     id,
-    record: record || null,
-    name: (record && record.name) || titleFromId(id),
-    years: formatYears(record),
-    gender: normalizeGender(record && record.gender),
-    photo: avatarSrc(record),
-    summary: (record && record.summary) || "",
-    personPath: (record && record.__path) || indexPath || "",
+    name: (source && source.name) || titleFromId(id),
+    years: formatYears(source),
+    gender: normalizeGender(source && source.gender),
+    photo: (source && source.thumb) || "",
+    summary: (source && source.summary) || "",
+    personPath: (source && source.path) || "",
     /** Union de la que esta persona es hija, si se conoce. */
     parentUnionId: null,
     /** Uniones en las que participa como pareja. */
@@ -84,14 +61,12 @@ function addUnique(list, value) {
 }
 
 /**
- * @param {Array} unions  uniones tal cual vienen del JSON
- * @param {Array} records fichas ya descargadas
- * @param {Object} byId   mapa id -> ruta, para las personas sin ficha
+ * @param {Array} unions   uniones tal cual vienen del JSON
+ * @param {Object} peopleById mapa id -> datos de tarjeta
  * @returns {{people: Map, unions: Map, order: string[], missingIds: string[]}}
  */
-export function buildTreeModel(unions, records, byId) {
-  const recordById = indexRecords(records);
-  const pathById = byId || {};
+export function buildTreeModel(unions, peopleById) {
+  const sources = peopleById || {};
   const people = new Map();
   const unionMap = new Map();
   const order = [];
@@ -99,11 +74,10 @@ export function buildTreeModel(unions, records, byId) {
 
   const ensurePerson = (id) => {
     if (!people.has(id)) {
-      const record = recordById.get(id) || null;
-      if (!record) {
+      if (!sources[id]) {
         missingIds.push(id);
       }
-      people.set(id, createPerson(id, record, pathById[id]));
+      people.set(id, createPerson(id, sources[id]));
       order.push(id);
     }
     return people.get(id);
@@ -117,13 +91,9 @@ export function buildTreeModel(unions, records, byId) {
     const union = sanitizeUnion(rawUnion);
     unionMap.set(union.id, union);
 
-    union.partners.forEach((id) => {
-      const person = ensurePerson(id);
-      addUnique(person.unionIds, union.id);
-    });
+    union.partners.forEach((id) => addUnique(ensurePerson(id).unionIds, union.id));
     union.children.forEach((id) => {
-      const person = ensurePerson(id);
-      person.parentUnionId = union.id;
+      ensurePerson(id).parentUnionId = union.id;
     });
 
     union.partners.forEach((partnerId) => {
@@ -141,7 +111,7 @@ export function buildTreeModel(unions, records, byId) {
   });
 
   if (missingIds.length) {
-    console.warn(`tree: ${missingIds.length} personas referenciadas sin ficha`, missingIds);
+    console.warn(`tree: ${missingIds.length} personas referenciadas sin datos`, missingIds);
   }
 
   return { people, unions: unionMap, order, missingIds };
@@ -177,9 +147,4 @@ export function toFamilyChartData(model) {
       }
     };
   });
-}
-
-export function getRels(model, id) {
-  const person = model.people.get(id);
-  return person || EMPTY_RELS;
 }

@@ -1,6 +1,5 @@
 import { getDataConfig, getTemplates } from "../config/app-config.js";
 import { fetchJson } from "../core/net.js";
-import { loadByIdIndex } from "../core/dataIndex.js";
 import { getTreeKeyFromUrl, normalizeDataPath } from "../core/url.js";
 import { buildTreeModel, toFamilyChartData } from "./model.js";
 
@@ -40,35 +39,10 @@ function resolveTreeView(registry) {
   };
 }
 
-function loadPersonRecords(ids, byId) {
-  const requests = ids.map((id) => {
-    const personPath = byId[id];
-    if (!personPath) {
-      return Promise.resolve(null);
-    }
-    return fetchJson(personPath)
-      .then((record) => {
-        record.__path = personPath;
-        return record;
-      })
-      .catch((error) => {
-        console.error(`tree: no se pudo cargar la ficha de "${id}"`, error);
-        return null;
-      });
-  });
-
-  return Promise.all(requests).then((results) => results.filter(Boolean));
-}
-
-function getReferencedIds(unions) {
-  const ids = new Set();
-  (Array.isArray(unions) ? unions : []).forEach((union) => {
-    (union.partners || []).forEach((id) => id && ids.add(id));
-    (union.children || []).forEach((id) => id && ids.add(id));
-  });
-  return [...ids];
-}
-
+/**
+ * Dos peticiones para todo el arbol: el registro de vistas y el bundle.
+ * Antes se pedia una ficha por persona, unas 197 peticiones en total.
+ */
 export function loadTreePayload() {
   const dataConfig = getDataConfig();
 
@@ -77,22 +51,19 @@ export function loadTreePayload() {
       console.error("tree: no se pudo leer el registro de vistas", error);
       return { trees: [] };
     }),
-    fetchJson(dataConfig.unions),
-    loadByIdIndex(dataConfig.peopleIndex)
-  ]).then(([registry, unionsPayload, byId]) => {
+    fetchJson(dataConfig.treeBundle, "No se pudo cargar el arbol")
+  ]).then(([registry, bundle]) => {
     const view = resolveTreeView(registry);
-    const unions = Array.isArray(unionsPayload.unions) ? unionsPayload.unions : [];
+    const unions = Array.isArray(bundle.unions) ? bundle.unions : [];
+    const model = buildTreeModel(unions, bundle.people);
 
-    return loadPersonRecords(getReferencedIds(unions), byId).then((records) => {
-      const model = buildTreeModel(unions, records, byId);
-      return {
-        model,
-        familyData: toFamilyChartData(model),
-        detailTemplate: getTemplates().detail,
-        treeKey: view.treeKey,
-        title: view.title,
-        rootPersonId: view.rootPersonId
-      };
-    });
+    return {
+      model,
+      familyData: toFamilyChartData(model),
+      detailTemplate: getTemplates().detail,
+      treeKey: view.treeKey,
+      title: view.title,
+      rootPersonId: view.rootPersonId
+    };
   });
 }

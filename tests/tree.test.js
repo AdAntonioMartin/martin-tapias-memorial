@@ -11,16 +11,26 @@ import { formatYears } from "../js/tree/format.js";
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const readJson = (relPath) => JSON.parse(readFileSync(path.join(ROOT, relPath), "utf8"));
 
-const unions = readJson("data/unions.json").unions;
+const bundle = readJson("data/tree-bundle.json");
+const unions = bundle.unions;
 const byId = readJson("data/personas-index.json").byId;
 const registry = readJson("data/trees/index.json");
-const records = Object.entries(byId).map(([id, relPath]) => ({
-  ...readJson(relPath),
-  __id: id,
-  __path: relPath
-}));
+const records = Object.entries(byId).map(([id, relPath]) => ({ ...readJson(relPath), __path: relPath }));
 
-const model = buildTreeModel(unions, records, byId);
+const model = buildTreeModel(unions, bundle.people);
+
+test("el bundle esta al dia respecto a las fichas y las uniones", () => {
+  assert.deepEqual(bundle.unions, readJson("data/unions.json").unions, "unions.json y el bundle divergen");
+  assert.deepEqual(Object.keys(bundle.people).sort(), Object.keys(byId).sort(), "faltan o sobran personas");
+
+  for (const record of records) {
+    const entry = bundle.people[record.id];
+    assert.equal(entry.name, record.name, `nombre desincronizado en ${record.id}`);
+    assert.equal(entry.gender, record.gender, `genero desincronizado en ${record.id}`);
+    assert.equal(entry.born || "", record.born || "", `nacimiento desincronizado en ${record.id}`);
+    assert.equal(entry.died || "", record.died || "", `fallecimiento desincronizado en ${record.id}`);
+  }
+});
 
 test("el modelo cubre a todas las personas referenciadas en las uniones", () => {
   const referenced = new Set();

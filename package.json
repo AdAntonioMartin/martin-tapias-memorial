@@ -11,9 +11,10 @@
     "format:check": "prettier --check \"{js,tools}/**/*.js\" \"css/**/*.css\" \"*.html\"",
     "test": "node --test",
     "validate": "node tools/validate-data.mjs",
-    "check": "npm run lint && npm run test && npm run validate",
+    "check": "npm run lint && npm run build && npm run test && npm run validate",
     "smoke": "node tools/smoke.mjs",
-    "images": "node tools/optimize-images.mjs"
+    "images": "node tools/optimize-images.mjs",
+    "build": "node tools/build-bundle.mjs"
   },
   "devDependencies": {
     "eslint": "^9.18.0",

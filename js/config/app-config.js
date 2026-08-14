@@ -10,6 +10,8 @@ export const APP_CONFIG = {
     listConfig: "data/lista.json",
     peopleIndex: "data/personas-index.json",
     unions: "data/unions.json",
+    // Uniones + datos de tarjeta en un solo fichero, generado por tools/build-bundle.mjs.
+    treeBundle: "data/tree-bundle.json",
     treeRegistry: "data/trees/index.json",
     uiText: "data/ui-text.es.json"
   },
