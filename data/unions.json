@@ -1,69 +1,6 @@
 {
   "unions": [
     {
-      "id": "u-????-adriana",
-      "partners": [
-        "adriana-castano",
-        "persona-sin-identificar"
-      ],
-      "children": [
-        "daniela-castano"
-      ],
-      "type": "married"
-    },
-    {
-      "id": "u-????-carolina",
-      "partners": [
-        "carolina-castano",
-        "persona-sin-identificar"
-      ],
-      "children": [
-        "celeste-castano"
-      ],
-      "type": "married"
-    },
-    {
-      "id": "u-????-daniela",
-      "partners": [
-        "daniela-castano",
-        "persona-sin-identificar"
-      ],
-      "children": [
-        "victoria"
-      ],
-      "type": "married"
-    },
-    {
-      "id": "u-????-inocenta",
-      "partners": [
-        "inocenta-de-la-calle"
-      ],
-      "children": [
-        "eladio-de-antonio-de-la-calle"
-      ],
-      "type": "married"
-    },
-    {
-      "id": "u-????-liduvina",
-      "partners": [
-        "liduvina-velasco"
-      ],
-      "children": [
-        "josefa-rivera-velasco"
-      ],
-      "type": "married"
-    },
-    {
-      "id": "u-??????-yuliana",
-      "partners": [
-        "yuliana-castano"
-      ],
-      "children": [
-        "juan-miguel-castano"
-      ],
-      "type": "married"
-    },
-    {
       "id": "u-abdon-victoria",
       "partners": [
         "victoria-tapias",
@@ -75,6 +12,17 @@
         "castor-martin-tapias",
         "sofio-martin-tapias",
         "angela-martin-tapias"
+      ],
+      "type": "married"
+    },
+    {
+      "id": "u-adriana",
+      "partners": [
+        "adriana-castano",
+        "persona-sin-identificar"
+      ],
+      "children": [
+        "daniela-castano"
       ],
       "type": "married"
     },
@@ -227,6 +175,17 @@
       "type": "married"
     },
     {
+      "id": "u-carolina",
+      "partners": [
+        "carolina-castano",
+        "persona-sin-identificar"
+      ],
+      "children": [
+        "celeste-castano"
+      ],
+      "type": "married"
+    },
+    {
       "id": "u-castor-angeles",
       "partners": [
         "castor-martin-tapias-tapias",
@@ -273,6 +232,17 @@
       ],
       "children": [
         "alma-castano"
+      ],
+      "type": "married"
+    },
+    {
+      "id": "u-daniela",
+      "partners": [
+        "daniela-castano",
+        "persona-sin-identificar"
+      ],
+      "children": [
+        "victoria"
       ],
       "type": "married"
     },
@@ -447,6 +417,16 @@
       "type": "married"
     },
     {
+      "id": "u-inocenta",
+      "partners": [
+        "inocenta-de-la-calle"
+      ],
+      "children": [
+        "eladio-de-antonio-de-la-calle"
+      ],
+      "type": "married"
+    },
+    {
       "id": "u-jorge-teresa",
       "partners": [
         "jorge-guayara",
@@ -499,6 +479,16 @@
       ],
       "children": [
         "angel"
+      ],
+      "type": "married"
+    },
+    {
+      "id": "u-liduvina",
+      "partners": [
+        "liduvina-velasco"
+      ],
+      "children": [
+        "josefa-rivera-velasco"
       ],
       "type": "married"
     },
@@ -635,7 +625,7 @@
       "type": "married"
     },
     {
-      "id": "u-santiago-estefanía",
+      "id": "u-santiago-estefania",
       "partners": [
         "estefania",
         "santiago-castano"
@@ -690,6 +680,16 @@
         "eloy-martin-tapias",
         "castor-martin-tapias-tapias",
         "asuncion-martin-tapias"
+      ],
+      "type": "married"
+    },
+    {
+      "id": "u-yuliana",
+      "partners": [
+        "yuliana-castano"
+      ],
+      "children": [
+        "juan-miguel-castano"
       ],
       "type": "married"
     }

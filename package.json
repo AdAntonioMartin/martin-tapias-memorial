@@ -7,14 +7,15 @@
   "scripts": {
     "serve": "node tools/serve.mjs",
     "lint": "eslint js tools",
-    "format": "prettier --write \"{js,tools}/**/*.js\" \"css/**/*.css\" \"*.html\"",
-    "format:check": "prettier --check \"{js,tools}/**/*.js\" \"css/**/*.css\" \"*.html\"",
+    "format": "prettier --write \"js/**/*.js\" \"tools/**/*.mjs\" \"tests/**/*.js\" \"css/**/*.css\" \"*.html\"",
+    "format:check": "prettier --check \"js/**/*.js\" \"tools/**/*.mjs\" \"tests/**/*.js\" \"css/**/*.css\" \"*.html\"",
     "test": "node --test",
     "validate": "node tools/validate-data.mjs",
     "check": "npm run lint && npm run build && npm run test && npm run validate",
     "smoke": "node tools/smoke.mjs",
     "images": "node tools/optimize-images.mjs",
-    "build": "node tools/build-bundle.mjs"
+    "build": "node tools/build-bundle.mjs",
+    "sitemap": "node tools/build-sitemap.mjs"
   },
   "devDependencies": {
     "eslint": "^9.18.0",

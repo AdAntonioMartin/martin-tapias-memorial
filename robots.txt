@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /images/originals/
+
+Sitemap: https://adantoniomartin.github.io/martin-tapias-memorial/sitemap.xml
