@@ -3,24 +3,21 @@
   "trees": [
     {
       "key": "martin",
-      "title": "Familia Martin",
+      "title": "Familia Martín",
       "treeConfig": "data/trees/martin/arbol.json",
-      "peopleIndex": "data/trees/martin/personas-index.json",
-      "imagesBase": "images/trees/martin/personas"
+      "peopleIndex": "data/trees/martin/personas-index.json"
     },
     {
       "key": "deantonio",
       "title": "Familia De Antonio",
       "treeConfig": "data/trees/deantonio/arbol.json",
-      "peopleIndex": "data/trees/deantonio/personas-index.json",
-      "imagesBase": "images/trees/deantonio/personas"
+      "peopleIndex": "data/trees/deantonio/personas-index.json"
     },
     {
       "key": "teresa-castano-pineda",
-      "title": "Familia Teresa Castano Pineda",
+      "title": "Familia Castaño Pineda",
       "treeConfig": "data/trees/teresa-castano-pineda/arbol.json",
-      "peopleIndex": "data/trees/teresa-castano-pineda/personas-index.json",
-      "imagesBase": "images/trees/teresa-castano-pineda/personas"
+      "peopleIndex": "data/trees/teresa-castano-pineda/personas-index.json"
     }
   ]
 }

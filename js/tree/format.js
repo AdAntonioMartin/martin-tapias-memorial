@@ -1,6 +1,6 @@
 import { getFactValue } from "../core/person.js";
 
-export function extractYear(value) {
+function extractYear(value) {
   const text = String(value || "").trim();
   if (!text) {
     return "";

@@ -1,118 +1,172 @@
+/*
+ * Sistema de tokens.
+ *
+ * Los fondos y estados se derivan del acento con color-mix() en lugar de
+ * reescribirlo a mano como rgba(): antes el mismo color aparecia literal unas
+ * veinte veces con alfas distintas y cambiar un tema obligaba a tocarlas todas.
+ *
+ * Mantener la lista de temas sincronizada con js/theme-boot.js y js/core/theme.js.
+ */
+
 :root {
-  --theme-color-scheme: dark;
-  --color-background: #11100f;
-  --color-background-soft: #1a1816;
-  --color-surface: rgba(33, 30, 27, 0.88);
-  --color-surface-strong: rgba(19, 17, 15, 0.96);
-  --color-text: #efe6d8;
-  --color-text-soft: #cdbfa9;
-  --color-line: rgba(214, 197, 171, 0.22);
-  --color-accent: #c8b18a;
-  --color-accent-strong: #e4d3b4;
-  --shadow-soft: 0 24px 70px rgba(0, 0, 0, 0.35);
-  --shadow-table: 0 14px 32px rgba(0, 0, 0, 0.28);
-  --radius-large: 24px;
+  /* --- escalas compartidas por todos los temas --- */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+
+  --text-xs: 0.72rem;
+  --text-sm: 0.82rem;
+  --text-base: 1rem;
+  --text-md: 1.1rem;
+  --text-lg: 1.35rem;
+
+  --tracking-wide: 0.08em;
+  --tracking-wider: 0.14em;
+  --tracking-widest: 0.28em;
+
+  --radius-small: 6px;
   --radius-medium: 16px;
-  --page-width: min(900px, calc(100vw - 2rem));
-  --font-display: "Palatino Linotype", "Book Antiqua", Palatino, Georgia, serif;
+  --radius-large: 24px;
+
+  --duration-fast: 140ms;
+  --duration-medium: 220ms;
+  --duration-slow: 320ms;
+
+  --focus-ring-width: 3px;
+  --focus-ring-offset: 2px;
+
+  --z-panel: 300;
+  --z-skip-link: 500;
+
+  --page-width: min(900px, calc(100% - 2rem));
+  --font-display: "Palatino Linotype", "Book Antiqua", Palatino, "Iowan Old Style", Georgia, serif;
   --font-body: Georgia, "Times New Roman", serif;
 
-  --body-bg-layer-1: radial-gradient(circle at top, rgba(200, 177, 138, 0.08), transparent 32%);
-  --body-bg-layer-2: linear-gradient(180deg, rgba(9, 8, 8, 0.92), rgba(17, 16, 15, 0.98));
-  --body-overlay-layer-1: linear-gradient(rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.02));
+  /* --- tema oscuro (base) --- */
+  --theme-color-scheme: dark;
+  --color-background: #11100f;
+  --color-surface: rgb(33 30 27 / 88%);
+  --color-surface-strong: rgb(19 17 15 / 96%);
+  --color-text: #efe6d8;
+  --color-text-soft: #cdbfa9;
+  --color-line: rgb(214 197 171 / 22%);
+  --color-accent: #c8b18a;
+  --color-accent-strong: #e4d3b4;
+  /* Color de las etiquetas pequenas: debe pasar 4.5:1 sobre la superficie. */
+  --color-label: #e4d3b4;
+  --color-focus: #f2dfbd;
+
+  --color-male: #8fb2c9;
+  --color-female: #d09aae;
+  --color-unknown: #a8bb92;
+
+  --shadow-soft: 0 24px 70px rgb(0 0 0 / 35%);
+  --shadow-table: 0 14px 32px rgb(0 0 0 / 28%);
+
+  --body-bg-layer-1: radial-gradient(
+    circle at top,
+    color-mix(in srgb, var(--color-accent) 8%, transparent),
+    transparent 32%
+  );
+  --body-bg-layer-2: linear-gradient(180deg, rgb(9 8 8 / 92%), rgb(17 16 15 / 98%));
+  --body-overlay-layer-1: linear-gradient(rgb(255 255 255 / 2%), rgb(255 255 255 / 2%));
+  --body-overlay-tint: rgb(255 255 255 / 1.5%);
+  --body-overlay-opacity: 0.45;
+
+  --hero-layer-1: linear-gradient(180deg, rgb(35 31 28 / 82%), rgb(18 16 14 / 92%));
+  --section-bg: rgb(20 18 17 / 82%);
+  --media-bg: rgb(255 255 255 / 4%);
+  --overlay-veil: rgb(10 9 8 / 55%);
+
+  /* Derivados del acento: una sola fuente por tema. */
+  --nav-bg: color-mix(in srgb, var(--color-background) 88%, transparent);
+  --nav-hover-bg: color-mix(in srgb, var(--color-accent) 12%, transparent);
+  --nav-active-bg: color-mix(in srgb, var(--color-accent) 16%, transparent);
+  --table-head-bg: color-mix(in srgb, var(--color-accent) 8%, transparent);
+  --table-row-hover-bg: color-mix(in srgb, var(--color-accent) 6%, transparent);
+  --table-row-link-hover-bg: color-mix(in srgb, var(--color-accent) 9%, transparent);
+
   --body-overlay-layer-2: repeating-linear-gradient(
     90deg,
     transparent,
     transparent 120px,
-    rgba(255, 255, 255, 0.015) 121px,
+    var(--body-overlay-tint) 121px,
     transparent 122px
   );
-  --body-overlay-opacity: 0.45;
-
-  --nav-bg: rgba(20, 18, 17, 0.78);
-  --nav-hover-bg: rgba(200, 177, 138, 0.12);
-  --nav-active-bg: rgba(200, 177, 138, 0.16);
-
-  --hero-layer-1: linear-gradient(180deg, rgba(35, 31, 28, 0.82), rgba(18, 16, 14, 0.92));
-  --section-bg: rgba(20, 18, 17, 0.82);
-  --table-head-bg: rgba(200, 177, 138, 0.08);
-  --table-row-hover-bg: rgba(200, 177, 138, 0.06);
-  --table-row-link-hover-bg: rgba(200, 177, 138, 0.09);
-  --media-bg: rgba(255, 255, 255, 0.04);
 }
 
 :root[data-theme="light-celestial"] {
   --theme-color-scheme: light;
   --color-background: #eef5ff;
-  --color-background-soft: #f7fbff;
-  --color-surface: rgba(255, 255, 255, 0.92);
-  --color-surface-strong: rgba(248, 251, 255, 0.98);
-  --color-text: #2b3550;
-  --color-text-soft: #607096;
-  --color-line: rgba(140, 162, 209, 0.35);
+  --color-surface: rgb(255 255 255 / 92%);
+  --color-surface-strong: rgb(248 251 255 / 98%);
+  --color-text: #232c42;
+  --color-text-soft: #4d5c7d;
+  --color-line: rgb(140 162 209 / 35%);
   --color-accent: #7aa7e8;
-  --color-accent-strong: #4a75be;
-  --shadow-soft: 0 16px 44px rgba(109, 143, 194, 0.22);
-  --shadow-table: 0 10px 24px rgba(109, 143, 194, 0.18);
+  --color-accent-strong: #2f5da8;
+  --color-label: #2f5da8;
+  --color-focus: #1d4b91;
 
-  --body-bg-layer-1: radial-gradient(circle at 12% 14%, rgba(153, 196, 255, 0.36), transparent 36%);
-  --body-bg-layer-2: linear-gradient(180deg, rgba(248, 252, 255, 0.98), rgba(236, 245, 255, 1));
-  --body-overlay-layer-1: linear-gradient(rgba(255, 255, 255, 0.68), rgba(255, 255, 255, 0.34));
-  --body-overlay-layer-2: repeating-linear-gradient(
-    90deg,
-    transparent,
-    transparent 120px,
-    rgba(148, 184, 230, 0.12) 121px,
-    transparent 122px
+  --color-male: #3f6f92;
+  --color-female: #8c3f61;
+  --color-unknown: #56683f;
+
+  --shadow-soft: 0 16px 44px rgb(109 143 194 / 22%);
+  --shadow-table: 0 10px 24px rgb(109 143 194 / 18%);
+
+  --body-bg-layer-1: radial-gradient(
+    circle at 12% 14%,
+    color-mix(in srgb, var(--color-accent) 36%, transparent),
+    transparent 36%
   );
+  --body-bg-layer-2: linear-gradient(180deg, rgb(248 252 255 / 98%), rgb(236 245 255 / 100%));
+  --body-overlay-layer-1: linear-gradient(rgb(255 255 255 / 68%), rgb(255 255 255 / 34%));
+  --body-overlay-tint: color-mix(in srgb, var(--color-accent) 12%, transparent);
   --body-overlay-opacity: 0.55;
 
-  --nav-bg: rgba(255, 255, 255, 0.84);
-  --nav-hover-bg: rgba(122, 167, 232, 0.18);
-  --nav-active-bg: rgba(122, 167, 232, 0.24);
-
-  --hero-layer-1: linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(241, 248, 255, 0.96));
-  --section-bg: rgba(255, 255, 255, 0.88);
-  --table-head-bg: rgba(122, 167, 232, 0.15);
-  --table-row-hover-bg: rgba(122, 167, 232, 0.09);
-  --table-row-link-hover-bg: rgba(122, 167, 232, 0.12);
-  --media-bg: rgba(122, 167, 232, 0.08);
+  --hero-layer-1: linear-gradient(180deg, rgb(255 255 255 / 96%), rgb(241 248 255 / 96%));
+  --section-bg: rgb(255 255 255 / 88%);
+  --media-bg: color-mix(in srgb, var(--color-accent) 8%, transparent);
+  --overlay-veil: rgb(238 245 255 / 78%);
 }
 
 :root[data-theme="dawn-amber"] {
   --theme-color-scheme: light;
   --color-background: #f6efe6;
-  --color-background-soft: #fbf6ef;
-  --color-surface: rgba(255, 250, 244, 0.92);
-  --color-surface-strong: rgba(255, 252, 248, 0.98);
-  --color-text: #493a2a;
-  --color-text-soft: #7a6550;
-  --color-line: rgba(168, 129, 91, 0.34);
+  --color-surface: rgb(255 250 244 / 92%);
+  --color-surface-strong: rgb(255 252 248 / 98%);
+  --color-text: #3f3225;
+  --color-text-soft: #6b5843;
+  --color-line: rgb(168 129 91 / 34%);
   --color-accent: #c48e56;
-  --color-accent-strong: #9c6936;
-  --shadow-soft: 0 16px 42px rgba(163, 117, 73, 0.2);
-  --shadow-table: 0 10px 22px rgba(163, 117, 73, 0.16);
+  --color-accent-strong: #855023;
+  --color-label: #855023;
+  --color-focus: #6d3f18;
 
-  --body-bg-layer-1: radial-gradient(circle at 16% 12%, rgba(255, 205, 148, 0.36), transparent 36%);
-  --body-bg-layer-2: linear-gradient(180deg, rgba(255, 249, 240, 0.98), rgba(247, 237, 224, 1));
-  --body-overlay-layer-1: linear-gradient(rgba(255, 255, 255, 0.56), rgba(255, 255, 255, 0.24));
-  --body-overlay-layer-2: repeating-linear-gradient(
-    90deg,
-    transparent,
-    transparent 120px,
-    rgba(196, 142, 86, 0.1) 121px,
-    transparent 122px
+  --color-male: #3d6376;
+  --color-female: #8a3d58;
+  --color-unknown: #55643a;
+
+  --shadow-soft: 0 16px 42px rgb(163 117 73 / 20%);
+  --shadow-table: 0 10px 22px rgb(163 117 73 / 16%);
+
+  --body-bg-layer-1: radial-gradient(
+    circle at 16% 12%,
+    color-mix(in srgb, var(--color-accent) 36%, transparent),
+    transparent 36%
   );
+  --body-bg-layer-2: linear-gradient(180deg, rgb(255 249 240 / 98%), rgb(247 237 224 / 100%));
+  --body-overlay-layer-1: linear-gradient(rgb(255 255 255 / 56%), rgb(255 255 255 / 24%));
+  --body-overlay-tint: color-mix(in srgb, var(--color-accent) 10%, transparent);
   --body-overlay-opacity: 0.5;
 
-  --nav-bg: rgba(255, 249, 242, 0.84);
-  --nav-hover-bg: rgba(196, 142, 86, 0.18);
-  --nav-active-bg: rgba(196, 142, 86, 0.24);
-
-  --hero-layer-1: linear-gradient(180deg, rgba(255, 252, 246, 0.96), rgba(250, 242, 230, 0.96));
-  --section-bg: rgba(255, 248, 238, 0.88);
-  --table-head-bg: rgba(196, 142, 86, 0.16);
-  --table-row-hover-bg: rgba(196, 142, 86, 0.1);
-  --table-row-link-hover-bg: rgba(196, 142, 86, 0.13);
-  --media-bg: rgba(196, 142, 86, 0.1);
+  --hero-layer-1: linear-gradient(180deg, rgb(255 252 246 / 96%), rgb(250 242 230 / 96%));
+  --section-bg: rgb(255 248 238 / 88%);
+  --media-bg: color-mix(in srgb, var(--color-accent) 10%, transparent);
+  --overlay-veil: rgb(246 239 230 / 78%);
 }

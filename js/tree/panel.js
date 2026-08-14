@@ -1,165 +1,185 @@
-import { GENDER_COLOR, GENDER_EMOJI } from "./config.js";
+import { GENDER_FALLBACK } from "./config.js";
 import { escapeHtml } from "../core/html.js";
 import { t } from "../core/i18n.js";
-import { buildQueryUrl } from "../core/url.js";
+import { buildPersonUrl, getTreeKeyFromUrl } from "../core/url.js";
 
-function detailUrl(node, detailTemplate) {
-  const template = detailTemplate || "persona.html";
-  const treeKey = new URLSearchParams(window.location.search).get("tree") || "";
-  return buildQueryUrl(template, { tree: treeKey, id: node.id, data: node.personPath });
-}
+let lastFocusedElement = null;
+let navigateHandler = null;
 
 function roleByGender(gender, asParent) {
   if (asParent) {
-    if (gender === "male") {
-      return t("tree.panel.roles.father", "Padre");
-    }
-    if (gender === "female") {
-      return t("tree.panel.roles.mother", "Madre");
-    }
+    if (gender === "male") return t("tree.panel.roles.father", "Padre");
+    if (gender === "female") return t("tree.panel.roles.mother", "Madre");
     return t("tree.panel.roles.parent", "Progenitor");
   }
-  if (gender === "male") {
-    return t("tree.panel.roles.son", "Hijo");
-  }
-  if (gender === "female") {
-    return t("tree.panel.roles.daughter", "Hija");
-  }
+  if (gender === "male") return t("tree.panel.roles.son", "Hijo");
+  if (gender === "female") return t("tree.panel.roles.daughter", "Hija");
   return t("tree.panel.roles.child", "Hijo/a");
 }
 
-function renderRefItem(id, name, gender, roleLabel) {
-  const color = GENDER_COLOR[gender] || GENDER_COLOR.unknown;
+function unionLabel(union) {
+  const labels = {
+    married: t("tree.panel.union.married", "Matrimonio"),
+    divorced: t("tree.panel.union.divorced", "Divorciados"),
+    unmarried: t("tree.panel.union.unmarried", "Sin matrimonio")
+  };
+  const base = labels[union.type] || t("tree.panel.union.default", "Union");
+  return union.married ? `${base} - ${union.married}` : base;
+}
+
+/**
+ * Referencia navegable a otra persona. Es un <button> y no un <div> con click:
+ * el panel es la unica forma de recorrer la genealogia sin raton.
+ */
+function renderRefItem(person, roleLabel) {
   return (
-    `<div class="tree-panel__ref" data-pid="${escapeHtml(id)}">` +
-    `<div class="tree-panel__ref-dot" style="background:${color}"></div>` +
-    `<span class="tree-panel__ref-name">${escapeHtml(name)}</span>` +
-    `<span class="tree-panel__ref-role">${roleLabel}</span>` +
+    `<button type="button" class="tree-panel__ref" data-pid="${escapeHtml(person.id)}">` +
+    `<span class="tree-panel__ref-dot tree-panel__ref-dot--${escapeHtml(person.gender)}" aria-hidden="true"></span>` +
+    `<span class="tree-panel__ref-name">${escapeHtml(person.name)}</span>` +
+    `<span class="tree-panel__ref-role">${escapeHtml(roleLabel)}</span>` +
+    "</button>"
+  );
+}
+
+function renderSection(label, itemsHtml) {
+  if (!itemsHtml) {
+    return "";
+  }
+  return (
+    '<div class="tree-panel__section">' +
+    `<p class="tree-panel__section-label">${escapeHtml(label)}</p>` +
+    itemsHtml +
     "</div>"
   );
 }
 
-export function closePanel() {
-  const panel = document.getElementById("tree-panel");
-  if (panel) {
-    panel.hidden = true;
+function renderParents(model, person) {
+  const union = person.parentUnionId ? model.unions.get(person.parentUnionId) : null;
+  if (!union) {
+    return "";
   }
-  document.querySelectorAll(".tree-node-card--selected").forEach((el) => {
-    el.classList.remove("tree-node-card--selected");
-  });
+  const items = union.partners
+    .map((parentId) => model.people.get(parentId))
+    .filter(Boolean)
+    .map((parent) => renderRefItem(parent, roleByGender(parent.gender, true)))
+    .join("");
+  return renderSection(t("tree.panel.parents", "Padres"), items);
 }
 
-export function openPanel(personId, graph, detailTemplate, onNavigate) {
-  const node = graph.nodes[personId];
-  if (!node) {
+function renderUnions(model, person) {
+  return person.unionIds
+    .map((unionId) => model.unions.get(unionId))
+    .filter(Boolean)
+    .map((union) => {
+      const partners = union.partners
+        .filter((partnerId) => partnerId !== person.id)
+        .map((partnerId) => model.people.get(partnerId))
+        .filter(Boolean)
+        .map((partner) => renderRefItem(partner, t("tree.panel.partnerRole", "Pareja")))
+        .join("");
+
+      const children = union.children
+        .map((childId) => model.people.get(childId))
+        .filter(Boolean)
+        .map((child) => renderRefItem(child, roleByGender(child.gender, false)))
+        .join("");
+
+      const childrenBlock = children
+        ? `<p class="tree-panel__section-label tree-panel__section-label--sub">${escapeHtml(
+            t("tree.panel.children", "Hijos")
+          )}</p>${children}`
+        : "";
+
+      return renderSection(unionLabel(union), partners + childrenBlock);
+    })
+    .join("");
+}
+
+function panelElements() {
+  return {
+    panel: document.getElementById("tree-panel"),
+    header: document.getElementById("tree-panel-header"),
+    body: document.getElementById("tree-panel-body")
+  };
+}
+
+export function isPanelOpen() {
+  const { panel } = panelElements();
+  return !!panel && !panel.hidden;
+}
+
+export function closePanel() {
+  const { panel } = panelElements();
+  if (!panel || panel.hidden) {
+    return;
+  }
+  panel.hidden = true;
+  panel.setAttribute("inert", "");
+  if (lastFocusedElement && document.contains(lastFocusedElement)) {
+    lastFocusedElement.focus();
+  }
+  lastFocusedElement = null;
+}
+
+export function openPanel(personId, model, detailTemplate) {
+  const person = model.people.get(personId);
+  const { panel, header, body } = panelElements();
+  if (!person || !panel || !header || !body) {
     return;
   }
 
-  document.querySelectorAll(".tree-node-card--selected").forEach((el) => {
-    el.classList.remove("tree-node-card--selected");
-  });
-  document.querySelectorAll(`.card_cont[data-pid='${personId}'] .tree-node-card`).forEach((card) => {
-    card.classList.add("tree-node-card--selected");
-  });
-
-  const panel = document.getElementById("tree-panel");
-  const header = document.getElementById("tree-panel-header");
-  const body = document.getElementById("tree-panel-body");
-  if (!panel || !header || !body) {
-    return;
+  if (panel.hidden) {
+    lastFocusedElement = document.activeElement;
   }
 
-  const accent = GENDER_COLOR[node.gender] || GENDER_COLOR.unknown;
-  const avatarHtml = node.photo
-    ? `<img src="${escapeHtml(node.photo)}" alt="${escapeHtml(node.name)}">`
-    : escapeHtml(GENDER_EMOJI[node.gender] || GENDER_EMOJI.unknown);
+  const avatarHtml = person.photo
+    ? `<img src="${escapeHtml(person.photo)}" alt="" width="72" height="72" loading="lazy" decoding="async">`
+    : `<span class="tree-panel__avatar-fallback">${escapeHtml(GENDER_FALLBACK[person.gender])}</span>`;
 
   header.innerHTML =
-    `<div class="tree-panel__avatar" style="border-color:${accent}55">${avatarHtml}</div>` +
-    `<p class="tree-panel__name">${escapeHtml(node.name)}</p>` +
-    `<p class="tree-panel__years">${escapeHtml(node.years)}</p>`;
+    `<div class="tree-panel__avatar tree-panel__avatar--${escapeHtml(person.gender)}">${avatarHtml}</div>` +
+    `<h2 class="tree-panel__name" id="tree-panel-name">${escapeHtml(person.name)}</h2>` +
+    `<p class="tree-panel__years">${escapeHtml(person.years)}</p>`;
 
-  let html = "";
-  if (node.record && node.record.summary) {
-    html +=
-      '<div class="tree-panel__section">' +
-      `<p class="tree-panel__section-label">${escapeHtml(t("tree.panel.summary", "Resumen"))}</p>` +
-      `<p class="tree-panel__section-text">${escapeHtml(node.record.summary)}</p>` +
-      "</div>";
-  }
+  const summary = person.summary
+    ? renderSection(
+        t("tree.panel.summary", "Resumen"),
+        `<p class="tree-panel__section-text">${escapeHtml(person.summary)}</p>`
+      )
+    : "";
 
-  if (node.parentUnion && graph.unionMap[node.parentUnion]) {
-    const parentUnion = graph.unionMap[node.parentUnion];
-    html += `<div class="tree-panel__section"><p class="tree-panel__section-label">${escapeHtml(t("tree.panel.parents", "Padres"))}</p>`;
-    (parentUnion.partners || []).forEach((parentId) => {
-      const parent = graph.nodes[parentId];
-      if (!parent) {
-        return;
-      }
-      html += renderRefItem(parentId, parent.name, parent.gender, roleByGender(parent.gender, true));
-    });
-    html += "</div>";
-  }
-
-  (node.unionIds || []).forEach((unionId) => {
-    const union = graph.unionMap[unionId];
-    if (!union) {
-      return;
-    }
-
-    const unionLabel =
-      {
-        married: t("tree.panel.union.married", "Matrimonio"),
-        divorced: t("tree.panel.union.divorced", "Divorciados"),
-        unmarried: t("tree.panel.union.unmarried", "Sin matrimonio")
-      }[union.type] || t("tree.panel.union.default", "Union");
-
-    html +=
-      '<div class="tree-panel__section">' +
-      `<p class="tree-panel__section-label">${escapeHtml(unionLabel + (union.married ? ` - ${union.married}` : ""))}</p>`;
-
-    (union.partners || []).forEach((partnerId) => {
-      if (partnerId === personId) {
-        return;
-      }
-      const partner = graph.nodes[partnerId];
-      if (!partner) {
-        return;
-      }
-      html += renderRefItem(
-        partnerId,
-        partner.name,
-        partner.gender,
-        escapeHtml(t("tree.panel.partnerRole", "Pareja"))
-      );
-    });
-
-    if (union.children && union.children.length) {
-      html += `<p class="tree-panel__section-label" style="margin-top:.5rem">${escapeHtml(t("tree.panel.children", "Hijos"))}</p>`;
-      union.children.forEach((childId) => {
-        const child = graph.nodes[childId];
-        if (!child) {
-          return;
-        }
-        html += renderRefItem(childId, child.name, child.gender, roleByGender(child.gender, false));
-      });
-    }
-
-    html += "</div>";
+  const profileHref = buildPersonUrl(detailTemplate, {
+    id: person.id,
+    personPath: person.personPath,
+    treeKey: getTreeKeyFromUrl()
   });
 
-  html += `<a class="tree-panel__profile-link" href="${escapeHtml(detailUrl(node, detailTemplate))}">${escapeHtml(t("tree.panel.profileLink", "Ver ficha completa ->"))}</a>`;
-  body.innerHTML = html;
+  body.innerHTML =
+    summary +
+    renderParents(model, person) +
+    renderUnions(model, person) +
+    `<a class="tree-panel__profile-link" href="${escapeHtml(profileHref)}">${escapeHtml(
+      t("tree.panel.profileLink", "Ver ficha completa")
+    )}</a>`;
 
-  body.querySelectorAll(".tree-panel__ref[data-pid]").forEach((el) => {
-    el.addEventListener("click", () => {
-      const targetId = el.dataset.pid;
-      openPanel(targetId, graph, detailTemplate, onNavigate);
-      if (typeof onNavigate === "function") {
-        onNavigate(targetId);
-      }
-    });
-  });
-
+  panel.removeAttribute("inert");
   panel.hidden = false;
+}
+
+/**
+ * Un unico listener delegado, en lugar de re-enlazar uno por referencia cada
+ * vez que se abre el panel.
+ */
+export function bindPanelNavigation(onNavigate) {
+  navigateHandler = onNavigate;
+  const body = document.getElementById("tree-panel-body");
+  if (!body) {
+    return;
+  }
+  body.addEventListener("click", (event) => {
+    const ref = event.target.closest(".tree-panel__ref[data-pid]");
+    if (ref && typeof navigateHandler === "function") {
+      navigateHandler(ref.dataset.pid);
+    }
+  });
 }

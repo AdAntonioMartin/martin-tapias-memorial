@@ -1,6 +1,7 @@
 import { escapeHtml, setText } from "../core/html.js";
 import { t } from "../core/i18n.js";
 import { inferTreeKeyFromPath, buildQueryUrl } from "../core/url.js";
+import { getTemplates } from "../config/app-config.js";
 
 function renderItemsOrFallback(elementId, items, fallbackHtml, itemTemplateFn) {
   const target = document.getElementById(elementId);
@@ -34,20 +35,33 @@ function renderBiography(paragraphs) {
   );
 }
 
+/** Solo se admiten rutas relativas del propio sitio: nada de origenes externos. */
+function isLocalImageSrc(src) {
+  const value = String(src || "").trim();
+  return !!value && !/^[a-z][a-z0-9+.-]*:/i.test(value) && !value.startsWith("//");
+}
+
 function renderHeroImage(image) {
+  const figure = document.getElementById("person-figure");
   const imageElement = document.getElementById("person-image");
   const captionElement = document.getElementById("person-image-caption");
   if (!imageElement || !captionElement) {
     return;
   }
 
-  if (!image) {
+  if (!image || !isLocalImageSrc(image.src)) {
     imageElement.removeAttribute("src");
     imageElement.alt = "";
+    if (figure) {
+      figure.hidden = true;
+    }
     captionElement.textContent = t("detail.messages.noMainImage", "Sin imagen principal.");
     return;
   }
 
+  if (figure) {
+    figure.hidden = false;
+  }
   imageElement.src = image.src;
   imageElement.alt = image.alt || "";
   captionElement.textContent = image.caption || "";
@@ -60,7 +74,7 @@ function renderGallery(images) {
     `<p>${escapeHtml(t("detail.messages.noGalleryImages", "No hay imagenes adicionales."))}</p>`,
     (image) =>
       `<figure class="gallery-card">` +
-      `<img src="${escapeHtml(image.src)}" alt="${escapeHtml(image.alt || "")}">` +
+      `<img src="${escapeHtml(image.src)}" alt="${escapeHtml(image.alt || "")}" loading="lazy" decoding="async" width="640" height="480">` +
       `<figcaption>${escapeHtml(image.caption || "")}</figcaption>` +
       `</figure>`
   );
@@ -71,27 +85,18 @@ export function setTreeLink(dataPath, personId, treeKey) {
   if (!element) {
     return;
   }
-  const resolvedTreeKey = treeKey || inferTreeKeyFromPath(dataPath);
-
-  if (personId) {
-    element.href = buildQueryUrl("arbol.html", { tree: resolvedTreeKey, id: personId });
-    return;
-  }
-
-  if (!dataPath) {
-    element.href = "arbol.html";
-    return;
-  }
-
-  element.href = buildQueryUrl("arbol.html", { tree: resolvedTreeKey, data: dataPath });
+  element.href = buildQueryUrl(getTemplates().tree, {
+    tree: treeKey || inferTreeKeyFromPath(dataPath),
+    id: personId,
+    data: personId ? "" : dataPath
+  });
 }
 
 export function renderDetailPage(data) {
   const pageDefault = t("detail.title.pageDefault", "Ficha personal");
-  const pageSuffix = t("detail.title.suffix", "Familia Minguez - De Antonio");
+  const pageSuffix = t("detail.title.suffix", "Familia Martin - Tapias");
   document.title = `${data.name || pageDefault} | ${pageSuffix}`;
   setText("person-name", data.name || pageDefault);
-  setText("person-subtitle", data.subtitle || "");
   setText("person-summary", data.summary || "");
   renderFacts(data.facts);
   renderHeroImage(data.heroImage);

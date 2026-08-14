@@ -2,14 +2,14 @@ export const APP_CONFIG = {
   // Valores soportados: "dark" | "light-celestial" | "dawn-amber"
   theme: "light-celestial",
   templates: {
-    detail: "persona.html"
+    detail: "persona.html",
+    tree: "arbol.html",
+    listing: "index.html"
   },
   data: {
     listConfig: "data/lista.json",
     peopleIndex: "data/personas-index.json",
-    treeConfig: "data/arbol.json",
     treeRegistry: "data/trees/index.json",
-    imagesIndex: "data/trees/deantonio/images-index.json",
     uiText: "data/ui-text.es.json"
   },
   tree: {
@@ -32,5 +32,13 @@ export const APP_CONFIG = {
 };
 
 export function getDataConfig() {
-  return APP_CONFIG && APP_CONFIG.data ? APP_CONFIG.data : {};
+  return APP_CONFIG.data;
+}
+
+export function getTemplates() {
+  return APP_CONFIG.templates;
+}
+
+export function getTreeConfig() {
+  return APP_CONFIG.tree;
 }

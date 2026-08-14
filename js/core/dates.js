@@ -1,4 +1,4 @@
-export function normalizeDateFormat(value) {
+function normalizeDateFormat(value) {
   return String(value || "")
     .toLowerCase()
     .replace(/\s+/g, "");

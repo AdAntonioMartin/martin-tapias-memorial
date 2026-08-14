@@ -1,39 +1,42 @@
+/**
+ * Normaliza una ruta de datos a la forma `data/...` relativa al sitio.
+ * Devuelve "" si la ruta apunta fuera del origen o se sale de `data/`.
+ */
 export function normalizeDataPath(value) {
   if (!value) {
     return "";
   }
 
-  let normalized = String(value).replace(/\\/g, "/").trim();
+  const raw = String(value).replace(/\\/g, "/").trim();
+  let normalized = raw;
   try {
-    const parsed = new URL(normalized, window.location.href);
-    normalized = parsed.origin === window.location.origin ? parsed.pathname : parsed.href;
+    const parsed = new URL(raw, window.location.href);
+    if (parsed.origin !== window.location.origin) {
+      return "";
+    }
+    normalized = parsed.pathname;
   } catch {
-    // Keep raw value.
+    // Ruta relativa sin forma de URL: se usa tal cual.
   }
 
-  return normalized.replace(/^\.\/+/, "").replace(/^\/+/, "");
-}
+  normalized = decodeURIComponent(normalized)
+    .replace(/^\.\/+/, "")
+    .replace(/^\/+/, "");
 
-export function resolveHref(baseUrl, href) {
-  try {
-    return new URL(href, baseUrl).href;
-  } catch {
+  if (!normalized.startsWith("data/") || normalized.includes("..")) {
     return "";
   }
-}
-
-export function toPathOrUrl(value) {
-  try {
-    const url = new URL(value, window.location.href);
-    return url.origin === window.location.origin ? url.pathname + url.search : url.href;
-  } catch {
-    return value;
-  }
+  return normalized;
 }
 
 export function inferTreeKeyFromPath(path) {
   const match = String(path || "").match(/^data\/trees\/([^/]+)\//);
   return match && match[1] ? match[1] : "";
+}
+
+/** Unica lectura del parametro `?tree=` de toda la aplicacion. */
+export function getTreeKeyFromUrl() {
+  return new URLSearchParams(window.location.search).get("tree") || "";
 }
 
 export function buildQueryUrl(base, params) {
@@ -43,5 +46,15 @@ export function buildQueryUrl(base, params) {
       qs.set(key, params[key]);
     }
   });
-  return `${base}?${qs.toString()}`;
+  const query = qs.toString();
+  return query ? `${base}?${query}` : base;
+}
+
+/** Enlace a la ficha de una persona, usado por el listado y por el panel del arbol. */
+export function buildPersonUrl(template, { id, personPath, treeKey } = {}) {
+  return buildQueryUrl(template || "persona.html", {
+    tree: treeKey || inferTreeKeyFromPath(personPath),
+    id,
+    data: personPath
+  });
 }

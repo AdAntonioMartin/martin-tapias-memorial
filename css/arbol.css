@@ -1,168 +1,147 @@
+/*
+ * Estilos del arbol genealogico.
+ *
+ * Todo sale de css/tokens.css. Antes este fichero definia sus propios alias
+ * (--color-border, --color-bg) y unos 50 hexadecimales sueltos, ademas de
+ * cuatro radios distintos, de modo que la pagina no seguia al tema ni encajaba
+ * visualmente con el resto del sitio.
+ */
+
 .page--arbol {
-  --color-border: var(--color-line);
-  --color-border-strong: rgba(228, 211, 180, 0.48);
-  --color-surface: rgba(28, 24, 21, 0.94);
-  --color-surface-raised: rgba(40, 35, 30, 0.95);
-  --color-bg: rgba(14, 13, 12, 0.98);
-  --color-text-muted: var(--color-text-soft);
-  --tree-bg-layer-1: radial-gradient(circle at 12% 14%, rgba(200, 177, 138, 0.08), transparent 34%);
-  --tree-bg-layer-2: radial-gradient(circle at 84% 82%, rgba(74, 122, 155, 0.12), transparent 32%);
-  --tree-bg-layer-3: linear-gradient(180deg, rgba(20, 18, 16, 0.97), rgba(10, 9, 8, 0.99));
+  display: grid;
+  gap: var(--space-5);
 }
 
-.tree-section {
-  position: relative;
-  margin-top: 2rem;
-}
+/* --- barra de herramientas --- */
 
 .tree-toolbar {
   display: flex;
-  gap: 0.5rem;
+  gap: var(--space-2);
   align-items: center;
   flex-wrap: wrap;
-  margin-bottom: 1rem;
+  margin-bottom: var(--space-4);
 }
 
 .tree-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-width: 2.25rem;
-  height: 2.25rem;
-  padding: 0 0.75rem;
-  border: 1px solid var(--color-border, #d1ccc4);
-  border-radius: 4px;
-  background: var(--color-surface, #fff);
-  color: var(--color-text, #1a1612);
+  min-width: 2.75rem;
+  min-height: 2.75rem;
+  padding: 0 var(--space-3);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-medium);
+  background: var(--color-surface);
+  color: var(--color-accent-strong);
   font-family: inherit;
-  font-size: 0.875rem;
-  cursor: pointer;
+  font-size: var(--text-sm);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
   text-decoration: none;
+  cursor: pointer;
   transition:
-    background 0.15s,
-    border-color 0.15s;
-  white-space: nowrap;
+    border-color var(--duration-fast) ease,
+    background-color var(--duration-fast) ease;
 }
 
 .tree-btn:hover {
-  background: var(--color-surface-raised, #f5f0eb);
-  border-color: var(--color-border-strong, #999);
+  border-color: var(--color-accent);
+  background: var(--nav-hover-bg);
 }
 
 .tree-btn--back {
   margin-left: auto;
-  font-size: 0.8rem;
-  letter-spacing: 0.03em;
 }
+
+/* --- lienzo --- */
 
 .tree-viewport-wrapper {
   position: relative;
   width: 100%;
-  height: 70vh;
-  min-height: 420px;
-  border: 1px solid var(--color-border, #d1ccc4);
-  border-radius: 6px;
+  height: clamp(24rem, 70vh, 48rem);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-large);
   overflow: hidden;
-  background:
-    var(--tree-bg-layer-1), var(--tree-bg-layer-2), var(--tree-bg-layer-3), var(--color-bg, #121110);
+  background: var(--body-bg-layer-1), var(--section-bg), var(--color-background);
 }
 
-.tree-canvas.f3.f3-cont {
-  width: 100%;
-  height: 100%;
-  max-height: none;
-  --background-color: transparent;
-  --text-color: var(--color-text, #f4efe6);
-  --male-color: rgba(125, 165, 190, 0.24);
-  --female-color: rgba(188, 138, 167, 0.24);
-  --genderless-color: rgba(143, 165, 124, 0.22);
-  --tree-card-bg: var(--color-surface, #fff);
-  --tree-card-border: var(--color-border, #d1ccc4);
-  --tree-card-male-accent: #7aa0b8;
-  --tree-card-female-accent: #b6849f;
-  --tree-card-unknown-accent: #8ea07f;
-}
-
-.tree-canvas #f3Canvas {
+.tree-canvas {
   width: 100%;
   height: 100%;
 }
 
-.tree-canvas svg.main_svg .link {
-  stroke: var(--color-border, rgba(236, 223, 205, 0.45));
-  stroke-width: 2;
+/* --- mensajes de carga y error --- */
+
+.tree-message {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding: var(--space-5);
+  text-align: center;
+  /* El velo sigue al tema: antes era un rgba() oscuro fijo que dejaba el
+     texto en ~1,6:1 sobre los temas claros. */
+  background: var(--overlay-veil);
+  color: var(--color-text);
 }
 
-.tree-canvas .card_cont {
-  pointer-events: none;
+.tree-message[hidden] {
+  display: none;
 }
 
-.tree-canvas .card_cont .card {
-  pointer-events: auto;
+.tree-message--error {
+  color: var(--color-accent-strong);
+  font-weight: 600;
 }
+
+/* --- tarjetas --- */
 
 .tree-node-card {
   width: 154px;
   min-height: 102px;
-  border-radius: 5px;
-  background: var(--tree-card-bg);
-  border: 1px solid var(--tree-card-border);
-  color: var(--color-text, #1a1612);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-medium);
+  background: var(--color-surface-strong);
+  box-shadow: var(--shadow-table);
+  cursor: pointer;
+  transition:
+    border-color var(--duration-fast) ease,
+    box-shadow var(--duration-fast) ease;
+  border-top: 3px solid var(--color-unknown);
 }
 
-.tree-node-card .tree-node-card__inner {
-  min-height: 99px;
-  padding: 10px 10px 8px;
-  border-radius: 4px;
-  background: var(--tree-card-bg);
-  border-left: 3px solid transparent;
-  position: relative;
+.tree-node-card--male {
+  border-top-color: var(--color-male);
 }
 
-.tree-canvas .card-male .tree-node-card__inner {
-  border-left-color: var(--tree-card-male-accent);
-}
-
-.tree-canvas .card-female .tree-node-card__inner {
-  border-left-color: var(--tree-card-female-accent);
-}
-
-.tree-canvas .card-genderless .tree-node-card__inner {
-  border-left-color: var(--tree-card-unknown-accent);
-}
-
-.tree-canvas .card-male .tree-node-card__inner::after,
-.tree-canvas .card-female .tree-node-card__inner::after,
-.tree-canvas .card-genderless .tree-node-card__inner::after {
-  content: "";
-  position: absolute;
-  top: 8px;
-  right: 8px;
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-}
-
-.tree-canvas .card-male .tree-node-card__inner::after {
-  background: var(--tree-card-male-accent);
-}
-
-.tree-canvas .card-female .tree-node-card__inner::after {
-  background: var(--tree-card-female-accent);
-}
-
-.tree-canvas .card-genderless .tree-node-card__inner::after {
-  background: var(--tree-card-unknown-accent);
+.tree-node-card--female {
+  border-top-color: var(--color-female);
 }
 
 .tree-node-card:hover {
-  border-color: var(--color-border-strong, #999);
-  transform: translateY(-2px);
+  border-color: var(--color-accent);
 }
 
 .tree-node-card--selected {
-  border-color: var(--color-accent, #7a5c38);
-  box-shadow: 0 0 0 2px var(--color-accent, #7a5c38);
+  border-color: var(--color-accent-strong);
+  box-shadow: 0 0 0 2px var(--color-accent-strong);
+}
+
+.tree-node-card--main {
+  box-shadow:
+    var(--shadow-soft),
+    0 0 0 1px var(--color-accent);
+}
+
+.tree-node-card__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-1);
+  padding: var(--space-2);
+  height: 100%;
 }
 
 .tree-node-avatar {
@@ -170,132 +149,117 @@
   height: 44px;
   border-radius: 50%;
   overflow: hidden;
-  margin: 0 auto 7px;
-  border: 1px solid var(--color-border, #d1ccc4);
-  background: var(--color-surface-raised, #f5f0eb);
   display: flex;
   align-items: center;
   justify-content: center;
+  background: var(--media-bg);
+  border: 1px solid var(--color-line);
 }
 
 .tree-node-avatar img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  display: block;
 }
 
 .tree-node-avatar-fallback {
-  font-size: 1.2rem;
-  color: var(--color-text-muted, #7a7060);
+  font-family: var(--font-display);
+  color: var(--color-text-soft);
 }
 
 .tree-node-name {
-  font-size: 0.78rem;
-  font-weight: 600;
-  text-align: center;
+  font-size: var(--text-xs);
   line-height: 1.25;
-  margin-bottom: 4px;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
+  text-align: center;
+  color: var(--color-text);
 }
 
 .tree-node-years {
-  font-size: 0.7rem;
-  text-align: center;
-  color: var(--color-text-muted, #7a7060);
-  font-style: italic;
+  font-size: 0.65rem;
+  color: var(--color-text-soft);
+  font-variant-numeric: tabular-nums;
 }
 
-.tree-loading,
-.tree-error {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.9rem;
-  color: var(--color-text-muted, #7a7060);
-  pointer-events: none;
-  background: rgba(10, 9, 8, 0.42);
-}
-
-.tree-loading[hidden],
-.tree-error[hidden] {
-  display: none;
-}
+/* --- panel lateral --- */
 
 .tree-panel {
   position: fixed;
   top: 0;
   right: 0;
   bottom: 0;
-  width: 300px;
+  width: 320px;
   max-width: 90vw;
-  background: var(--color-surface, #fff);
-  border-left: 1px solid var(--color-border, #d1ccc4);
+  z-index: var(--z-panel);
   display: flex;
   flex-direction: column;
-  overflow: hidden;
-  transform: translateX(100%);
-  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  z-index: 300;
-}
-
-.tree-panel:not([hidden]) {
+  overflow-y: auto;
+  padding: var(--space-5);
+  background: var(--color-surface-strong);
+  border-left: 1px solid var(--color-line);
+  box-shadow: var(--shadow-soft);
   transform: translateX(0);
+  transition: transform var(--duration-slow) ease;
 }
 
+/*
+ * `hidden` debe seguir ocultando de verdad. Antes se anulaba con
+ * `display: flex !important` para poder animar, y eso dejaba el panel cerrado
+ * dentro del orden de tabulacion y del arbol de accesibilidad.
+ */
 .tree-panel[hidden] {
-  display: flex !important;
-  transform: translateX(100%);
+  display: none;
 }
 
 .tree-panel__close {
   position: absolute;
-  top: 0.75rem;
-  right: 0.75rem;
-  width: 2rem;
-  height: 2rem;
-  border: 1px solid var(--color-border, #d1ccc4);
-  border-radius: 50%;
-  background: var(--color-surface, #fff);
-  color: var(--color-text-muted, #7a7060);
-  font-size: 0.85rem;
-  cursor: pointer;
-  display: flex;
+  top: var(--space-3);
+  right: var(--space-3);
+  width: 2.75rem;
+  height: 2.75rem;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  transition:
-    color 0.15s,
-    border-color 0.15s;
+  border: 1px solid var(--color-line);
+  border-radius: 50%;
+  background: var(--color-surface);
+  color: var(--color-text);
+  font-size: var(--text-md);
+  line-height: 1;
+  cursor: pointer;
 }
 
 .tree-panel__close:hover {
-  color: var(--color-text, #1a1612);
-  border-color: var(--color-border-strong, #999);
+  border-color: var(--color-accent);
 }
 
 .tree-panel__header {
-  padding: 1.5rem 1.25rem 1rem;
-  border-bottom: 1px solid var(--color-border, #d1ccc4);
-  background: var(--color-surface-raised, #f5f0eb);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2);
+  padding-bottom: var(--space-4);
+  border-bottom: 1px solid var(--color-line);
+  text-align: center;
 }
 
 .tree-panel__avatar {
-  width: 64px;
-  height: 64px;
+  width: 72px;
+  height: 72px;
   border-radius: 50%;
   overflow: hidden;
-  border: 1px solid var(--color-border, #d1ccc4);
-  background: var(--color-surface, #fff);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.75rem;
-  margin-bottom: 0.75rem;
+  background: var(--media-bg);
+  border: 2px solid var(--color-unknown);
+}
+
+.tree-panel__avatar--male {
+  border-color: var(--color-male);
+}
+
+.tree-panel__avatar--female {
+  border-color: var(--color-female);
 }
 
 .tree-panel__avatar img {
@@ -304,127 +268,143 @@
   object-fit: cover;
 }
 
+.tree-panel__avatar-fallback {
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  color: var(--color-text-soft);
+}
+
 .tree-panel__name {
-  font-size: 1rem;
-  font-weight: 600;
-  color: var(--color-text, #1a1612);
-  margin: 0 0 0.2rem;
-  line-height: 1.3;
-  padding-right: 2rem;
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  font-weight: 400;
+  color: var(--color-text);
 }
 
 .tree-panel__years {
-  font-size: 0.8rem;
-  color: var(--color-text-muted, #7a7060);
-  font-style: italic;
-}
-
-.tree-panel__body {
-  padding: 1rem 1.25rem;
-  overflow-y: auto;
-  flex: 1;
+  margin: 0;
+  font-size: var(--text-sm);
+  color: var(--color-text-soft);
+  font-variant-numeric: tabular-nums;
 }
 
 .tree-panel__section {
-  margin-bottom: 1.25rem;
+  padding: var(--space-4) 0;
+  border-bottom: 1px solid var(--color-line);
 }
 
 .tree-panel__section-label {
-  font-size: 0.65rem;
+  margin: 0 0 var(--space-2);
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-wider);
   text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--color-text-muted, #7a7060);
-  margin-bottom: 0.4rem;
+  color: var(--color-label);
+}
+
+.tree-panel__section-label--sub {
+  margin-top: var(--space-3);
 }
 
 .tree-panel__section-text {
-  font-size: 0.85rem;
-  color: var(--color-text, #1a1612);
-  line-height: 1.6;
+  margin: 0;
+  font-size: var(--text-sm);
+  line-height: 1.7;
+  color: var(--color-text-soft);
 }
 
+/* Referencia navegable: es un <button> real para que funcione con teclado. */
 .tree-panel__ref {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  padding: 0.45rem 0;
-  border-bottom: 1px solid var(--color-border, #d1ccc4);
+  gap: var(--space-2);
+  width: 100%;
+  padding: var(--space-2) var(--space-2);
+  border: 1px solid transparent;
+  border-radius: var(--radius-small);
+  background: none;
+  color: inherit;
+  font: inherit;
+  text-align: left;
   cursor: pointer;
-  text-decoration: none;
-  transition: background 0.15s;
+  transition: background-color var(--duration-fast) ease;
 }
 
-.tree-panel__ref:hover .tree-panel__ref-name {
-  color: var(--color-accent, #7a5c38);
+.tree-panel__ref:hover {
+  background: var(--nav-hover-bg);
+  border-color: var(--color-line);
 }
 
 .tree-panel__ref-dot {
-  width: 8px;
-  height: 8px;
+  flex: none;
+  width: 0.6rem;
+  height: 0.6rem;
   border-radius: 50%;
-  flex-shrink: 0;
-  background: var(--color-border-strong, #aaa);
+  background: var(--color-unknown);
+}
+
+.tree-panel__ref-dot--male {
+  background: var(--color-male);
+}
+
+.tree-panel__ref-dot--female {
+  background: var(--color-female);
 }
 
 .tree-panel__ref-name {
-  font-size: 0.85rem;
-  color: var(--color-text, #1a1612);
   flex: 1;
+  font-size: var(--text-sm);
+  color: var(--color-text);
 }
 
 .tree-panel__ref-role {
-  font-size: 0.72rem;
-  color: var(--color-text-muted, #7a7060);
-  font-style: italic;
+  font-size: var(--text-xs);
+  color: var(--color-text-soft);
 }
 
 .tree-panel__profile-link {
-  display: inline-block;
-  margin-top: 0.75rem;
-  font-size: 0.8rem;
-  color: var(--color-accent, #7a5c38);
-  text-decoration: underline;
-  text-underline-offset: 2px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.75rem;
+  margin-top: var(--space-4);
+  padding: var(--space-2) var(--space-4);
+  border: 1px solid var(--color-accent);
+  border-radius: var(--radius-medium);
+  background: var(--nav-active-bg);
+  color: var(--color-accent-strong);
+  font-size: var(--text-sm);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  text-decoration: none;
 }
 
-:root[data-theme="light-celestial"] .page--arbol {
-  --color-border-strong: rgba(82, 121, 189, 0.36);
-  --color-surface: rgba(255, 255, 255, 0.95);
-  --color-surface-raised: rgba(244, 249, 255, 0.98);
-  --color-bg: rgba(236, 245, 255, 1);
-  --tree-bg-layer-1: radial-gradient(circle at 12% 14%, rgba(142, 189, 255, 0.26), transparent 36%);
-  --tree-bg-layer-2: radial-gradient(circle at 84% 82%, rgba(169, 205, 255, 0.3), transparent 34%);
-  --tree-bg-layer-3: linear-gradient(180deg, rgba(246, 251, 255, 1), rgba(232, 243, 255, 1));
+.tree-panel__profile-link:hover {
+  background: var(--nav-hover-bg);
 }
 
-:root[data-theme="light-celestial"] .tree-canvas.f3.f3-cont {
-  --male-color: rgba(90, 142, 196, 0.18);
-  --female-color: rgba(180, 120, 158, 0.18);
-  --genderless-color: rgba(124, 149, 111, 0.16);
-  --tree-card-bg: rgba(255, 255, 255, 0.95);
-  --tree-card-border: rgba(109, 143, 191, 0.35);
-  --tree-card-male-accent: #6f9cc3;
-  --tree-card-female-accent: #b88ba7;
-  --tree-card-unknown-accent: #8ea27f;
-}
+/* --- movil: el panel pasa a ser una hoja inferior --- */
 
-:root[data-theme="dawn-amber"] .page--arbol {
-  --color-border-strong: rgba(156, 105, 54, 0.34);
-  --color-surface: rgba(255, 251, 245, 0.95);
-  --color-surface-raised: rgba(255, 246, 234, 0.98);
-  --color-bg: rgba(247, 237, 224, 1);
-  --tree-bg-layer-1: radial-gradient(circle at 12% 14%, rgba(255, 200, 132, 0.28), transparent 36%);
-  --tree-bg-layer-2: radial-gradient(circle at 84% 82%, rgba(241, 179, 118, 0.24), transparent 34%);
-  --tree-bg-layer-3: linear-gradient(180deg, rgba(255, 249, 241, 1), rgba(246, 234, 218, 1));
-}
+@media (max-width: 640px) {
+  .tree-viewport-wrapper {
+    height: clamp(20rem, 60vh, 30rem);
+  }
 
-:root[data-theme="dawn-amber"] .tree-canvas.f3.f3-cont {
-  --male-color: rgba(173, 135, 92, 0.2);
-  --female-color: rgba(183, 121, 99, 0.2);
-  --genderless-color: rgba(141, 128, 92, 0.18);
-  --tree-card-bg: rgba(255, 250, 244, 0.95);
-  --tree-card-border: rgba(156, 105, 54, 0.3);
-  --tree-card-male-accent: #af8c66;
-  --tree-card-female-accent: #ba866d;
-  --tree-card-unknown-accent: #9d9470;
+  .tree-btn--back {
+    margin-left: 0;
+  }
+
+  .tree-panel {
+    top: auto;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    max-width: none;
+    max-height: 70vh;
+    border-left: 0;
+    border-top: 1px solid var(--color-line);
+    border-top-left-radius: var(--radius-large);
+    border-top-right-radius: var(--radius-large);
+  }
 }

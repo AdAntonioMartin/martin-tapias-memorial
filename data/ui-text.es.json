@@ -1,14 +1,16 @@
 {
   "common": {
+    "siteName": "Familia Martín - Tapias",
     "nav": {
-      "mainAria": "Navegacion principal",
+      "mainAria": "Navegación principal",
+      "skip": "Saltar al contenido",
       "list": "Listado",
-      "tree": "Arbol genealogico",
+      "tree": "Árbol genealógico",
       "detail": "Ficha personal"
     },
     "noscript": {
-      "generic": "No se ha podido mostrar el contenido completo de esta pagina.",
-      "tree": "El arbol genealogico requiere JavaScript activado."
+      "generic": "Esta página necesita JavaScript para mostrar el contenido.",
+      "tree": "El árbol genealógico necesita JavaScript activado."
     }
   },
   "listing": {
@@ -21,8 +23,11 @@
     },
     "table": {
       "heading": "Listado memorial",
-      "description": "Relacion de las personas recordadas en este espacio familiar.",
+      "description": "Relación de las personas recordadas en este espacio familiar.",
+      "caption": "Personas recordadas, ordenadas por fecha de fallecimiento.",
       "loading": "Cargando datos...",
+      "loaded": "Listado cargado.",
+      "partial": "Algunas fichas no se pudieron cargar.",
       "empty": "No hay datos.",
       "error": "No se pudo mostrar el listado en este momento."
     }
@@ -37,59 +42,60 @@
       "loadingName": "Cargando..."
     },
     "sections": {
-      "general": "Informacion general",
+      "general": "Información general",
       "status": "Estado",
       "mainImage": "Imagen principal",
-      "biography": "Biografia",
-      "gallery": "Galeria",
-      "galleryDescription": "Imagenes y documentos asociados a esta memoria personal."
+      "biography": "Biografía",
+      "gallery": "Galería",
+      "galleryDescription": "Imágenes y documentos asociados a esta memoria personal."
     },
     "messages": {
       "loading": "Cargando datos...",
-      "info": "Informacion",
+      "info": "Información",
       "notAvailable": "No disponible.",
-      "bioNotAvailable": "No hay biografia disponible.",
+      "bioNotAvailable": "No hay biografía disponible.",
       "noMainImage": "Sin imagen principal.",
-      "noGalleryImages": "No hay imagenes adicionales.",
+      "noGalleryImages": "No hay imágenes adicionales.",
       "errorTitle": "No se pudo mostrar esta ficha",
-      "errorNoPath": "Esta pagina no esta disponible en este momento.",
+      "errorNoPath": "Esta página no está disponible en este momento.",
       "errorLoad": "No se pudo mostrar el contenido de esta memoria personal."
     }
   },
   "tree": {
-    "title": "Arbol genealogico - Familia Martín - Tapias",
+    "title": "Árbol genealógico - Familia Martín - Tapias",
     "hero": {
-      "eyebrow": "Arbol genealogico",
+      "eyebrow": "Árbol genealógico",
       "heading": "Familia Martín - Tapias",
-      "lead": "Representacion visual de los lazos familiares."
+      "lead": "Representación visual de los lazos familiares."
     },
-    "sectionAria": "Arbol genealogico interactivo",
+    "sectionAria": "Árbol genealógico interactivo",
     "toolbar": {
-      "aria": "Controles del arbol",
+      "aria": "Controles del árbol",
       "zoomInAria": "Acercar",
       "zoomOutAria": "Alejar",
-      "fitAria": "Ajustar vista",
+      "fitAria": "Ajustar la vista al árbol completo",
       "back": "← Volver",
-      "fit": "Fit"
+      "fit": "Ajustar"
     },
     "messages": {
-      "loading": "Cargando arbol...",
-      "error": "No se pudo cargar el arbol genealogico."
+      "loading": "Cargando árbol...",
+      "error": "No se pudo cargar el árbol genealógico.",
+      "errorLibrary": "No se pudo cargar la librería del árbol genealógico. Comprueba tu conexión."
     },
     "panel": {
       "aria": "Ficha de la persona",
       "closeAria": "Cerrar ficha",
-      "closeGlyph": "X",
+      "closeGlyph": "×",
       "summary": "Resumen",
       "parents": "Padres",
       "children": "Hijos",
       "partnerRole": "Pareja",
-      "profileLink": "Ver ficha completa ->",
+      "profileLink": "Ver ficha completa",
       "union": {
         "married": "Matrimonio",
         "divorced": "Divorciados",
         "unmarried": "Sin matrimonio",
-        "default": "Union"
+        "default": "Unión"
       },
       "roles": {
         "father": "Padre",
