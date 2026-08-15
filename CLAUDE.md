@@ -107,6 +107,9 @@ avatars), `card` (640 px, gallery), `full` (1600 px), each as WebP plus a JPEG f
   `<button>` or `<a>`, never a `<div>` with a listener
 - Colors, spacing, type and durations come from `css/tokens.css`; `--color-accent` is decorative and
   fails contrast on small text, so use `--color-label` for labels
+- Gender in the tree is encoded four ways at once — top band, background tint (`--gender-tint`,
+  higher in the dark theme), avatar ring, and the initial shown when there is no portrait — plus a
+  legend. Color is never the only cue, and hover/selection must not overwrite the gender band
 - The theme must be applied by the synchronous `js/theme-boot.js`, never from a module.
   `APP_CONFIG.theme` outranks `prefers-color-scheme`; only an explicit visitor choice in
   `localStorage` outranks the config. Use `theme: "auto"` to follow the system instead

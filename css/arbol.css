@@ -53,6 +53,54 @@
   margin-left: auto;
 }
 
+/* --- leyenda del codigo de color --- */
+
+.tree-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-4);
+  align-items: center;
+  list-style: none;
+  margin: 0 0 var(--space-3);
+  padding: 0;
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--color-text-soft);
+}
+
+.tree-legend__item {
+  --gender-color: var(--color-unknown);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.tree-legend__item--male {
+  --gender-color: var(--color-male);
+}
+
+.tree-legend__item--female {
+  --gender-color: var(--color-female);
+}
+
+/* Misma muestra que la tarjeta: anillo de color mas la inicial. */
+.tree-legend__swatch {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  border: 2px solid var(--gender-color);
+  background: color-mix(in srgb, var(--gender-color) var(--gender-tint), var(--color-surface-strong));
+  color: var(--gender-color);
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0;
+}
+
 /* --- lienzo --- */
 
 .tree-viewport-wrapper {
@@ -121,34 +169,49 @@
 
 /* --- tarjetas --- */
 
+/*
+ * El genero se codifica en tres sitios a la vez, porque una franja de 3 px
+ * apenas se distinguia: la banda superior, un tinte de fondo y el anillo del
+ * avatar. Ademas la tarjeta sin retrato muestra la inicial, asi que el color
+ * nunca es el unico indicio.
+ */
 .tree-node-card {
+  --gender-color: var(--color-unknown);
+
   width: 154px;
   min-height: 102px;
   border: 1px solid var(--color-line);
+  border-top: 6px solid var(--gender-color);
   border-radius: var(--radius-medium);
-  background: var(--color-surface-strong);
+  background: color-mix(in srgb, var(--gender-color) var(--gender-tint), var(--color-surface-strong));
   box-shadow: var(--shadow-table);
   cursor: pointer;
   transition:
     border-color var(--duration-fast) ease,
     box-shadow var(--duration-fast) ease;
-  border-top: 3px solid var(--color-unknown);
 }
 
 .tree-node-card--male {
-  border-top-color: var(--color-male);
+  --gender-color: var(--color-male);
 }
 
 .tree-node-card--female {
-  border-top-color: var(--color-female);
+  --gender-color: var(--color-female);
 }
 
+/*
+ * Hover y seleccion no deben pisar la banda de genero: `border-color` afecta
+ * tambien al borde superior, y la tarjeta enfocada acababa con la banda del
+ * color de acento en lugar de la suya.
+ */
 .tree-node-card:hover {
-  border-color: var(--color-accent);
+  border-inline-color: var(--color-accent);
+  border-bottom-color: var(--color-accent);
 }
 
 .tree-node-card--selected {
-  border-color: var(--color-accent-strong);
+  border-inline-color: var(--color-accent-strong);
+  border-bottom-color: var(--color-accent-strong);
   box-shadow: 0 0 0 2px var(--color-accent-strong);
 }
 
@@ -175,8 +238,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--media-bg);
-  border: 1px solid var(--color-line);
+  background: var(--color-surface-strong);
+  border: 2px solid var(--gender-color);
 }
 
 .tree-node-avatar img {
@@ -185,9 +248,12 @@
   object-fit: cover;
 }
 
+/* Inicial cuando no hay retrato: el indicio textual que acompana al color. */
 .tree-node-avatar-fallback {
   font-family: var(--font-display);
-  color: var(--color-text-soft);
+  font-size: var(--text-md);
+  font-weight: 600;
+  color: var(--gender-color);
 }
 
 .tree-node-name {
@@ -360,10 +426,11 @@
 
 .tree-panel__ref-dot {
   flex: none;
-  width: 0.6rem;
-  height: 0.6rem;
+  width: 0.75rem;
+  height: 0.75rem;
   border-radius: 50%;
   background: var(--color-unknown);
+  box-shadow: 0 0 0 1px var(--color-line);
 }
 
 .tree-panel__ref-dot--male {

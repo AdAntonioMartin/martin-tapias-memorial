@@ -76,8 +76,16 @@ async function withPage(browser, url, viewport = { width: 1280, height: 900 }) {
  */
 function measureContrast() {
   const parse = (color) => {
-    const parts = color.match(/[\d.]+/g).map(Number);
-    return { r: parts[0], g: parts[1], b: parts[2], a: parts[3] === undefined ? 1 : parts[3] };
+    const parts = (color.match(/[\d.]+/g) || []).map(Number);
+    // color-mix() se calcula como "color(srgb r g b / a)", con los canales de 0
+    // a 1 en lugar de 0 a 255. Sin esta escala, un fondo claro se lee como negro.
+    const scale = color.startsWith("color(") ? 255 : 1;
+    return {
+      r: (parts[0] || 0) * scale,
+      g: (parts[1] || 0) * scale,
+      b: (parts[2] || 0) * scale,
+      a: parts[3] === undefined ? 1 : parts[3]
+    };
   };
   const over = (fg, bg) => ({
     r: fg.r * fg.a + bg.r * (1 - fg.a),
@@ -121,7 +129,11 @@ function measureContrast() {
     [".lead", "lead"],
     [".description", "descripcion"],
     ["td", "celda"],
-    [".site-nav__link", "enlace de navegacion"]
+    [".site-nav__link", "enlace de navegacion"],
+    // Solo existen en el arbol; el tinte de genero del fondo no debe comerse el texto.
+    [".tree-node-card--male .tree-node-name", "nombre en tarjeta de hombre"],
+    [".tree-node-card--female .tree-node-name", "nombre en tarjeta de mujer"],
+    [".tree-legend", "leyenda de generos"]
   ];
 
   return targets
@@ -302,14 +314,17 @@ async function main() {
     }
 
     console.log("\n== Contraste WCAG AA en los tres temas ==");
-    {
-      const { page } = await withPage(browser, "/index.html");
+    for (const [pagina, url] of [
+      ["listado", "/index.html"],
+      ["árbol", "/arbol.html?tree=martin"]
+    ]) {
+      const { page } = await withPage(browser, url);
       for (const theme of ["light-celestial", "dawn-amber", "dark"]) {
         await page.evaluate((value) => document.documentElement.setAttribute("data-theme", value), theme);
-        await page.waitForTimeout(200);
+        await page.waitForTimeout(250);
         const rows = await page.evaluate(measureContrast);
         const worst = rows.reduce((acc, row) => (row.ratio / row.min < acc.ratio / acc.min ? row : acc));
-        check(`${theme} (peor: ${worst.label})`, `${worst.ratio}:1 sobre ${worst.min}`, () =>
+        check(`${pagina} / ${theme} (peor: ${worst.label})`, `${worst.ratio}:1 sobre ${worst.min}`, () =>
           rows.every((row) => row.ratio >= row.min)
         );
       }

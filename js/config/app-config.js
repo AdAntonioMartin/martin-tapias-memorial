@@ -12,7 +12,7 @@ window.APP_CONFIG = {
   // Valores soportados: "dark" | "light-celestial" | "dawn-amber" | "auto".
   // "auto" sigue la preferencia del sistema (prefers-color-scheme).
   // Lo que el visitante elija en la pagina tiene prioridad sobre este valor.
-  theme: "dawn-amber",
+  theme: "light-celestial",
 
   templates: {
     detail: "persona.html",

@@ -60,9 +60,12 @@
   --color-label: #e4d3b4;
   --color-focus: #f2dfbd;
 
-  --color-male: #8fb2c9;
-  --color-female: #d09aae;
-  --color-unknown: #a8bb92;
+  /* Cuanto color de genero se mezcla en el fondo de la tarjeta del arbol.
+     El tema oscuro necesita mas peso para que se note sobre una superficie casi negra. */
+  --gender-tint: 26%;
+  --color-male: #6aa9e0;
+  --color-female: #e58bb0;
+  --color-unknown: #b5b06a;
 
   --shadow-soft: 0 24px 70px rgb(0 0 0 / 35%);
   --shadow-table: 0 14px 32px rgb(0 0 0 / 28%);
@@ -114,9 +117,10 @@
   --color-label: #24518f;
   --color-focus: #1d4b91;
 
-  --color-male: #3f6f92;
-  --color-female: #8c3f61;
-  --color-unknown: #56683f;
+  --gender-tint: 12%;
+  --color-male: #1f6bb5;
+  --color-female: #c02a72;
+  --color-unknown: #7a6a12;
 
   --shadow-soft: 0 16px 44px rgb(109 143 194 / 22%);
   --shadow-table: 0 10px 24px rgb(109 143 194 / 18%);
@@ -150,9 +154,10 @@
   --color-label: #71431b;
   --color-focus: #6d3f18;
 
-  --color-male: #3d6376;
-  --color-female: #8a3d58;
-  --color-unknown: #55643a;
+  --gender-tint: 12%;
+  --color-male: #1a6a9e;
+  --color-female: #bb2f6a;
+  --color-unknown: #7d6410;
 
   --shadow-soft: 0 16px 42px rgb(163 117 73 / 20%);
   --shadow-table: 0 10px 22px rgb(163 117 73 / 16%);

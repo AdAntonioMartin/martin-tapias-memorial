@@ -77,6 +77,12 @@
       "back": "← Volver",
       "fit": "Ajustar"
     },
+    "legend": {
+      "aria": "Código de color del árbol",
+      "male": "Hombre",
+      "female": "Mujer",
+      "unknown": "Sin determinar"
+    },
     "messages": {
       "loading": "Cargando árbol...",
       "error": "No se pudo cargar el árbol genealógico.",
