@@ -35,6 +35,12 @@ jobs:
           node-version: 22
           cache: npm
 
+      # El motor es una dependencia de git y npm la anota en el lockfile como
+      # git+ssh, aunque se declare con https. El runner no tiene clave SSH, asi
+      # que sin esto npm ci no puede descargarla.
+      - name: Descargar las dependencias de git por HTTPS
+        run: git config --global url."https://github.com/".insteadOf ssh://git@github.com/
+
       - run: npm ci
 
       - name: Validar antes de publicar
