@@ -1,89 +1,80 @@
 # Pasos manuales pendientes
 
-La separación está hecha y verificada en local, pero hay cuatro cosas que no se
-pueden hacer desde aquí porque requieren tu cuenta de GitHub. **Hasta que las
-hagas, no publiques**: el sitio en vivo sigue funcionando con lo que ya está
-desplegado, y nada de lo hecho en local lo afecta todavía.
+La separación está hecha y verificada en local para los **tres** repositorios.
+Lo que queda requiere tu cuenta de GitHub, así que no puedo hacerlo desde aquí.
+Nada de esto afecta todavía al sitio en vivo: sigue publicado lo de antes.
 
 El orden importa.
 
-## 1. Publicar el motor en GitHub
+## 1. Publicar el motor
+
+La etiqueta y el remote ya están puestos en local. Falta crear el repositorio
+`family-tree-engine` en GitHub y subirlo:
 
 ```bash
 cd ../family-tree-engine
-git tag v0.1.0
+git push -u origin main --follow-tags     # sube main y la etiqueta v0.1.0
 ```
 
-Crea el repositorio `family-tree-engine` en GitHub (público o privado; si es
-privado, los repos de familia necesitarán un token para instalarlo) y luego:
+Si lo creas privado, los repos de familia necesitarán un token para instalarlo;
+público es más simple.
 
-```bash
-git remote add origin https://github.com/AdAntonioMartin/family-tree-engine.git
-git push -u origin main --follow-tags
-```
+## 2. Regenerar los lockfiles
 
-## 2. Apuntar este repositorio a esa etiqueta
-
-Ahora mismo la dependencia es local, para haber podido verificarlo todo sin
+Los dos repos de familia ya apuntan a `github:AdAntonioMartin/family-tree-engine#v0.1.0`,
+pero sus `package-lock.json` se generaron con la ruta local. **`npm ci` fallará
+en CI hasta que se regeneren**, y solo se puede hacer una vez el motor esté en
 GitHub:
 
-```json
-"family-tree-engine": "file:../family-tree-engine"
-```
-
-Una ruta `file:` **no funciona en CI**: `npm ci` fallará porque esa carpeta no
-existe en el runner. Cámbiala:
-
 ```bash
-npm pkg set dependencies.family-tree-engine="github:AdAntonioMartin/family-tree-engine#v0.1.0"
-npm install
-npm run check    # debe seguir dando 0 errores
-git add package.json package-lock.json
-git commit -m "Apuntar el motor a la etiqueta publicada"
+cd ../martin-tapias-memorial && npm install && npm run check
+cd ../minguez_deantonio     && npm install && npm run check
 ```
 
-## 3. Cambiar el origen de GitHub Pages
+Luego commitea los `package-lock.json` resultantes en cada uno.
 
-**Ajustes → Pages → Source: GitHub Actions.**
+## 3. Cambiar el origen de GitHub Pages en los dos sitios
 
-Es imprescindible. Con el origen anterior ("Deploy from a branch") se publicaría
-la rama tal cual, que ya no tiene `index.html`, y el sitio daría 404. El
-workflow incluye `actions/configure-pages` con `enablement: true` para
-intentarlo automáticamente, pero conviene comprobarlo a mano.
+**Ajustes → Pages → Source: GitHub Actions**, en `martin-tapias-memorial` y en
+`minguez_deantonio`.
 
-Haz este paso **antes** del primer push a `main`.
+Es imprescindible y hay que hacerlo **antes** del primer push a `main`. Con el
+origen anterior ("Deploy from a branch") se publicaría la rama tal cual, que ya
+no tiene `index.html`, y el sitio daría 404.
 
 ## 4. Comprobar el primer despliegue
 
-Tras el push, en la pestaña Actions deben salir en verde *CI* y *Desplegar a
-GitHub Pages*. Luego revisa en el sitio publicado:
+En la pestaña Actions deben salir en verde *CI* y *Desplegar a GitHub Pages*.
+Luego, en cada sitio publicado:
 
-- el listado carga y tiene 7 filas
-- `arbol.html?tree=martin` dibuja el árbol
+- el listado carga y tiene filas
+- el árbol se dibuja
 - una ficha con fotos se ve bien
-- `images/originals/` ya **no** está publicado (ahorra ~70 MB)
+- `images/originals/` ya **no** está publicado
 
 ---
 
-## Después: la segunda familia
+## Estado actual
 
-`minguez_deantonio` es candidato natural. Dos caminos:
+| Repositorio | Qué es | Verificado |
+|---|---|---|
+| `family-tree-engine` | El motor. 62 ficheros, sin datos | 21 pruebas en verde |
+| `martin-tapias-memorial` | 161 personas, 59 uniones, 3 vistas | check y smoke en verde |
+| `minguez_deantonio` | 14 personas, 5 uniones, 1 vista | check y smoke en verde |
 
-**Empezar limpio** y traer los datos a mano:
+## Aviso sobre los datos duplicados
 
-```bash
-cd ..
-npx family-tree-init minguez-deantonio --name "Familia Mínguez - De Antonio" --url https://adantoniomartin.github.io/minguez_deantonio
-```
+Las 14 personas de `minguez_deantonio` **también están** en
+`martin-tapias-memorial`, donde esa rama es además la vista `?tree=deantonio`.
 
-**Convertir el repo existente**: borrar de él `js/`, `css/` y los HTML, añadir
-`site.config.json` y el `package.json` con la dependencia, y adaptar sus datos
-al esquema (`data/personas/`, `data/unions.json`, `data/trees/index.json`).
-Requiere revisar si su formato de datos coincide con el de aquí.
+Son copias independientes. Si corriges una fecha o añades una foto de alguien
+que aparece en los dos sitios, **hay que hacerlo en ambos** o quedarán
+divergentes. No hay ningún mecanismo que los sincronice.
 
-Cuando quieras, lo miro y te digo cuál sale más a cuenta.
+Si en algún momento molesta, la salida limpia es quedarse solo con
+`martin-tapias-memorial` y usar la vista, que muestra exactamente esa rama.
 
-## Cómo se propagan las mejoras del motor a partir de ahora
+## Cómo se propagan las mejoras del motor
 
 1. Cambias algo en `family-tree-engine`, `npm run check`, y publicas etiqueta
    nueva (`npm version minor && git push --follow-tags`).
@@ -93,3 +84,13 @@ Cuando quieras, lo miro y te digo cuál sale más a cuenta.
 
 Ninguna familia se actualiza sin pasar por su propio CI, así que un cambio que
 rompa unos datos concretos se detecta antes de publicarse.
+
+## Crear una familia más adelante
+
+```bash
+npx family-tree-init familia-nueva --name "Familia Nueva" --url https://adantoniomartin.github.io/familia-nueva
+cd familia-nueva && npm install && npm run serve
+```
+
+Deja un sitio que ya construye y valida, con dos fichas de ejemplo que se
+sustituyen por datos reales.
