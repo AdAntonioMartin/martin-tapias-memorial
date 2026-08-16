@@ -14,6 +14,7 @@
     "check": "npm run lint && npm run build && npm run test && npm run validate",
     "smoke": "node tools/smoke.mjs",
     "images": "node tools/optimize-images.mjs",
+    "add-photo": "node tools/add-photo.mjs",
     "build": "node tools/build-bundle.mjs",
     "sitemap": "node tools/build-sitemap.mjs"
   },

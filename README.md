@@ -104,13 +104,30 @@ derivados de `images/personas/<slug>/`, en tres tamaños (`thumb` 96 px para los
 avatares del árbol, `card` 640 px para la galería, `full` 1600 px para la vista
 ampliada) y dos formatos (WebP con respaldo JPEG).
 
+Para añadir una foto a una persona, lo normal es `npm run add-photo`: genera
+los derivados y además escribe el bloque `heroImage`/`gallery` en su ficha, en
+vez de tener que copiar a mano una docena de rutas y medir cada imagen.
+
+```bash
+npm run add-photo -- <id> <ruta-a-la-foto> [--hero] [--alt "…"] [--caption "…"]
+```
+
+Sin `--hero` la foto se añade a `gallery`. Es idempotente: si los derivados ya
+están en disco no se recodifican (`--force` lo fuerza), y si la ficha ya
+referencia esa imagen no se duplica — repetir el comando es seguro. `--dry-run`
+enseña el JSON que añadiría sin escribir nada.
+
+Para soltar muchas fotos nuevas de golpe sigue estando `npm run images`: recorre
+`images/personas/`, deduplica por hash y genera los derivados, pero no toca
+ningún JSON — esa parte hay que hacerla luego a mano o foto a foto con
+`add-photo`.
+
 ## Alta de una persona
 
 1. Crear `data/personas/<id>.json` siguiendo el esquema de arriba.
 2. Añadir la entrada `id → ruta` en `data/personas-index.json`.
 3. Referenciar el `id` en las uniones de `data/unions.json`.
-4. Si tiene fotos, dejarlas en `images/personas/<id>/` y ejecutar
-   `npm run images` para generar los derivados.
+4. Añadir sus fotos con `npm run add-photo -- <id> <foto> [--hero]`.
 5. `npm run build` para regenerar el bundle y `npm run check` para validar.
 
 ## Herramientas
@@ -120,7 +137,8 @@ ampliada) y dos formatos (WebP con respaldo JPEG).
 | `npm run serve` | Servidor estático de desarrollo. |
 | `npm run build` | Regenera `data/tree-bundle.json`. Obligatorio tras tocar fichas o uniones. |
 | `npm run validate` | Comprueba índices, uniones, identificadores, fechas e imágenes. |
-| `npm run images` | Deduplica y genera los derivados de `images/personas/`. |
+| `npm run add-photo -- <id> <foto>` | Genera los derivados de una foto y la escribe en la ficha de la persona. |
+| `npm run images` | Deduplica y genera los derivados de todas las fotos sueltas en `images/personas/`. |
 | `npm run sitemap` | Regenera `sitemap.xml` y `robots.txt`. |
 | `npm run smoke` | Prueba de humo en navegador. |
 | `npm run check` | Todo lo que ejecuta CI. |

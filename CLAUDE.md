@@ -88,15 +88,28 @@ family-chart. Do not build a second parallel structure.
 
 `images/originals/` is the family archive at full resolution and is **never served or linked**.
 `images/personas/<slug>/` holds the derivatives the site actually uses: `thumb` (96 px, tree
-avatars), `card` (640 px, gallery), `full` (1600 px), each as WebP plus a JPEG fallback. Run
-`npm run images` after adding photos.
+avatars), `card` (640 px, gallery), `full` (1600 px), each as WebP plus a JPEG fallback.
+
+To add one photo to an existing person, prefer `npm run add-photo` — it generates the derivatives
+*and* writes the image block into the person record, which is otherwise a dozen paths copied by
+hand:
+
+```bash
+npm run add-photo -- <id> <ruta-a-la-foto> [--hero] [--alt "…"] [--caption "…"] [--dry-run]
+```
+
+Without `--hero` the image is appended to `gallery`. Both tools are idempotent: derivatives already
+on disk are not re-encoded (`--force` overrides) and a photo the record already references is not
+added twice, so re-running is safe. `npm run images` remains the bulk pass that dedupes a folder of
+new drops by hash; it skips files that are already derivatives.
 
 ## Adding a person
 
 1. Create `data/personas/<id>.json`
 2. Add the `id → path` entry to `data/personas-index.json`
 3. Reference the `id` in `data/unions.json`
-4. Drop photos in `images/personas/<id>/` and run `npm run images`
+4. Add photos with `npm run add-photo -- <id> <foto> [--hero]` (or drop many in
+   `images/personas/<id>/` and run `npm run images`)
 5. Run `npm run build`, then `npm run check`
 
 ## Conventions worth keeping
