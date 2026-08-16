@@ -26,10 +26,10 @@
 import { readFile, writeFile } from "node:fs/promises";
 import { existsSync } from "node:fs";
 import path from "node:path";
-import { fileURLToPath } from "node:url";
 import { generateDerivatives } from "./optimize-images.mjs";
+import { siteRoot } from "./lib/site-config.mjs";
 
-const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
+const ROOT = siteRoot();
 
 const USAGE =
   'Uso: node tools/add-photo.mjs <id> <ruta-a-la-foto> [--hero] [--alt "texto"] [--caption "texto"] [--force] [--dry-run]';

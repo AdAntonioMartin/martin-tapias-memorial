@@ -1,7 +1,7 @@
 import { escapeHtml, setText } from "../core/html.js";
 import { t } from "../core/i18n.js";
 import { inferTreeKeyFromPath, buildQueryUrl } from "../core/url.js";
-import { getTemplates } from "../config/index.js";
+import { getSiteName, getTemplates } from "../config/index.js";
 
 function renderItemsOrFallback(elementId, items, fallbackHtml, itemTemplateFn) {
   const target = document.getElementById(elementId);
@@ -128,8 +128,8 @@ export function setTreeLink(dataPath, personId, treeKey) {
 
 export function renderDetailPage(data) {
   const pageDefault = t("detail.title.pageDefault", "Ficha personal");
-  const pageSuffix = t("detail.title.suffix", "Familia Martin - Tapias");
-  document.title = `${data.name || pageDefault} | ${pageSuffix}`;
+  const pageSuffix = t("detail.title.suffix", getSiteName());
+  document.title = pageSuffix ? `${data.name || pageDefault} | ${pageSuffix}` : data.name || pageDefault;
   setText("person-name", data.name || pageDefault);
   setText("person-summary", data.summary || "");
   renderFacts(data.facts);

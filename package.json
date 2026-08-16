@@ -15,7 +15,8 @@
     "smoke": "node tools/smoke.mjs",
     "images": "node tools/optimize-images.mjs",
     "add-photo": "node tools/add-photo.mjs",
-    "build": "node tools/build-bundle.mjs",
+    "build": "node tools/build-site.mjs && node tools/build-bundle.mjs",
+    "build:check": "node tools/build-site.mjs --check",
     "sitemap": "node tools/build-sitemap.mjs"
   },
   "devDependencies": {

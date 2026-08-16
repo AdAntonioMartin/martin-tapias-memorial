@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="{{lang}}">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title data-i18n="tree.title">Árbol genealógico | {{siteName}}</title>
+    <meta name="description" content="{{descriptions.tree}}" />
+    <meta name="theme-color" content="{{themeColor}}" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Árbol genealógico | {{siteName}}" />
+    <link rel="canonical" href="arbol.html" />
+    <link rel="icon" href="{{favicon}}" type="image/svg+xml" />
+    <script src="js/config/app-config.js"></script>
+    <script src="js/theme-boot.js"></script>
+    <link rel="stylesheet" href="css/tokens.css" />
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="vendor/family-chart.css" />
+    <link rel="stylesheet" href="css/arbol.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#contenido" data-i18n="common.nav.skip">Saltar al contenido</a>
+
+    <main class="page page--arbol" id="contenido">
+      <nav class="site-nav" aria-label="Navegación principal" data-i18n-attr="aria-label:common.nav.mainAria">
+        <a class="site-nav__link" href="index.html" data-i18n="common.nav.list">Listado</a>
+        <a
+          class="site-nav__link site-nav__link--active"
+          href="arbol.html"
+          aria-current="page"
+          data-i18n="common.nav.tree"
+          >Árbol genealógico</a
+        >
+      </nav>
+
+      <section class="hero">
+        <p class="eyebrow" data-i18n="tree.hero.eyebrow">Árbol genealógico</p>
+        <h1 data-i18n="tree.hero.heading">{{siteName}}</h1>
+        <p class="lead" data-i18n="tree.hero.lead">Representación visual de los lazos familiares.</p>
+      </section>
+
+      <section
+        class="tree-section"
+        aria-label="Árbol genealógico interactivo"
+        data-i18n-attr="aria-label:tree.sectionAria"
+      >
+        <div class="tree-toolbar">
+          <button
+            type="button"
+            class="tree-btn"
+            id="btn-zoom-in"
+            aria-label="Acercar"
+            data-i18n-attr="aria-label:tree.toolbar.zoomInAria"
+          >
+            <span aria-hidden="true">+</span>
+          </button>
+          <button
+            type="button"
+            class="tree-btn"
+            id="btn-zoom-out"
+            aria-label="Alejar"
+            data-i18n-attr="aria-label:tree.toolbar.zoomOutAria"
+          >
+            <span aria-hidden="true">−</span>
+          </button>
+          <button
+            type="button"
+            class="tree-btn"
+            id="btn-fit"
+            aria-label="Ajustar la vista al árbol completo"
+            data-i18n-attr="aria-label:tree.toolbar.fitAria"
+            data-i18n="tree.toolbar.fit"
+          >
+            Ajustar
+          </button>
+          <a class="tree-btn tree-btn--back" href="index.html" data-i18n="tree.toolbar.back">← Volver</a>
+        </div>
+
+        <ul class="tree-legend" aria-label="Código de color" data-i18n-attr="aria-label:tree.legend.aria">
+          <li class="tree-legend__item tree-legend__item--male">
+            <span class="tree-legend__swatch" aria-hidden="true">M</span>
+            <span data-i18n="tree.legend.male">Hombre</span>
+          </li>
+          <li class="tree-legend__item tree-legend__item--female">
+            <span class="tree-legend__swatch" aria-hidden="true">F</span>
+            <span data-i18n="tree.legend.female">Mujer</span>
+          </li>
+          <li class="tree-legend__item tree-legend__item--unknown">
+            <span class="tree-legend__swatch" aria-hidden="true">?</span>
+            <span data-i18n="tree.legend.unknown">Sin determinar</span>
+          </li>
+        </ul>
+
+        <div class="tree-viewport-wrapper" id="tree-wrapper">
+          <div class="f3 f3-cont tree-canvas" id="tree-canvas"></div>
+          <p
+            class="tree-message tree-message--loading"
+            id="tree-loading"
+            role="status"
+            data-i18n="tree.messages.loading"
+          >
+            Cargando árbol...
+          </p>
+          <p class="tree-message tree-message--error" id="tree-error" role="alert" hidden></p>
+        </div>
+      </section>
+    </main>
+
+    <aside class="tree-panel" id="tree-panel" role="dialog" aria-labelledby="tree-panel-name" hidden inert>
+      <button
+        type="button"
+        class="tree-panel__close"
+        id="tree-panel-close"
+        aria-label="Cerrar ficha"
+        data-i18n-attr="aria-label:tree.panel.closeAria"
+      >
+        <span aria-hidden="true">×</span>
+      </button>
+      <div class="tree-panel__header" id="tree-panel-header"></div>
+      <div class="tree-panel__body" id="tree-panel-body"></div>
+    </aside>
+
+    <noscript>
+      <p class="noscript-message" data-i18n="common.noscript.tree">
+        El árbol genealógico necesita JavaScript activado.
+      </p>
+    </noscript>
+
+    <script src="vendor/d3.v7.min.js"></script>
+    <script src="vendor/family-chart.min.js"></script>
+    <script type="module" src="js/arbol.js"></script>
+  </body>
+</html>

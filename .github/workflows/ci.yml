@@ -30,6 +30,11 @@ jobs:
       - name: Validar datos
         run: npm run validate
 
+      # index.html, arbol.html, persona.html y js/config/app-config.js se generan
+      # desde templates/ y site.config.json: detecta que se hayan editado a mano.
+      - name: Los ficheros generados estan al dia
+        run: npm run build:check
+
       # Detecta que alguien haya editado una ficha sin regenerar el bundle.
       - name: El bundle esta al dia
         run: |

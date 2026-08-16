@@ -9,7 +9,7 @@ import { getFactValue, getRecordField } from "../js/core/person.js";
 test("normalizeText quita tildes, pasa a minusculas y recorta", () => {
   assert.equal(normalizeText("  Ocupación  "), "ocupacion");
   assert.equal(normalizeText("Fallecimiento"), "fallecimiento");
-  assert.equal(normalizeText("Castaño"), "castano");
+  assert.equal(normalizeText("Peña"), "pena");
   assert.equal(normalizeText(null), "");
 });
 
@@ -74,10 +74,10 @@ test("getFactValue encuentra la etiqueta ignorando tildes y mayusculas", () => {
 
 test("getRecordField distingue la sintaxis fact: de la ruta directa", () => {
   const record = {
-    name: "Isabel Minguez Gonzalez",
+    name: "Nombre De Prueba",
     facts: [{ label: "Edad", value: "88 años" }]
   };
-  assert.equal(getRecordField(record, "name"), "Isabel Minguez Gonzalez");
+  assert.equal(getRecordField(record, "name"), "Nombre De Prueba");
   assert.equal(getRecordField(record, "fact:Edad"), "88 años");
   assert.equal(getRecordField(record, ""), "");
 });

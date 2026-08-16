@@ -1,0 +1,13 @@
+{
+  "siteName": "Familia Martín - Tapias",
+  "description": "Espacio de recuerdo de la familia Martín - Tapias: fichas personales, fechas y árbol genealógico.",
+  "descriptions": {
+    "tree": "Árbol genealógico interactivo de la familia Martín - Tapias, con la ficha de cada persona.",
+    "detail": "Ficha personal del memorial de la familia Martín - Tapias."
+  },
+  "baseUrl": "https://adantoniomartin.github.io/martin-tapias-memorial",
+  "lang": "es",
+  "theme": "light-celestial",
+  "favicon": "images/retrato.svg",
+  "overrides": {}
+}

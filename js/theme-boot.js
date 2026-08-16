@@ -51,8 +51,13 @@
     return fromSystem();
   }
 
-  /** Color de la barra de direcciones en movil, por tema. */
-  const THEME_COLORS = {
+  /*
+   * Color de la barra de direcciones en movil, por tema. Sale de la
+   * configuracion para que el valor inicial que escribe el generador en el HTML
+   * y el que se aplica aqui no puedan divergir. El respaldo cubre el caso de
+   * que falte app-config.js.
+   */
+  const THEME_COLORS = config.themeColors || {
     dark: "#11100f",
     "light-celestial": "#eef5ff",
     "dawn-amber": "#f6efe6"

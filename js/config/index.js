@@ -7,6 +7,7 @@
  */
 
 const FALLBACK = {
+  siteName: "",
   theme: "light-celestial",
   templates: { detail: "persona.html", tree: "arbol.html", listing: "index.html" },
   data: {},
@@ -27,6 +28,14 @@ export function getDataConfig() {
 
 export function getTemplates() {
   return APP_CONFIG.templates;
+}
+
+/**
+ * Nombre del sitio. Se usa como respaldo cuando no han cargado los textos de
+ * interfaz; el codigo no debe llevar escrito el nombre de ninguna familia.
+ */
+export function getSiteName() {
+  return APP_CONFIG.siteName || "";
 }
 
 export function getTreeConfig() {

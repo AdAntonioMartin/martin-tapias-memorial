@@ -12,9 +12,9 @@
 import { readFile } from "node:fs/promises";
 import { existsSync } from "node:fs";
 import path from "node:path";
-import { fileURLToPath } from "node:url";
+import { siteRoot } from "./lib/site-config.mjs";
 
-const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
+const ROOT = siteRoot();
 const QUIET = process.argv.includes("--quiet");
 
 const ID_PATTERN = /^[a-z0-9-]+$/;
@@ -201,7 +201,95 @@ async function main() {
     }
   }
 
+  await validateBundle(byId, unions);
+  await validateViews(byId, unions, trees);
+
   report();
+}
+
+/**
+ * El bundle es un derivado: si alguien edita una ficha y no ejecuta
+ * `npm run build`, el arbol muestra datos viejos sin que falle nada.
+ * Esta comprobacion vivia en los tests, que leian data/ y por eso no podian
+ * viajar con el motor.
+ */
+async function validateBundle(byId, unions) {
+  const scope = "data/tree-bundle.json";
+  const bundle = await readJson("data/tree-bundle.json");
+  if (!bundle) {
+    return;
+  }
+
+  if (JSON.stringify(bundle.unions) !== JSON.stringify(unions)) {
+    fail(scope, "las uniones del bundle no coinciden con data/unions.json; ejecuta npm run build");
+  }
+
+  const people = bundle.people || {};
+  const enBundle = Object.keys(people).sort();
+  const enIndice = Object.keys(byId).sort();
+  if (JSON.stringify(enBundle) !== JSON.stringify(enIndice)) {
+    fail(scope, "el bundle no tiene exactamente las mismas personas que el indice; ejecuta npm run build");
+    return;
+  }
+
+  for (const [id, relPath] of Object.entries(byId)) {
+    const record = await readJson(relPath);
+    const entry = people[id];
+    if (!record || !entry) {
+      continue;
+    }
+    for (const field of ["name", "gender", "born", "died"]) {
+      if ((entry[field] || "") !== (record[field] || "")) {
+        fail(scope, `"${field}" desincronizado en ${id}; ejecuta npm run build`);
+      }
+    }
+  }
+}
+
+/**
+ * Cada vista recorta el grafo desde su raiz. Dos vistas que devuelven
+ * exactamente el mismo subgrafo son casi siempre un error de configuracion:
+ * antes existian ficheros por familia que resultaron ser copias identicas.
+ */
+async function validateViews(byId, unions, trees) {
+  const { buildTreeModel } = await import("../js/tree/model.js");
+  const { collectScopeIds } = await import("../js/tree/scope.js");
+
+  const people = {};
+  for (const [id, relPath] of Object.entries(byId)) {
+    const record = await readJson(relPath);
+    if (record) {
+      people[id] = record;
+    }
+  }
+
+  const model = buildTreeModel(unions, people);
+  if (model.missingIds.length) {
+    fail("data/unions.json", `personas referenciadas sin ficha: ${model.missingIds.join(", ")}`);
+  }
+
+  const sizes = new Map();
+  for (const tree of trees) {
+    if (!tree || !tree.rootPersonId || !byId[tree.rootPersonId]) {
+      continue;
+    }
+    const scope = collectScopeIds(model, tree.rootPersonId);
+    if (!scope || scope.size <= 1) {
+      fail("data/trees/index.json", `la vista "${tree.key}" no alcanza a nadie mas que a su raiz`);
+      continue;
+    }
+    sizes.set(tree.key, scope.size);
+  }
+
+  const repetidos = [...sizes.entries()].filter(
+    ([, size]) => [...sizes.values()].filter((other) => other === size).length > 1
+  );
+  if (sizes.size > 1 && repetidos.length) {
+    warn(
+      "data/trees/index.json",
+      `vistas del mismo tamano, revisa que no sean la misma: ${repetidos.map(([key, size]) => `${key} (${size})`).join(", ")}`
+    );
+  }
 }
 
 function report() {

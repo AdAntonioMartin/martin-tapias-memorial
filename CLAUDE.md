@@ -33,17 +33,46 @@ the redirect, so `?id=` and `?tree=` never arrive. `tools/serve.mjs` exists for 
 All three go through `bootstrapPage()` (`js/core/bootstrap.js`): apply theme → wait for
 `DOMContentLoaded` → load UI text → apply i18n → run the page's `init`.
 
+### Site identity vs engine
+
+The repo is being split so the code can become a shared library and each family keeps its own data
+repo. The rule that makes that possible: **no file under `js/`, `css/`, `tools/`, `templates/` or
+`defaults/` may name a family, a person or a domain.** Everything site-specific lives in
+`site.config.json` (name, description, baseUrl, lang, theme, favicon).
+
+Four files are **generated** and must not be edited by hand:
+
+| Generated | From |
+|---|---|
+| `index.html`, `arbol.html`, `persona.html` | `templates/*.html` + `site.config.json` |
+| `js/config/app-config.js` | `defaults/app-config.json` + `site.config.json` |
+| `data/ui-text.es.json` | `defaults/ui-text.es.json` + `site.config.json` |
+
+`tools/build-site.mjs` writes them (`npm run build`); `npm run build:check` fails if any drifted,
+and CI runs it. Templates use `{{siteName}}`, `{{descriptions.tree}}` and friends — HTML values are
+escaped, UI-text values are not, because `applyI18nToDom` writes them with `textContent`.
+
+Optional per-site wording overrides go in `site-text.es.json` at the root, deep-merged over
+`defaults/ui-text.es.json`.
+
 ### Central configuration
 
-`js/config/app-config.js` holds the theme, every data path (`APP_CONFIG.data.*`), template name
-(`APP_CONFIG.templates.*`) and tree parameter (`APP_CONFIG.tree.*`). Add new paths there rather than
-hardcoding literals at call sites.
+`APP_CONFIG` holds the theme, every data path (`APP_CONFIG.data.*`), template name
+(`APP_CONFIG.templates.*`), tree parameter (`APP_CONFIG.tree.*`) and `siteName`. Add new paths to
+`defaults/app-config.json` rather than hardcoding literals at call sites.
 
-It is deliberately **a classic script, not an ES module**: it assigns `window.APP_CONFIG` and is
-loaded synchronously in `<head>` before `js/theme-boot.js`, which needs the theme before first
-paint. Modules read it through `js/config/index.js`, which only re-exposes it — import from there,
-never from `app-config.js`. If you convert it back to a module the theme silently stops working and
-a flash returns.
+The generated `js/config/app-config.js` is deliberately **a classic script, not an ES module**: it
+assigns `window.APP_CONFIG` and is loaded synchronously in `<head>` before `js/theme-boot.js`, which
+needs the theme before first paint. Modules read it through `js/config/index.js`, which only
+re-exposes it — import from there, never from `app-config.js`. If you make it a module the theme
+silently stops working and a flash returns.
+
+### Tools run against the current directory
+
+Every script in `tools/` resolves the site as `process.cwd()` (`siteRoot()` in
+`tools/lib/site-config.mjs`), never relative to its own file. That is what lets them keep working
+once the code lives in `node_modules` of a data repo. `build-site.mjs` and `smoke.mjs` also keep an
+`ENGINE_ROOT` for the files that travel with the code (templates, defaults, `serve.mjs`).
 
 ### Data model
 
@@ -83,6 +112,14 @@ Rules enforced by `tools/validate-data.mjs`:
 
 `js/tree/model.js` is the **single** representation of the graph; it feeds both the side panel and
 family-chart. Do not build a second parallel structure.
+
+### Tests vs data validation
+
+`tests/` covers engine behaviour only and runs against the synthetic graph in
+`tests/fixtures/family.js` — it must never read `data/`, or it cannot travel with the code. Checks
+about *this* family's data (bundle freshness, ids, unions, images, views that overlap) live in
+`tools/validate-data.mjs` and run with `npm run validate`. `tools/smoke.mjs` derives its sample
+person and tree keys from `data/` at runtime for the same reason.
 
 ### Images
 

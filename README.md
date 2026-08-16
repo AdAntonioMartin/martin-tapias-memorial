@@ -27,12 +27,35 @@ npm run smoke      # prueba en un Chrome real: las 3 páginas, teclado y móvil
 `npm run smoke` necesita un Chrome o Edge instalado; usa el del sistema y no
 descarga ningún navegador.
 
+## Configuración del sitio
+
+Todo lo que distingue a este memorial de otro —el nombre, el dominio, el idioma,
+el tema— vive en `site.config.json`. El resto del código no sabe de qué familia
+es, que es lo que permitirá sacarlo a una librería compartida.
+
+De ahí se **generan** cuatro cosas, y por eso no se editan a mano:
+
+| Generado | Desde |
+|---|---|
+| `index.html`, `arbol.html`, `persona.html` | `templates/` + `site.config.json` |
+| `js/config/app-config.js` | `defaults/app-config.json` + `site.config.json` |
+| `data/ui-text.es.json` | `defaults/ui-text.es.json` + `site.config.json` |
+
+`npm run build` los regenera; `npm run build:check` (que ejecuta CI) falla si
+alguno se ha editado a mano o se ha quedado atrás. Para cambiar un texto de
+interfaz sin tocar el motor, se crea `site-text.es.json` en la raíz con solo las
+claves a sustituir: se fusiona en profundidad sobre las del motor.
+
 ## Estructura
 
 ```
-index.html    → js/app.js       listado memorial
-persona.html  → js/detail.js    ficha individual
-arbol.html    → js/arbol.js     árbol genealógico
+site.config.json  identidad del sitio: nombre, dominio, idioma, tema
+templates/        plantillas de las tres páginas, con {{marcadores}}
+defaults/         valores y textos del motor, comunes a cualquier memorial
+
+index.html    → js/app.js       listado memorial      (generado)
+persona.html  → js/detail.js    ficha individual      (generado)
+arbol.html    → js/arbol.js     árbol genealógico     (generado)
 
 js/core/      utilidades compartidas (html, text, dates, url, net, i18n, theme)
 js/listing/   tabla del listado (columns, sort, config, data, render)
@@ -135,8 +158,9 @@ ningún JSON — esa parte hay que hacerla luego a mano o foto a foto con
 | Comando | Qué hace |
 |---|---|
 | `npm run serve` | Servidor estático de desarrollo. |
-| `npm run build` | Regenera `data/tree-bundle.json`. Obligatorio tras tocar fichas o uniones. |
-| `npm run validate` | Comprueba índices, uniones, identificadores, fechas e imágenes. |
+| `npm run build` | Regenera los ficheros generados y `data/tree-bundle.json`. Obligatorio tras tocar fichas, uniones o `site.config.json`. |
+| `npm run build:check` | Falla si algún fichero generado se editó a mano o está desactualizado. |
+| `npm run validate` | Comprueba índices, uniones, identificadores, fechas, imágenes y que el bundle esté al día. |
 | `npm run add-photo -- <id> <foto>` | Genera los derivados de una foto y la escribe en la ficha de la persona. |
 | `npm run images` | Deduplica y genera los derivados de todas las fotos sueltas en `images/personas/`. |
 | `npm run sitemap` | Regenera `sitemap.xml` y `robots.txt`. |
@@ -145,12 +169,14 @@ ningún JSON — esa parte hay que hacerla luego a mano o foto a foto con
 
 ## Temas
 
-Para cambiar el tema del sitio se edita una sola línea, en
-`js/config/app-config.js`:
+Para cambiar el tema del sitio se edita una sola línea, en `site.config.json`
+(no en `js/config/app-config.js`, que se genera a partir de él):
 
-```js
-theme: "dawn-amber"   // "dark" | "light-celestial" | "dawn-amber" | "auto"
+```json
+"theme": "dawn-amber"
 ```
+
+Valores admitidos: `dark`, `light-celestial`, `dawn-amber`, `auto`.
 
 `auto` sigue la preferencia del sistema. Cualquier otro valor manda sobre esa
 preferencia: si el sitio está configurado en claro, se ve claro aunque el
@@ -171,6 +197,9 @@ ser así porque `type="module"` es diferido por definición: si el tema se
 aplicara desde un módulo, el navegador ya habría pintado con el tema anterior y
 se vería un parpadeo en cada carga. Los módulos leen la configuración a través
 de `js/config/index.js`, que solo la reexpone.
+
+El generador (`tools/build-site.mjs`) mantiene esa forma: escribe un script
+clásico, no un módulo. Si algún día se cambia, vuelve el parpadeo.
 
 Si se añade un tema hay que tocar tres sitios: `css/tokens.css`,
 `js/theme-boot.js` y `js/core/theme.js`.

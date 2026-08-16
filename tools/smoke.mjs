@@ -17,8 +17,11 @@ import { mkdir, readFile } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { chromium } from "playwright-core";
+import { loadSiteConfig, siteRoot } from "./lib/site-config.mjs";
 
-const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
+/** ROOT es el sitio que se prueba; ENGINE_ROOT, donde vive tools/serve.mjs. */
+const ROOT = siteRoot();
+const ENGINE_ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const PORT = 4399;
 const BASE = `http://localhost:${PORT}`;
 
@@ -188,9 +191,70 @@ function reportErrors(errors) {
   errors.slice(0, 8).forEach((error) => console.log(`         - ${error}`));
 }
 
+/**
+ * Datos de muestra tomados del propio sitio.
+ *
+ * El smoke tiene que valer para cualquier memorial, asi que aqui no puede haber
+ * escrito ningun identificador ni ningun nombre: la persona con fotos, la que
+ * no tiene, las vistas del arbol y hasta el numero de filas esperado salen de
+ * data/. Antes estaban a fuego, y al anadir una persona al listado la prueba
+ * empezo a fallar sin que el codigo tuviera nada malo.
+ */
+async function discoverFixtures() {
+  const readSiteJson = async (rel) => JSON.parse(await readFile(path.join(ROOT, rel), "utf8"));
+
+  const site = await loadSiteConfig(ROOT);
+  const registry = await readSiteJson("data/trees/index.json");
+  const listConfig = await readSiteJson("data/lista.json");
+  const index = (await readSiteJson("data/personas-index.json")).byId;
+
+  /*
+   * "Tener fotos" es tener derivados propios, no tener heroImage: las fichas
+   * sin fotografia llevan igualmente un heroImage con el retrato generico
+   * (images/retrato.svg), que no pasa por el pipeline y por eso no tiene `full`.
+   * Confundir ambos casos deja sin probar la pagina sin fotos.
+   */
+  const hasPhotos = (person) =>
+    Boolean((person.gallery || []).length) || Boolean(person.heroImage && person.heroImage.full);
+
+  // La persona con fotos se busca entre las del listado, que son las que se
+  // navegan; la que no tiene, en el indice completo.
+  const listed = [];
+  for (const rel of listConfig.personas) {
+    listed.push(await readSiteJson(rel));
+  }
+
+  let withoutPhotos = null;
+  for (const rel of Object.values(index)) {
+    const person = await readSiteJson(rel);
+    if (!hasPhotos(person)) {
+      withoutPhotos = person;
+      break;
+    }
+  }
+
+  const withPhotos = listed.find(hasPhotos);
+  if (!withPhotos) {
+    throw new Error("Ninguna persona del listado tiene fotos: el smoke no puede comprobar la galeria.");
+  }
+
+  return {
+    siteName: site.siteName,
+    treeKeys: registry.trees.map((tree) => tree.key),
+    defaultTreeKey: registry.defaultTree || registry.trees[0].key,
+    listedCount: listed.length,
+    withPhotos,
+    withoutPhotos
+  };
+}
+
 async function main() {
   await mkdir(SHOT_DIR, { recursive: true });
-  const server = spawn(process.execPath, [path.join(ROOT, "tools", "serve.mjs"), String(PORT)], {
+  const fixtures = await discoverFixtures();
+  const { siteName, treeKeys, defaultTreeKey, listedCount, withPhotos, withoutPhotos } = fixtures;
+
+  const server = spawn(process.execPath, [path.join(ENGINE_ROOT, "tools", "serve.mjs"), String(PORT)], {
+    cwd: ROOT,
     stdio: "ignore"
   });
   await new Promise((resolve) => setTimeout(resolve, 1200));
@@ -200,8 +264,8 @@ async function main() {
     console.log("\n== Listado ==");
     {
       const { page, errors } = await withPage(browser, "/index.html");
-      check("titulo", await page.title(), (value) => value.includes("Martín"));
-      check("filas", await page.locator("#records-body tr").count(), 6);
+      check("titulo", await page.title(), (value) => value.includes(siteName));
+      check("filas", await page.locator("#records-body tr").count(), listedCount);
       check("enlaces por fila", await page.locator("#records-body tr:first-child a").count(), 1);
       reportErrors(errors);
       await page.screenshot({ path: path.join(SHOT_DIR, "listado.png") });
@@ -248,20 +312,26 @@ async function main() {
     console.log("\n== Vistas familiares ==");
     {
       const counts = {};
-      for (const key of ["martin", "deantonio", "teresa-castano-pineda"]) {
+      for (const key of treeKeys) {
         const { page, errors } = await withPage(browser, `/arbol.html?tree=${key}`);
         counts[key] = await page.locator(".tree-node-card").count();
         reportErrors(errors);
         await page.close();
       }
       console.log(`  info ${JSON.stringify(counts)}`);
-      check("las vistas no coinciden", new Set(Object.values(counts)).size, (n) => n > 1);
+      // Con una sola vista no hay nada que comparar: el recorte solo se puede
+      // comprobar si el sitio define mas de una familia.
+      if (treeKeys.length > 1) {
+        check("las vistas no coinciden", new Set(Object.values(counts)).size, (n) => n > 1);
+      } else {
+        console.log("  info una sola vista definida, no se compara el recorte");
+      }
     }
 
     console.log("\n== Ficha personal ==");
     {
-      const { page, errors } = await withPage(browser, "/persona.html?id=isabel-minguez-gonzalez");
-      check("nombre", await page.locator("#person-name").innerText(), "Isabel Mínguez González");
+      const { page, errors } = await withPage(browser, `/persona.html?id=${withPhotos.id}`);
+      check("nombre", await page.locator("#person-name").innerText(), withPhotos.name);
       check("datos sin valor", await page.locator("#person-facts dd:empty").count(), 0);
       check("imagenes de galeria", await page.locator(".gallery-card").count(), (n) => n > 0);
       check("imagen principal visible", await page.locator("#person-figure").isVisible(), true);
@@ -281,8 +351,8 @@ async function main() {
 
     console.log("\n== Las fotos conservan su proporcion ==");
     for (const [name, url] of [
-      ["ficha con fotos", "/persona.html?id=isabel-minguez-gonzalez"],
-      ["ficha sin fotos", "/persona.html?id=alex"]
+      ["ficha con fotos", `/persona.html?id=${withPhotos.id}`],
+      ...(withoutPhotos ? [["ficha sin fotos", `/persona.html?id=${withoutPhotos.id}`]] : [])
     ]) {
       const { page } = await withPage(browser, url, { width: 1280, height: 1600 });
       await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
@@ -316,7 +386,7 @@ async function main() {
     console.log("\n== Contraste WCAG AA en los tres temas ==");
     for (const [pagina, url] of [
       ["listado", "/index.html"],
-      ["árbol", "/arbol.html?tree=martin"]
+      ["árbol", `/arbol.html?tree=${defaultTreeKey}`]
     ]) {
       const { page } = await withPage(browser, url);
       for (const theme of ["light-celestial", "dawn-amber", "dark"]) {
@@ -335,7 +405,7 @@ async function main() {
     for (const [name, url] of [
       ["listado", "/index.html"],
       ["arbol", "/arbol.html"],
-      ["ficha", "/persona.html?id=isabel-minguez-gonzalez"]
+      ["ficha", `/persona.html?id=${withPhotos.id}`]
     ]) {
       const { page } = await withPage(browser, url, { width: 375, height: 667 });
       const overflow = await page.evaluate(

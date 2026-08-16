@@ -12,9 +12,9 @@ import { createServer } from "node:http";
 import { createReadStream } from "node:fs";
 import { stat } from "node:fs/promises";
 import path from "node:path";
-import { fileURLToPath } from "node:url";
+import { siteRoot } from "./lib/site-config.mjs";
 
-const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
+const ROOT = siteRoot();
 const PORT = Number(process.argv[2]) || 4321;
 
 const TYPES = {

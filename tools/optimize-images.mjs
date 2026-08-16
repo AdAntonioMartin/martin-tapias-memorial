@@ -12,7 +12,6 @@
  *   2. Mueve ese original a images/originals/<slug>/ (archivo, no se sirve).
  *   3. Genera en images/personas/<slug>/ tres tamanos en WebP y JPEG:
  *        thumb 96px (avatares del arbol), card 640px (galeria), full 1600px.
- *   4. Fusiona en images/manifest.json el mapa original -> derivados.
  *
  * Es una pasada masiva sobre carpetas con fotos recien soltadas: no toca los
  * JSON de las personas. Para anadir una foto suelta y que ademas quede escrita
@@ -31,11 +30,11 @@ import { existsSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import sharp from "sharp";
+import { siteRoot } from "./lib/site-config.mjs";
 
-const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
+const ROOT = siteRoot();
 const SERVED_DIR = path.join(ROOT, "images", "personas");
 const ORIGINALS_DIR = path.join(ROOT, "images", "originals");
-const MANIFEST = path.join(ROOT, "images", "manifest.json");
 const DRY_RUN = process.argv.includes("--dry-run");
 
 const SIZES = [
@@ -186,7 +185,7 @@ async function generateDerivatives({ slug, buffer, canonicalName, stats, dryRun 
   return { ...derived, original: originalRel, dimensions, reused: false };
 }
 
-async function processFolder(slug, manifest, stats) {
+async function processFolder(slug, stats) {
   const folder = path.join(SERVED_DIR, slug);
   const entries = await readdir(folder);
   const files = entries.filter((name) => RASTER.test(name) && !DERIVED.test(name));
@@ -217,7 +216,7 @@ async function processFolder(slug, manifest, stats) {
     // Se lee una sola vez a memoria: en Windows, sharp mantiene abierto el
     // fichero de origen y el rename posterior falla con EBUSY.
     const buffer = await readFile(path.join(folder, canonical));
-    const entry = await generateDerivatives({ slug, buffer, canonicalName: canonical, stats });
+    await generateDerivatives({ slug, buffer, canonicalName: canonical, stats });
 
     if (!DRY_RUN) {
       for (const source of group.sources) {
@@ -228,10 +227,6 @@ async function processFolder(slug, manifest, stats) {
       }
     }
 
-    // Todas las rutas antiguas del grupo apuntan al mismo juego de derivados.
-    for (const source of group.sources) {
-      manifest[`images/personas/${slug}/${source}`] = entry;
-    }
     stats.uniqueImages += 1;
   }
 }
@@ -241,10 +236,6 @@ async function main() {
     throw new Error(`No existe ${SERVED_DIR}`);
   }
 
-  // Se parte del manifest anterior en lugar de vaciarlo: cuando no hay fuentes
-  // nuevas que procesar, reescribirlo desde cero lo dejaria en {} y se perderia
-  // el mapa ruta-antigua -> derivados de las pasadas anteriores.
-  const manifest = existsSync(MANIFEST) ? JSON.parse(await readFile(MANIFEST, "utf8")) : {};
   const stats = {
     totalBytes: 0,
     duplicateBytes: 0,
@@ -254,16 +245,11 @@ async function main() {
   };
 
   for (const slug of await collectPersonFolders()) {
-    await processFolder(slug, manifest, stats);
-  }
-
-  if (!DRY_RUN) {
-    await writeFile(MANIFEST, `${JSON.stringify(manifest, null, 2)}\n`, "utf8");
+    await processFolder(slug, stats);
   }
 
   console.log(`Fuentes nuevas procesadas: ${stats.uniqueImages}`);
   console.log(`Derivados ya existentes:   ${stats.alreadyDerived} (sin tocar)`);
-  console.log(`Rutas en el manifest:      ${Object.keys(manifest).length}`);
   console.log(`Tamano original:           ${formatMB(stats.totalBytes)}`);
   console.log(`Duplicado eliminado:       ${formatMB(stats.duplicateBytes)}`);
   console.log(`Derivados generados:       ${formatMB(stats.generatedBytes)}`);

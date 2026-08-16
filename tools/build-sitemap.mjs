@@ -9,18 +9,23 @@
  * que persona.html lleva `noindex, follow`: se rastrean los enlaces pero no se
  * indexa la plantilla vacia. El sitemap lista solo las paginas reales.
  *
+ * La base sale de site.config.json. El argumento opcional la sustituye, para
+ * generar una copia apuntando a otro dominio sin tocar la configuracion.
+ *
  *   node tools/build-sitemap.mjs [https://dominio.example]
  */
 
 import { readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
-import { fileURLToPath } from "node:url";
+import { loadSiteConfig, siteRoot } from "./lib/site-config.mjs";
 
-const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
-const DEFAULT_BASE = "https://adantoniomartin.github.io/martin-tapias-memorial";
-const BASE = (process.argv[2] || DEFAULT_BASE).replace(/\/+$/, "");
+const ROOT = siteRoot();
 
 async function main() {
+  // El dominio sale de site.config.json; el argumento solo sirve para publicar
+  // una copia en otra direccion sin tocar la configuracion.
+  const site = await loadSiteConfig(ROOT);
+  const BASE = (process.argv[2] || site.baseUrl).replace(/\/+$/, "");
   const registry = JSON.parse(await readFile(path.join(ROOT, "data/trees/index.json"), "utf8"));
   const today = new Date().toISOString().slice(0, 10);
 
@@ -50,9 +55,6 @@ async function main() {
   await writeFile(path.join(ROOT, "sitemap.xml"), sitemap, "utf8");
   await writeFile(path.join(ROOT, "robots.txt"), robots, "utf8");
   console.log(`sitemap.xml: ${urls.length} URLs con base ${BASE}`);
-  if (BASE === DEFAULT_BASE) {
-    console.log("Si el sitio va a otro dominio: node tools/build-sitemap.mjs https://tu-dominio");
-  }
 }
 
 main().catch((err) => {
