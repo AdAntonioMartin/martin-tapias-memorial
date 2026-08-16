@@ -18,25 +18,11 @@ jobs:
 
       - run: npm ci
 
-      - name: Lint
-        run: npm run lint
+      # Construye el sitio y valida los datos. El motor trae sus propias
+      # pruebas; aqui solo se comprueba que estos datos son coherentes y que
+      # el sitio se puede construir con la version del motor que se use.
+      - name: Construir el sitio
+        run: npm run build
 
-      - name: Formato
-        run: npm run format:check
-
-      - name: Pruebas
-        run: npm test
-
-      - name: Validar datos
+      - name: Validar los datos
         run: npm run validate
-
-      # index.html, arbol.html, persona.html y js/config/app-config.js se generan
-      # desde templates/ y site.config.json: detecta que se hayan editado a mano.
-      - name: Los ficheros generados estan al dia
-        run: npm run build:check
-
-      # Detecta que alguien haya editado una ficha sin regenerar el bundle.
-      - name: El bundle esta al dia
-        run: |
-          npm run build
-          git diff --exit-code data/tree-bundle.json

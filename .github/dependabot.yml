@@ -1,0 +1,14 @@
+version: 2
+
+# Cuando family-tree-engine publique una etiqueta nueva, Dependabot abre una PR
+# subiendo la version. El CI construye el sitio y valida los datos con esa
+# version antes de que se pueda mezclar, asi que una mejora del motor nunca
+# entra sin comprobarse contra estos datos.
+updates:
+  - package-ecosystem: npm
+    directory: "/"
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 3
+    commit-message:
+      prefix: "deps"

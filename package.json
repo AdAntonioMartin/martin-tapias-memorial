@@ -3,26 +3,20 @@
   "version": "1.0.0",
   "private": true,
   "type": "module",
-  "description": "Web estatica memorial con fichas personales y arbol genealogico.",
+  "description": "Datos del memorial de la familia Martin - Tapias. El codigo vive en family-tree-engine.",
   "scripts": {
-    "serve": "node tools/serve.mjs",
-    "lint": "eslint js tools",
-    "format": "prettier --write \"js/**/*.js\" \"tools/**/*.mjs\" \"tests/**/*.js\" \"css/**/*.css\" \"*.html\"",
-    "format:check": "prettier --check \"js/**/*.js\" \"tools/**/*.mjs\" \"tests/**/*.js\" \"css/**/*.css\" \"*.html\"",
-    "test": "node --test",
-    "validate": "node tools/validate-data.mjs",
-    "check": "npm run lint && npm run build && npm run test && npm run validate",
-    "smoke": "node tools/smoke.mjs",
-    "images": "node tools/optimize-images.mjs",
-    "add-photo": "node tools/add-photo.mjs",
-    "build": "node tools/build-site.mjs && node tools/build-bundle.mjs",
-    "build:check": "node tools/build-site.mjs --check",
-    "sitemap": "node tools/build-sitemap.mjs"
+    "build": "family-tree-build",
+    "serve": "family-tree-build && family-tree-serve",
+    "validate": "family-tree-validate",
+    "check": "family-tree-build && family-tree-validate",
+    "smoke": "family-tree-build && family-tree-smoke",
+    "add-photo": "family-tree-add-photo",
+    "images": "family-tree-images"
+  },
+  "dependencies": {
+    "family-tree-engine": "file:../family-tree-engine"
   },
   "devDependencies": {
-    "eslint": "^9.18.0",
-    "playwright-core": "^1.62.1",
-    "prettier": "^3.4.2",
-    "sharp": "^0.35.3"
+    "playwright-core": "^1.62.1"
   }
 }

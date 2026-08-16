@@ -1,0 +1,59 @@
+name: Desplegar a GitHub Pages
+
+# El repositorio ya no contiene el sitio: solo los datos. Lo que se publica es
+# lo que produce family-tree-build juntando estos datos con el motor, asi que
+# Pages tiene que servir el artefacto de este workflow y no la rama.
+#
+# IMPORTANTE: en Ajustes -> Pages, el origen debe ser "GitHub Actions".
+# Con el origen anterior ("Deploy from a branch") se publicaria un repo sin
+# index.html. El paso configure-pages intenta ajustarlo solo.
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Un despliegue a la vez; no se cancela el que este en curso para no dejar el
+# sitio a medio publicar.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      - name: Validar antes de publicar
+        run: npm run check
+
+      - uses: actions/configure-pages@v5
+        with:
+          enablement: true
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
