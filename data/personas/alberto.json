@@ -1,0 +1,16 @@
+{
+  "id": "alberto",
+  "name": "Alberto",
+  "gender": "male",
+  "born": "",
+  "died": "",
+  "summary": "",
+  "heroImage": {
+    "src": "images/retrato.svg",
+    "alt": "Retrato de Alberto ????",
+    "caption": ""
+  },
+  "gallery": [],
+  "facts": [],
+  "unknownNameParts": true
+}

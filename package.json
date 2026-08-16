@@ -1,0 +1,27 @@
+{
+  "name": "martin-tapias-memorial",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Web estatica memorial con fichas personales y arbol genealogico.",
+  "scripts": {
+    "serve": "node tools/serve.mjs",
+    "lint": "eslint js tools",
+    "format": "prettier --write \"js/**/*.js\" \"tools/**/*.mjs\" \"tests/**/*.js\" \"css/**/*.css\" \"*.html\"",
+    "format:check": "prettier --check \"js/**/*.js\" \"tools/**/*.mjs\" \"tests/**/*.js\" \"css/**/*.css\" \"*.html\"",
+    "test": "node --test",
+    "validate": "node tools/validate-data.mjs",
+    "check": "npm run lint && npm run build && npm run test && npm run validate",
+    "smoke": "node tools/smoke.mjs",
+    "images": "node tools/optimize-images.mjs",
+    "add-photo": "node tools/add-photo.mjs",
+    "build": "node tools/build-bundle.mjs",
+    "sitemap": "node tools/build-sitemap.mjs"
+  },
+  "devDependencies": {
+    "eslint": "^9.18.0",
+    "playwright-core": "^1.62.1",
+    "prettier": "^3.4.2",
+    "sharp": "^0.35.3"
+  }
+}

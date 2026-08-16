@@ -4,59 +4,126 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Static web memorial site with personal profiles and an interactive family tree visualization. Built with vanilla JavaScript (ES6 modules) and uses the `family-chart` library for genealogical rendering.
+Static memorial site with a person listing, individual profiles, and an interactive family tree.
+Vanilla JavaScript (ES modules), no framework and no bundler. The `family-chart` library and D3 are
+vendored under `vendor/` and served from the site itself.
 
-## Running the Project
+## Running and checking
 
-The site uses `fetch()` for data loading. Serve with any static server (not `file://`):
+Pages load data with `fetch`, so they must be served over HTTP:
 
 ```bash
-npx serve .
-# or
-python -m http.server 8000
+npm install
+npm run serve      # http://localhost:4321
+npm run check      # lint + build + tests + data validation — run this before finishing
+npm run smoke      # real-browser pass over the three pages, keyboard and mobile
 ```
+
+Do not use `npx serve`: it rewrites URLs to drop the `.html` extension and loses the query string in
+the redirect, so `?id=` and `?tree=` never arrive. `tools/serve.mjs` exists for this reason.
 
 ## Architecture
 
-### Entry Points
-- `index.html` → `js/app.js`: Person listing/memorial table
-- `persona.html` → `js/detail.js`: Individual person profile
-- `arbol.html` → `js/arbol.js`: Family tree visualization
+### Entry points
 
-### Data Flow
+- `index.html` → `js/app.js` — listing table
+- `persona.html` → `js/detail.js` — individual profile
+- `arbol.html` → `js/arbol.js` — family tree
 
-**Central Configuration**: `js/config/app-config.js` defines all paths (`APP_CONFIG.data.*`) and templates (`APP_CONFIG.templates.*`).
+All three go through `bootstrapPage()` (`js/core/bootstrap.js`): apply theme → wait for
+`DOMContentLoaded` → load UI text → apply i18n → run the page's `init`.
 
-**Tree System**: Supports multiple family trees via URL parameter `?tree=<key>`. Every person record physically lives in exactly one place — the `personas/` folder of whichever tree first needed it — and is never duplicated. Other trees that also need that person reference it by pointing their index at that same path (a cross-reference, not a copy):
-- `data/trees/index.json`: Registry of available trees
-- `data/trees/<key>/arbol.json`: Family unions (relationships) scoped to that tree
-- `data/trees/<key>/personas/*.json`: Person records "owned" by that tree (created there first)
-- `data/trees/<key>/personas-index.json`: Person ID → path mapping. Entries for that tree's own people point into its own `personas/` folder; entries for people shared with other trees point across into whichever tree's `personas/` folder actually holds the file
-- `data/personas-index.json` (root): merged view of all trees' `byId` maps, pointing at each person's real path — used by pages that list/resolve people without a `?tree=` filter (the listing page, and detail-page fallback)
-- At load time, a tree's `personas-index.json` is merged over the root index (tree entries win) — see `loadTreePayload()` / `fetchPersonIndex()` below
+### Central configuration
 
-**Data Transformation Pipeline** (`js/tree/data.js`):
-1. `resolveTreeSources()` → selects tree config based on URL/default
-2. `loadTreePayload()` → fetches unions + person records
-3. `mapFamilyChartData()` → transforms to family-chart format (`{id, data, rels}`)
+`js/config/app-config.js` holds the theme, every data path (`APP_CONFIG.data.*`), template name
+(`APP_CONFIG.templates.*`) and tree parameter (`APP_CONFIG.tree.*`). Add new paths there rather than
+hardcoding literals at call sites.
 
-### Module Organization
+It is deliberately **a classic script, not an ES module**: it assigns `window.APP_CONFIG` and is
+loaded synchronously in `<head>` before `js/theme-boot.js`, which needs the theme before first
+paint. Modules read it through `js/config/index.js`, which only re-exposes it — import from there,
+never from `app-config.js`. If you convert it back to a module the theme silently stops working and
+a flash returns.
 
-- `js/core/`: Shared utilities (html, text, dates, url, net, i18n, theme)
-- `js/listing/`: Table rendering (columns, sort, config, data, render)
-- `js/detail/`: Person profile (data, render)
-- `js/tree/`: Family tree (data, graph, panel, config)
+### Data model
 
-### Key Patterns
+One source of truth per thing. There is **no** per-family copy of anything:
 
-- Person records have `__id` and `__path` injected after loading
-- Gender: stored as "male"/"female"/"unknown", converted to "M"/"F" for family-chart
-- Image paths can in principle be remapped via `imagesBase` in tree config (`remapImagePath()` in `js/tree/data.js`), but no tree currently uses per-tree images — all images live in the shared `images/personas/<slug>/` folder regardless of which tree's `personas/` folder holds the person's JSON record
-- UI text is externalized in `data/ui-text.es.json` and applied via `js/core/i18n.js`
+- `data/personas/<id>.json` — every person record lives here, nowhere else
+- `data/personas-index.json` — `id → path` for all 161 records
+- `data/unions.json` — the 59 unions (partners + children); the only source of kinship
+- `data/tree-bundle.json` — **generated**, do not edit by hand; see below
+- `data/trees/index.json` — family *views*, not separate trees
 
-## Adding a Person
+A "tree" (`?tree=<key>`) is a **view over the single graph**, defined by a `rootPersonId`. The
+subgraph is computed at runtime by `js/tree/scope.js`. Never reintroduce per-family union files.
 
-1. Create `data/trees/<key>/personas/<slug>.json`, where `<key>` is the tree you're currently working in — that tree becomes the person's permanent home (never move the file later, even if other trees start referencing it)
-2. Add entry to that tree's `data/trees/<key>/personas-index.json` under `byId`, and also to the root `data/personas-index.json` (so listing/detail pages without `?tree=` can resolve them)
-3. Reference the person's ID in `data/trees/<key>/arbol.json` unions to include them in that tree
-4. If the person should also appear in another tree, do **not** copy the file — add one more `byId` entry in that other tree's `personas-index.json` pointing at the same `data/trees/<key>/personas/<slug>.json` path, and reference their ID in that tree's `arbol.json` too
+### The generated bundle
+
+`data/tree-bundle.json` carries the unions plus, per person, only what a card needs. The tree page
+loads it instead of fetching 161 individual records. **Any change to a person record or to
+`data/unions.json` requires `npm run build`**, and CI fails if the committed bundle is stale.
+
+### Person record schema
+
+`id`, `name`, `gender` (`male`/`female`/`unknown`), `born`, `died` (ISO, partial precision allowed),
+`summary`, `heroImage`, `gallery`, `facts`. Optional: `unknownNameParts`, `notes`, `sources`,
+`biography`.
+
+Rules enforced by `tools/validate-data.mjs`:
+- IDs must match `^[a-z0-9-]+$` — they travel in URLs and in CSS selectors
+- `facts` labels come from a closed vocabulary; facts with an empty value are not allowed
+- names must not contain `?`; use `unknownNameParts` for unknown surnames
+- every image path referenced must exist on disk
+
+### Tree pipeline
+
+`loadTreePayload()` (`js/tree/data.js`) → `buildTreeModel()` (`js/tree/model.js`) →
+`toFamilyChartData()` → `collectScopeIds()`/`scopeFamilyChartData()` (`js/tree/scope.js`).
+
+`js/tree/model.js` is the **single** representation of the graph; it feeds both the side panel and
+family-chart. Do not build a second parallel structure.
+
+### Images
+
+`images/originals/` is the family archive at full resolution and is **never served or linked**.
+`images/personas/<slug>/` holds the derivatives the site actually uses: `thumb` (96 px, tree
+avatars), `card` (640 px, gallery), `full` (1600 px), each as WebP plus a JPEG fallback.
+
+To add one photo to an existing person, prefer `npm run add-photo` — it generates the derivatives
+*and* writes the image block into the person record, which is otherwise a dozen paths copied by
+hand:
+
+```bash
+npm run add-photo -- <id> <ruta-a-la-foto> [--hero] [--alt "…"] [--caption "…"] [--dry-run]
+```
+
+Without `--hero` the image is appended to `gallery`. Both tools are idempotent: derivatives already
+on disk are not re-encoded (`--force` overrides) and a photo the record already references is not
+added twice, so re-running is safe. `npm run images` remains the bulk pass that dedupes a folder of
+new drops by hash; it skips files that are already derivatives.
+
+## Adding a person
+
+1. Create `data/personas/<id>.json`
+2. Add the `id → path` entry to `data/personas-index.json`
+3. Reference the `id` in `data/unions.json`
+4. Add photos with `npm run add-photo -- <id> <foto> [--hero]` (or drop many in
+   `images/personas/<id>/` and run `npm run images`)
+5. Run `npm run build`, then `npm run check`
+
+## Conventions worth keeping
+
+- All UI text lives in `data/ui-text.es.json`; the HTML carries the Spanish text as real content so
+  the page is still readable if that fetch fails
+- Everything interpolated into HTML goes through `escapeHtml()`; anything clickable is a real
+  `<button>` or `<a>`, never a `<div>` with a listener
+- Colors, spacing, type and durations come from `css/tokens.css`; `--color-accent` is decorative and
+  fails contrast on small text, so use `--color-label` for labels
+- Gender in the tree is encoded four ways at once — top band, background tint (`--gender-tint`,
+  higher in the dark theme), avatar ring, and the initial shown when there is no portrait — plus a
+  legend. Color is never the only cue, and hover/selection must not overwrite the gender band
+- The theme must be applied by the synchronous `js/theme-boot.js`, never from a module.
+  `APP_CONFIG.theme` outranks `prefers-color-scheme`; only an explicit visitor choice in
+  `localStorage` outranks the config. Use `theme: "auto"` to follow the system instead
+- Errors get logged with context, never swallowed by a bare `.catch(() => …)`

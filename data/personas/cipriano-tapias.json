@@ -1,0 +1,15 @@
+{
+  "id": "cipriano-tapias",
+  "name": "Cipriano Tapias",
+  "gender": "male",
+  "born": "",
+  "died": "",
+  "summary": "",
+  "heroImage": {
+    "src": "images/retrato.svg",
+    "alt": "Retrato de Cipriano Tapias",
+    "caption": ""
+  },
+  "gallery": [],
+  "facts": []
+}

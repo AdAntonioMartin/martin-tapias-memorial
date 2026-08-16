@@ -1,0 +1,16 @@
+{
+  "id": "sara-castano",
+  "name": "Sara Castano",
+  "gender": "female",
+  "born": "",
+  "died": "",
+  "summary": "",
+  "heroImage": {
+    "src": "images/retrato.svg",
+    "alt": "Retrato de Sara Castano ?????",
+    "caption": ""
+  },
+  "gallery": [],
+  "facts": [],
+  "unknownNameParts": true
+}

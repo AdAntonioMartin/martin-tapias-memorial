@@ -1,0 +1,16 @@
+{
+  "id": "joaquin",
+  "name": "Joaquin",
+  "gender": "male",
+  "born": "",
+  "died": "",
+  "summary": "",
+  "heroImage": {
+    "src": "images/retrato.svg",
+    "alt": "Retrato de Joaquin ???? ?????",
+    "caption": ""
+  },
+  "gallery": [],
+  "facts": [],
+  "unknownNameParts": true
+}

@@ -1,0 +1,15 @@
+{
+  "id": "teresa-barral-arranz",
+  "name": "Teresa Barral Arranz",
+  "gender": "female",
+  "born": "",
+  "died": "",
+  "summary": "",
+  "heroImage": {
+    "src": "images/retrato.svg",
+    "alt": "Retrato de Teresa Barral Arranz",
+    "caption": ""
+  },
+  "gallery": [],
+  "facts": []
+}

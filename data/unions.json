@@ -1,0 +1,697 @@
+{
+  "unions": [
+    {
+      "id": "u-abdon-victoria",
+      "partners": [
+        "victoria-tapias",
+        "abdon-martin-matesanz"
+      ],
+      "children": [
+        "sofia-martin-tapias",
+        "amancio-martin-tapias",
+        "castor-martin-tapias",
+        "sofio-martin-tapias",
+        "angela-martin-tapias"
+      ],
+      "type": "married"
+    },
+    {
+      "id": "u-adriana",
+      "partners": [
+        "adriana-castano",
+        "persona-sin-identificar"
+      ],
+      "children": [
+        "daniela-castano"
+      ],
+      "type": "married"
+    },
+    {
+      "id": "u-alberto-clemencia",
+      "partners": [
+        "alberto",
+        "clemencia-castano-pineda"
+      ],
+      "children": [
+        "maria-de-los-angeles-castano",
+        "juan-felipe-castano",
+        "daniel-castano"
+      ],
+      "type": "married"
+    },
+    {
+      "id": "u-alonso-varias",
+      "partners": [
+        "alonso-castano-pineda"
+      ],
+      "children": [
+        "juan-felipe-castano"
+      ],
+      "type": "married"
+    },
+    {
+      "id": "u-alvaro-cecilia",
+      "partners": [
+        "alvaro-castano-pineda",
+        "cecilia"
+      ],
+      "children": [
+        "linda-lucia-castano-pineda"
+      ],
+      "type": "married"
+    },
+    {
+      "id": "u-alvaro-elisabeth",
+      "partners": [
+        "alvaro-castano-pineda",
+        "elisabeth"
+      ],
+      "children": [
+        "sara-castano"
+      ],
+      "type": "married"
+    },
+    {
+      "id": "u-antonio-isabel",
+      "partners": [
+        "antonio-de-antonio-rivera",
+        "isabel-minguez-gonzalez"
+      ],
+      "children": [
+        "luis-de-antonio-minguez",
+        "fernando-de-antonio-minguez"
+      ],
+      "type": "married"
+    },
+    {
+      "id": "u-antonio-lorenza",
+      "partners": [
+        "antonio-alonso-garcia",
+        "lorenza-lopez-garcia"
+      ],
+      "children": [
+        "isabel-alonso-lopez"
+      ],
+      "type": "married"
+    },
+    {
+      "id": "u-antonio-pilar",
+      "partners": [
+        "antonio-de-antonio-martin",
+        "pilar-guayara-castano"
+      ],
+      "children": [
+        "africa-de-antonio-guayara",
+        "adara-de-antonio-guayara"
+      ],
+      "type": "married"
+    },
+    {
+      "id": "u-balin-elsa",
+      "partners": [
+        "elsa-castano-pineda",
+        "balin"
+      ],
+      "children": [
+        "maria-fernanda-castano",
+        "simon-castano",
+        "salome-castano"
+      ],
+      "type": "married"
+    },
+    {
+      "id": "u-baltasar-maria",
+      "partners": [
+        "maria",
+        "baltasar-alonso"
+      ],
+      "children": [
+        "frutos-alonso-garcia"
+      ],
+      "type": "married"
+    },
+    {
+      "id": "u-basilides-angela",
+      "partners": [
+        "angela-martin-tapias",
+        "basilides-rivera"
+      ],
+      "children": [
+        "antonia-rivera-martin"
+      ],
+      "type": "married"
+    },
+    {
+      "id": "u-bruno-brigida",
+      "partners": [
+        "brigida-paez",
+        "bruno-minguez"
+      ],
+      "children": [
+        "domingo-minguez-paez"
+      ],
+      "type": "married"
+    },
+    {
+      "id": "u-camilo-alejandra",
+      "partners": [
+        "camilo-ramirez-castano",
+        "alejandra"
+      ],
+      "children": [
+        "geronimo-ramirez"
+      ],
+      "type": "married"
+    },
+    {
+      "id": "u-camilo-maria-fernanda",
+      "partners": [
+        "maria-fernanda-castano",
+        "camilo"
+      ],
+      "children": [
+        "joaquin"
+      ],
+      "type": "married"
+    },
+    {
+      "id": "u-carolina",
+      "partners": [
+        "carolina-castano",
+        "persona-sin-identificar"
+      ],
+      "children": [
+        "celeste-castano"
+      ],
+      "type": "married"
+    },
+    {
+      "id": "u-castor-angeles",
+      "partners": [
+        "castor-martin-tapias-tapias",
+        "maria-de-los-angeles-cuesta"
+      ],
+      "children": [
+        "maria-martin-cuesta",
+        "ana-paula-martin-cuesta",
+        "sara-martin-cuesta"
+      ],
+      "type": "married"
+    },
+    {
+      "id": "u-castor-evarista",
+      "partners": [
+        "evarista-matesanz-alonso",
+        "castor-martin-bravo"
+      ],
+      "children": [
+        "doroteo-martin-matesanz",
+        "abdon-martin-matesanz",
+        "santiago-martin-matesanz"
+      ],
+      "type": "married"
+    },
+    {
+      "id": "u-cipriano-alfonsa",
+      "partners": [
+        "cipriano-tapias",
+        "alfonsa-alvaro"
+      ],
+      "children": [
+        "benedicta-tapias-alvaro",
+        "jenorimo-tapias-alvaro",
+        "diosinio-tapias-alvaro"
+      ],
+      "type": "married"
+    },
+    {
+      "id": "u-daniel-camila",
+      "partners": [
+        "camila-castano",
+        "daniel"
+      ],
+      "children": [
+        "alma-castano"
+      ],
+      "type": "married"
+    },
+    {
+      "id": "u-daniela",
+      "partners": [
+        "daniela-castano",
+        "persona-sin-identificar"
+      ],
+      "children": [
+        "victoria"
+      ],
+      "type": "married"
+    },
+    {
+      "id": "u-dionisio-isabel",
+      "partners": [
+        "dionisio-matesanz-sanz",
+        "isabel-alonso-lopez"
+      ],
+      "children": [
+        "evarista-matesanz-alonso"
+      ],
+      "type": "married"
+    },
+    {
+      "id": "u-domingo-josefa",
+      "partners": [
+        "domingo-minguez-paez",
+        "josefa-gonzalez-otero"
+      ],
+      "children": [
+        "isabel-minguez-gonzalez"
+      ],
+      "type": "married"
+    },
+    {
+      "id": "u-domingo-lazara",
+      "partners": [
+        "domingo-gonzalez",
+        "lazara-otero-velasco"
+      ],
+      "children": [
+        "josefa-gonzalez-otero"
+      ],
+      "type": "married"
+    },
+    {
+      "id": "u-eladio-josefa",
+      "partners": [
+        "eladio-de-antonio-de-la-calle",
+        "josefa-rivera-velasco"
+      ],
+      "children": [
+        "antonio-de-antonio-rivera"
+      ],
+      "type": "married"
+    },
+    {
+      "id": "u-eloy-carmen",
+      "partners": [
+        "eloy-martin-tapias",
+        "maria-del-carmen-cardenosa-moreno"
+      ],
+      "children": [
+        "eloy-martin-cardenosa",
+        "elvira-martin-cardenosa"
+      ],
+      "type": "married"
+    },
+    {
+      "id": "u-eloy-laura",
+      "partners": [
+        "eloy-martin-cardenosa",
+        "laura"
+      ],
+      "children": [
+        "alex-martin-xx",
+        "elisa-martin-xx"
+      ],
+      "type": "married"
+    },
+    {
+      "id": "u-elvira",
+      "partners": [
+        "elvira-martin-cardenosa"
+      ],
+      "children": [
+        "marina-martin-cardenosa",
+        "adriana-martin-cardenosa"
+      ],
+      "type": "married"
+    },
+    {
+      "id": "u-francisco-barbara",
+      "partners": [
+        "francisco-alonso-garcia",
+        "barbara-garcia-iglesia"
+      ],
+      "children": [
+        "antonio-alonso-garcia"
+      ],
+      "type": "married"
+    },
+    {
+      "id": "u-francisco-catalina",
+      "partners": [
+        "francisco-garcia",
+        "catalina-sanz"
+      ],
+      "children": [
+        "frutos-garcia-sanz"
+      ],
+      "type": "married"
+    },
+    {
+      "id": "u-frutos-maria",
+      "partners": [
+        "maria-garcia-barral",
+        "frutos-alonso"
+      ],
+      "children": [
+        "francisco-alonso-garcia"
+      ],
+      "type": "married"
+    },
+    {
+      "id": "u-frutos-teresa",
+      "partners": [
+        "teresa-barral-arranz",
+        "frutos-garcia-sanz"
+      ],
+      "children": [
+        "frutos-alonso-garcia"
+      ],
+      "type": "married"
+    },
+    {
+      "id": "u-gabriel-ligia",
+      "partners": [
+        "gabriel-castano-pineda",
+        "ligia"
+      ],
+      "children": [
+        "marcela-castano",
+        "ana-maria-castano",
+        "santiago-castano"
+      ],
+      "type": "married"
+    },
+    {
+      "id": "u-gonzalo-ana-rita",
+      "partners": [
+        "gonzalo-castano",
+        "ana-rita-pineda-ospina"
+      ],
+      "children": [
+        "nestor-castano-pineda",
+        "oscar-castano-pineda",
+        "luis-alberto-castano-pineda",
+        "luis-gonzalo-castano-pineda",
+        "teresa-castano-pineda",
+        "gabriel-castano-pineda",
+        "miriam-castano-pineda",
+        "clemencia-castano-pineda",
+        "alonso-castano-pineda",
+        "alvaro-castano-pineda",
+        "julian-castano-pineda",
+        "elsa-castano-pineda"
+      ],
+      "type": "married"
+    },
+    {
+      "id": "u-hector-mila",
+      "partners": [
+        "hector-ramirez-lopez",
+        "miriam-castano-pineda"
+      ],
+      "children": [
+        "marcelo-ramirez-castano",
+        "camilo-ramirez-castano"
+      ],
+      "type": "married"
+    },
+    {
+      "id": "u-inocenta",
+      "partners": [
+        "inocenta-de-la-calle"
+      ],
+      "children": [
+        "eladio-de-antonio-de-la-calle"
+      ],
+      "type": "married"
+    },
+    {
+      "id": "u-jorge-teresa",
+      "partners": [
+        "jorge-guayara",
+        "teresa-castano-pineda"
+      ],
+      "children": [
+        "pilar-guayara-castano"
+      ],
+      "type": "married"
+    },
+    {
+      "id": "u-juan-isabel",
+      "partners": [
+        "juan-garcia",
+        "isabel-iglesia"
+      ],
+      "children": [
+        "barbara-garcia-iglesia"
+      ],
+      "type": "married"
+    },
+    {
+      "id": "u-julian-patricia",
+      "partners": [
+        "julian-castano-pineda",
+        "patricia"
+      ],
+      "children": [
+        "camila-castano",
+        "manuel-alejandro-castano"
+      ],
+      "type": "married"
+    },
+    {
+      "id": "u-julian-sofia",
+      "partners": [
+        "sofia-martin-tapias",
+        "julian-bravo-gonzalez"
+      ],
+      "children": [
+        "julian-bravo-martin"
+      ],
+      "type": "married"
+    },
+    {
+      "id": "u-la-campos-enrique",
+      "partners": [
+        "la-campos-martin",
+        "enrique"
+      ],
+      "children": [
+        "angel"
+      ],
+      "type": "married"
+    },
+    {
+      "id": "u-liduvina",
+      "partners": [
+        "liduvina-velasco"
+      ],
+      "children": [
+        "josefa-rivera-velasco"
+      ],
+      "type": "married"
+    },
+    {
+      "id": "u-luis-alberto-luci",
+      "partners": [
+        "luis-alberto-castano-pineda",
+        "luci"
+      ],
+      "children": [
+        "carlos-castano",
+        "adriana-castano",
+        "alex-castano",
+        "carolina-castano",
+        "mauricio-castano",
+        "yuliana-castano"
+      ],
+      "type": "married"
+    },
+    {
+      "id": "u-luis-asuncion",
+      "partners": [
+        "luis-de-antonio-minguez",
+        "asuncion-martin-tapias"
+      ],
+      "children": [
+        "gonzalo-de-antonio-martin",
+        "antonio-de-antonio-martin"
+      ],
+      "type": "married"
+    },
+    {
+      "id": "u-luis-gonzalo-clemencia",
+      "partners": [
+        "luis-gonzalo-castano-pineda",
+        "clemencia"
+      ],
+      "children": [
+        "laura-castano",
+        "sofia-castano",
+        "juana-castano"
+      ],
+      "type": "married"
+    },
+    {
+      "id": "u-marcelo-natalia",
+      "partners": [
+        "marcelo-ramirez-castano",
+        "natalia-ostina"
+      ],
+      "children": [
+        "emiliano-ramirez-ostina",
+        "antonio-ramirez-ostina"
+      ],
+      "type": "married"
+    },
+    {
+      "id": "u-maria",
+      "partners": [
+        "maria-martin-cuesta"
+      ],
+      "children": [
+        "sofia-martin-cuesta",
+        "olivia-martin-cuesta"
+      ],
+      "type": "unmarried"
+    },
+    {
+      "id": "u-mauricio-jennifer",
+      "partners": [
+        "mauricio-castano",
+        "jennifer"
+      ],
+      "children": [
+        "manuela-castano",
+        "violeta-castano"
+      ],
+      "type": "married"
+    },
+    {
+      "id": "u-miguel-antonia",
+      "partners": [
+        "antonia-rivera-martin",
+        "miguel-de-andres"
+      ],
+      "children": [
+        "miguel-de-andres-rivera"
+      ],
+      "type": "married"
+    },
+    {
+      "id": "u-modesto-nicolasa",
+      "partners": [
+        "modesto-martin",
+        "nicolasa"
+      ],
+      "children": [
+        "santiago",
+        "margarita"
+      ],
+      "type": "married"
+    },
+    {
+      "id": "u-oscar-varias",
+      "partners": [
+        "oscar-castano-pineda"
+      ],
+      "children": [
+        "alejandro-castano",
+        "sebastian-castano",
+        "gloria-castano"
+      ],
+      "type": "unmarried"
+    },
+    {
+      "id": "u-paula-alex",
+      "partners": [
+        "ana-paula-martin-cuesta",
+        "alex"
+      ],
+      "children": [],
+      "type": "married"
+    },
+    {
+      "id": "u-ricardo-ana-maria",
+      "partners": [
+        "ricardo",
+        "ana-maria-castano"
+      ],
+      "children": [
+        "juan-esteban-castano",
+        "silvana-castano"
+      ],
+      "type": "married"
+    },
+    {
+      "id": "u-santiago-estefania",
+      "partners": [
+        "estefania",
+        "santiago-castano"
+      ],
+      "children": [
+        "castano",
+        "castano"
+      ],
+      "type": "married"
+    },
+    {
+      "id": "u-santiago-maria",
+      "partners": [
+        "santiago-martin-matesanz",
+        "maria-arahuetes"
+      ],
+      "children": [
+        "modesto-martin",
+        "la-campos-martin"
+      ],
+      "type": "married"
+    },
+    {
+      "id": "u-sara-xxxx",
+      "partners": [
+        "sara-martin-cuesta",
+        "teresa"
+      ],
+      "children": [
+        "alba-martin-xx"
+      ],
+      "type": "married"
+    },
+    {
+      "id": "u-simon-ana",
+      "partners": [
+        "simon-barral",
+        "ana-arranz"
+      ],
+      "children": [
+        "teresa-barral-arranz"
+      ],
+      "type": "married"
+    },
+    {
+      "id": "u-sofio-benedicta",
+      "partners": [
+        "sofio-martin-tapias",
+        "benedicta-tapias-alvaro"
+      ],
+      "children": [
+        "eloy-martin-tapias",
+        "castor-martin-tapias-tapias",
+        "asuncion-martin-tapias"
+      ],
+      "type": "married"
+    },
+    {
+      "id": "u-yuliana",
+      "partners": [
+        "yuliana-castano"
+      ],
+      "children": [
+        "juan-miguel-castano"
+      ],
+      "type": "married"
+    }
+  ]
+}

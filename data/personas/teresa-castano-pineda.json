@@ -1,0 +1,15 @@
+{
+  "id": "teresa-castano-pineda",
+  "name": "Teresa Castano Pineda",
+  "gender": "female",
+  "born": "",
+  "died": "",
+  "summary": "",
+  "heroImage": {
+    "src": "images/retrato.svg",
+    "alt": "Retrato de Teresa Castano Pineda",
+    "caption": ""
+  },
+  "gallery": [],
+  "facts": []
+}

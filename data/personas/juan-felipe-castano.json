@@ -1,0 +1,15 @@
+{
+  "id": "juan-felipe-castano",
+  "name": "Juan Felipe Castaño",
+  "gender": "male",
+  "born": "",
+  "died": "",
+  "summary": "",
+  "heroImage": {
+    "src": "images/retrato.svg",
+    "alt": "Retrato de Juan Felipe Castaño",
+    "caption": ""
+  },
+  "gallery": [],
+  "facts": []
+}

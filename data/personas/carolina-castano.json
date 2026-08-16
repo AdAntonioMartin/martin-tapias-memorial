@@ -1,0 +1,16 @@
+{
+  "id": "carolina-castano",
+  "name": "Carolina Castano",
+  "gender": "female",
+  "born": "",
+  "died": "",
+  "summary": "",
+  "heroImage": {
+    "src": "images/retrato.svg",
+    "alt": "Retrato de Carolina Castano ?????",
+    "caption": ""
+  },
+  "gallery": [],
+  "facts": [],
+  "unknownNameParts": true
+}

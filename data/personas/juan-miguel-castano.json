@@ -1,0 +1,16 @@
+{
+  "id": "juan-miguel-castano",
+  "name": "Juan Miguel Castano",
+  "gender": "male",
+  "born": "",
+  "died": "",
+  "summary": "",
+  "heroImage": {
+    "src": "images/retrato.svg",
+    "alt": "Retrato de Juan Miguel ????? Castano",
+    "caption": ""
+  },
+  "gallery": [],
+  "facts": [],
+  "unknownNameParts": true
+}

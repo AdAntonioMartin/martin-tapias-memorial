@@ -1,0 +1,15 @@
+{
+  "id": "gonzalo-castano",
+  "name": "Gonzalo Castano",
+  "gender": "male",
+  "born": "",
+  "died": "",
+  "summary": "",
+  "heroImage": {
+    "src": "images/retrato.svg",
+    "alt": "Retrato de Gonzalo Castano",
+    "caption": ""
+  },
+  "gallery": [],
+  "facts": []
+}

@@ -1,0 +1,15 @@
+{
+  "id": "diosinio-tapias-alvaro",
+  "name": "Diosinio Tapias Alvaro",
+  "gender": "male",
+  "born": "",
+  "died": "",
+  "summary": "",
+  "heroImage": {
+    "src": "images/retrato.svg",
+    "alt": "Retrato de Diosinio Tapias Alvaro",
+    "caption": ""
+  },
+  "gallery": [],
+  "facts": []
+}

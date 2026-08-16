@@ -1,0 +1,15 @@
+{
+  "id": "brigida-paez",
+  "name": "Brigida Paez",
+  "gender": "female",
+  "born": "",
+  "died": "",
+  "summary": "",
+  "heroImage": {
+    "src": "images/retrato.svg",
+    "alt": "Retrato de Brigida Paez",
+    "caption": ""
+  },
+  "gallery": [],
+  "facts": []
+}

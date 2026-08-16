@@ -1,0 +1,15 @@
+{
+  "id": "pilar-guayara-castano",
+  "name": "Pilar Guayara Castano",
+  "gender": "female",
+  "born": "",
+  "died": "",
+  "summary": "",
+  "heroImage": {
+    "src": "images/retrato.svg",
+    "alt": "Retrato de Pilar Guayara Castano",
+    "caption": ""
+  },
+  "gallery": [],
+  "facts": []
+}

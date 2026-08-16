@@ -1,0 +1,16 @@
+{
+  "id": "juan-esteban-castano",
+  "name": "Juan Esteban Castano",
+  "gender": "male",
+  "born": "",
+  "died": "",
+  "summary": "",
+  "heroImage": {
+    "src": "images/retrato.svg",
+    "alt": "Retrato de Juan Esteban ????? Castano",
+    "caption": ""
+  },
+  "gallery": [],
+  "facts": [],
+  "unknownNameParts": true
+}

@@ -1,0 +1,15 @@
+{
+  "id": "elisa-martin-xx",
+  "name": "Elisa Martin Xx",
+  "gender": "female",
+  "born": "",
+  "died": "",
+  "summary": "",
+  "heroImage": {
+    "src": "images/retrato.svg",
+    "alt": "Retrato de Elisa Martin Xx",
+    "caption": ""
+  },
+  "gallery": [],
+  "facts": []
+}

@@ -1,47 +1,83 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title data-i18n="listing.title"></title>
-  <link rel="stylesheet" href="css/tokens.css">
-  <link rel="stylesheet" href="css/styles.css">
-</head>
-<body>
-  <main class="page">
-    <nav class="site-nav" data-i18n-attr="aria-label:common.nav.mainAria">
-      <a class="site-nav__link site-nav__link--active" href="index.html" aria-current="page" data-i18n="common.nav.list"></a>
-      <a class="site-nav__link" href="arbol.html" data-i18n="common.nav.tree"></a>
-    </nav>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title data-i18n="listing.title">Familia Martín - Tapias</title>
+    <meta
+      name="description"
+      content="Espacio de recuerdo de la familia Martín - Tapias: fichas personales, fechas y árbol genealógico."
+    />
+    <meta name="theme-color" content="#eef5ff" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Familia Martín - Tapias" />
+    <meta
+      property="og:description"
+      content="Espacio de recuerdo de la familia Martín - Tapias: fichas personales, fechas y árbol genealógico."
+    />
+    <link rel="canonical" href="index.html" />
+    <link rel="icon" href="images/retrato.svg" type="image/svg+xml" />
+    <script src="js/config/app-config.js"></script>
+    <script src="js/theme-boot.js"></script>
+    <link rel="stylesheet" href="css/tokens.css" />
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#contenido" data-i18n="common.nav.skip">Saltar al contenido</a>
 
-    <section class="hero">
-      <p class="eyebrow" data-i18n="listing.hero.eyebrow"></p>
-      <h1 data-i18n="listing.hero.heading"></h1>
-      <p class="lead" data-i18n="listing.hero.lead"></p>
-      <p class="description" data-i18n="listing.hero.description"></p>
-    </section>
+    <main class="page" id="contenido">
+      <nav class="site-nav" aria-label="Navegación principal" data-i18n-attr="aria-label:common.nav.mainAria">
+        <a
+          class="site-nav__link site-nav__link--active"
+          href="index.html"
+          aria-current="page"
+          data-i18n="common.nav.list"
+          >Listado</a
+        >
+        <a class="site-nav__link" href="arbol.html" data-i18n="common.nav.tree">Árbol genealógico</a>
+      </nav>
 
-    <section class="table-section" aria-labelledby="tabla-fallecidos">
-      <div class="table-header">
-        <h2 id="tabla-fallecidos" data-i18n="listing.table.heading"></h2>
-        <p data-i18n="listing.table.description"></p>
-      </div>
+      <section class="hero">
+        <p class="eyebrow" data-i18n="listing.hero.eyebrow">Memoria familiar</p>
+        <h1 data-i18n="listing.hero.heading">Familia Martín - Tapias</h1>
+        <p class="lead" data-i18n="listing.hero.lead">Genealogía familiar</p>
+        <p class="description" data-i18n="listing.hero.description">
+          Un espacio de recuerdo para conservar nombres, fechas y memoria familiar.
+        </p>
+      </section>
 
-      <div class="table-wrapper">
-        <table>
-          <thead id="records-head"></thead>
-          <tbody id="records-body">
-            <tr>
-              <td data-i18n="listing.table.loading"></td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </section>
-  </main>
+      <section class="table-section" aria-labelledby="tabla-fallecidos">
+        <div class="table-header">
+          <h2 id="tabla-fallecidos" data-i18n="listing.table.heading">Listado memorial</h2>
+          <p data-i18n="listing.table.description">
+            Relación de las personas recordadas en este espacio familiar.
+          </p>
+        </div>
 
-  <noscript class="noscript-message" data-i18n="common.noscript.generic"></noscript>
+        <p id="records-status" class="visually-hidden" role="status" aria-live="polite"></p>
 
-  <script type="module" src="js/app.js"></script>
-</body>
+        <div class="table-wrapper" tabindex="0" role="region" aria-labelledby="tabla-fallecidos">
+          <table>
+            <caption class="visually-hidden" data-i18n="listing.table.caption">
+              Personas recordadas, ordenadas por fecha de fallecimiento.
+            </caption>
+            <thead id="records-head"></thead>
+            <tbody id="records-body">
+              <tr>
+                <td colspan="3" class="table-message" data-i18n="listing.table.loading">Cargando datos...</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+
+    <noscript>
+      <p class="noscript-message" data-i18n="common.noscript.generic">
+        Esta página necesita JavaScript para mostrar el contenido.
+      </p>
+    </noscript>
+
+    <script type="module" src="js/app.js"></script>
+  </body>
 </html>

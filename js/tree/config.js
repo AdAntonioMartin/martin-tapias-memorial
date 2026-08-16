@@ -1,10 +1,9 @@
-export const GENDER_COLOR = {
-  male: "#4a7a9b",
-  female: "#9b4a6e",
-  unknown: "#7a9060"
-};
-
-export const GENDER_EMOJI = {
+/**
+ * Iniciales que se muestran cuando una persona no tiene retrato.
+ * Los colores por genero viven en css/arbol.css como tokens, para que sigan
+ * al tema activo en lugar de estar fijados aqui.
+ */
+export const GENDER_FALLBACK = {
   male: "M",
   female: "F",
   unknown: "?"

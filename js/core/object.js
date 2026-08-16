@@ -3,10 +3,12 @@ export function readPathValue(object, path) {
     return undefined;
   }
 
-  return String(path).split(".").reduce((current, part) => {
-    if (current && Object.prototype.hasOwnProperty.call(current, part)) {
-      return current[part];
-    }
-    return undefined;
-  }, object);
+  return String(path)
+    .split(".")
+    .reduce((current, part) => {
+      if (current && Object.prototype.hasOwnProperty.call(current, part)) {
+        return current[part];
+      }
+      return undefined;
+    }, object);
 }

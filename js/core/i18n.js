@@ -1,4 +1,4 @@
-import { getDataConfig } from "../config/app-config.js";
+import { getDataConfig } from "../config/index.js";
 import { fetchJson } from "./net.js";
 import { readPathValue } from "./object.js";
 

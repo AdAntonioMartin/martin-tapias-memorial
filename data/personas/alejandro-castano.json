@@ -1,0 +1,16 @@
+{
+  "id": "alejandro-castano",
+  "name": "Alejandro Castano",
+  "gender": "male",
+  "born": "",
+  "died": "",
+  "summary": "",
+  "heroImage": {
+    "src": "images/retrato.svg",
+    "alt": "Retrato de Alejandro Castano ?????",
+    "caption": ""
+  },
+  "gallery": [],
+  "facts": [],
+  "unknownNameParts": true
+}

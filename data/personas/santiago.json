@@ -1,0 +1,15 @@
+{
+  "id": "santiago",
+  "name": "Santiago",
+  "gender": "male",
+  "born": "",
+  "died": "",
+  "summary": "",
+  "heroImage": {
+    "src": "images/retrato.svg",
+    "alt": "Retrato de Santiago",
+    "caption": ""
+  },
+  "gallery": [],
+  "facts": []
+}

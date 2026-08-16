@@ -1,0 +1,15 @@
+{
+  "id": "lorenza-lopez-garcia",
+  "name": "Lorenza Lopez Garcia",
+  "gender": "female",
+  "born": "",
+  "died": "",
+  "summary": "",
+  "heroImage": {
+    "src": "images/retrato.svg",
+    "alt": "Retrato de Lorenza Lopez Garcia",
+    "caption": ""
+  },
+  "gallery": [],
+  "facts": []
+}

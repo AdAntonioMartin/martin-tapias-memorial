@@ -1,0 +1,15 @@
+{
+  "id": "margarita",
+  "name": "Margarita",
+  "gender": "female",
+  "born": "",
+  "died": "",
+  "summary": "",
+  "heroImage": {
+    "src": "images/retrato.svg",
+    "alt": "Retrato de Margarita",
+    "caption": ""
+  },
+  "gallery": [],
+  "facts": []
+}

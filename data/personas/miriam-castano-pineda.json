@@ -1,0 +1,15 @@
+{
+  "id": "miriam-castano-pineda",
+  "name": "Miriam Castano Pineda",
+  "gender": "female",
+  "born": "",
+  "died": "",
+  "summary": "",
+  "heroImage": {
+    "src": "images/retrato.svg",
+    "alt": "Retrato de Miriam Castano Pineda",
+    "caption": ""
+  },
+  "gallery": [],
+  "facts": []
+}

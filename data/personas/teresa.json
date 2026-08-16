@@ -1,0 +1,15 @@
+{
+  "id": "teresa",
+  "name": "Teresa",
+  "gender": "female",
+  "born": "",
+  "died": "",
+  "summary": "",
+  "heroImage": {
+    "src": "images/retrato.svg",
+    "alt": "Retrato de Teresa",
+    "caption": ""
+  },
+  "gallery": [],
+  "facts": []
+}

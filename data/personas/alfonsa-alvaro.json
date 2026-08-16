@@ -1,0 +1,15 @@
+{
+  "id": "alfonsa-alvaro",
+  "name": "Alfonsa Alvaro",
+  "gender": "female",
+  "born": "",
+  "died": "",
+  "summary": "",
+  "heroImage": {
+    "src": "images/retrato.svg",
+    "alt": "Retrato de Alfonsa Alvaro",
+    "caption": ""
+  },
+  "gallery": [],
+  "facts": []
+}

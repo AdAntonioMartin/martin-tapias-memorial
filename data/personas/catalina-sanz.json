@@ -1,0 +1,15 @@
+{
+  "id": "catalina-sanz",
+  "name": "Catalina Sanz",
+  "gender": "female",
+  "born": "",
+  "died": "",
+  "summary": "",
+  "heroImage": {
+    "src": "images/retrato.svg",
+    "alt": "Retrato de Catalina Sanz",
+    "caption": ""
+  },
+  "gallery": [],
+  "facts": []
+}

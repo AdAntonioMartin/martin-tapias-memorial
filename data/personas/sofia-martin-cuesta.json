@@ -1,0 +1,15 @@
+{
+  "id": "sofia-martin-cuesta",
+  "name": "Sofia Martin Cuesta",
+  "gender": "female",
+  "born": "",
+  "died": "",
+  "summary": "",
+  "heroImage": {
+    "src": "images/retrato.svg",
+    "alt": "Retrato de Sofia Martin Cuesta",
+    "caption": ""
+  },
+  "gallery": [],
+  "facts": []
+}

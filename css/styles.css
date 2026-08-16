@@ -13,10 +13,7 @@ body {
   min-height: 100vh;
   font-family: var(--font-body);
   color: var(--color-text);
-  background:
-    var(--body-bg-layer-1),
-    var(--body-bg-layer-2),
-    var(--color-background);
+  background: var(--body-bg-layer-1), var(--body-bg-layer-2), var(--color-background);
 }
 
 body::before {
@@ -24,9 +21,7 @@ body::before {
   position: fixed;
   inset: 0;
   pointer-events: none;
-  background:
-    var(--body-overlay-layer-1),
-    var(--body-overlay-layer-2);
+  background: var(--body-overlay-layer-1), var(--body-overlay-layer-2);
   opacity: var(--body-overlay-opacity);
 }
 
@@ -36,6 +31,57 @@ body::before {
   width: var(--page-width);
   margin: 0 auto;
   padding: 4rem 0 5rem;
+}
+
+/* --- accesibilidad base --- */
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+:where(a, button, [tabindex], summary):focus-visible {
+  outline: var(--focus-ring-width) solid var(--color-focus);
+  outline-offset: var(--focus-ring-offset);
+  border-radius: var(--radius-small);
+}
+
+.skip-link {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  transform: translate(-50%, -120%);
+  z-index: var(--z-skip-link);
+  padding: 0.7rem 1.2rem;
+  border: 1px solid var(--color-accent);
+  border-bottom-left-radius: var(--radius-medium);
+  border-bottom-right-radius: var(--radius-medium);
+  background: var(--color-surface-strong);
+  color: var(--color-accent-strong);
+  text-decoration: none;
+  transition: transform var(--duration-fast) ease;
+}
+
+.skip-link:focus-visible {
+  transform: translate(-50%, 0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
 
 .site-nav {
@@ -59,7 +105,9 @@ body::before {
   font-size: 0.82rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  transition: border-color 140ms ease, background-color 140ms ease;
+  transition:
+    border-color 140ms ease,
+    background-color 140ms ease;
 }
 
 .site-nav__link:hover {
@@ -67,9 +115,14 @@ body::before {
   background: var(--nav-hover-bg);
 }
 
-.site-nav__link--active {
+.site-nav__link--active,
+.site-nav__link--current {
   border-color: var(--color-accent);
   background: var(--nav-active-bg);
+}
+
+.site-nav__link--current {
+  cursor: default;
 }
 
 .hero {
@@ -77,18 +130,17 @@ body::before {
   padding: 3.5rem 2rem 2.5rem;
   border: 1px solid var(--color-line);
   border-radius: var(--radius-large);
-  background:
-    var(--hero-layer-1),
-    var(--color-surface);
+  background: var(--hero-layer-1), var(--color-surface);
   box-shadow: var(--shadow-soft);
 }
 
 .eyebrow {
   margin: 0 0 0.8rem;
-  color: var(--color-accent);
-  letter-spacing: 0.28em;
+  /* --color-accent es decorativo y no llega a 4.5:1 en texto pequeno. */
+  color: var(--color-label);
+  letter-spacing: var(--tracking-widest);
   text-transform: uppercase;
-  font-size: 0.72rem;
+  font-size: var(--text-xs);
 }
 
 h1,
@@ -196,7 +248,7 @@ tbody tr:hover {
   background: var(--table-row-link-hover-bg);
 }
 
-td[colspan] {
+.table-message {
   text-align: center;
   color: var(--color-text-soft);
 }
@@ -204,15 +256,6 @@ td[colspan] {
 .page--detail {
   display: grid;
   gap: 1.5rem;
-}
-
-.back-link {
-  margin: 0;
-}
-
-.back-link a {
-  color: var(--color-accent-strong);
-  text-decoration: none;
 }
 
 .hero--detail {
@@ -251,8 +294,8 @@ td[colspan] {
 
 .detail-list dt {
   margin-bottom: 0.35rem;
-  color: var(--color-accent);
-  font-size: 0.82rem;
+  color: var(--color-label);
+  font-size: var(--text-sm);
   letter-spacing: 0.12em;
   text-transform: uppercase;
 }
@@ -269,7 +312,11 @@ td[colspan] {
 
 .detail-figure img,
 .gallery-card img {
+  display: block;
   width: 100%;
+  /* Imprescindible junto a los atributos width/height del <img>: sin esto el
+     navegador usa la altura del atributo como altura real y deforma la foto. */
+  height: auto;
   border: 1px solid var(--color-line);
   border-radius: var(--radius-medium);
   background: var(--media-bg);
@@ -301,8 +348,18 @@ td[colspan] {
 .noscript-message {
   display: block;
   width: var(--page-width);
-  padding-bottom: 2rem;
+  margin: 2rem auto;
+  padding: 1rem 1.25rem;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-medium);
+  background: var(--color-surface);
   text-align: center;
+}
+
+@media (max-width: 900px) {
+  .detail-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 @media (max-width: 640px) {
@@ -314,9 +371,18 @@ td[colspan] {
     margin-bottom: 1rem;
   }
 
+  .site-nav__link {
+    min-height: 2.75rem;
+    padding: 0.45rem 0.9rem;
+  }
+
   .hero,
   .table-section {
     padding: 1.5rem;
+  }
+
+  h1 {
+    font-size: clamp(1.9rem, 8vw, 2.6rem);
   }
 
   th,

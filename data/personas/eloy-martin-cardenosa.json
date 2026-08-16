@@ -1,0 +1,15 @@
+{
+  "id": "eloy-martin-cardenosa",
+  "name": "Eloy Martin Cardenosa",
+  "gender": "male",
+  "born": "",
+  "died": "",
+  "summary": "",
+  "heroImage": {
+    "src": "images/retrato.svg",
+    "alt": "Retrato de Eloy Martin Cardenosa",
+    "caption": ""
+  },
+  "gallery": [],
+  "facts": []
+}

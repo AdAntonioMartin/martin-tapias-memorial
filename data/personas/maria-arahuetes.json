@@ -1,0 +1,15 @@
+{
+  "id": "maria-arahuetes",
+  "name": "Maria Arahuetes",
+  "gender": "female",
+  "born": "",
+  "died": "",
+  "summary": "",
+  "heroImage": {
+    "src": "images/retrato.svg",
+    "alt": "Retrato de Maria Arahuetes",
+    "caption": ""
+  },
+  "gallery": [],
+  "facts": []
+}

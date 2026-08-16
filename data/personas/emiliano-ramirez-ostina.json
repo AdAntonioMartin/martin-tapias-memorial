@@ -1,0 +1,15 @@
+{
+  "id": "emiliano-ramirez-ostina",
+  "name": "Emiliano Ramirez Ostina",
+  "gender": "male",
+  "born": "",
+  "died": "",
+  "summary": "",
+  "heroImage": {
+    "src": "images/retrato.svg",
+    "alt": "Retrato de Emiliano Ramirez Ostina",
+    "caption": ""
+  },
+  "gallery": [],
+  "facts": []
+}

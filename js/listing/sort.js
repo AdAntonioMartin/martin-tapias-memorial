@@ -69,31 +69,43 @@ function resolveSort(sortConfig, columns) {
   };
 }
 
+/**
+ * La clave de ordenacion se calcula una vez por registro, no en cada
+ * comparacion: antes cada comparacion repetia la busqueda del fact, la
+ * normalizacion Unicode y el parseo de fecha, lo que con las 161 fichas son
+ * decenas de miles de normalize("NFD").
+ */
 export function sortRecords(records, sortConfig, columns) {
   const resolved = resolveSort(sortConfig, columns || []);
   if (!resolved) {
     return records;
   }
 
-  return records.slice().sort((a, b) => {
-    const aValue = toComparableSortValue(getColumnValue(a, resolved.column), resolved.column.type, resolved.column.format);
-    const bValue = toComparableSortValue(getColumnValue(b, resolved.column), resolved.column.type, resolved.column.format);
+  const decorated = records.map((record, index) => ({
+    record,
+    index,
+    key: toComparableSortValue(
+      getColumnValue(record, resolved.column),
+      resolved.column.type,
+      resolved.column.format
+    )
+  }));
 
-    if (aValue.empty && bValue.empty) {
-      return 0;
+  decorated.sort((a, b) => {
+    if (a.key.empty !== b.key.empty) {
+      // Los vacios van siempre al final, sea cual sea la direccion.
+      return a.key.empty ? 1 : -1;
     }
-    if (aValue.empty) {
-      return 1;
+    if (!a.key.empty) {
+      if (a.key.value < b.key.value) {
+        return -resolved.direction;
+      }
+      if (a.key.value > b.key.value) {
+        return resolved.direction;
+      }
     }
-    if (bValue.empty) {
-      return -1;
-    }
-    if (aValue.value < bValue.value) {
-      return -1 * resolved.direction;
-    }
-    if (aValue.value > bValue.value) {
-      return 1 * resolved.direction;
-    }
-    return 0;
+    return a.index - b.index;
   });
+
+  return decorated.map((entry) => entry.record);
 }

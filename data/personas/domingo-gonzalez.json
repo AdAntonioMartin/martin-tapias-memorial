@@ -1,0 +1,15 @@
+{
+  "id": "domingo-gonzalez",
+  "name": "Domingo Gonzalez",
+  "gender": "male",
+  "born": "",
+  "died": "",
+  "summary": "",
+  "heroImage": {
+    "src": "images/retrato.svg",
+    "alt": "Retrato de Domingo Gonzalez",
+    "caption": ""
+  },
+  "gallery": [],
+  "facts": []
+}

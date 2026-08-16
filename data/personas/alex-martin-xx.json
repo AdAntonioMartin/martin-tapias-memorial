@@ -1,0 +1,15 @@
+{
+  "id": "alex-martin-xx",
+  "name": "Alex Martin Xx",
+  "gender": "male",
+  "born": "",
+  "died": "",
+  "summary": "",
+  "heroImage": {
+    "src": "images/retrato.svg",
+    "alt": "Retrato de Alex Martin Xx",
+    "caption": ""
+  },
+  "gallery": [],
+  "facts": []
+}

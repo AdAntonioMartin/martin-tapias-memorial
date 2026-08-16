@@ -1,0 +1,15 @@
+{
+  "id": "antonio-alonso-garcia",
+  "name": "Antonio Alonso Garcia",
+  "gender": "male",
+  "born": "",
+  "died": "",
+  "summary": "",
+  "heroImage": {
+    "src": "images/retrato.svg",
+    "alt": "Retrato de Antonio Alonso Garcia",
+    "caption": ""
+  },
+  "gallery": [],
+  "facts": []
+}

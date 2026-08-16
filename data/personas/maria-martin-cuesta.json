@@ -1,0 +1,15 @@
+{
+  "id": "maria-martin-cuesta",
+  "name": "Maria Martin Cuesta",
+  "gender": "female",
+  "born": "",
+  "died": "",
+  "summary": "",
+  "heroImage": {
+    "src": "images/retrato.svg",
+    "alt": "Retrato de Maria Martin Cuesta",
+    "caption": ""
+  },
+  "gallery": [],
+  "facts": []
+}

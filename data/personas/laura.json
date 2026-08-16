@@ -1,0 +1,15 @@
+{
+  "id": "laura",
+  "name": "Laura",
+  "gender": "female",
+  "born": "",
+  "died": "",
+  "summary": "",
+  "heroImage": {
+    "src": "images/retrato.svg",
+    "alt": "Retrato de Laura",
+    "caption": ""
+  },
+  "gallery": [],
+  "facts": []
+}
