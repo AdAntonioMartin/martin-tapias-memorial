@@ -56,6 +56,16 @@
     {
       "label": "Motivo",
       "value": "Insuficiencia cardíaca"
+    },
+    {
+      "label": "Ocupación",
+      "value": "Sus labores"
     }
+  ],
+  "biography": [
+    "Nació en El Guijar el 10/10/1895, hija de Domingo González y Lázara Otero.",
+    "Residió en El Guijar y se casó con Domingo Mínguez, de cuyo matrimonio nació una hija, Isabel.",
+    "Se dedicó a las labores del hogar, ya que su marido ejercía de maestro; su cometido era procurar el bienestar de la familia, cosa que hizo muy bien: en su casa siempre había mucho orden y un ambiente muy acogedor.",
+    "Falleció en El Guijar el 31/03/1984, rodeada de su hija y sus nietos."
   ]
 }

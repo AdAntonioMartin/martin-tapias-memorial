@@ -89,6 +89,18 @@
     {
       "label": "Motivo",
       "value": "Bronquitis asmática crónica"
+    },
+    {
+      "label": "Ocupación",
+      "value": "Industrial"
     }
+  ],
+  "biography": [
+    "Nació en 1894 en La Matilla, lugar en el que creció.",
+    "Se casó con Josefa Rivera, natural y vecina de Muñoveros, que solía pasar temporadas en La Matilla en casa de unos familiares.",
+    "Tuvieron pronto un hijo, Antonio, y se establecieron en El Guijar como industriales. Construyeron una casa para el negocio bajo el nombre comercial de \"El Matillano\"; mientras se terminaba de construir —se acabó en 1935— vivieron de alquiler.",
+    "En una ocasión, haciendo alguna tarea, le saltó una china al ojo izquierdo, lo que le hizo perderlo.",
+    "Padeció insuficiencia respiratoria, lo que le obligó a guardar reposo y le impidió colaborar demasiado en las tareas del negocio.",
+    "Residió en El Guijar junto a su familia hasta su fallecimiento."
   ]
 }

@@ -56,6 +56,15 @@
     {
       "label": "Motivo",
       "value": "Insuficiencia cardíaca"
+    },
+    {
+      "label": "Ocupación",
+      "value": "Maestro"
     }
+  ],
+  "biography": [
+    "Nació en El Cubillo en 1890. De niño se cayó de los hombros de un familiar y se rompió la columna, motivo por el que su familia decidió que estudiara la carrera de maestro.",
+    "Ejerció en Tenzuela y en Carrascal de la Cuesta.",
+    "Falleció a los 67 años, ya jubilado."
   ]
 }

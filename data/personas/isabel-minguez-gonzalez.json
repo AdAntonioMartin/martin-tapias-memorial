@@ -2,7 +2,7 @@
   "id": "isabel-minguez-gonzalez",
   "name": "Isabel Mínguez González",
   "gender": "female",
-  "born": "1921-08-07",
+  "born": "1921-07-08",
   "died": "2009-09-30",
   "summary": "Isabel Mínguez González nació en Valdevacas y Guijar y falleció el 30/09/2009 en Villanueva de la Cañada, a la edad de 88 años.",
   "heroImage": {
@@ -111,6 +111,18 @@
     {
       "label": "Motivo",
       "value": "Edad"
+    },
+    {
+      "label": "Ocupación",
+      "value": "Sus labores"
     }
+  ],
+  "biography": [
+    "Nació en El Guijar el 08/07/1921, hija del matrimonio de Domingo y Josefa.",
+    "Vivió con su familia en las localidades donde su padre ejercía de maestro, entre ellas Tenzuela y Carrascal de la Cuesta.",
+    "Frecuentaba habitualmente El Guijar, donde su familia tenía casa y estaban sus parientes más cercanos, como su tío Venancio.",
+    "Se casó con Antonio, con quien tuvo dos hijos, Fernando y Luis, y se integró en el negocio familiar de su marido.",
+    "Era muy aficionada a viajar, algo que no pudo hacer demasiado porque en aquella época el negocio no permitía vacaciones. Aun así, consiguió convencer a su marido y pasaron dos semanas en París en 1970, viaje que le gustó mucho; también pasó algunos veranos en San Sebastián acompañando a su tía Simona.",
+    "Falleció en Villanueva de la Cañada el 30/09/2009."
   ]
 }

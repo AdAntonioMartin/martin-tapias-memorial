@@ -100,6 +100,17 @@
     {
       "label": "Motivo",
       "value": "Edad"
+    },
+    {
+      "label": "Ocupación",
+      "value": "Comerciante"
     }
+  ],
+  "biography": [
+    "Nació en Muñoveros el 08/01/1904, en el seno de una familia muy amplia: era la mayor de 12 hermanos.",
+    "De adolescente iba con frecuencia a pasar temporadas con unos familiares de La Matilla, donde conoció a Eladio. Se casaron y tuvieron un hijo, Antonio.",
+    "Enseguida se trasladaron a El Guijar, donde montaron un negocio de ultramarinos y taberna. Como su marido padecía asma, a ella le tocó ser el pulmón del negocio, haciendo labores de todo tipo —decían que cargaba pellejos de vino de más de 100 kg—. Ampliaron el negocio con una tienda de tejidos que ella llevaba en exclusiva: recibía a los viajantes de comercio y hacía los pedidos necesarios. Era además muy buena cocinera y daba comidas a quien lo solicitara; en su negocio llegaron a celebrarse bodas de más de 100 comensales.",
+    "El fallecimiento de su único hijo en un accidente de tráfico fue un golpe muy duro para ella, pero se repuso y siguió al frente de su negocio de tejidos y calzado.",
+    "Falleció el 02/01/1996 en el Hospital Policlínico de Segovia."
   ]
 }

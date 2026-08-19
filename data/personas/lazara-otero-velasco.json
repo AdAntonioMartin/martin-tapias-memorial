@@ -49,6 +49,16 @@
     {
       "label": "Motivo",
       "value": "Colapso"
+    },
+    {
+      "label": "Ocupación",
+      "value": "Carnicera y estanquera"
     }
+  ],
+  "biography": [
+    "Nació en El Guijar; no se conoce la fecha exacta.",
+    "Se casó en primeras nupcias con Domingo González, de cuyo matrimonio nació una hija, Josefa. Enviudó y se casó en segundas nupcias con Aquilino del Caz, con quien tuvo un hijo, Venancio.",
+    "Residió en El Guijar, en la calle de las Agonías, donde tuvo una carnicería y un estanco.",
+    "Falleció en El Guijar el 13/05/1960."
   ]
 }

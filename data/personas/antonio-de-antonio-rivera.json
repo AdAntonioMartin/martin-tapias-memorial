@@ -56,6 +56,19 @@
     {
       "label": "Motivo",
       "value": "Accidente de tráfico"
+    },
+    {
+      "label": "Ocupación",
+      "value": "Comerciante"
     }
+  ],
+  "biography": [
+    "Nació en La Matilla el 13/06/1923.",
+    "Se trasladó a El Guijar junto a sus padres, Eladio y Josefa, a los 7 años, y residió allí hasta su fallecimiento.",
+    "Trabajó en el negocio familiar desde niño: como su padre padecía insuficiencia pulmonar, tuvo que hacerse cargo pronto de las tareas más relevantes de la casa.",
+    "Se casó con Isabel en 1948, en una boda cuyos festejos duraron tres días. Tuvieron dos hijos, Fernando y Luis.",
+    "Le tocó vivir una época dura, la de la posguerra, con necesidades muy acuciantes. Aun así, consiguió hacer florecer su negocio y pagó la carrera a sus dos hijos.",
+    "Participó de forma muy activa, con sendos cameos, en las películas \"El libro de buen amor\" y \"Furtivos\".",
+    "Falleció en un accidente de tráfico en Colmenar Viejo el 29/04/1980, cuando se dirigía a visitar a su nieto mayor, que contaba entonces un año y ocho meses."
   ]
 }
