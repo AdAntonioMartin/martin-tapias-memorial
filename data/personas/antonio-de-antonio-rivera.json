@@ -14,7 +14,6 @@
     "fullWebp": "images/personas/antonio-de-antonio-rivera/antonio-de-antonio-rivera-2-transformed-enhanced-full.webp",
     "width": 640,
     "height": 857,
-    "alt": "Retrato de Antonio de Antonio Rivera",
     "caption": ""
   },
   "gallery": [
@@ -27,7 +26,6 @@
       "fullWebp": "images/personas/antonio-de-antonio-rivera/antonio-de-antonio-rivera-2-transformed-enhanced-full.webp",
       "width": 640,
       "height": 857,
-      "alt": "Imagen de Antonio de Antonio Rivera: Antonio de Antonio Rivera 2 transformed enhanced",
       "caption": "Antonio de Antonio Rivera 2 transformed enhanced"
     },
     {
@@ -39,38 +37,17 @@
       "fullWebp": "images/personas/antonio-de-antonio-rivera/imagen-2024-09-30-1-enhanced-full.webp",
       "width": 640,
       "height": 480,
-      "alt": "Imagen de Antonio de Antonio Rivera: Imagen 2024 09 30 (1) enhanced",
       "caption": "Imagen 2024 09 30 (1) enhanced"
     }
   ],
   "facts": [
     {
-      "label": "Nombre completo",
-      "value": "Antonio de Antonio Rivera"
-    },
-    {
-      "label": "Padres",
-      "value": "Eladio y Josefa"
-    },
-    {
-      "label": "Nacimiento",
-      "value": "13/06/1923"
-    },
-    {
       "label": "Lugar de nacimiento",
       "value": "La Matilla"
     },
     {
-      "label": "Fallecimiento",
-      "value": "29/04/1980"
-    },
-    {
       "label": "Hora",
       "value": "16:00"
-    },
-    {
-      "label": "Edad",
-      "value": "56 años"
     },
     {
       "label": "Lugar de fallecimiento",

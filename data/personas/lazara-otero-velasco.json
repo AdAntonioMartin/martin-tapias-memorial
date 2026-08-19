@@ -7,18 +7,15 @@
   "summary": "Lázara Otero Velasco nació en Valdevacas y Guijar y falleció el 13/05/1960 en Valdevacas y Guijar, a la edad de 94 años.",
   "heroImage": {
     "src": "images/personas/lazara-otero-velasco/retrato.svg",
-    "alt": "Retrato de Lázara Otero Velasco",
     "caption": ""
   },
   "gallery": [
     {
       "src": "images/personas/lazara-otero-velasco/retrato.svg",
-      "alt": "Imagen de Lázara Otero Velasco: retrato",
       "caption": "retrato"
     },
     {
       "src": "images/personas/lazara-otero-velasco/documento.svg",
-      "alt": "Imagen de Lázara Otero Velasco: documento",
       "caption": "documento"
     },
     {
@@ -34,32 +31,16 @@
   ],
   "facts": [
     {
-      "label": "Nombre completo",
-      "value": "Lázara Otero Velasco"
-    },
-    {
       "label": "Padres",
       "value": "Antonio y Josefa"
-    },
-    {
-      "label": "Nacimiento",
-      "value": "1866"
     },
     {
       "label": "Lugar de nacimiento",
       "value": "Valdevacas y Guijar"
     },
     {
-      "label": "Fallecimiento",
-      "value": "13/05/1960"
-    },
-    {
       "label": "Hora",
       "value": "2:00"
-    },
-    {
-      "label": "Edad",
-      "value": "94 años"
     },
     {
       "label": "Lugar de fallecimiento",

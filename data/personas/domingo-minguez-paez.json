@@ -14,7 +14,6 @@
     "fullWebp": "images/personas/domingo-minguez-paez/domingo-full.webp",
     "width": 640,
     "height": 960,
-    "alt": "Retrato de Domingo Mínguez Páez",
     "caption": ""
   },
   "gallery": [
@@ -27,7 +26,6 @@
       "fullWebp": "images/personas/domingo-minguez-paez/domingo-full.webp",
       "width": 640,
       "height": 960,
-      "alt": "Imagen de Domingo Mínguez Páez: Domingo",
       "caption": "Domingo"
     },
     {
@@ -39,38 +37,17 @@
       "fullWebp": "images/personas/domingo-minguez-paez/img-4022-full.webp",
       "width": 640,
       "height": 853,
-      "alt": "Imagen de Domingo Mínguez Páez: IMG 4022",
       "caption": "IMG 4022"
     }
   ],
   "facts": [
     {
-      "label": "Nombre completo",
-      "value": "Domingo Mínguez Páez"
-    },
-    {
-      "label": "Padres",
-      "value": "Bruno y Brígida"
-    },
-    {
-      "label": "Nacimiento",
-      "value": "1890"
-    },
-    {
       "label": "Lugar de nacimiento",
       "value": "Cubillo"
     },
     {
-      "label": "Fallecimiento",
-      "value": "11/08/1957"
-    },
-    {
       "label": "Hora",
       "value": "18:00"
-    },
-    {
-      "label": "Edad",
-      "value": "67 años"
     },
     {
       "label": "Lugar de fallecimiento",

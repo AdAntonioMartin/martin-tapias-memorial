@@ -51,10 +51,21 @@ subgraph is computed at runtime. Never reintroduce per-family union files.
 
 Rules enforced by `npm run validate`:
 - IDs must match `^[a-z0-9-]+$` — they travel in URLs and in CSS selectors
-- `facts` labels come from a closed vocabulary; facts with an empty value are not allowed
+- `facts` labels come from a vocabulary declared in the engine's `factsSchema` (not hardcoded here);
+  facts with an empty value are not allowed
 - names must not contain `?`; use `unknownNameParts` for unknown surnames
 - every image path referenced must exist on disk
 - the tree bundle must be reproducible from the records — a stale one is an error
+
+**Don't duplicate `name`/`born`/`died` or the union graph into `facts`.** "Nombre completo",
+"Nacimiento", "Fallecimiento", "Edad" and "Padres" are computed by the engine at render time (from
+`name`/`born`/`died`, and from `data/unions.json` for Padres) — `npm run validate` rejects storing
+one of these as a fact when the data it would be computed from is already present. Storing it is
+only valid as a fallback for what the computation can't cover: a placeholder like `"Pendiente de
+documentar"` while `born`/`died` is still `""`, or a `"Padres"` for someone whose parents aren't in
+`data/unions.json` (see `lazara-otero-velasco.json`, whose parents don't exist as records). Same
+idea for photo `alt`: leave it unset and the engine computes one from `name`/`caption`; only set it
+by hand for something more descriptive than the mechanical default.
 
 ## Adding a person
 

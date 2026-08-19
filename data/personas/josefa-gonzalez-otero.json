@@ -4,7 +4,7 @@
   "gender": "female",
   "born": "1895-10-10",
   "died": "1984-03-31",
-  "summary": "Josefa González Otero nació en Valdevacas y Guijar y falleció el 31/03/1984 en Valdevacas y Guijar, a la edad de 89 años.",
+  "summary": "Josefa González Otero nació en Valdevacas y Guijar y falleció el 31/03/1984 en Valdevacas y Guijar, a la edad de 88 años.",
   "heroImage": {
     "src": "images/personas/josefa-gonzalez-otero/img-4013-card.jpg",
     "srcWebp": "images/personas/josefa-gonzalez-otero/img-4013-card.webp",
@@ -14,7 +14,6 @@
     "fullWebp": "images/personas/josefa-gonzalez-otero/img-4013-full.webp",
     "width": 640,
     "height": 853,
-    "alt": "Retrato de Josefa González Otero",
     "caption": ""
   },
   "gallery": [
@@ -27,7 +26,6 @@
       "fullWebp": "images/personas/josefa-gonzalez-otero/img-4013-full.webp",
       "width": 640,
       "height": 853,
-      "alt": "Imagen de Josefa González Otero: IMG 4013",
       "caption": "IMG 4013"
     },
     {
@@ -39,38 +37,17 @@
       "fullWebp": "images/personas/josefa-gonzalez-otero/img-4029-full.webp",
       "width": 640,
       "height": 853,
-      "alt": "Imagen de Josefa González Otero: IMG 4029",
       "caption": "IMG 4029"
     }
   ],
   "facts": [
     {
-      "label": "Nombre completo",
-      "value": "Josefa González Otero"
-    },
-    {
-      "label": "Padres",
-      "value": "Domingo y Lázara"
-    },
-    {
-      "label": "Nacimiento",
-      "value": "10/10/1895"
-    },
-    {
       "label": "Lugar de nacimiento",
       "value": "Valdevacas y Guijar"
     },
     {
-      "label": "Fallecimiento",
-      "value": "31/03/1984"
-    },
-    {
       "label": "Hora",
       "value": "4:00"
-    },
-    {
-      "label": "Edad",
-      "value": "89 años"
     },
     {
       "label": "Lugar de fallecimiento",

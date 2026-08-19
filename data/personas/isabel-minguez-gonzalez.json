@@ -14,7 +14,6 @@
     "fullWebp": "images/personas/isabel-minguez-gonzalez/isabel-full.webp",
     "width": 640,
     "height": 960,
-    "alt": "Retrato de Isabel Mínguez González",
     "caption": ""
   },
   "gallery": [
@@ -27,7 +26,6 @@
       "fullWebp": "images/personas/isabel-minguez-gonzalez/isabel-full.webp",
       "width": 640,
       "height": 960,
-      "alt": "Imagen de Isabel Mínguez González: Isabel",
       "caption": "Isabel"
     },
     {
@@ -39,7 +37,6 @@
       "fullWebp": "images/personas/isabel-minguez-gonzalez/isabel-y-luis-full.webp",
       "width": 640,
       "height": 960,
-      "alt": "Imagen de Isabel Mínguez González: Isabel y Luis",
       "caption": "Isabel y Luis"
     },
     {
@@ -51,7 +48,6 @@
       "fullWebp": "images/personas/isabel-minguez-gonzalez/img-4010-full.webp",
       "width": 640,
       "height": 853,
-      "alt": "Imagen de Isabel Mínguez González: IMG 4010",
       "caption": "IMG 4010"
     },
     {
@@ -63,7 +59,6 @@
       "fullWebp": "images/personas/isabel-minguez-gonzalez/img-4011-full.webp",
       "width": 640,
       "height": 853,
-      "alt": "Imagen de Isabel Mínguez González: IMG 4011",
       "caption": "IMG 4011"
     },
     {
@@ -75,7 +70,6 @@
       "fullWebp": "images/personas/isabel-minguez-gonzalez/img-4014-full.webp",
       "width": 640,
       "height": 853,
-      "alt": "Imagen de Isabel Mínguez González: IMG 4014",
       "caption": "IMG 4014"
     },
     {
@@ -87,7 +81,6 @@
       "fullWebp": "images/personas/isabel-minguez-gonzalez/img-4015-full.webp",
       "width": 640,
       "height": 853,
-      "alt": "Imagen de Isabel Mínguez González: IMG 4015",
       "caption": "IMG 4015"
     },
     {
@@ -99,38 +92,17 @@
       "fullWebp": "images/personas/isabel-minguez-gonzalez/img-4027-full.webp",
       "width": 640,
       "height": 853,
-      "alt": "Imagen de Isabel Mínguez González: IMG 4027",
       "caption": "IMG 4027"
     }
   ],
   "facts": [
     {
-      "label": "Nombre completo",
-      "value": "Isabel Mínguez González"
-    },
-    {
-      "label": "Padres",
-      "value": "Domingo y Josefa"
-    },
-    {
-      "label": "Nacimiento",
-      "value": "07/08/1921"
-    },
-    {
       "label": "Lugar de nacimiento",
       "value": "Valdevacas y Guijar"
     },
     {
-      "label": "Fallecimiento",
-      "value": "30/09/2009"
-    },
-    {
       "label": "Hora",
       "value": "1:00"
-    },
-    {
-      "label": "Edad",
-      "value": "88 años"
     },
     {
       "label": "Lugar de fallecimiento",
