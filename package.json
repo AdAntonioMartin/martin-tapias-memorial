@@ -14,7 +14,7 @@
     "images": "family-tree-images"
   },
   "dependencies": {
-    "family-tree-engine": "github:AdAntonioMartin/family-tree-engine#v0.3.0"
+    "family-tree-engine": "github:AdAntonioMartin/family-tree-engine#v0.3.1"
   },
   "devDependencies": {
     "playwright-core": "^1.62.1"
