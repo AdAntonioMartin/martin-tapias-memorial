@@ -58,12 +58,14 @@ Rules enforced by `npm run validate`:
 - the tree bundle must be reproducible from the records — a stale one is an error
 
 **Don't duplicate `name`/`born`/`died` or the union graph into `facts`.** "Nombre completo",
-"Nacimiento", "Fallecimiento", "Edad" and "Padres" are computed by the engine at render time (from
-`name`/`born`/`died`, and from `data/unions.json` for Padres) — `npm run validate` rejects storing
-one of these as a fact when the data it would be computed from is already present. Storing it is
-only valid as a fallback for what the computation can't cover: a placeholder like `"Pendiente de
-documentar"` while `born`/`died` is still `""`, or a `"Padres"` for someone whose parents aren't in
-`data/unions.json` (see `lazara-otero-velasco.json`, whose parents don't exist as records). Same
+"Nacimiento", "Fallecimiento", "Edad", "Padres", "Pareja" and "Hijos" are computed by the engine at
+render time (from `name`/`born`/`died`, and from `data/unions.json` for the three relations) —
+`npm run validate` rejects storing one of these as a fact when the data it would be computed from is
+already present. Padres/Pareja/Hijos render as links to each relative's own ficha, not plain text.
+Storing one by hand is only valid as a fallback for what the computation can't cover: a placeholder
+like `"Pendiente de documentar"` while `born`/`died` is still `""`, or a `"Padres"` for someone whose
+parents aren't in `data/unions.json` (see `lazara-otero-velasco.json`, whose parents don't exist as
+records — Pareja/Hijos have no such fallback, nothing has ever stored them by hand). Same
 idea for photo `alt`: leave it unset and the engine computes one from `name`/`caption`; only set it
 by hand for something more descriptive than the mechanical default.
 
