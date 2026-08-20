@@ -6,38 +6,49 @@
   "died": "1984-03-31",
   "summary": "Josefa González Otero nació en Valdevacas y Guijar y falleció el 31/03/1984 en Valdevacas y Guijar, a la edad de 88 años.",
   "heroImage": {
-    "src": "images/personas/josefa-gonzalez-otero/img-4013-card.jpg",
-    "srcWebp": "images/personas/josefa-gonzalez-otero/img-4013-card.webp",
-    "thumb": "images/personas/josefa-gonzalez-otero/img-4013-thumb.jpg",
-    "thumbWebp": "images/personas/josefa-gonzalez-otero/img-4013-thumb.webp",
-    "full": "images/personas/josefa-gonzalez-otero/img-4013-full.jpg",
-    "fullWebp": "images/personas/josefa-gonzalez-otero/img-4013-full.webp",
+    "src": "images/personas/josefa-gonzalez-otero/josefina-card.jpg",
+    "srcWebp": "images/personas/josefa-gonzalez-otero/josefina-card.webp",
+    "thumb": "images/personas/josefa-gonzalez-otero/josefina-thumb.jpg",
+    "thumbWebp": "images/personas/josefa-gonzalez-otero/josefina-thumb.webp",
+    "full": "images/personas/josefa-gonzalez-otero/josefina-full.jpg",
+    "fullWebp": "images/personas/josefa-gonzalez-otero/josefina-full.webp",
     "width": 640,
     "height": 853,
     "caption": ""
   },
   "gallery": [
     {
-      "src": "images/personas/josefa-gonzalez-otero/img-4013-card.jpg",
-      "srcWebp": "images/personas/josefa-gonzalez-otero/img-4013-card.webp",
-      "thumb": "images/personas/josefa-gonzalez-otero/img-4013-thumb.jpg",
-      "thumbWebp": "images/personas/josefa-gonzalez-otero/img-4013-thumb.webp",
-      "full": "images/personas/josefa-gonzalez-otero/img-4013-full.jpg",
-      "fullWebp": "images/personas/josefa-gonzalez-otero/img-4013-full.webp",
+      "src": "images/personas/josefa-gonzalez-otero/josefina-card.jpg",
+      "srcWebp": "images/personas/josefa-gonzalez-otero/josefina-card.webp",
+      "thumb": "images/personas/josefa-gonzalez-otero/josefina-thumb.jpg",
+      "thumbWebp": "images/personas/josefa-gonzalez-otero/josefina-thumb.webp",
+      "full": "images/personas/josefa-gonzalez-otero/josefina-full.jpg",
+      "fullWebp": "images/personas/josefa-gonzalez-otero/josefina-full.webp",
       "width": 640,
       "height": 853,
-      "caption": "IMG 4013"
+      "caption": "Josefina"
     },
     {
-      "src": "images/personas/josefa-gonzalez-otero/img-4029-card.jpg",
-      "srcWebp": "images/personas/josefa-gonzalez-otero/img-4029-card.webp",
-      "thumb": "images/personas/josefa-gonzalez-otero/img-4029-thumb.jpg",
-      "thumbWebp": "images/personas/josefa-gonzalez-otero/img-4029-thumb.webp",
-      "full": "images/personas/josefa-gonzalez-otero/img-4029-full.jpg",
-      "fullWebp": "images/personas/josefa-gonzalez-otero/img-4029-full.webp",
+      "src": "images/personas/josefa-gonzalez-otero/josefa-glez-y-luis-card.jpg",
+      "srcWebp": "images/personas/josefa-gonzalez-otero/josefa-glez-y-luis-card.webp",
+      "thumb": "images/personas/josefa-gonzalez-otero/josefa-glez-y-luis-thumb.jpg",
+      "thumbWebp": "images/personas/josefa-gonzalez-otero/josefa-glez-y-luis-thumb.webp",
+      "full": "images/personas/josefa-gonzalez-otero/josefa-glez-y-luis-full.jpg",
+      "fullWebp": "images/personas/josefa-gonzalez-otero/josefa-glez-y-luis-full.webp",
       "width": 640,
       "height": 853,
-      "caption": "IMG 4029"
+      "caption": "Josefina y Luis"
+    },
+    {
+      "src": "images/personas/josefa-gonzalez-otero/josefina-y-estefania-card.jpg",
+      "srcWebp": "images/personas/josefa-gonzalez-otero/josefina-y-estefania-card.webp",
+      "thumb": "images/personas/josefa-gonzalez-otero/josefina-y-estefania-thumb.jpg",
+      "thumbWebp": "images/personas/josefa-gonzalez-otero/josefina-y-estefania-thumb.webp",
+      "full": "images/personas/josefa-gonzalez-otero/josefina-y-estefania-full.jpg",
+      "fullWebp": "images/personas/josefa-gonzalez-otero/josefina-y-estefania-full.webp",
+      "width": 640,
+      "height": 853,
+      "caption": "Josefina y Estefanía"
     }
   ],
   "facts": [

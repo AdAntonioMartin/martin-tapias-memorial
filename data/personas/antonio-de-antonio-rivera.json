@@ -6,38 +6,60 @@
   "died": "1980-04-29",
   "summary": "Antonio de Antonio Rivera nació en La Matilla y falleció el 29/04/1980 en Colmenar Viejo, a la edad de 56 años.",
   "heroImage": {
-    "src": "images/personas/antonio-de-antonio-rivera/antonio-de-antonio-rivera-2-transformed-enhanced-card.jpg",
-    "srcWebp": "images/personas/antonio-de-antonio-rivera/antonio-de-antonio-rivera-2-transformed-enhanced-card.webp",
-    "thumb": "images/personas/antonio-de-antonio-rivera/antonio-de-antonio-rivera-2-transformed-enhanced-thumb.jpg",
-    "thumbWebp": "images/personas/antonio-de-antonio-rivera/antonio-de-antonio-rivera-2-transformed-enhanced-thumb.webp",
-    "full": "images/personas/antonio-de-antonio-rivera/antonio-de-antonio-rivera-2-transformed-enhanced-full.jpg",
-    "fullWebp": "images/personas/antonio-de-antonio-rivera/antonio-de-antonio-rivera-2-transformed-enhanced-full.webp",
-    "width": 640,
-    "height": 857,
-    "caption": ""
+    "src": "images/personas/antonio-de-antonio-rivera/antonio-carne-card.jpg",
+      "srcWebp": "images/personas/antonio-de-antonio-rivera/antonio-carne-card.webp",
+      "thumb": "images/personas/antonio-de-antonio-rivera/antonio-carne-thumb.jpg",
+      "thumbWebp": "images/personas/antonio-de-antonio-rivera/antonio-carne-thumb.webp",
+      "full": "images/personas/antonio-de-antonio-rivera/antonio-carne-full.jpg",
+      "fullWebp": "images/personas/antonio-de-antonio-rivera/antonio-carne-full.webp",
+      "width": 640,
+      "height": 922,
+      "caption": ""
   },
   "gallery": [
     {
-      "src": "images/personas/antonio-de-antonio-rivera/antonio-de-antonio-rivera-2-transformed-enhanced-card.jpg",
-      "srcWebp": "images/personas/antonio-de-antonio-rivera/antonio-de-antonio-rivera-2-transformed-enhanced-card.webp",
-      "thumb": "images/personas/antonio-de-antonio-rivera/antonio-de-antonio-rivera-2-transformed-enhanced-thumb.jpg",
-      "thumbWebp": "images/personas/antonio-de-antonio-rivera/antonio-de-antonio-rivera-2-transformed-enhanced-thumb.webp",
-      "full": "images/personas/antonio-de-antonio-rivera/antonio-de-antonio-rivera-2-transformed-enhanced-full.jpg",
-      "fullWebp": "images/personas/antonio-de-antonio-rivera/antonio-de-antonio-rivera-2-transformed-enhanced-full.webp",
+      "src": "images/personas/antonio-de-antonio-rivera/antonio-carne-card.jpg",
+      "srcWebp": "images/personas/antonio-de-antonio-rivera/antonio-carne-card.webp",
+      "thumb": "images/personas/antonio-de-antonio-rivera/antonio-carne-thumb.jpg",
+      "thumbWebp": "images/personas/antonio-de-antonio-rivera/antonio-carne-thumb.webp",
+      "full": "images/personas/antonio-de-antonio-rivera/antonio-carne-full.jpg",
+      "fullWebp": "images/personas/antonio-de-antonio-rivera/antonio-carne-full.webp",
       "width": 640,
-      "height": 857,
-      "caption": "Antonio de Antonio Rivera 2 transformed enhanced"
+      "height": 922,
+      "caption": "Antonio"
     },
     {
-      "src": "images/personas/antonio-de-antonio-rivera/imagen-2024-09-30-1-enhanced-card.jpg",
-      "srcWebp": "images/personas/antonio-de-antonio-rivera/imagen-2024-09-30-1-enhanced-card.webp",
-      "thumb": "images/personas/antonio-de-antonio-rivera/imagen-2024-09-30-1-enhanced-thumb.jpg",
-      "thumbWebp": "images/personas/antonio-de-antonio-rivera/imagen-2024-09-30-1-enhanced-thumb.webp",
-      "full": "images/personas/antonio-de-antonio-rivera/imagen-2024-09-30-1-enhanced-full.jpg",
-      "fullWebp": "images/personas/antonio-de-antonio-rivera/imagen-2024-09-30-1-enhanced-full.webp",
+      "src": "images/personas/antonio-de-antonio-rivera/antonio-furtivos-card.jpg",
+      "srcWebp": "images/personas/antonio-de-antonio-rivera/antonio-furtivos-card.webp",
+      "thumb": "images/personas/antonio-de-antonio-rivera/antonio-furtivos-thumb.jpg",
+      "thumbWebp": "images/personas/antonio-de-antonio-rivera/antonio-furtivos-thumb.webp",
+      "full": "images/personas/antonio-de-antonio-rivera/antonio-furtivos-full.jpg",
+      "fullWebp": "images/personas/antonio-de-antonio-rivera/antonio-furtivos-full.webp",
       "width": 640,
-      "height": 480,
-      "caption": "Imagen 2024 09 30 (1) enhanced"
+      "height": 853,
+      "caption": "Antonio en la pelícaula \"Furtivos\""
+    },
+    {
+      "src": "images/personas/antonio-de-antonio-rivera/antonio-y-luis-card.jpg",
+      "srcWebp": "images/personas/antonio-de-antonio-rivera/antonio-y-luis-card.webp",
+      "thumb": "images/personas/antonio-de-antonio-rivera/antonio-y-luis-thumb.jpg",
+      "thumbWebp": "images/personas/antonio-de-antonio-rivera/antonio-y-luis-thumb.webp",
+      "full": "images/personas/antonio-de-antonio-rivera/antonio-y-luis-full.jpg",
+      "fullWebp": "images/personas/antonio-de-antonio-rivera/antonio-y-luis-full.webp",
+      "width": 640,
+      "height": 691,
+      "caption": "Antonio y Luis"
+    },
+    {
+      "src": "images/personas/antonio-de-antonio-rivera/antonio-y-padres-card.jpg",
+      "srcWebp": "images/personas/antonio-de-antonio-rivera/antonio-y-padres-card.webp",
+      "thumb": "images/personas/antonio-de-antonio-rivera/antonio-y-padres-thumb.jpg",
+      "thumbWebp": "images/personas/antonio-de-antonio-rivera/antonio-y-padres-thumb.webp",
+      "full": "images/personas/antonio-de-antonio-rivera/antonio-y-padres-full.jpg",
+      "fullWebp": "images/personas/antonio-de-antonio-rivera/antonio-y-padres-full.webp",
+      "width": 640,
+      "height": 642,
+      "caption": "Antonio y sus padres"
     }
   ],
   "facts": [

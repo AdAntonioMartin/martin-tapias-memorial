@@ -7,14 +7,14 @@
   "summary": "Domingo Mínguez Páez nació en Cubillo y falleció el 11/08/1957 en Valdevacas y Guijar, a la edad de 67 años.",
   "heroImage": {
     "src": "images/personas/domingo-minguez-paez/domingo-card.jpg",
-    "srcWebp": "images/personas/domingo-minguez-paez/domingo-card.webp",
-    "thumb": "images/personas/domingo-minguez-paez/domingo-thumb.jpg",
-    "thumbWebp": "images/personas/domingo-minguez-paez/domingo-thumb.webp",
-    "full": "images/personas/domingo-minguez-paez/domingo-full.jpg",
-    "fullWebp": "images/personas/domingo-minguez-paez/domingo-full.webp",
-    "width": 640,
-    "height": 960,
-    "caption": ""
+      "srcWebp": "images/personas/domingo-minguez-paez/domingo-card.webp",
+      "thumb": "images/personas/domingo-minguez-paez/domingo-thumb.jpg",
+      "thumbWebp": "images/personas/domingo-minguez-paez/domingo-thumb.webp",
+      "full": "images/personas/domingo-minguez-paez/domingo-full.jpg",
+      "fullWebp": "images/personas/domingo-minguez-paez/domingo-full.webp",
+      "width": 640,
+      "height": 887,
+      "caption": ""
   },
   "gallery": [
     {
@@ -25,19 +25,8 @@
       "full": "images/personas/domingo-minguez-paez/domingo-full.jpg",
       "fullWebp": "images/personas/domingo-minguez-paez/domingo-full.webp",
       "width": 640,
-      "height": 960,
-      "caption": "Domingo"
-    },
-    {
-      "src": "images/personas/domingo-minguez-paez/img-4022-card.jpg",
-      "srcWebp": "images/personas/domingo-minguez-paez/img-4022-card.webp",
-      "thumb": "images/personas/domingo-minguez-paez/img-4022-thumb.jpg",
-      "thumbWebp": "images/personas/domingo-minguez-paez/img-4022-thumb.webp",
-      "full": "images/personas/domingo-minguez-paez/img-4022-full.jpg",
-      "fullWebp": "images/personas/domingo-minguez-paez/img-4022-full.webp",
-      "width": 640,
-      "height": 853,
-      "caption": "IMG 4022"
+      "height": 887,
+      "caption": ""
     }
   ],
   "facts": [
